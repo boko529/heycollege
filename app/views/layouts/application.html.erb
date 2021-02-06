@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title><%= yield(:title) %> | HeyCollege</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/head_base' %>
   </head>
 
   <body>
-    <header>
-      <h1>Hey Courage</h1>
-    </header>
-    <%= yield %>
+    <%= render 'layouts/header'%>
+    <div class="container">
+      <%= yield %>
+    <%= render 'layouts/footer'%>
+    </div>
   </body>
 </html>
