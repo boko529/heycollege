@@ -1,0 +1,15 @@
+<% provide(:title, '講義作成') %>
+<h1>講義作成</h1>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= form_with(model: @lecture, local: true) do |f| %>
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.submit "作成", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

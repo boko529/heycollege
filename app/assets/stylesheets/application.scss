@@ -40,3 +40,61 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
+
+/* footer */
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  a{
+    color: #777;
+    &:hover{
+      color: #222;
+    }
+  }
+  ul{
+    float: right;
+    list-style: none;
+    li{
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+// デバック表示(開発環境)の整形
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  box-sizing: border-box;
+  background-color: #eaeaea;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing:         border-box;
+}
+
+input {
+  height: auto !important;
+}
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  .form-control {
+    @extend .invalid !optional;
+    color: red;
+  }
+}
