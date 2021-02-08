@@ -3,9 +3,6 @@
 <%= link_to "講義の新規作成",  new_lecture_path %>
 
 <ul class="lectures">
-  <% @lectures.each do |lecture| %>
-    <li>
-      <%= link_to lecture.name, lecture %>
-    </li>
-  <% end %>
+  <%= render @lectures %>
+  <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
 </ul>

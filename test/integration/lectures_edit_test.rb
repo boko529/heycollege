@@ -2,7 +2,7 @@ require "test_helper"
 
 class LecturesEditTest < ActionDispatch::IntegrationTest
   def setup
-    @lecture = lectures(:one)
+    @lecture = lectures(:lecture_1)
   end
 
   test "unsuccessful edit" do

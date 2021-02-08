@@ -1,7 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+lecture_1:
   name: "行動経済学入門"
 
-two:
+lecture_2:
   name: "数値解析"
+
+<% 30.times do |n| %>
+lecture_<%= n+2 %>:
+  name:  <%= "Lecture #{n+2}" %>
+<% end %>

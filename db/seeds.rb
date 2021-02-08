@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+25.times do |n|
+  subject_name = Faker::Science.element
+  next_name = "#{n+1}入門"
+  name = subject_name + next_name
+  Lecture.create!(name: name)
+end

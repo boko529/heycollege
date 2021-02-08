@@ -1,7 +1,6 @@
 class LecturesController < ApplicationController
-
   def index
-    @lectures = Lecture.all
+    @lectures = Lecture.page(params[:page]).per(10)
   end
 
   def show
@@ -34,6 +33,12 @@ class LecturesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    Lecture.find(params[:id]).destroy
+    flash[:success] = "講義を削除しました"
+    redirect_to lectures_url
   end
 
   private
