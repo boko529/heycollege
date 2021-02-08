@@ -2,10 +2,22 @@
   <div class="container">
     <%= link_to image_tag("LogoHeyCollege.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
     <nav>
-      <form class="form-inline">
+
+      <%# <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      </form> %>
+      <div>
+        <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <%= f.search_field :name_cont, class: "form-control mr-sm-2" ,placeholder: '検索する講義名を入力...' %>
+            </div>
+            <%= f.submit ("検索") , class: 'btn btn-outline-success my-2 my-sm-0'%>
+          </div>
+        <% end %>
+      </div>
+
       <ul class="navbar navbar-nav navbar-right list-group list-group-horizontal">
         <li><%= link_to "Sign up", '#' %></li>
         <li><%= link_to "Log in", '#' %></li>

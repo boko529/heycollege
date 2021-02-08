@@ -1,6 +1,7 @@
 class LecturesController < ApplicationController
   def index
-    @lectures = Lecture.page(params[:page]).per(10)
+    @q = Lecture.ransack(params[:q])
+    @lectures = @q.result.page(params[:page]).per(10)
   end
 
   def show

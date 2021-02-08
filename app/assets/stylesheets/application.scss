@@ -81,6 +81,13 @@ input, textarea, select, .uneditable-input {
   box-sizing:         border-box;
 }
 
+header{
+  input, textarea, select, .uneditable-input{
+    // コレがないとheaderの検索欄がくずれちゃうんよな
+    width: auto;
+  }
+}
+
 input {
   height: auto !important;
 }

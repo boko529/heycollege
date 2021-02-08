@@ -1,3 +1,4 @@
+<% provide(:title, @lecture.name) %>
 <h3><%= @lecture.name %></h3>
 <p><%= @lecture.updated_at %></p>
 <%= link_to "編集", edit_lecture_path %>
