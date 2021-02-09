@@ -2,11 +2,24 @@
 
 lecture_1:
   name: "行動経済学入門"
+  language_used: 1
+  lecture_type: 2
+  lecture_term: 1
+  lecture_size: 2
+
 
 lecture_2:
   name: "数値解析"
+  language_used: 0
+  lecture_type: 1
+  lecture_term: 3
+  lecture_size: 2
 
 <% 30.times do |n| %>
 lecture_<%= n+2 %>:
   name:  <%= "Lecture #{n+2}" %>
+  language_used: <% n % 3 %>
+  lecture_type: <% n % 5 %>
+  lecture_term: <% n % 4 %>
+  lecture_size: <% n % 4 %>
 <% end %>

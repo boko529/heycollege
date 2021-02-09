@@ -1,5 +1,15 @@
 <% provide(:title, @lecture.name) %>
+<%= link_to "講義一覧へ", lectures_path %>
 <h3><%= @lecture.name %></h3>
-<p><%= @lecture.updated_at %></p>
+<p>使用言語</p>
+<p><%= @lecture.language_used_i18n %></p>
+<p>講義のタイプ</p>
+<p><%= @lecture.lecture_type_i18n %></p>
+<p>講義規模</p>
+<p><%= @lecture.lecture_size_i18n %></p>
+<p>講義ターム</p>
+<p><%= @lecture.lecture_term_i18n %></p>
+
+<p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 <%= link_to "編集", edit_lecture_path %>
 <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>

@@ -2,7 +2,7 @@ require "test_helper"
 
 class LectureTest < ActiveSupport::TestCase
   def setup
-    @lecture = Lecture.new(name: "行動経済学")
+    @lecture = lectures(:lecture_1)
   end
   
   test "should be valid" do
@@ -23,5 +23,25 @@ class LectureTest < ActiveSupport::TestCase
     duplicate_lecture = @lecture.dup
     @lecture.save
     assert_not duplicate_lecture.valid?
+  end
+
+  test "language_used should be present" do
+    @lecture.language_used = nil
+    assert_not @lecture.valid?
+  end
+
+  test "lecture_type should be present" do
+    @lecture.lecture_type = nil
+    assert_not @lecture.valid?
+  end
+
+  test "lecture_term should be present" do
+    @lecture.lecture_term = nil
+    assert_not @lecture.valid?
+  end
+
+  test "lecture_size should be present" do
+    @lecture.lecture_term = nil
+    assert_not @lecture.valid?
   end
 end

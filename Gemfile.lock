@@ -82,6 +82,8 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     faker (2.15.1)
       i18n (>= 1.6, < 2)
@@ -243,6 +245,7 @@ DEPENDENCIES
   bootstrap4-kaminari-views
   byebug
   capybara (>= 3.26)
+  enum_help
   faker
   jbuilder (~> 2.7)
   kaminari

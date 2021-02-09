@@ -13,7 +13,7 @@ class LecturesCreateTest < ActionDispatch::IntegrationTest
   test "valid lecture create" do
     get new_lecture_path
     assert_difference 'Lecture.count', 1 do
-      post lectures_path, params: { lecture: { name:  "日本大学史"}}
+      post lectures_path, params: { lecture: { name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small"}}
     end
     follow_redirect!
     assert_template 'lectures/show'
