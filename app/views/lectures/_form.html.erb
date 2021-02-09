@@ -35,5 +35,13 @@
       <%= b.label %>
     <% end %>
   </div>
+
+  <%= f.label :group_work %>
+  <div>
+    <%= f.collection_radio_buttons :group_work, Lecture.group_works_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %>
+  </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

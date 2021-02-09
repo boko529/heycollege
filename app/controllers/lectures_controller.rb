@@ -45,6 +45,6 @@ class LecturesController < ApplicationController
 
   private
     def lecture_params
-      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term)
+      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work)
     end
 end

@@ -6,6 +6,7 @@ lecture_1:
   lecture_type: 0
   lecture_term: 0
   lecture_size: 0
+  group_work: 0
 
 
 lecture_2:
@@ -14,6 +15,7 @@ lecture_2:
   lecture_type: 1
   lecture_term: 1
   lecture_size: 1
+  group_work: 1
 
 <% 100.times do |n| %>
 lecture_<%= n+3 %>:
@@ -22,4 +24,5 @@ lecture_<%= n+3 %>:
   lecture_type: <%= (n+3) % 5 %>
   lecture_term: <%= (n+3) % 4 %>
   lecture_size: <%= (n+3) % 4 %>
+  group_work: <%= (n+3) % 2 %>
 <% end %>

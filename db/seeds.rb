@@ -12,7 +12,8 @@
   name = subject_name + next_name
   language_used = n % 3
   lecture_type = n % 5
-  lecture_term = n % 4
   lecture_size = n % 4
-  Lecture.create!(name: name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size)
+  group_work = n % 2
+  lecture_term = n % 4
+  Lecture.create!(name: name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work)
 end

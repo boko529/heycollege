@@ -4,6 +4,7 @@ class Lecture < ApplicationRecord
   validates :lecture_type, presence: true
   validates :lecture_term, presence: true
   validates :lecture_size, presence: true
+  validates :group_work, presence: true
 
   enum language_used:{
     Japanese:        0, #日本語
@@ -31,5 +32,10 @@ class Lecture < ApplicationRecord
     medium:          1, #20人～70人
     large:           2, #70人～100人
     extra_large:     3, #100人以上
+  }
+
+  enum group_work:{
+    included:        0, #あり
+    not_included:    1, #なし
   }
 end

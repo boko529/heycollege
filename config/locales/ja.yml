@@ -8,6 +8,7 @@ ja:
         lecture_type: "講義のタイプ"
         lecture_size: "講義規模"
         lecture_term: "ターム"
+        group_work: "グループワーク"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -235,3 +236,6 @@ ja:
         medium: "20人～70人"
         large: "70人～100人"
         extra_large: "100人以上"
+      group_work:
+        included: "あり"
+        not_included: "なし"
