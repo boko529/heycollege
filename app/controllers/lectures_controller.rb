@@ -1,7 +1,8 @@
 class LecturesController < ApplicationController
-
   def index
-    @lectures = Lecture.all
+    @q = Lecture.ransack(params[:q])
+    @q.sorts = 'updated_at desc' if @q.sorts.empty?
+    @lectures = @q.result.page(params[:page]).per(25)
   end
 
   def show
@@ -36,8 +37,14 @@ class LecturesController < ApplicationController
     end
   end
 
+  def destroy
+    Lecture.find(params[:id]).destroy
+    flash[:success] = "講義を削除しました"
+    redirect_to lectures_url
+  end
+
   private
     def lecture_params
-      params.require(:lecture).permit(:name)
+      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work)
     end
 end
