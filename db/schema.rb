@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_230132) do
+ActiveRecord::Schema.define(version: 2021_02_11_103836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,15 @@ ActiveRecord::Schema.define(version: 2021_02_09_230132) do
     t.integer "lecture_term"
     t.integer "lecture_size"
     t.integer "group_work"
+    t.bigint "user_id", null: false
     t.index ["group_work"], name: "index_lectures_on_group_work"
     t.index ["language_used"], name: "index_lectures_on_language_used"
     t.index ["lecture_size"], name: "index_lectures_on_lecture_size"
     t.index ["lecture_term"], name: "index_lectures_on_lecture_term"
     t.index ["lecture_type"], name: "index_lectures_on_lecture_type"
     t.index ["name"], name: "index_lectures_on_name", unique: true
+    t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
+    t.index ["user_id"], name: "index_lectures_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +48,5 @@ ActiveRecord::Schema.define(version: 2021_02_09_230132) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lectures", "users"
 end

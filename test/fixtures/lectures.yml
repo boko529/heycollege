@@ -7,6 +7,7 @@ lecture_1:
   lecture_term: 0
   lecture_size: 0
   group_work: 0
+  user: user1
 
 
 lecture_2:
@@ -16,8 +17,9 @@ lecture_2:
   lecture_term: 1
   lecture_size: 1
   group_work: 1
+  user: user2
 
-<% 100.times do |n| %>
+<% 50.times do |n| %>
 lecture_<%= n+3 %>:
   name:  <%= "Lecture #{n+3}" %>
   language_used: <%= (n+3) % 3 %>
@@ -25,4 +27,5 @@ lecture_<%= n+3 %>:
   lecture_term: <%= (n+3) % 4 %>
   lecture_size: <%= (n+3) % 4 %>
   group_work: <%= (n+3) % 2 %>
+  user: user1
 <% end %>
