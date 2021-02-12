@@ -8,13 +8,19 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "invalid login information" do
     get new_user_session_path
-    assert_no_difference 'User.count' do
-      post user_session_path, params: { user: {
-                                        email: "user@example.com",
-                                        password:              "password",
-                                        password_confirmation: "invalid" } }
-    end
+    post user_session_path, params: { session: {
+                                        email: @user.email,
+                                        password: "invalid" } }
     assert_template 'devise/sessions/new'
+    assert_select "div.alert"
+  end
+
+  test "valid login information" do
+    get new_user_session_path
+    post user_session_path, params: { session: { 
+                                        email:    @user.email,
+                                        password: "password" } }
+    assert_template 'devise/sessions/new' 
     assert_select "div.alert"
   end
 end
