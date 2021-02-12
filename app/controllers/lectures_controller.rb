@@ -9,7 +9,7 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
-    @reviews = @lecture.reviews.page(params[:page]).per(15)
+    @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
   end
 

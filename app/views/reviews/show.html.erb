@@ -1,0 +1,15 @@
+<% provide(:title, @review.title) %>
+<%= link_to "#{@lecture.name}に戻る", lecture_path(@lecture) %>
+
+
+<h3><%= @review.title %></h3>
+<p><%= @review.content %></p>
+
+<p><%= @review.user.name %></p>
+<p><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+
+<%# 自分のレビューのときのみ表示 %>
+<% if current_user?(@review.user) %>
+  <%= link_to "編集", edit_lecture_review_path(@lecture,@review) %>
+  <%= link_to "削除", lecture_review_path(@lecture,@review), method: :delete, data: { confirm: "本当に削除しますか？"} %>
+<% end %>

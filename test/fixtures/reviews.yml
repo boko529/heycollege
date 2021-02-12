@@ -1,13 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  content: MyText
-  user: one
-  lecture: one
+review1:
+  title: タイトル
+  content: コンテント
+  user: user1
+  lecture: lecture_1
 
-two:
-  title: MyString
-  content: MyText
-  user: two
-  lecture: two
+review2:
+  title: タイトル
+  content: コンテント
+  user: user2
+  lecture: lecture_1
+
+<% 10.times do |n| %>
+review<%= n+3 %>:
+  title: タイトル
+  content: コンテント
+  user: user1
+  lecture: lecture_1
+<% end %>

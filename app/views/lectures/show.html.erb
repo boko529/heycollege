@@ -21,7 +21,7 @@
   <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
 <% end %>
 
-<%# ここからレビュー系 %>
+<%# レビュー投稿欄 %>
 <p>
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
     レビューを書く
@@ -29,22 +29,11 @@
 </p>
 <div class="collapse" id="collapseReview">
   <div class="card card-body">
-    <%= form_with(model:[@lecture, @review], method: :post) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control' %>
-
-      <%= f.label :content %>
-      <%= f.text_area :content, class: 'form-control' %>
-
-      <%= f.hidden_field :lecture_id, value: @lecture.id %>
-
-      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-    <% end %>
+    <%= render 'reviews/form' %>
   </div>
 </div>
 
+<%# レビュー表示 %>
 <div class="col-md-8">
   <% if @reviews.any? %>
     <h3>レビュー数 (<%= @reviews.count %>)</h3>

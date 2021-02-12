@@ -1,0 +1,15 @@
+<%= form_with(model:[@lecture, @review]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :title %>
+  <span>(必須)</span>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <%= f.label :content %>
+  <span>(必須)</span>
+  <%= f.text_area :content, class: 'form-control' %>
+
+  <%= f.hidden_field :lecture_id, value: @lecture.id %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
