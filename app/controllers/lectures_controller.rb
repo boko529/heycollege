@@ -1,4 +1,7 @@
 class LecturesController < ApplicationController
+  include UsersHelper
+  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
+  before_action :baria_user, only: [:edit, :destroy, :update]
   def index
     @q = Lecture.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
@@ -10,11 +13,11 @@ class LecturesController < ApplicationController
   end
 
   def new
-    @lecture = Lecture.new
+    @lecture = current_user.lectures.build
   end
   
   def create
-    @lecture = Lecture.new(lecture_params)
+    @lecture = current_user.lectures.build(lecture_params)
     if @lecture.save
       flash[:success] = "講義ページを作成しました"
       redirect_to @lecture
@@ -46,5 +49,12 @@ class LecturesController < ApplicationController
   private
     def lecture_params
       params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work)
+    end
+
+    def baria_user
+      unless Lecture.find_by(id: params[:id]).user_id == current_user.id
+        flash[:danger] = "権限がありません"
+        redirect_to lecture_path
+      end
     end
 end

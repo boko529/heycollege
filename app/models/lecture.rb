@@ -1,10 +1,12 @@
 class Lecture < ApplicationRecord
+  belongs_to :user
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
   validates :language_used, presence: true
   validates :lecture_type, presence: true
   validates :lecture_term, presence: true
   validates :lecture_size, presence: true
   validates :group_work, presence: true
+  validates :user_id, presence: true
 
   enum language_used:{
     Japanese:        0, #日本語

@@ -1,20 +1,13 @@
 ---
 ja:
   activerecord:
-    attributes:
-      lecture:
-        name: "講義名"
-        language_used: "使用言語"
-        lecture_type: "講義のタイプ"
-        lecture_size: "講義規模"
-        lecture_term: "ターム"
-        group_work: "グループワーク"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+          
   date:
     abbr_day_names:
     - 日
@@ -213,29 +206,3 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  #enumに関して記載
-  enums:
-    lecture:
-      language_used:
-        Japanese: "日本語"
-        English: "英語"
-        others: "その他"
-      lecture_type:
-        APM: "APM"
-        APS: "APS"
-        Liberal_arts: "一般教養"
-        Language: "言語"
-        Seminar: "ゼミ"
-      lecture_term:
-        spring: "春セミスター"
-        summer: "夏セッション"
-        autumn: "秋セミスター"
-        winter: "冬セッション"
-      lecture_size:
-        small: "20人以下"
-        medium: "20人～70人"
-        large: "70人～100人"
-        extra_large: "100人以上"
-      group_work:
-        included: "あり"
-        not_included: "なし"

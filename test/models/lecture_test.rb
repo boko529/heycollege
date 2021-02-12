@@ -2,7 +2,8 @@ require "test_helper"
 
 class LectureTest < ActiveSupport::TestCase
   def setup
-    @lecture = lectures(:lecture_1)
+    @user = users(:user1)
+    @lecture = @user.lectures.build(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", user_id: @user.id)
   end
   
   test "should be valid" do

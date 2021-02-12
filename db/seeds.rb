@@ -6,14 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#メインのサンプルユーザー
+User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
+
+#追加のユーザーをまとめて生成する
 50.times do |n|
+  name  = Faker::Name.name
+  email = "user-#{n+1}@example.com"
+  password = "foobar"
+  User.create!(name:  name,
+  email: email,
+  password: password)
+end
+
+users = User.order(:created_at).take(5)
+10.times do |n|
   subject_name = Faker::Science.element
-  next_name = "#{n+1}入門"
+  next_name = "#{n+1}"
   name = subject_name + next_name
   language_used = n % 3
   lecture_type = n % 5
   lecture_size = n % 4
   group_work = n % 2
   lecture_term = n % 4
-  Lecture.create!(name: name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work)
+  users.each { |user| user.lectures.create!(name: user.id.to_s + name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work)}
 end
