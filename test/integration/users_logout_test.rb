@@ -8,9 +8,7 @@ class UsersLogoutTest < ActionDispatch::IntegrationTest
 
   test "logout successful" do
     login_as(@user, scope: :user)
-    assert_no_difference 'User.count' do
-      delete destroy_user_session_path
-    end
+    delete destroy_user_session_path
     get root_path
     assert_template 'static_pages/home' 
     assert_select "div.alert"
