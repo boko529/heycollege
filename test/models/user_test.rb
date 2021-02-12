@@ -42,4 +42,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user1.valid?
   end
 
+  test "associated microposts should be destroyed" do
+    @user1.save
+    @user1.lectures.create!(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included")
+    assert_difference 'Lecture.count', -1 do
+      @user1.destroy
+    end
+  end
+
 end
