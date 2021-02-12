@@ -1,4 +1,5 @@
 <% provide(:title, @lecture.name) %>
+<% provide(:button_text,"レビューを投稿する") %>
 <%= link_to "講義一覧へ", lectures_path %>
 <h3><%= @lecture.name %></h3>
 <p>使用言語</p>
@@ -13,7 +14,43 @@
 <p><%= @lecture.lecture_term_i18n %></p>
 <p><%= @lecture.user.name %></p>
 <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+
+<%# 自分の投稿のときのみ表示 %>
 <% if current_user?(@lecture.user) %>
   <%= link_to "編集", edit_lecture_path %>
   <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
 <% end %>
+
+<%# ここからレビュー系 %>
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+    レビューを書く
+  </button>
+</p>
+<div class="collapse" id="collapseReview">
+  <div class="card card-body">
+    <%= form_with(model:[@lecture, @review], method: :post) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content, class: 'form-control' %>
+
+      <%= f.hidden_field :lecture_id, value: @lecture.id %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <% if @reviews.any? %>
+    <h3>レビュー数 (<%= @reviews.count %>)</h3>
+    <ol class="reviews">
+      <%= render @reviews %>
+    </ol>
+    <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+  <% end %>
+</div>

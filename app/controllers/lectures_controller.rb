@@ -1,5 +1,4 @@
 class LecturesController < ApplicationController
-  include UsersHelper
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
   before_action :baria_user, only: [:edit, :destroy, :update]
   def index
@@ -10,6 +9,8 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
+    @reviews = @lecture.reviews.page(params[:page]).per(15)
+    @review = current_user.reviews.new
   end
 
   def new

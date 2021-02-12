@@ -1,0 +1,9 @@
+<li id="review-<%= review.id %>" class = "review list-group-item" >
+
+  <h4 class="title"><%= review.title %></h4>
+  <span class="username"><%= review.user.name %></span>
+  <p class="content"><%= review.content %></p>
+  <span class="timestamp">
+    <%= review.updated_at.strftime("%Y-%m-%d") %>
+  </span>
+</li>
