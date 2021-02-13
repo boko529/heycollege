@@ -38,6 +38,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_select "div.alert"
   end
 
+  test "others username update" do
+    login_as(@user, scope: :user)
+    patch user_path(@other_user.id), params: { user: { name:  name } }
+    assert_template 'users/edit'
+  end
+
 
   test "should get show" do
     get user_path(@user.id)
