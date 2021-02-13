@@ -24,4 +24,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get user_path(@user.id)
     assert_select 'td', @user.name
   end
+  
 end
