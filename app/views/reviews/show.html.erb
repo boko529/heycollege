@@ -4,6 +4,11 @@
 
 <h3><%= @review.title %></h3>
 <p><%= @review.content %></p>
+<span>わかりやすさ：<%= @review.explanation %></span>
+<span>評価の公正さ：<%= @review.fairness %></span>
+<span>友達への勧めたさ：<%= @review.recommendation %></span>
+<span>役に立ったか：<%= @review.useful %></span>
+<span>おもしろさ：<%= @review.interesting %></span>
 
 <p><%= @review.user.name %></p>
 <p><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></p>

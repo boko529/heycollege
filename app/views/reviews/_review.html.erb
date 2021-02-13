@@ -5,7 +5,12 @@
   <p class="content">
     <%= review.content.truncate(24, omission: '・・・') %>
   </p>
-  <span class="timestamp">
+  <span>わかりやすさ：<%= review.explanation %></span>
+  <span>評価の公正さ：<%= review.fairness %></span>
+  <span>友達への勧めたさ：<%= review.recommendation %></span>
+  <span>役に立ったか：<%= review.useful %></span>
+  <span>おもしろさ：<%= review.interesting %></span>
+  <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
-  </span>
+  </p>
 </li>
