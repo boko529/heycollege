@@ -7,30 +7,30 @@
 
   <%= f.label :content %>
   <span>(必須)</span>
-  <%= f.text_area :content, class: 'form-control' %>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
 
   <div class="form-group" id="explanation">
-    <%= f.label :explanation,'説明のうまさ' , class:'col-md-3 col-form-label' %>
+    <%= f.label :explanation,'分かりやすさ' , class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :explanation, id: :review_explanation %>
   </div>
 
   <div class="form-group" id="fairness">
-    <%= f.label :fairness,'公平な評価' , class:'col-md-3 col-form-label' %>
+    <%= f.label :fairness,'評価の公平さ' , class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :fairness, id: :review_fairness %>
   </div>
 
   <div class="form-group" id="recommendation">
-    <%= f.label :recommendation,'友達に勧めたいか' , class:'col-md-3 col-form-label' %>
+    <%= f.label :recommendation,'オススメ度' , class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :recommendation, id: :review_recommendation %>
   </div>
 
   <div class="form-group" id="useful">
-    <%= f.label :useful,'役にたつか' , class:'col-md-3 col-form-label' %>
+    <%= f.label :useful,'満足度' , class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :useful, id: :review_useful %>
   </div>
 
   <div class="form-group" id="interesting">
-    <%= f.label :interesting,'役にたつか' , class:'col-md-3 col-form-label' %>
+    <%= f.label :interesting,'面白さ' , class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :interesting, id: :review_interesting %>
   </div>
 

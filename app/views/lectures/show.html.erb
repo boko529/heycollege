@@ -3,6 +3,13 @@
 <%= link_to "講義一覧へ", lectures_path %>
 <h3><%= @lecture.name %></h3>
 <h4>スコア：<%= @lecture.average_score %></h4>
+
+<% if @lecture.reviews.blank? %>
+  <p>レビューはありません。</p>
+<% else %>
+  <canvas id="lecture<%= @lecture.id %>Chart"></canvas>
+<% end %>
+
 <p>使用言語</p>
 <p><%= @lecture.language_used_i18n %></p>
 <p>講義のタイプ</p>
@@ -14,12 +21,6 @@
 <p>講義ターム</p>
 <p><%= @lecture.lecture_term_i18n %></p>
 <p><%= @lecture.user.name %></p>
-
-<p>わかりやすさ(平均): <%= @lecture.average_explanation %></p>
-<p>評価の公平さ(平均): <%= @lecture.average_fairness %></p>
-<p>オススメ度(平均): <%= @lecture.average_recommendation %></p>
-<p>役に立ったか(平均): <%= @lecture.average_useful %></p>
-<p>おもしろさ(平均): <%= @lecture.average_interesting %></p>
 
 <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
@@ -51,3 +52,60 @@
     <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
   <% end %>
 </div>
+
+<%# グラフ表示に関するJS %>
+<script>
+var ctx = document.getElementById("lecture<%= @lecture.id %>Chart");
+var lecture = new Chart(ctx, {
+  //グラフの種類
+  type: 'radar',
+  //データの設定
+  data: {
+      //データ項目のラベル
+      labels: ["分かりやすさ: <%= @lecture.average_explanation %>",
+               "評価の公平さ: <%= @lecture.average_fairness %>",
+               "オススメ度: <%= @lecture.average_recommendation %>",
+               "満足度: <%= @lecture.average_useful %>",
+               "面白さ: <%= @lecture.average_interesting %>"],
+      //データセット
+      datasets: [
+          {
+              label: "<%= @lecture.name %>",
+              //背景色
+              backgroundColor: "rgba(127,255,0,0.5)",
+              //枠線の色
+              borderColor: "rgba(127,255,0,1)",
+              //結合点の背景色
+              pointBackgroundColor: "rgba(46,139,87,1)",
+              //結合点の枠線の色
+              pointBorderColor: "#f5f5dc",
+              //結合点の背景色（ホバ時）
+              pointHoverBackgroundColor: "#fff",
+              //結合点の枠線の色（ホバー時）
+              pointHoverBorderColor: "rgba(46,139,87,1)",
+              //結合点より外でマウスホバーを認識する範囲（ピクセル単位）
+              hitRadius: 5,
+              //グラフのデータ
+              data: [ <%= @lecture.average_explanation %>,
+                      <%= @lecture.average_fairness %>,
+                      <%= @lecture.average_recommendation %>,
+                      <%= @lecture.average_useful %>,
+                      <%= @lecture.average_interesting %>]
+          }
+      ]
+  },
+ options: {
+    // レスポンシブ指定
+    responsive: true,
+    scale: {
+      ticks: {
+        // 最小値の値を0指定
+        beginAtZero:true,
+        min: 0,
+        // 最大値を指定
+        max: 5,
+      }
+    }
+  }
+});
+</script>
