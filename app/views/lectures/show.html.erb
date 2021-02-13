@@ -13,6 +13,13 @@
 <p>講義ターム</p>
 <p><%= @lecture.lecture_term_i18n %></p>
 <p><%= @lecture.user.name %></p>
+
+<p>わかりやすさ(平均): <%= @average_explanation %></p>
+<p>評価の公平さ(平均): <%= @average_fairness %></p>
+<p>オススメ度(平均): <%= @average_recommendation %></p>
+<p>役に立ったか(平均): <%= @average_useful %></p>
+<p>おもしろさ(平均): <%= @average_interesting %></p>
+
 <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
 <%# 自分の投稿のときのみ表示 %>
