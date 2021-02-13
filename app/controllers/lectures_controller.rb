@@ -11,20 +11,6 @@ class LecturesController < ApplicationController
     @lecture = Lecture.find(params[:id])
     @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
-    if @reviews.blank?
-      @average_explanation = 0
-      @average_fairness = 0
-      @average_recommendation = 0
-      @average_useful = 0
-      @average_interesting = 0
-    else
-      @average_explanation = @reviews.average(:explanation).round(2)
-      @average_fairness = @reviews.average(:fairness).round(2)
-      @average_recommendation = @reviews.average(:recommendation).round(2)
-      @average_useful = @reviews.average(:useful).round(2)
-      @average_interesting = @reviews.average(:interesting).round(2)
-    end
-    
   end
 
   def new

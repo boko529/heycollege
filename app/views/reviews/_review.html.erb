@@ -1,6 +1,9 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
 
-  <h4 class="title"><%= link_to review.title, lecture_review_path(@lecture.id, review.id) %></h4>
+  <h4 class="title">
+    <span><%= review.average_score %></span>
+    <%= link_to review.title, lecture_review_path(@lecture.id, review.id) %>
+  </h4>
   <span class="username"><%= review.user.name %></span>
   <p class="content">
     <%= review.content.truncate(24, omission: '・・・') %>

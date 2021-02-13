@@ -31,6 +31,7 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get lecture_review_path(@lecture.id, @review.id)
     assert_template "reviews/show"
+    assert_not_equal(0, @review.average_score)
   end
 
   test "review show in not login" do

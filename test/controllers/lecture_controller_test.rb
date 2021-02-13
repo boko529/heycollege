@@ -40,14 +40,25 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get lecture_path(@noreview_lecture)
     assert_template "lectures/show"
-    # 平均が0っていうテストを書きたい
-    # assert_equal(0, @average_explanation)
+    # レビューがないと平均は0
+    assert_equal("不明", @noreview_lecture.average_score)
+    assert_equal("不明", @noreview_lecture.average_explanation)
+    assert_equal("不明", @noreview_lecture.average_fairness)
+    assert_equal("不明", @noreview_lecture.average_recommendation)
+    assert_equal("不明", @noreview_lecture.average_useful)
+    assert_equal("不明", @noreview_lecture.average_interesting)
   end
 
   test "lecture show in having review" do
     login_as(@user, scope: :user)
     get lecture_path(@lecture)
     assert_template "lectures/show"
-    # 平均が0じゃないっていうテストを書く
+    # レビューがあると平均は0じゃない
+    assert_not_equal(0, @lecture.average_score)
+    assert_not_equal(0, @lecture.average_explanation)
+    assert_not_equal(0, @lecture.average_fairness)
+    assert_not_equal(0, @lecture.average_recommendation)
+    assert_not_equal(0, @lecture.average_useful)
+    assert_not_equal(0, @lecture.average_interesting)
   end
 end
