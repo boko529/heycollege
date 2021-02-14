@@ -9,6 +9,7 @@ class Review < ApplicationRecord
   validates :useful, presence: true, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }
   validates :interesting, presence: true, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }
   validates :difficulty, presence: true, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }
+  validates :score, presence: true, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }
 
   def average_score
     average_score = ( self.explanation + self.fairness + self.recommendation + self.useful + self.interesting ) / 5

@@ -8,6 +8,7 @@ class Lecture < ApplicationRecord
   validates :lecture_size, presence: true
   validates :group_work, presence: true
   validates :user_id, presence: true
+  attr_accessor :score
 
   enum language_used:{
     Japanese:        0, #日本語
