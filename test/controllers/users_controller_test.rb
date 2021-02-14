@@ -28,6 +28,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_path(@user.id), params: { user: { name:  "taro"}}
     follow_redirect!
     assert_template 'users/show'
+    @user.reload
+    assert_equal 'taro', @user.name
     assert_select "div.alert"
   end
   
@@ -44,6 +46,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
 
+  test "update not log in" do
+    patch user_path(@user.id), params: { user: { name: "taro" } }
+    assert_template nil
+  end
 
   test "should get show" do
     get user_path(@user.id)
