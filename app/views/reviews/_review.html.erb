@@ -17,4 +17,9 @@
   <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>
+  <% if review.helpfuled_by?(current_user) %>
+      <p><span>役に立った(済): </span><%=link_to review.helpfuls.count, lecture_review_helpful_path(@lecture.id, review.id), method: :delete %></p>
+  <% else %>
+      <p><span>役に立った: </span><%=link_to review.helpfuls.count, lecture_review_helpfuls_path(@lecture.id, review.id), method: :post %></p>
+  <% end %>
 </li>
