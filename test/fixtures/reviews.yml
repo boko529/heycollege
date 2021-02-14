@@ -11,6 +11,7 @@ review1:
   useful: 2
   interesting: 3
   difficulty: 2
+  score: 2.80
 
 review2:
   title: タイトル
@@ -23,6 +24,7 @@ review2:
   useful: 2
   interesting: 3
   difficulty: 4
+  score: 2.80
 
 <% 10.times do |n| %>
 review<%= n+3 %>:
@@ -36,4 +38,5 @@ review<%= n+3 %>:
   useful: 2
   interesting: 3
   difficulty: 5
+  score: 2.80
 <% end %>

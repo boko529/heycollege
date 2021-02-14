@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @lecture = Lecture.find(params[:lecture_id])
     @review = current_user.reviews.new(review_params)
+    @review.score = @review.average_score
     if @review.save
       flash[:success] = "レビューを投稿しました"
       redirect_to lecture_review_path(@lecture,@review)
@@ -18,21 +19,22 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-    @lecture = Lecture.find(params[:lecture_id])
-    @review = Review.find(params[:id])
-  end
+  # レビューに編集機能をつける場合
+  # def edit
+  #   @lecture = Lecture.find(params[:lecture_id])
+  #   @review = Review.find(params[:id])
+  # end
 
-  def update
-    @lecture = Lecture.find(params[:lecture_id])
-    @review = Review.find(params[:id])
-    if @review.update(review_params)
-      flash[:success] = "レビューは更新されました！"
-      redirect_to lecture_review_path(@lecture,@review)
-    else
-      render 'edit'
-    end
-  end
+  # def update
+  #   @lecture = Lecture.find(params[:lecture_id])
+  #   @review = Review.find(params[:id])
+  #   if @review.update(review_params)
+  #     flash[:success] = "レビューは更新されました！"
+  #     redirect_to lecture_review_path(@lecture,@review)
+  #   else
+  #     render 'edit'
+  #   end
+  # end
 
   def destroy
     @lecture = Lecture.find(params[:lecture_id])

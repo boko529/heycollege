@@ -49,12 +49,13 @@ class Lecture < ApplicationRecord
     else
       sum = 0
       self.reviews.each do |review|
-        sum = sum + review.average_score
+        sum = sum + review.score
       end
       average_score = sum / self.reviews.count
       return average_score.round(2)
     end
   end
+  
   # ここからカラムを引数にしてアベレージを返すってきれいにできるのかも
   def average_explanation
     if self.reviews.blank?

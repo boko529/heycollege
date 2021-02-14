@@ -36,5 +36,5 @@ end
   title = "レビュー#{n}"
   content = Faker::Lorem.sentence(word_count: 10)
   lecture_id = 50 - n
-  users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, explanation: 3, useful: 3, fairness: 2, recommendation: 4, interesting: 3, difficulty: 4) }
+  users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, explanation: 3, useful: 3, fairness: 2, recommendation: 4, interesting: 3, difficulty: 4, score: 3) }
 end
