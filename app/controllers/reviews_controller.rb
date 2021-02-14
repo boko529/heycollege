@@ -43,7 +43,7 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:title, :content, :lecture_id, :user_id, :explanation, :fairness, :recommendation, :useful, :interesting)
+      params.require(:review).permit(:title, :content, :lecture_id, :user_id, :explanation, :fairness, :recommendation, :useful, :interesting, :difficulty)
     end
 
     def baria_user

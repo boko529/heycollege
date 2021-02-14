@@ -2,7 +2,8 @@
 <% provide(:button_text,"レビューを投稿する") %>
 <%= link_to "講義一覧へ", lectures_path %>
 <h3><%= @lecture.name %></h3>
-<h4>スコア：<%= @lecture.average_score %></h4>
+<h4>スコア： <%= @lecture.average_score %></h4>
+<h5>難易度： <%= @lecture.average_difficulty %></h5>
 
 <% if @lecture.reviews.blank? %>
   <p>レビューはありません。</p>

@@ -4,7 +4,7 @@ class ReviewTest < ActiveSupport::TestCase
   def setup
     @user = users(:user1)
     @lecture = lectures(:lecture_1)
-    @review = @user.reviews.build(title: "タイトル", content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, explanation: 3,fairness: 4, recommendation: 2, useful: 1, interesting: 4)
+    @review = @user.reviews.build(title: "タイトル", content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, explanation: 3,fairness: 4, recommendation: 2, useful: 1, interesting: 4, difficulty: 3)
   end
 
   test "should be valid" do
@@ -138,6 +138,26 @@ class ReviewTest < ActiveSupport::TestCase
 
   test "interesting should be less than 5" do
     @review.interesting = 6
+    assert_not @review.valid?
+  end
+
+  test "difficulty should be present" do
+    @review.difficulty = nil
+    assert_not @review.valid?
+  end
+
+  test "difficulty should be figure" do
+    @review.difficulty = nil
+    assert_not @review.valid?
+  end
+
+  test "difficulty should be more than 1" do
+    @review.difficulty = 0
+    assert_not @review.valid?
+  end
+
+  test "difficulty should be less than 5" do
+    @review.difficulty = 6
     assert_not @review.valid?
   end
 end

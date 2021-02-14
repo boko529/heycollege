@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_051621) do
+ActiveRecord::Schema.define(version: 2021_02_14_041629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_051621) do
     t.float "recommendation", null: false
     t.float "useful", null: false
     t.float "interesting", null: false
+    t.float "difficulty"
     t.index ["lecture_id"], name: "index_reviews_on_lecture_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

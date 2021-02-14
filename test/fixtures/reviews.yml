@@ -10,6 +10,7 @@ review1:
   recommendation: 4
   useful: 2
   interesting: 3
+  difficulty: 2
 
 review2:
   title: タイトル
@@ -21,6 +22,7 @@ review2:
   recommendation: 4
   useful: 2
   interesting: 3
+  difficulty: 4
 
 <% 10.times do |n| %>
 review<%= n+3 %>:
@@ -33,4 +35,5 @@ review<%= n+3 %>:
   recommendation: 4
   useful: 2
   interesting: 3
+  difficulty: 5
 <% end %>

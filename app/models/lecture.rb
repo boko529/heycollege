@@ -95,4 +95,12 @@ class Lecture < ApplicationRecord
       return self.reviews.average(:interesting).round(2)
     end
   end
+
+  def average_difficulty
+    if self.reviews.blank?
+      return "不明"
+    else
+      return self.reviews.average(:difficulty).round(2)
+    end
+  end
 end
