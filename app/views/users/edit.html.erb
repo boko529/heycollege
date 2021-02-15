@@ -1,0 +1,8 @@
+<h2>ユーザー情報</h2>
+
+<%= form_with model: @user, local:true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <p>name</p>
+  <%= f.text_field :name, autofocus:true, id:"inputName" %>
+  <%= f.submit "Update User" %>
+<% end %>
