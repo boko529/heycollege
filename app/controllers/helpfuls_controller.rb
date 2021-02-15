@@ -1,4 +1,5 @@
 class HelpfulsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   before_action :set_review, only: [:create]
   before_action :set_lecture, only: [:create]
   before_action :not_helpful_me, only: [:create]
