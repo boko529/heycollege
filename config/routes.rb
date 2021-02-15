@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :show, :destroy] do
     # レビューの編集を有りにする場合
     # resources :reviews, only: [:create, :show, :destroy, :edit, :update]
-      resources :helpfuls, only: [:create, :destroy]
+      resources :helpfuls, only: [:create]
     end
   end
 end
