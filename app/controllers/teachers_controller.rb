@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
     include UsersHelper
-    before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
+    before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
     before_action :baria_user, only: [:edit, :destroy, :update]
     def index
         @p = Teacher.ransack(params[:q])

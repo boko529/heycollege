@@ -4,7 +4,6 @@ class TeacherTest < ActiveSupport::TestCase
   
   def setup
     @user1 = users(:user1)
-    # このコードは慣習的に正しくない
     @teacher = @user1.teachers.build(name: "ExampleTeacher")
   end
 
@@ -30,7 +29,7 @@ class TeacherTest < ActiveSupport::TestCase
   test "associated teachers should be destroyed" do
     @user1.save
     @user1.teachers.create!(name: "ExampleTeacher2")
-    assert_difference 'Teacher.count', -1 do
+    assert_difference 'Teacher.count', -2 do  # fixtureにuser1に紐づいたteacherを1人追加しているので2人消去される.
       @user1.destroy
     end
   end

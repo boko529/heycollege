@@ -3,7 +3,7 @@
 teacher1:
   name: "ET1"
   created_at: <%= 10.minutes.ago %>
-  user: user2
+  user: user1
 
 teacher2:
   name: "ET2"
