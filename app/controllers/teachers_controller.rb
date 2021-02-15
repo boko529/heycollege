@@ -1,8 +1,11 @@
 class TeachersController < ApplicationController
+    include UsersHelper
+    before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
+    before_action :baria_user, only: [:edit, :destroy, :update]
     def index
-        @q = Teacher.ransack(params[:q])
-        @q.sorts = 'updated_at desc' if @q.sorts.empty?
-        @teachers = @q.result.page(params[:page]).per(25)
+        @p = Teacher.ransack(params[:q])
+        @p.sorts = 'updated_at desc' if @p.sorts.empty?
+        @teachers = @p.result.page(params[:page]).per(25)
     end
     
     def show
@@ -10,11 +13,11 @@ class TeachersController < ApplicationController
     end
 
     def new
-        @teacher = current_user.teachers.build
+      @teacher = current_user.teachers.build
     end
       
     def create
-    @teacher = current_user.lectures.build(teacher_params)
+      @teacher = current_user.teachers.build(teacher_params)
       if @teacher.save
         flash[:success] = "先生ページを作成しました"
         redirect_to @teacher
@@ -40,7 +43,7 @@ class TeachersController < ApplicationController
     def destroy
       Teacher.find(params[:id]).destroy
       flash[:success] = "先生を削除しました"
-      redirect_to lectures_url
+      redirect_to teachers_url
     end
     
     private

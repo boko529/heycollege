@@ -1,0 +1,9 @@
+<% provide(:title, @teacher.name) %>
+<%= link_to "先生一覧へ", teachers_path %>
+<h3><%= @teacher.name %></h3>
+<p><%= @teacher.user.name %></p>
+<p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+<% if current_user?(@teacher.user) %>
+  <%= link_to "編集", edit_teacher_path %>
+  <%= link_to "削除", @teacher, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+<% end %>
