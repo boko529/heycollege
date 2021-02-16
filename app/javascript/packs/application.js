@@ -15,3 +15,5 @@ ActiveStorage.start()
 // bootstrap4
 import 'bootstrap';
 import '../stylesheets/application';
+// fontawsome用
+import '@fortawesome/fontawesome-free/js/all';

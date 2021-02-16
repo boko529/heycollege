@@ -1,8 +1,59 @@
-<nav>
-  <ul class="list-group">
-    <li class="list-group-item">test</li>
-    <li class="list-group-item">test</li>
-    <li class="list-group-item">test</li>
-    <li class="list-group-item">test</li>
-  </ul>
-</nav>
+<div class="sidebar_fixed">
+  <nav>
+    <ul class="list-group">
+      <% if user_signed_in? %>
+        <li class="list-group-item">
+          <%= link_to root_path do %>
+            <i class="fas fa-home fa-2x"></i>Home
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to root_path do %>
+            <i class="far fa-plus-square fa-2x"></i>Create
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to root_path do %>
+            <i class="fas fa-question fa-2x"></i>Help
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to "#" do %>
+            <i class="fas fa-envelope fa-2x"></i>Contact
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt fa-2x"></i>Log out
+          <% end %>
+        </li>
+      <% else %>
+        <li class="list-group-item">
+          <%= link_to root_path do %>
+            <i class="fas fa-home fa-2x"></i>Home
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to new_user_registration_path do %>
+            <i class="fas fa-sign-in-alt fa-2x"></i>Sign up
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt fa-2x"></i>Log in
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to root_path do %>
+            <i class="fas fa-question fa-2x"></i>Help
+          <% end %>
+        </li>
+        <li class="list-group-item">
+          <%= link_to "#" do %>
+            <i class="fas fa-envelope fa-2x"></i>Contact
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
