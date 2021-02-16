@@ -55,6 +55,9 @@ header{
   background-color: #EEEEEE;
   width: 100%;
   z-index: 2;
+  a{
+    color: black;
+  }
   .row{
     display: flex;
     justify-content: center;
@@ -68,6 +71,9 @@ header{
 
 // サイドバー
 .sidebar_col{
+  a{
+    color: black;
+  }
   background-color: #EEEEEE;
   .sidebar_fixed {
     position: sticky;
@@ -115,22 +121,6 @@ footer {
   box-sizing: border-box;
   background-color: #eaeaea;
 }
-
-/* forms */
-// いらないからコメントアウトした。
-// input, textarea, select, .uneditable-input {
-//   border: 1px solid #bbb;
-//   width: 100%;
-//   margin-bottom: 15px;
-//   box-sizing:         border-box;
-// }
-
-// header{
-//   input, textarea, select, .uneditable-input{
-//     // コレがないとheaderの検索欄がくずれちゃうんよな
-//     width: auto;
-//   }
-// }
 
 #error_explanation {
   color: red;

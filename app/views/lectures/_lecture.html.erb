@@ -1,4 +1,11 @@
 <li id = lecture_<%= lecture.id %> class = "lecture" >
-  <span><%= lecture.average_score %></span>
+  <span class="lecture_score"><%= lecture.average_score %></span>
   <%= link_to lecture.name, lecture %>
+  <div class="lecture_info">
+    <span>規模：<%= lecture.lecture_size_i18n %></span>
+    <span>タイプ：<%= lecture.lecture_type_i18n %></span>
+    <span>言語：<%= lecture.language_used_i18n %></span>
+    <span>ターム：<%= lecture.lecture_term_i18n %></span>
+    <span>難易度： <%= lecture.average_difficulty %></span>
+  </div>
 </li>

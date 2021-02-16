@@ -1,12 +1,14 @@
 <% provide(:title, '講義一覧') %>
-<h1>講義</h1>
-<% if user_signed_in? %>
-  <%= link_to "講義の新規作成",  new_lecture_path %>
-<% end %>
-
-<ul class="lectures">
-  <% @lectures.each do |lecture| %>
-    <%= render lecture %>
+<div class="lecture_index">
+  <h2 class="title">講義</h2>
+  <% if user_signed_in? %>
+    <%= link_to "講義の新規作成",  new_lecture_path %>
   <% end %>
-  <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
-</ul>
+
+  <ul class="lectures">
+    <% @lectures.each do |lecture| %>
+      <%= render lecture %>
+    <% end %>
+    <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
+  </ul>
+</div>
