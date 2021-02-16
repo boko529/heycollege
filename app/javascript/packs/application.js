@@ -18,7 +18,7 @@ import '../stylesheets/application';
 
 // raty.jsのため
 window.$ = window.jQuery = require('jquery');
-require('packs/raty')
+require('packs/raty');
 
 // chart.js利用のため追加
-require("chart.js")
+require("chart.js");
