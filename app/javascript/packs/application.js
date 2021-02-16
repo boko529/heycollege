@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 // fontawsome用
-import '@fortawesome/fontawesome-free/js/all';
+// import '@fortawesome/fontawesome-free/js/all';
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
