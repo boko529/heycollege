@@ -15,8 +15,8 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
       post lecture_reviews_path(@lecture), params: { review: { title:  "タイトル", content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, explanation: 2, fairness: 4, recommendation: 3, useful: 2, interesting: 2, difficulty: 2}}
     end
     assert_template nil
-    # なぜnil？
-    # assert_template 'review/show'
+    follow_redirect!
+    assert_template 'reviews/show'
   end
 
   test "review create in not login" do
@@ -45,9 +45,8 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
       delete lecture_review_path(@lecture.id, @review.id)
     end
     assert_not flash.empty?
-    assert_template nil
-    # なぞ
-    # assert_template "lecture/show"
+    follow_redirect!
+    assert_template "lectures/show"
   end
   
   test "review destroy not login" do
