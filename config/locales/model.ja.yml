@@ -3,6 +3,7 @@ ja:
     models:
       lecture: 講義
       user: ユーザー
+      review: 評価
     attributes:
       lecture:
         name: "講義名"
@@ -36,6 +37,9 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      review:
+        title: タイトル
+        content: 詳細
 
   enums:
     lecture:
