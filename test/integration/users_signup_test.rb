@@ -21,11 +21,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "valid signup information" do
     get new_user_registration_path
-    assert_difference 'User.count' do
-      post user_registration_path, params: { user: { name:  "taro",
-                                        email: "taro@example.com",
-                                        password:              "password",
-                                        password_confirmation: "password" } }
+    assert_difference 'User.count' ,1 do
+      post user_registration_path, params: { user: { name:  "taro", email: "taro@example.com", password: "password", password_confirmation: "password" } }
     end
     get root_path
     assert_template 'static_pages/home' 

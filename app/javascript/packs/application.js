@@ -17,6 +17,7 @@ ActiveStorage.start()
 
 // bootstrap4
 import 'bootstrap';
+
 import '../stylesheets/application';
 
 // raty.jsのため
