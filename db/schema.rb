@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_02_14_121614) do
 
   # These are extensions that must be enabled in order to support this database
@@ -33,6 +34,24 @@ ActiveRecord::Schema.define(version: 2021_02_14_121614) do
     t.index ["name"], name: "index_lectures_on_name", unique: true
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
+  end
+  
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "lecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "explanation", null: false
+    t.float "fairness", null: false
+    t.float "recommendation", null: false
+    t.float "useful", null: false
+    t.float "interesting", null: false
+    t.float "difficulty"
+    t.float "score"
+    t.index ["lecture_id"], name: "index_reviews_on_lecture_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -58,5 +77,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_121614) do
   end
 
   add_foreign_key "lectures", "users"
+  add_foreign_key "reviews", "lectures"
+  add_foreign_key "reviews", "users"
   add_foreign_key "teachers", "users"
 end

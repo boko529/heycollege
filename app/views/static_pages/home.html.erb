@@ -1,3 +1,8 @@
 <% provide(:title, "Home") %>
-<h2>homeページです！</h2>
-<p>いろいろ触って見てね。</p>
+<h2>講義ランキング</h2>
+<ul class="lectures">
+  <% @lectures.each do |lecture| %>
+    <%= render lecture %>
+  <% end %>
+  <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
+</ul>
