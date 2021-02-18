@@ -7,13 +7,13 @@
     <th>name</th>
     </tr>
     <% @users.each do |user| %>
-    <% if user.admin == false %>
-    <tr>
-    <td><%= user.id %></td>
-    <td><%= user.name %></td>
-    </tr>
-    <% end %>
+      <% if user.admin == false %>
+        <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        </tr>
+      <% end %>
     <% end %>
 </table>
-  <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
+  <%= paginate @users, theme: 'twitter-bootstrap-4' %>
 </ul>
