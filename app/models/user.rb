@@ -2,6 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   #開発の都合でユーザー破壊されたらデータも破壊、後々改善する必要あり
+  enum gender: { male: 1,  female: 2 }, _prefix: :true
+  enum faculty: { APS: 1, APM: 2}, _prefix: :true
   has_many :lectures, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
