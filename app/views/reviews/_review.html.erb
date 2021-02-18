@@ -17,4 +17,9 @@
   <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>
+
+  <%# 役に立ったボタン %>
+  <div id="helpfuls_buttons_<%= review.id %>">
+    <%= render partial: 'helpfuls/helpful', locals: { lecture: @lecture, review: review } %>
+  </div>
 </li>

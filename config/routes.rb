@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   resources :users
   root 'static_pages#home'
   resources :lectures do
-    resources :reviews, only: [:create, :show, :destroy]
-    # レビューの編集を有りにする場合
-    # resources :reviews, only: [:create, :show, :destroy, :edit, :update]
+    resources :reviews, only: [:create, :show, :destroy] do
+      resources :helpfuls, only: [:create]
+    end
   end
   resources :teachers
 end

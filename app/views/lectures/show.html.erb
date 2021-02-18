@@ -1,57 +1,56 @@
 <% provide(:title, @lecture.name) %>
 <% provide(:button_text,"レビューを投稿する") %>
-<%= link_to "講義一覧へ", lectures_path %>
-<h3><%= @lecture.name %></h3>
-<h4>スコア： <%= @lecture.average_score %></h4>
-<h5>難易度： <%= @lecture.average_difficulty %></h5>
+<div class="lecture_show container">
+  <%= link_to "講義一覧へ", lectures_path %>
+  <p>製作者： <%= @lecture.user.name %></p>
+  <h3><%= @lecture.name %></h3>
+  <h4>スコア： <%= @lecture.average_score %></h4>
+  <h4>難易度： <%= @lecture.average_difficulty %></h4>
+  <div class="lecture-box">
+    <div class="lecture-left">
+      <p>使用言語: <%= @lecture.language_used_i18n %></p>
+      <p>講義のタイプ: <%= @lecture.lecture_type_i18n %></p>
+      <p>講義規模: <%= @lecture.lecture_size_i18n %></p>
+      <p>グループワーク: <%= @lecture.group_work_i18n %></p>
+      <p>講義ターム: <%= @lecture.lecture_term_i18n %></p>
 
-<% if @lecture.reviews.blank? %>
-  <p>レビューはありません。</p>
-<% else %>
-  <canvas id="lecture<%= @lecture.id %>Chart"></canvas>
-<% end %>
-
-<p>使用言語</p>
-<p><%= @lecture.language_used_i18n %></p>
-<p>講義のタイプ</p>
-<p><%= @lecture.lecture_type_i18n %></p>
-<p>講義規模</p>
-<p><%= @lecture.lecture_size_i18n %></p>
-<p>グループワーク</p>
-<p><%= @lecture.group_work_i18n %></p>
-<p>講義ターム</p>
-<p><%= @lecture.lecture_term_i18n %></p>
-<p><%= @lecture.user.name %></p>
-
-<p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
-
-<%# 自分の投稿のときのみ表示 %>
-<% if current_user?(@lecture.user) %>
-  <%= link_to "編集", edit_lecture_path %>
-  <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
-<% end %>
-
-<%# レビュー投稿欄 %>
-<p>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-    レビューを書く
-  </button>
-</p>
-<div class="collapse" id="collapseReview">
-  <div class="card card-body">
-    <%= render 'reviews/form' %>
+      <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+      <%# 自分の投稿のときのみ表示 %>
+      <% if current_user?(@lecture.user) %>
+        <%= link_to "編集", edit_lecture_path %>
+        <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+      <% end %>
+    </div>
+    <div class="lecture-right">
+      <% if @lecture.reviews.blank? %>
+        <p>レビューはありません。</p>
+      <% else %>
+        <canvas id="lecture<%= @lecture.id %>Chart"></canvas>
+      <% end %>
+    </div>
   </div>
-</div>
+  <%# レビュー投稿欄 %>
+  <p>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+      レビューを書く
+    </button>
+  </p>
+  <div class="collapse" id="collapseReview">
+    <div class="card card-body">
+      <%= render 'reviews/form' %>
+    </div>
+  </div>
 
-<%# レビュー表示 %>
-<div class="col-md-8">
-  <% if @reviews.any? %>
-    <h3>レビュー数 (<%= @reviews.count %>)</h3>
-    <ol class="reviews">
-      <%= render @reviews %>
-    </ol>
-    <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
-  <% end %>
+  <%# レビュー表示 %>
+  <div class="col-md-8">
+    <% if @reviews.any? %>
+      <h3>レビュー数 (<%= @reviews.count %>)</h3>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+    <% end %>
+  </div>
 </div>
 
 <%# グラフ表示に関するJS %>

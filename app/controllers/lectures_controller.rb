@@ -13,12 +13,16 @@ class LecturesController < ApplicationController
       end
     end.reverse
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
-    # @lectures = @q.result.page(params[:page]).per(25)
   end
 
   def show
     @lecture = Lecture.find(params[:id])
-    @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
+    # 参考になる順で表示
+    reviews = @lecture.reviews.includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
+    @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(7)
+
+    # 最新順で表示
+    # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
   end
 

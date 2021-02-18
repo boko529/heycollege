@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_02_14_121614) do
+ActiveRecord::Schema.define(version: 2021_02_14_123628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "helpfuls", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "review_id"], name: "index_helpfuls_on_user_id_and_review_id", unique: true
+  end
 
   create_table "lectures", force: :cascade do |t|
     t.text "name"
@@ -35,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_121614) do
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
   end
-  
+
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "content"

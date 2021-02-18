@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :lecture
+  has_many :helpfuls
   validates :title, presence: true, length: { maximum: 20 }
   validates :content, presence: true, length: { maximum: 600 }
   validates :explanation, presence: true, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }
@@ -14,6 +15,10 @@ class Review < ApplicationRecord
   def average_score
     average_score = ( self.explanation + self.fairness + self.recommendation + self.useful + self.interesting ) / 5
     return average_score.round(2)
+  end
+
+  def helpfuled_by?(user)
+    helpfuls.where(user_id: user.id).exists?
   end
   
 end
