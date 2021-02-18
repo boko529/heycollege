@@ -6,5 +6,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
   root 'static_pages#home'
-  resources :lectures
+  resources :lectures do
+    resources :reviews, only: [:create, :show, :destroy] do
+      resources :helpfuls, only: [:create]
+    end
+  end
+  resources :teachers
 end

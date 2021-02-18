@@ -21,7 +21,7 @@ lecture_2:
 
 <% 50.times do |n| %>
 lecture_<%= n+3 %>:
-  name:  <%= "Lecture #{n+3}" %>
+  name:  lecture + <%= n+3 %>
   language_used: <%= (n+3) % 3 %>
   lecture_type: <%= (n+3) % 5 %>
   lecture_term: <%= (n+3) % 4 %>

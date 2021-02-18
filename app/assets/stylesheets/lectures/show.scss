@@ -1,0 +1,33 @@
+.lecture_show{
+  margin-top: 20px;
+  h3{
+    font-weight: bold;
+    font-size: 40px;
+    background-color: beige;
+    display: inline-block;
+  }
+  h4{
+    margin-left: 30px;
+  }
+  a{
+    color: black;
+  }
+  div.lecture-box{
+    display: flex;
+  }
+  div.lecture-left{
+    p{
+      padding: 0;
+      margin: 0;
+      margin-left: 20px;
+    }
+    a{
+      color: black;
+      margin-left: 30px;
+    }
+  }
+  div.lecture-right{
+    width: 70%;
+    margin-top: -120px;
+  }
+}

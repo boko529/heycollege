@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 2021_02_18_002315) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "helpfuls", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "review_id"], name: "index_helpfuls_on_user_id_and_review_id", unique: true
+  end
+
   create_table "lectures", force: :cascade do |t|
     t.text "name"
     t.datetime "created_at", precision: 6, null: false
@@ -66,6 +74,15 @@ ActiveRecord::Schema.define(version: 2021_02_18_002315) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_teachers_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_teachers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -86,4 +103,5 @@ ActiveRecord::Schema.define(version: 2021_02_18_002315) do
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"
+  add_foreign_key "teachers", "users"
 end

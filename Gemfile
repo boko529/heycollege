@@ -66,3 +66,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'devise-i18n'
+
+gem 'chart-js-rails', '~> 0.1.4'
