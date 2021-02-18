@@ -10,7 +10,7 @@
 User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
 #追加のユーザーをまとめて生成する
-50.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "user-#{n+1}@example.com"
   password = "foobar"
@@ -30,4 +30,11 @@ users = User.order(:created_at).take(5)
   group_work = n % 2
   lecture_term = n % 4
   users.each { |user| user.lectures.create!(name: user.id.to_s + name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work)}
+end
+
+5.times do |n|
+  title = "レビュー#{n}"
+  content = Faker::Lorem.sentence(word_count: 10)
+  lecture_id = 50 - n
+  users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, explanation: 3, useful: 3, fairness: 2, recommendation: 4, interesting: 3, difficulty: 4, score: 3) }
 end

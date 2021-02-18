@@ -53,7 +53,7 @@ class LectureIndexTest < ActionDispatch::IntegrationTest
     assert_select 'form#lecture_search'
     get lectures_path, params: { q: { name_cont:  ""}}
     assert_template 'lectures/index'
-    assert_select 'li.lecture', count: 25
+    assert_select 'li.lecture', count: 20
   end
 
   
