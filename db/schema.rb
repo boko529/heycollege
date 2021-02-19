@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_002315) do
     t.integer "lecture_size"
     t.integer "group_work"
     t.bigint "user_id", null: false
+    t.bigint "teacher_id", null: false
     t.index ["group_work"], name: "index_lectures_on_group_work"
     t.index ["language_used"], name: "index_lectures_on_language_used"
     t.index ["lecture_size"], name: "index_lectures_on_lecture_size"

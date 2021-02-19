@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
   # end
   def setup
     @user1 = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar")
+    @teacher = teachers(:teacher1)
   end
 
   test "should be valid" do
@@ -44,7 +45,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated microposts should be destroyed" do
     @user1.save
-    @user1.lectures.create!(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included")
+    @user1.lectures.create!(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", teacher_id: @teacher.id)
     assert_difference 'Lecture.count', -1 do
       @user1.destroy
     end

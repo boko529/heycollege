@@ -8,6 +8,7 @@ lecture_1:
   lecture_size: 0
   group_work: 0
   user: user1
+  teacher: teacher1
 
 
 lecture_2:
@@ -18,6 +19,7 @@ lecture_2:
   lecture_size: 1
   group_work: 1
   user: user2
+  teacher: teacher2
 
 <% 50.times do |n| %>
 lecture_<%= n+3 %>:
@@ -28,4 +30,5 @@ lecture_<%= n+3 %>:
   lecture_size: <%= (n+3) % 4 %>
   group_work: <%= (n+3) % 2 %>
   user: user1
+  teacher: teacher1
 <% end %>
