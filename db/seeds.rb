@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#メインのサンプルユーザー
-User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
+# #メインのサンプルユーザー
+# User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
+
+User.create!(name:  "admin",email: "admin@admin.com",password:  "adminpassword",admin: true)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
