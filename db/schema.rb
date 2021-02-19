@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 2021_02_18_002315) do
     t.index ["user_id"], name: "index_lectures_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "review_id", null: false
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["review_id"], name: "index_notifications_on_review_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "content"
