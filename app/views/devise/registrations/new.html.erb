@@ -4,9 +4,37 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name,'名前' %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
+
+  <div class="field">
+    <%= f.label :grade,'学年' %><br />
+    <%= f.radio_button :grade, '', {:checked => true} %>指定なし  
+    <%= f.radio_button :grade, 1 %>B1  
+    <%= f.radio_button :grade, 2 %>B2  
+    <%= f.radio_button :grade, 3 %>B3  
+    <%= f.radio_button :grade, 4 %>B4  
+    <%= f.radio_button :grade, 5 %>M1  
+    <%= f.radio_button :grade, 6 %>M2  
+    <%= f.radio_button :grade, 7 %>D1  
+    <%= f.radio_button :grade, 8 %>D2  
+    <%= f.radio_button :grade, 9 %>D3  
+  </div>
+
+  <div class="field">
+    <%= f.label :gender,'性別' %><br />
+    <%= f.radio_button :gender, '', {:checked => true} %>指定なし  
+    <%= f.radio_button :gender, 1 %>男性  
+    <%= f.radio_button :gender, 2 %>女性  
+  </div>
+
+  <div class="field">
+    <%= f.label :faculty,'学部' %><br />
+    <%= f.radio_button :faculty, '', {:checked => true} %>指定なし  
+    <%= f.radio_button :faculty, 1 %>APS  
+    <%= f.radio_button :faculty, 2 %>APM  
+  </div> 
 
   <div class="field">
     <%= f.label :email %><br />
