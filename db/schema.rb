@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_103836) do
+ActiveRecord::Schema.define(version: 2021_02_18_002315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "helpfuls", force: :cascade do |t|
+    t.integer "review_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "review_id"], name: "index_helpfuls_on_user_id_and_review_id", unique: true
+  end
 
   create_table "lectures", force: :cascade do |t|
     t.text "name"
@@ -35,6 +43,33 @@ ActiveRecord::Schema.define(version: 2021_02_11_103836) do
     t.index ["user_id"], name: "index_lectures_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "lecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "explanation", null: false
+    t.float "fairness", null: false
+    t.float "recommendation", null: false
+    t.float "useful", null: false
+    t.float "interesting", null: false
+    t.float "difficulty"
+    t.float "score"
+    t.index ["lecture_id"], name: "index_reviews_on_lecture_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_teachers_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_teachers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -44,9 +79,16 @@ ActiveRecord::Schema.define(version: 2021_02_11_103836) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.boolean "admin", default: false
+    t.integer "grade"
+    t.integer "gender"
+    t.integer "faculty"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "lectures", "users"
+  add_foreign_key "reviews", "lectures"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "teachers", "users"
 end

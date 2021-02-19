@@ -1,15 +1,29 @@
 class LecturesController < ApplicationController
-  include UsersHelper
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
   before_action :baria_user, only: [:edit, :destroy, :update]
   def index
     @q = Lecture.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
-    @lectures = @q.result.page(params[:page]).per(25)
+    @lectures = @q.result.left_joins(:reviews).distinct.sort_by do |lecture|
+      reviews = lecture.reviews
+      if reviews.present?
+        reviews.map(&:score).sum / reviews.size
+      else
+        0
+      end
+    end.reverse
+    @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
   end
 
   def show
     @lecture = Lecture.find(params[:id])
+    # 参考になる順で表示
+    reviews = @lecture.reviews.includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
+    @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(7)
+
+    # 最新順で表示
+    # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
+    @review = current_user.reviews.new
   end
 
   def new
