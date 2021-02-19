@@ -2,7 +2,7 @@
 <% provide(:button_text,"レビューを投稿する") %>
 <div class="lecture_show container">
   <%= link_to "講義一覧へ", lectures_path %>
-  <p>製作者： <%= @lecture.user.name %></p>
+  <p>製作者： <%= link_to @lecture.user.name, user_path(@lecture.user.id) %></p>
   <h3><%= @lecture.name %></h3>
   <h4>スコア： <%= @lecture.average_score %></h4>
   <h4>難易度： <%= @lecture.average_difficulty %></h4>

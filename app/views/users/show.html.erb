@@ -9,7 +9,30 @@
     </tr>
     </table>
 
-    <%= link_to '名前を編集する', edit_user_path(@user.id)%>
+    
 
+    <%= link_to '名前を編集する', edit_user_path(@user.id)%>
+    <h2>過去のレビュー</h2>
+    <table class="table">
+      <tr>
+        <th>講義名</th>
+        <th>スコア</th>
+        <th>レビュータイトル</th>
+      </tr>
+      <% @reviews.each do |review| %>
+      <tr>
+        <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
+        <td><%= review.score %></td>
+        <td><%= link_to review.title, lecture_review_path(review.lecture.id,review.id) %></td>
+      </tr>
+      <% end %>
+    </table>
+
+    <% if @reviews.any? %>
+      <h3>レビュー数 (<%= @reviews.count %>)</h3>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+    <% end %>
   </div>
 </div>
