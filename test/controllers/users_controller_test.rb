@@ -5,6 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user3)
     @other_user = users(:user4)
+    @new_user = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar")
   end
 
   test "invalid user should not edit valid user's name" do
@@ -54,5 +55,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
     get user_path(@user.id)
     assert_response :success
+  end
+
+  test "user should not watch user index" do
+    login_as(@new_user, scope: :user)
+    get admin_users_path
+    follow_redirect!
+    assert_template 'static_pages/home'
   end
 end
