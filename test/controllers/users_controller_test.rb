@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user3)
     @other_user = users(:user4)
-    @new_user = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar")
+    @new_user = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar", gender: "male", grade: "B1", faculty: "APS")
   end
 
   test "invalid user should not edit valid user's name" do
