@@ -40,3 +40,6 @@ end
   lecture_id = 50 - n
   users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, explanation: 3, useful: 3, fairness: 2, recommendation: 4, interesting: 3, difficulty: 4, score: 3) }
 end
+
+News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
+  触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
