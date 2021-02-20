@@ -1,4 +1,11 @@
 <% provide(:title, "Home") %>
+<%# 運営からのメッセージがあったら表示する %>
+<% if @news.exists? %>
+  <% @news.each do |news| %>
+    <%= link_to news.title, news, class:"news_by" %>
+  <% end %>
+<% end %>
+
 <h2>講義ランキング</h2>
 <ul class="lectures">
   <% @lectures.each do |lecture| %>

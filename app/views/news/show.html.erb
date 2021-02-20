@@ -1,0 +1,11 @@
+<% provide(:title, @news.title) %>
+<h3><%= @news.title %></h3>
+<p><%= safe_join(@news.message.split("\n"),tag(:br)) %></p>
+
+<%# ユーザーが管理者アカウントの場合のみ以下を表示 %>
+<% if user_signed_in? %>
+  <% if current_user.admin? %>
+    <p><%= link_to "お知らせ内容の変更", edit_admin_news_path %></p>
+    <p><%= link_to "お知らせを削除", admin_news_path, method: :delete, data: { confirm: "本当に削除しますか？"} %></p>
+  <% end %>
+<% end %>
