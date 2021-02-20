@@ -24,6 +24,8 @@ class LecturesController < ApplicationController
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
+
+    @teacher = @lecture.teacher
   end
 
   def new
