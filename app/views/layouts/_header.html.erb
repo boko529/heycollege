@@ -1,25 +1,89 @@
 <header>
-  <div class="container-fluid"> 
-    <div class="row w-100 h-auto">
-      <div class="logo col-2">
+  <div class="container-fluid p-0 px-md-4"> 
+    <div class="row h-auto mt-2">
+      <div class="col-1 d-block d-md-none mx-auto">
+        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#aaa"><i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse position-fixed" id="aaa">
+          <div class="list-grou">
+            <% if user_signed_in? %>
+            <li class="list-group-item">
+              <%= link_to root_path do %>
+                <i class="fas fa-home fa-2x"></i><span>Home</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to root_path do %>
+                <i class="far fa-plus-square fa-2x"></i><span>Create</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to root_path do %>
+                <i class="fas fa-question fa-2x"></i><span>Help</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to "#" do %>
+                <i class="fas fa-envelope fa-2x"></i><span>Contact</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span>Log out</span>
+              <% end %>
+            </li>
+              <% else %>
+            <li class="list-group-item">
+              <%= link_to root_path do %>
+                <i class="fas fa-home fa-2x"></i><span>Home</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to new_user_registration_path do %>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>Sign up</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to new_user_session_path do %>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>Log in</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to root_path do %>
+                <i class="fas fa-question fa-2x"></i><span>Help</span>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to "#" do %>
+                <i class="fas fa-envelope fa-2x"></i><span>Contact</span>
+              <% end %>
+            </li>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="logo col-2 mx-0">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "100px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-6 offset-2">
+      <div class="search col-5 offset-md-1 offset-0 mx-auto">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
-          <div class="input-group">
-            <div class="input-group-append">
-              <%= f.search_field :name_cont, class: "form-control" ,placeholder: '検索する講義名を入力...' %>
-            </div>
+          <div class="input-group justify-content-center">
+            <%= f.search_field :name_cont, class: "form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
             <%# 詳細検索表示ボタン %>
-            <p>
+            <div class="input-group-append d-none d-sm-block">
               <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
-                条件検索
+                条件
               </button>
-            </p>
-            <%= f.submit ("検索") , class: 'btn btn-outline-success'%>
+              <%= f.submit ("検索") , class: 'btn btn-outline-success'%>
+            </div> 
           </div>
         <% end %>
+      </div>
+      <div class="search col-1 d-sm-none d-block">
+        <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
+          <i class="fas fa-search"></i>    
+        </button>
       </div>
       <% if user_signed_in? %>
         <div class="user col-1">
