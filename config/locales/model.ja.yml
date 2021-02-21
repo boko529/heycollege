@@ -65,3 +65,20 @@ ja:
       group_work:
         included: "あり"
         not_included: "なし"
+    user:
+      gender:
+        male: "男性"
+        female: "女性"
+      grade:
+        B1: "B1"
+        B2: "B2"
+        B3: "B3"
+        B4: "B4"
+        M1: "M1"
+        M2: "M2"
+        D1: "D1"
+        D2: "D2"
+        D3: "D3"
+      faculty:
+        APS: "APS"
+        APM: "APM"
