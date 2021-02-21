@@ -1,8 +1,8 @@
 <header>
   <div class="container-fluid p-0 px-md-4"> 
-    <div class="row h-auto mt-2">
-      <div class="col-1 d-block d-md-none mx-auto">
-        <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#aaa"><i class="fas fa-bars"></i>
+    <div class="row h-auto mt-2 p-sm-o p-0">
+      <div class="col-1 d-block d-md-none">
+        <button type="button" class="btn btn-success mx-2" data-toggle="collapse" data-target="#aaa"><i class="fas fa-bars"></i>
         </button>
         <div class="collapse position-fixed" id="aaa">
           <div class="list-grou">
@@ -62,16 +62,17 @@
           </div>
         </div>
       </div>
-      <div class="logo col-2 mx-0">
+      <%#ヘイカレッジロゴ %>
+      <div class="logo col mx-0">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "100px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-5 offset-md-1 offset-0 mx-auto">
+      <div class="search col-5 offset-md-1 offset-0 mx-auto d-none d-sm-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
             <%= f.search_field :name_cont, class: "form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
             <%# 詳細検索表示ボタン %>
-            <div class="input-group-append d-none d-sm-block">
+            <div class="input-group-append ">
               <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
                 条件
               </button>
@@ -80,18 +81,18 @@
           </div>
         <% end %>
       </div>
-      <div class="search col-1 d-sm-none d-block">
+      <div class="search col offset-2 d-sm-none d-block">
         <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
           <i class="fas fa-search"></i>    
         </button>
       </div>
       <% if user_signed_in? %>
-        <div class="user col-1">
+        <div class="user col col-md-1 ">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
-        <div class="bell col-1">
+        <div class="bell col col-md-1">
           <%= link_to "#" do %>
             <i class="far fa-bell fa-2x"></i>
           <% end %>
