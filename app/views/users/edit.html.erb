@@ -3,6 +3,37 @@
 <%= form_with model: @user, local:true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <p>name</p>
-  <%= f.text_field :name, autofocus:true, id:"inputName" %>
+
+  <div class="field">
+    <%= f.label :name,'名前' %><br />
+    <%= f.text_field :name, autofocus:true, id:"inputName" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender,'性別' %><br />
+    <%= f.radio_button :gender, '', {:checked => true} %>指定なし
+    <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grade,'学年' %><br />
+    <%= f.radio_button :grade, '', {:checked => true} %>指定なし  
+    <%= f.collection_radio_buttons :grade, User.grades_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :faculty,'学部' %><br />
+    <%= f.radio_button :faculty, '', {:checked => true} %>指定なし
+    <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %> 
+  </div>
   <%= f.submit "Update User" %>
 <% end %>

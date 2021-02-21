@@ -2,9 +2,9 @@
 
   <h4 class="title">
     <span><%= review.score %></span>
-    <%= link_to review.title, lecture_review_path(@lecture.id, review.id) %>
+    <%= link_to review.title, lecture_review_path(review.lecture.id, review.id) %>
   </h4>
-  <span class="username"><%= review.user.name %></span>
+  <span class="username"><%= link_to review.user.name, user_path(review.user.id) %></span>
   <p class="content">
     <%= review.content.truncate(24, omission: '・・・') %>
   </p>
