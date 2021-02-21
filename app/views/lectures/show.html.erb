@@ -14,6 +14,12 @@
       <% else %>
         <canvas id="lecture<%= @lecture.id %>Chart" class="chart"></canvas>
       <% end %>
+      <%# レビュー投稿欄 %>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+          レビューを書く
+        </button>
+      </p>
     </div>
     <div class="lecture-right">
       <div>
@@ -36,12 +42,6 @@
       </div>
     </div>
   </div>
-  <%# レビュー投稿欄 %>
-  <p>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-      レビューを書く
-    </button>
-  </p>
   <div class="collapse" id="collapseReview">
     <div class="card card-body">
       <%= render 'reviews/form' %>
@@ -49,9 +49,9 @@
   </div>
 
   <%# レビュー表示 %>
-  <div class="col-md-8">
+  <div class="col-md-10 lecture-reviews">
     <% if @reviews.any? %>
-      <h3>レビュー数 (<%= @reviews.count %>)</h3>
+      <p>レビュー数 (<%= @reviews.count %>)</p>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>
