@@ -28,8 +28,8 @@
           <% end %>
         </div>
         <div class="bell col-1">
-          <%= link_to "#" do %>
-            <i class="far fa-bell fa-2x"></i>
+          <%= link_to notifications_path do %>
+            <%= render 'layouts/circle' %>
           <% end %>
         </div>
       <% else %>
