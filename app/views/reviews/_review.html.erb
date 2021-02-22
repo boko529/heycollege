@@ -23,6 +23,6 @@
 
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= review.id %>">
-    <%= render partial: 'helpfuls/helpful', locals: { lecture: @lecture, review: review } %>
+    <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
   </div>
 </li>
