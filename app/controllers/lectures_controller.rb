@@ -33,6 +33,7 @@ class LecturesController < ApplicationController
   end
   
   def create
+    teacher = Teacher.find_by(name: params[:teacher_name])
     @lecture = current_user.lectures.build(lecture_params)
     if @lecture.save
       flash[:success] = "講義ページを作成しました"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_142732) do
+ActiveRecord::Schema.define(version: 2021_02_22_074246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_142732) do
     t.integer "group_work"
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
+    t.string "teacher_name"
     t.index ["group_work"], name: "index_lectures_on_group_work"
     t.index ["language_used"], name: "index_lectures_on_language_used"
     t.index ["lecture_size"], name: "index_lectures_on_lecture_size"
