@@ -33,8 +33,10 @@ class LecturesController < ApplicationController
   end
   
   def create
-    teacher = Teacher.find_by(name: params[:teacher_name])
     @lecture = current_user.lectures.build(lecture_params)
+    teacher = Teacher.find_by(name: @lecture.teacher_name)
+    @lecture.teacher_id = teacher.id
+    # teacher.idが存在しない場合の表示
     if @lecture.save
       flash[:success] = "講義ページを作成しました"
       redirect_to @lecture
@@ -65,7 +67,7 @@ class LecturesController < ApplicationController
 
   private
     def lecture_params
-      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work, :teacher_id)
+      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work, :teacher_id, :teacher_name)
     end
 
     def baria_user
