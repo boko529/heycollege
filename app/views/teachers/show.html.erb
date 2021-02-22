@@ -8,3 +8,14 @@
   <%= link_to "編集", edit_teacher_path %>
   <%= link_to "削除", @teacher, method: :delete, data: { confirm: "本当に削除しますか？"} %>
 <% end %>
+
+<%# 講義表示 %>
+  <div class="col-md-8">
+    <% if @teacher.lectures.any? %>
+      <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
+      <ol class="lectures">
+        <%= render @teacher.lectures %>
+      </ol>
+    <% end %>
+  </div>
+</div>
