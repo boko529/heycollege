@@ -1,5 +1,6 @@
 <% provide(:title, @teacher.name) %>
 <%= link_to "先生一覧へ", teachers_path %>
+<%= link_to "講義一覧へ", lectures_path %>
 <h3><%= @teacher.name %></h3>
 <p><%= @teacher.user.name %></p>
 <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
