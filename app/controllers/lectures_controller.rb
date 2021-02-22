@@ -34,13 +34,20 @@ class LecturesController < ApplicationController
   
   def create
     @lecture = current_user.lectures.build(lecture_params)
-    teacher = Teacher.find_by(name: @lecture.teacher_name)
-    @lecture.teacher_id = teacher.id
-    # teacher.idが存在しない場合の表示
+    @teacher = Teacher.find_by(name: @lecture.teacher_name)
+    @a = true  # 先生が未登録の場合にfalseになって、先生登録画面へ誘導する.
+
+    if @teacher
+      @lecture.teacher_id = @teacher.id
+    end
+
     if @lecture.save
       flash[:success] = "講義ページを作成しました"
       redirect_to @lecture
     else
+      unless @teacher
+        @a = false
+      end
       render 'new'
     end
   end

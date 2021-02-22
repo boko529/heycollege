@@ -6,7 +6,12 @@
 
   <%= f.label :teacher_name %>
   <%= f.text_field :teacher_name, class: 'form-control' %>
-  
+  <p>
+  <% if @a == false %>
+    先生が未登録です。
+  <% end %>
+  先生登録は<%= link_to "こちら", new_teacher_path %></p>
+
   <%= f.label :language_used %>
   <div>
     <%= f.collection_radio_buttons :language_used, Lecture.language_useds_i18n, :first, :last do |b|  %>
