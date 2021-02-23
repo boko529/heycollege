@@ -30,7 +30,7 @@ users = User.order(:created_at).take(5)
   next_name = "#{n+1}"
   name = subject_name + next_name
   language_used = n % 3
-  lecture_type = n % 5
+  lecture_type = n % 4
   lecture_size = n % 4
   group_work = n % 2
   lecture_term = n % 4
@@ -44,3 +44,10 @@ end
   lecture_id = 50 - n
   users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, explanation: 3, useful: 3, fairness: 2, recommendation: 4, interesting: 3, difficulty: 4, score: 3) }
 end
+
+# adminユーザーへの参考になるとリンク
+Helpful.create(user_id: 2, review_id: 1)
+Notification.create(visitor_id: 2, visited_id: 1, review_id: 1, action: "helpful")
+
+News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
+  触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")

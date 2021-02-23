@@ -22,7 +22,6 @@ class Lecture < ApplicationRecord
     APS:             1, #APS
     Liberal_arts:    2, #一般教養
     Language:        3, #言語
-    Seminar:         4, #ゼミ
   }
 
   enum lecture_term:{

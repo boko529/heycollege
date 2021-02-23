@@ -1,7 +1,11 @@
 <li id = lecture_<%= lecture.id %> class = "lecture" >
   <span class="lecture_score"><%= lecture.average_score %></span>
   <%= link_to lecture.name, lecture %>
+<<<<<<< HEAD
   <%= link_to lecture.teacher.name, lecture.teacher %>
+=======
+  <span class="teacher-name">- Teacher</span>
+>>>>>>> develop
   <div class="lecture_info">
     <span>規模：<%= lecture.lecture_size_i18n %></span>
     <span>タイプ：<%= lecture.lecture_type_i18n %></span>
