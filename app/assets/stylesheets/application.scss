@@ -60,12 +60,14 @@ header{
   }
   .row{
     display: flex;
-    justify-content: center;
     align-items: center;
   }
-  input{
+
+  .form-inline {
+    justify-content: center;
+  }
+  input .btn{
     height: 40px;
-    margin-top: 10px;
   }
 }
 
