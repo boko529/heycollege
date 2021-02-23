@@ -1,8 +1,16 @@
 <% provide(:title, "Home") %>
-<h2>講義ランキング</h2>
-<ul class="lectures">
-  <% @lectures.each do |lecture| %>
-    <%= render lecture %>
+<%# 運営からのメッセージがあったら表示する %>
+<% if @news.exists? %>
+  <% @news.each do |news| %>
+    <%= link_to news.title, news, class:"news_by" %>
   <% end %>
-  <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
-</ul>
+<% end %>
+<div class="lectures-index">
+  <h2>講義ランキング</h2>
+  <ul class="lectures">
+    <% @lectures.each do |lecture| %>
+      <%= render lecture %>
+    <% end %>
+    <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
+  </ul>
+</div>

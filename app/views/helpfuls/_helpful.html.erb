@@ -7,6 +7,6 @@
     <p>ありがとうございます😊： <%= review.helpfuls.count %></p>
   <% else %>
     <%# 自分のレビューじゃない&&参考になるを押してない %>
-    <p><%=link_to "役に立った： #{review.helpfuls.count}", lecture_review_helpfuls_path(lecture_id: @lecture.id, review_id: review.id), method: :post, remote: true %></p>
+    <p><%=link_to "役に立った： #{review.helpfuls.count}", lecture_review_helpfuls_path(lecture_id: review.lecture.id, review_id: review.id), method: :post, remote: true %></p>
   <% end %>
 <% end %>
