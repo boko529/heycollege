@@ -3,8 +3,7 @@ require "test_helper"
 class UsersSignupTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   def setup
-    @user = users(:user1)
-    @user3 = users(:user3)
+    @new_user = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar", gender: "male", grade: "B1", faculty: "APS")
   end
 
   test "invalid signup information password" do
@@ -29,6 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                         email: "taro@example.com",
                                         password: "password",
                                         password_confirmation: "password",
+                                        confirmed_at: Time.now - 100,
                                         gender: "male",
                                         grade: "B1",
                                         faculty:"APS" } }
@@ -36,5 +36,14 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home' 
     assert_select "div.alert"
+  end
+  
+  test "valid signup information2" do
+    @new_user = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar", gender: "male", grade: "B1", faculty: "APS")
+    @new_user.skip_confirmation!
+    @new_user.save
+    get user_path(@new_user.id)
+    assert_template 'users/show' 
+    assert_select 'td', @new_user.name
   end
 end

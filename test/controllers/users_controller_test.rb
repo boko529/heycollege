@@ -79,6 +79,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "user should not watch user index" do
+    @new_user.skip_confirmation!
     login_as(@new_user, scope: :user)
     get admin_users_path
     follow_redirect!

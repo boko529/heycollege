@@ -7,15 +7,21 @@
 user1:
   email: user1@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+
 
 user2:
   email: user2@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+
 
 user3:
   name: user3
   email: user3@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+
   gender: "male"
   grade: "B1"
   faculty: "APS"
@@ -24,6 +30,7 @@ user4:
   name: user4
   email: user4@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
   gender: "male"
   grade: "B1"
   faculty: "APS"
@@ -32,4 +39,5 @@ test_admin:
   name: testadmin
   email: testadmin@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
   admin: true
