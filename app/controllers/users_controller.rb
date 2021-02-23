@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update]
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews
   end
 
   def edit
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name,:gender,:grade,:faculty)
   end
 end

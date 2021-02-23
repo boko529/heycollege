@@ -9,5 +9,6 @@ class StaticPagesController < ApplicationController
       end
     end.reverse
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+    @news = News.all
   end
 end
