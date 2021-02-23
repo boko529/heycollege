@@ -2,7 +2,7 @@ class Lecture < ApplicationRecord
   belongs_to :user
   belongs_to :teacher
   has_many :reviews, dependent: :destroy
-  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 20 }, uniqueness: {scope: :teacher_id}
   validates :language_used, presence: true
   validates :lecture_type, presence: true
   validates :lecture_term, presence: true
