@@ -52,4 +52,25 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     assert_template nil
     assert_not flash.empty?
   end
+
+  test "teacher_name edit" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture)
+    assert_template 'lectures/edit'
+    teacher_name  = "ET1"
+    patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
+    assert_not flash.empty?
+    assert_redirected_to @lecture
+    @lecture.reload
+    assert_equal teacher_name,  @lecture.teacher_name
+  end
+
+  test "teacher_name(does not exist) edit" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture)
+    assert_template 'lectures/edit'
+    teacher_name  = "FooBar"
+    patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
+    assert flash.empty?
+  end
 end

@@ -59,8 +59,17 @@ class LecturesController < ApplicationController
   def update
     @lecture = Lecture.find(params[:id])
     if @lecture.update(lecture_params)
-      flash[:success] = "講義情報は更新されました！"
-      redirect_to @lecture
+      @teacher = Teacher.find_by(name: @lecture.teacher_name)
+      @a = true  # 先生が未登録の場合にfalseになって、先生登録画面へ誘導する.
+
+      if @teacher
+        @lecture.teacher_id = @teacher.id
+        flash[:success] = "講義情報は更新されました！"
+        redirect_to @lecture
+      else 
+        @a = false
+        render 'edit'
+      end
     else
       render 'edit'
     end
