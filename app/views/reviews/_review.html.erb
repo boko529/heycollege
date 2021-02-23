@@ -9,14 +9,6 @@
     <%= review.content %>
     <%# review.content.truncate(24, omission: '・・・') %>
   </p>
-  <div class="each-score">
-    <p>わかりやすさ：<%= review.explanation %></p>
-    <p>評価の公正さ：<%= review.fairness %></p>
-    <p>友達への勧めたさ：<%= review.recommendation %></p>
-    <p>役に立ったか：<%= review.useful %></p>
-    <p>おもしろさ：<%= review.interesting %></p>
-    <p>難易度：<%= review.difficulty %></p>
-  </div>
   <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>

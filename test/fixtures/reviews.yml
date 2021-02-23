@@ -5,26 +5,14 @@ review1:
   content: コンテント
   user: user1
   lecture: lecture_1
-  explanation: 3
-  fairness: 2
-  recommendation: 4
-  useful: 2
-  interesting: 3
-  difficulty: 2
-  score: 2.80
+  score: 2
 
 review2:
   title: タイトル
   content: コンテント
   user: user2
   lecture: lecture_1
-  explanation: 3
-  fairness: 2
-  recommendation: 4
-  useful: 2
-  interesting: 3
-  difficulty: 4
-  score: 2.80
+  score: 4
 
 <% 10.times do |n| %>
 review<%= n+3 %>:
@@ -32,11 +20,5 @@ review<%= n+3 %>:
   content: コンテント
   user: user1
   lecture: lecture_1
-  explanation: 3
-  fairness: 2
-  recommendation: 4
-  useful: 2
-  interesting: 3
-  difficulty: 5
-  score: 2.80
+  score: 3
 <% end %>

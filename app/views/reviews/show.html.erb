@@ -8,12 +8,6 @@
   <span>講師： Teacher</span>
   <h4>スコア：<%= @review.score %></h4>
   <p><%= safe_join(@review.content.split("\n"),tag(:br)) %></p>
-  <span>わかりやすさ：<%= @review.explanation %></span>
-  <span>評価の公正さ：<%= @review.fairness %></span>
-  <span>友達への勧めたさ：<%= @review.recommendation %></span>
-  <span>役に立ったか：<%= @review.useful %></span>
-  <span>おもしろさ：<%= @review.interesting %></span>
-  <span>難易度：<%= @review.difficulty %></span>
 
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= @review.id %>">

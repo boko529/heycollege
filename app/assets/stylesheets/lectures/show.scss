@@ -1,5 +1,6 @@
 .lecture_show{
   margin-top: 20px;
+  margin: 0 auto;
   a{
     border-bottom: 1px black solid;
     color: black;
@@ -11,67 +12,26 @@
     margin: 0;
     padding: 0;
   }
-  div.lecture-box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @media (max-width: 760px){
-      flex-wrap: wrap-reverse;
+  .lecture-info{
+    width: 85%;
+    margin: 0 auto;
+    h3{
+      font-size: 50px;
+      font-weight: bold;
+      padding: 15px 0;
     }
-  }
-  div.lecture-left{
-    width: 60%;
-    @media (max-width: 760px){
-      width: 90%;
+    .teacher-name{
+      font-size: 20px;
+      margin-left: 20px;
     }
-    .pc-cache{
-      @media (max-width: 760px){
-        display: none;
-      }
-      .scores{
-        margin-top: 5px;
-        span{
+    .scores{
+      padding: 15px 0;
+      h4{
+        font-size: 30px;
+        span.score{
           font-weight: bold;
         }
       }
-    }
-    .chart{
-      margin-top: 30px;
-    }
-  }
-  div.lecture-right{
-    width: 30%;
-    @media (max-width: 760px){
-      width: 90%;
-    }
-    .sm-cache{
-      display: none;
-      @media (max-width: 760px){
-        display: block;
-        margin: 20px 0;
-      }
-    }
-    >div{
-      padding: 20px;
-      border: 1px black solid;
-      border-radius: 5%;
-      h3{
-        font-weight: bold;
-        font-size: 20px;
-        background-color: beige;
-        display: inline-block;
-        margin: 0;
-        @media (max-width: 760px){
-          font-size: 30px;
-        }
-      }
-      .lecture-info{
-        margin-top: 20px;
-        p{
-          padding: 0;
-          margin: 0;
-        }
-    }
     }
   }
   .lecture-reviews{

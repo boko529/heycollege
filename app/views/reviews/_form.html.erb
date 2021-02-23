@@ -9,34 +9,9 @@
   <span>(必須)</span>
   <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
 
-  <div class="form-group" id="difficulty">
-    <%= f.label :difficulty,'難易度' , class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :difficulty, id: :review_difficulty %>
-  </div>
-
-  <div class="form-group" id="explanation">
-    <%= f.label :explanation,'分かりやすさ' , class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :explanation, id: :review_explanation %>
-  </div>
-
-  <div class="form-group" id="fairness">
-    <%= f.label :fairness,'評価の公平さ' , class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :fairness, id: :review_fairness %>
-  </div>
-
-  <div class="form-group" id="recommendation">
-    <%= f.label :recommendation,'オススメ度' , class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :recommendation, id: :review_recommendation %>
-  </div>
-
-  <div class="form-group" id="useful">
-    <%= f.label :useful,'満足度' , class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :useful, id: :review_useful %>
-  </div>
-
-  <div class="form-group" id="interesting">
-    <%= f.label :interesting,'面白さ' , class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :interesting, id: :review_interesting %>
+  <div class="form-group" id="score">
+    <%= f.label :score,'満足度' , class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :score, id: :review_score %>
   </div>
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
@@ -45,81 +20,16 @@
 
   <!-- 評価javascript -->
   <script>
-  $('#difficulty').raty({
+  $('#score').raty({
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    <% unless @review.difficulty == nil %>
-      score: <%= @review.difficulty %>,
+    <% unless @review.score == nil %>
+      score: <%= @review.score %>,
     <% else %>
       score: 3,
     <% end %>
-    scoreName: 'review[difficulty]',
-    half: false,
-  });
-
-  $('#explanation').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    <% unless @review.explanation == nil %>
-      score: <%= @review.explanation %>,
-    <% else %>
-      score: 3,
-    <% end %>
-    scoreName: 'review[explanation]',
-    half: false,
-  });
-
-  $('#fairness').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    <% unless @review.fairness == nil %>
-      score: <%= @review.fairness %>,
-    <% else %>
-      score: 3,
-    <% end %>
-    scoreName: 'review[fairness]',
-    half: false,
-  });
-
-  $('#recommendation').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    <% unless @review.recommendation == nil %>
-      score: <%= @review.recommendation %>,
-    <% else %>
-      score: 3,
-    <% end %>
-    scoreName: 'review[recommendation]',
-    half: false,
-  });
-
-  $('#useful').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    <% unless @review.useful == nil %>
-      score: <%= @review.useful %>,
-    <% else %>
-      score: 3,
-    <% end %>
-    scoreName: 'review[useful]',
-    half: false,
-  });
-
-  $('#interesting').raty({
-    size     : 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    <% unless @review.interesting == nil %>
-      score: <%= @review.interesting %>,
-    <% else %>
-      score: 3,
-    <% end %>
-    scoreName: 'review[interesting]',
+    scoreName: 'review[score]',
     half: false,
   });
   </script>

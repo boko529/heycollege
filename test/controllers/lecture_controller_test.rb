@@ -42,12 +42,6 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template "lectures/show"
     # レビューがないと平均は不明
     assert_equal("不明", @noreview_lecture.average_score)
-    assert_equal("不明", @noreview_lecture.average_explanation)
-    assert_equal("不明", @noreview_lecture.average_fairness)
-    assert_equal("不明", @noreview_lecture.average_recommendation)
-    assert_equal("不明", @noreview_lecture.average_useful)
-    assert_equal("不明", @noreview_lecture.average_interesting)
-    assert_equal("不明", @noreview_lecture.average_difficulty)
   end
 
   test "lecture show in having review" do
@@ -56,11 +50,5 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template "lectures/show"
     # レビューがあると平均は0じゃない
     assert_not_equal(0, @lecture.average_score)
-    assert_not_equal(0, @lecture.average_explanation)
-    assert_not_equal(0, @lecture.average_fairness)
-    assert_not_equal(0, @lecture.average_recommendation)
-    assert_not_equal(0, @lecture.average_useful)
-    assert_not_equal(0, @lecture.average_interesting)
-    assert_not_equal(0, @lecture.average_difficulty)
   end
 end
