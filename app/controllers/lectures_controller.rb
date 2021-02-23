@@ -62,7 +62,7 @@ class LecturesController < ApplicationController
 
   private
     def lecture_params
-      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work)
+      params.require(:lecture).permit(:name)
     end
 
     def baria_user

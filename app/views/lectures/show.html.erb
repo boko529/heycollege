@@ -38,11 +38,6 @@
         </div>
         <div class="lecture-info">
           <span>講義情報</span>
-          <p><span>使用言語:</span><%= @lecture.language_used_i18n %></p>
-          <p><span>講義のタイプ:</span><%= @lecture.lecture_type_i18n %></p>
-          <p><span>講義規模:</span><%= @lecture.lecture_size_i18n %></p>
-          <p><span>グループワーク:</span><%= @lecture.group_work_i18n %></p>
-          <p><span>講義ターム:</span><%= @lecture.lecture_term_i18n %></p>
           <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
           <%# 自分の投稿のときのみ表示 %>
           <% if current_user?(@lecture.user) %>

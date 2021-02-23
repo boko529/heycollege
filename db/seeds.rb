@@ -26,12 +26,7 @@ users = User.order(:created_at).take(5)
   subject_name = Faker::Science.element
   next_name = "#{n+1}"
   name = subject_name + next_name
-  language_used = n % 3
-  lecture_type = n % 4
-  lecture_size = n % 4
-  group_work = n % 2
-  lecture_term = n % 4
-  users.each { |user| user.lectures.create!(name: user.id.to_s + name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work)}
+  users.each { |user| user.lectures.create!(name: user.id.to_s + name)}
 end
 
 5.times do |n|
