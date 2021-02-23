@@ -35,6 +35,14 @@ user4:
   grade: "B1"
   faculty: "APS"
 
+not_confirm_user:
+  name: not_confirm_user
+  email: not_confirm_user@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
 test_admin:
   name: testadmin
   email: testadmin@example.com
