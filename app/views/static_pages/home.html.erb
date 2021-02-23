@@ -14,3 +14,12 @@
     <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
   </ul>
 </div>
+<div class="teachers-index">
+  <h2>先生ランキング</h2>
+  <ul class="teachers">
+    <% @teachers.each do |teacher| %>
+      <%= render teacher %>
+    <% end %>
+    <%= paginate @teachers, theme: 'twitter-bootstrap-4' %>
+  </ul>
+</div>
