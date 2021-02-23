@@ -1,6 +1,7 @@
 <header>
   <div class="container-fluid p-0 px-md-4"> 
     <div class="row h-auto mt-2 p-sm-o p-0">
+      <%#　スマホ画面用ハンバーガーボタン　%>
       <div class="col-1 d-block d-md-none">
         <button type="button" class="btn btn-success mx-2" data-toggle="collapse" data-target="#aaa"><i class="fas fa-bars"></i>
         </button>
@@ -62,15 +63,15 @@
           </div>
         </div>
       </div>
-      <%#ヘイカレッジロゴ %>
+      <%#　ヘイカレッジロゴ %>
       <div class="logo col mx-0">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "100px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-5 offset-md-1 offset-0 mx-auto d-none d-sm-block">
+      <div class="search col-6 offset-md-1 offset-0 mx-auto d-none d-sm-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_cont, class: "form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
+            <%= f.search_field :name_cont, class: "form-control d-md-block d-none w-50" ,placeholder: '講義名を検索' %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append ">
               <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
@@ -81,17 +82,20 @@
           </div>
         <% end %>
       </div>
+      <%#　スマホ画面での検索ボタン　%>
       <div class="search col offset-2 d-sm-none d-block">
         <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
           <i class="fas fa-search"></i>    
         </button>
       </div>
       <% if user_signed_in? %>
+        <%#　ユーザーアイコン　%>
         <div class="user col col-md-1 ">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
+        <%#　お知らせアイコン　%>
         <div class="bell col col-md-1">
           <%= link_to "#" do %>
             <i class="far fa-bell fa-2x"></i>
