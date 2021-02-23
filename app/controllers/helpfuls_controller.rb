@@ -7,6 +7,9 @@ class HelpfulsController < ApplicationController
   def create
     helpful = Helpful.create(user_id: current_user.id, review_id: params[:review_id])
     helpful.save
+    review = Review.find(params[:review_id])
+    # 通知を発行
+    review.create_notification_helpful!(current_user)
   end
 
   private

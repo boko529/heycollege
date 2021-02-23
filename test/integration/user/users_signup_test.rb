@@ -3,7 +3,7 @@ require "test_helper"
 class UsersSignupTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
 
-  test "invalid signup information password" do
+  test "invalid signup information" do
     get new_user_registration_path
     assert_no_difference 'User.count' do
       post user_registration_path, params: { user: { name:  "",
