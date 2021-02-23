@@ -6,14 +6,17 @@
   </h4>
   <span class="username"><%= link_to review.user.name, user_path(review.user.id) %></span>
   <p class="content">
-    <%= review.content.truncate(24, omission: '・・・') %>
+    <%= review.content %>
+    <%# review.content.truncate(24, omission: '・・・') %>
   </p>
-  <span>わかりやすさ：<%= review.explanation %></span>
-  <span>評価の公正さ：<%= review.fairness %></span>
-  <span>友達への勧めたさ：<%= review.recommendation %></span>
-  <span>役に立ったか：<%= review.useful %></span>
-  <span>おもしろさ：<%= review.interesting %></span>
-  <span>難易度：<%= review.difficulty %></span>
+  <div class="each-score">
+    <p>わかりやすさ：<%= review.explanation %></p>
+    <p>評価の公正さ：<%= review.fairness %></p>
+    <p>友達への勧めたさ：<%= review.recommendation %></p>
+    <p>役に立ったか：<%= review.useful %></p>
+    <p>おもしろさ：<%= review.interesting %></p>
+    <p>難易度：<%= review.difficulty %></p>
+  </div>
   <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>

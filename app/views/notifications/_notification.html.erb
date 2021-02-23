@@ -1,23 +1,21 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
-<div class="mx-auto">
-  <div class="form-inline">
-    <span>
-        <strong>
-          <%= link_to user_path(visitor) do %>
-            <%= visitor.name %>さん
-          <% end %>
-          が
-          <%# 通知内容を種類ごとに変更 %>
-          <% case notification.action %>
-          <% when 'helpful' then %>
-            <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を参考になるにしました
-          <% end %>
-        </strong>
-    </span>
-    <div class="small text_muted text-right">
-      <%= time_ago_in_words(notification.created_at).upcase %>
-    </div>
-  </div>
-  <hr>
-</div>
+<li>
+  <span>
+      <strong>
+        <%= link_to user_path(visitor) do %>
+          <%= visitor.name %>さん
+        <% end %>
+        が
+        <%# 通知内容を種類ごとに変更 %>
+        <% case notification.action %>
+        <% when 'helpful' then %>
+          <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を参考になるにしました
+        <% end %>
+      </strong>
+  </span>
+  <span class="small text_muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>
+  </span>
+</li>
+<hr>
