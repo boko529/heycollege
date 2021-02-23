@@ -9,6 +9,7 @@ lecture_1:
   group_work: 0
   user: user1
   teacher: teacher1
+  teacher_name: "ET1"
 
 
 lecture_2:
@@ -20,6 +21,7 @@ lecture_2:
   group_work: 1
   user: user2
   teacher: teacher2
+  teacher_name: "ET2"
 
 <% 50.times do |n| %>
 lecture_<%= n+3 %>:
@@ -31,4 +33,5 @@ lecture_<%= n+3 %>:
   group_work: <%= (n+3) % 2 %>
   user: user1
   teacher: teacher1
+  teacher_name: "ET1"
 <% end %>

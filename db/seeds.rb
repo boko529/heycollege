@@ -22,6 +22,7 @@ User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", a
 end
 
 Teacher.create!(name: "森直樹", user_id: 1)
+Teacher.create!(name: "藤岡真由美", user_id: 2)
 
 users = User.order(:created_at).take(5)
 10.times do |n|
@@ -33,7 +34,8 @@ users = User.order(:created_at).take(5)
   lecture_size = n % 4
   group_work = n % 2
   lecture_term = n % 4
-  users.each { |user| user.lectures.create!(name: user.id.to_s + name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work, teacher_id: 1)}
+  teacher_name = "森直樹"
+  users.each { |user| user.lectures.create!(name: user.id.to_s + name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work, teacher_id: 1, teacher_name: teacher_name)}
 end
 
 5.times do |n|
