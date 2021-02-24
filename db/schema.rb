@@ -28,7 +28,10 @@ ActiveRecord::Schema.define(version: 2021_02_24_010523) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
-    t.index ["name"], name: "index_lectures_on_name", unique: true
+    t.bigint "teacher_id", null: false
+    t.string "teacher_name"
+    t.index ["name"], name: "index_lectures_on_name"
+    t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
   end
@@ -86,10 +89,15 @@ ActiveRecord::Schema.define(version: 2021_02_24_010523) do
     t.integer "grade"
     t.integer "gender"
     t.integer "faculty"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"

@@ -9,7 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", admin: true)
+User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", admin: true, confirmed_at: Time.now)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
@@ -18,15 +18,20 @@ User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", a
   password = "foobar"
   User.create!(name:  name,
   email: email,
-  password: password)
+  password: password,
+  confirmed_at: Time.now)
 end
+
+Teacher.create!(name: "森直樹", user_id: 1)
+Teacher.create!(name: "藤岡真由美", user_id: 2)
 
 users = User.order(:created_at).take(5)
 10.times do |n|
   subject_name = Faker::Science.element
   next_name = "#{n+1}"
   name = subject_name + next_name
-  users.each { |user| user.lectures.create!(name: user.id.to_s + name)}
+  teacher_name = "森直樹"
+  users.each { |user| user.lectures.create!(name: user.id.to_s + name, teacher_id: 1, teacher_name: teacher_name)}
 end
 
 5.times do |n|
