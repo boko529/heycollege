@@ -1,14 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 review1:
-  title: タイトル
   content: コンテント
   user: user1
   lecture: lecture_1
   score: 2
 
 review2:
-  title: タイトル
   content: コンテント
   user: user2
   lecture: lecture_1
@@ -16,7 +14,6 @@ review2:
 
 <% 10.times do |n| %>
 review<%= n+3 %>:
-  title: タイトル
   content: コンテント
   user: user1
   lecture: lecture_1

@@ -1,9 +1,7 @@
-<% provide(:title, @review.title) %>
+<% provide(:title, @review.content.truncate(5, omission: '・・・')) %>
 <div class="review-show">
   <%= link_to "#{@lecture.name}に戻る", lecture_path(@lecture) %>
 
-
-  <h3><%= @review.title %></h3>
   <span>講義：<%= @lecture.name %></span>
   <span>講師： Teacher</span>
   <h4>スコア：<%= @review.score %></h4>

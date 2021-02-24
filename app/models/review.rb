@@ -3,7 +3,6 @@ class Review < ApplicationRecord
   belongs_to :lecture
   has_many :helpfuls
   has_many :notifications, dependent: :destroy
-  validates :title, presence: true, length: { maximum: 20 }
   validates :content, presence: true, length: { maximum: 600 }
   validates :score, presence: true, numericality: { less_than_or_equal_to: 5, greater_than_or_equal_to: 1 }
 

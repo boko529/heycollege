@@ -34,7 +34,7 @@
       <tr>
         <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
         <td><%= review.score %></td>
-        <td><%= link_to review.title, lecture_review_path(review.lecture.id,review.id) %></td>
+        <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
       </tr>
       <% end %>
     </table>

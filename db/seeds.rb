@@ -30,10 +30,9 @@ users = User.order(:created_at).take(5)
 end
 
 5.times do |n|
-  title = "レビュー#{n}"
   content = Faker::Lorem.sentence(word_count: 10)
   lecture_id = 50 - n
-  users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, score: 3) }
+  users.each{ |user| user.reviews.create!(content: content, lecture_id: lecture_id, score: 3) }
 end
 
 # adminユーザーへの参考になるとリンク

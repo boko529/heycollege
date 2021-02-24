@@ -1,10 +1,6 @@
 <%= form_with(model:[@lecture, @review]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :title %>
-  <span>(必須)</span>
-  <%= f.text_field :title, class: 'form-control' %>
-
   <%= f.label :content %>
   <span>(必須)</span>
   <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
