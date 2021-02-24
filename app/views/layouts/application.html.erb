@@ -9,9 +9,9 @@
     <%= render 'layouts/header'%>
     <div class="row">
       <div class="col-2 d-none d-md-block sidebar_col">
-        <%= render 'layouts/sidebar' %>
+        <%= render 'layouts/sidebar'%>
       </div>
-      <div class="col main_content">
+      <div class="col main_content p-0">
       <%# ここから3行はフラッシュ表示 %>
         <% flash.each do |message_type, message| %>
           <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
@@ -24,6 +24,7 @@
             </div>
           </div>
           <div class="container">
+            <%# 他のページをここに代入 %>
             <%= yield %>
             <%# 次の行は開発用の表示 %>
             <%= debug(params) if Rails.env.development? %>
