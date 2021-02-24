@@ -44,6 +44,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "associated microposts should be destroyed" do
+    @user1.skip_confirmation!
     @user1.save
     @user1.lectures.create!(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", teacher_id: @teacher.id)
     assert_difference 'Lecture.count', -1 do
