@@ -24,9 +24,9 @@
     <div class="lecture-right">
       <div>
         <h3><%= @lecture.name %></h3>
-        <p>-先生名</p>
         <div class="lecture-info">
           <span>講義情報</span>
+          <p><span>先生:</span><%= @lecture.teacher.name %></p>
           <p><span>使用言語:</span><%= @lecture.language_used_i18n %></p>
           <p><span>講義のタイプ:</span><%= @lecture.lecture_type_i18n %></p>
           <p><span>講義規模:</span><%= @lecture.lecture_size_i18n %></p>

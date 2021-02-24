@@ -24,6 +24,8 @@ class LecturesController < ApplicationController
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
+
+    @teacher = @lecture.teacher
   end
 
   def new
@@ -32,10 +34,20 @@ class LecturesController < ApplicationController
   
   def create
     @lecture = current_user.lectures.build(lecture_params)
+    @teacher = Teacher.find_by(name: @lecture.teacher_name)
+    @a = true  # 先生が未登録の場合にfalseになって、先生登録画面へ誘導する.
+
+    if @teacher
+      @lecture.teacher_id = @teacher.id
+    end
+
     if @lecture.save
       flash[:success] = "講義ページを作成しました"
       redirect_to @lecture
     else
+      unless @teacher
+        @a = false
+      end
       render 'new'
     end
   end
@@ -47,8 +59,17 @@ class LecturesController < ApplicationController
   def update
     @lecture = Lecture.find(params[:id])
     if @lecture.update(lecture_params)
-      flash[:success] = "講義情報は更新されました！"
-      redirect_to @lecture
+      @teacher = Teacher.find_by(name: @lecture.teacher_name)
+      @a = true  # 先生が未登録の場合にfalseになって、先生登録画面へ誘導する.
+
+      if @teacher
+        @lecture.teacher_id = @teacher.id
+        flash[:success] = "講義情報は更新されました！"
+        redirect_to @lecture
+      else 
+        @a = false
+        render 'edit'
+      end
     else
       render 'edit'
     end
@@ -62,7 +83,7 @@ class LecturesController < ApplicationController
 
   private
     def lecture_params
-      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work)
+      params.require(:lecture).permit(:name, :language_used, :lecture_type, :lecture_size, :lecture_term, :group_work, :teacher_name)
     end
 
     def baria_user
