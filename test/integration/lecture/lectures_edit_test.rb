@@ -57,7 +57,7 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture)
     assert_template 'lectures/edit'
-    teacher_name  = "ET1"
+    teacher_name  = "ET2"
     patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
     assert_not flash.empty?
     assert_redirected_to @lecture
@@ -72,5 +72,7 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     teacher_name  = "FooBar"
     patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
     assert flash.empty?
+    @lecture.reload
+    assert_equal teacher_name,  @lecture.teacher_name
   end
 end
