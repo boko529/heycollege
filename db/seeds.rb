@@ -9,7 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", admin: true)
+User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", admin: true, confirmed_at: Time.now)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
@@ -18,7 +18,8 @@ User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", a
   password = "foobar"
   User.create!(name:  name,
   email: email,
-  password: password)
+  password: password,
+  confirmed_at: Time.now)
 end
 
 users = User.order(:created_at).take(5)
