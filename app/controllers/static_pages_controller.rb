@@ -12,24 +12,12 @@ class StaticPagesController < ApplicationController
     @news = News.all
 
     @teachers = Teacher.all do |teacher|
-      sum = 0
-      count = 0
-      lectures = teacher.lectures do |lecture|
-        reviews = lecture.reviews
-        if reviews.present?
-          sum += reviews.map(&:score).sum / reviews.size
-          count += 1
-        else
-          0
-        end
-      end
-      if count == 0
+      if teacher.average_score == "不明" 
         0
       else
-        sum / count
+        teacher.average_score
       end
-      logger.debug "#{sum / count}"
-    end.reverse
+    end
     @teachers = Kaminari.paginate_array(@teachers).page(params[:page]).per(20)
   end
 end

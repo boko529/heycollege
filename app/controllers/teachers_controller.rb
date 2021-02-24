@@ -3,9 +3,17 @@ class TeachersController < ApplicationController
     before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
     before_action :baria_user, only: [:edit, :destroy, :update]
     def index
-        @p = Teacher.ransack(params[:q])
+        @p = Teacher.ransack(params[:p])
         @p.sorts = 'updated_at desc' if @p.sorts.empty?
-        @teachers = @p.result.page(params[:page]).per(25)
+        @teachers = Teacher.all do |teacher|
+          if teacher.average_score == "不明" 
+            0
+          else
+            teacher.average_score
+          end
+        end
+        @teachers = Kaminari.paginate_array(@teachers).page(params[:page]).per(20)
+
     end
     
     def show
