@@ -76,7 +76,10 @@
               <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
                 条件
               </button>
-              <%= f.submit ("検索") , class: 'btn btn-outline-success'%>
+              <%# f.submit ("検索") , class: 'btn btn-outline-success'%>
+              <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                <i class="fas fa-search"></i>
+              <% end %>
             </div> 
           </div>
         <% end %>
