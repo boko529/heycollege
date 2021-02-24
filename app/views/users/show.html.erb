@@ -23,21 +23,30 @@
     <% if @user == current_user %>
       <%= link_to '名前を編集する', edit_user_path(@user.id)%>
     <% end %>
-    <h2>過去のレビュー</h2>
-    <table class="table">
-      <tr>
-        <th>講義名</th>
-        <th>スコア</th>
-        <th>レビュータイトル</th>
-      </tr>
-      <% @reviews.each do |review| %>
-      <tr>
-        <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
-        <td><%= review.score %></td>
-        <td><%= link_to review.title, lecture_review_path(review.lecture.id,review.id) %></td>
-      </tr>
-      <% end %>
-    </table>
+
+    <p>
+      <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
+    </p>
+    
+    <div class="collapse mx-auto" id="collapsemyreview">
+      <div class="card card-body">
+        <h2>過去のレビュー</h2>
+        <table class="table">
+          <tr>
+            <th>講義名</th>
+            <th>スコア</th>
+            <th>レビュータイトル</th>
+          </tr>
+          <% @reviews.each do |review| %>
+          <tr>
+            <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
+            <td><%= review.score %></td>
+            <td><%= link_to review.title, lecture_review_path(review.lecture.id,review.id) %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
 
     <% if @reviews.any? %>
       <h3>レビュー数 (<%= @reviews.count %>)</h3>
