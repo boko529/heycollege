@@ -32,9 +32,22 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-
+  config.action_mailer.default_url_options = { host: ENV['HOST_ID'], port: ENV['PORT_ID'] } #自分のローカル環境のURL
+  #config.action_mailer.default_url_options = {  host: 'localhost', port: 3000 }
+  
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :user_name => "railsmailtest2021@gmail.com",    #自分で適当に作ったgメールアカウント
+    :password => "nwggkqnkhuhxshzq",    #二段階認証パスワード
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
+  Rails.application.routes.default_url_options = {  host: ENV['HOST_ID'], port: ENV['PORT_ID'] } 
 
   config.action_mailer.perform_caching = false
 
