@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
     @news = News.all
 
-    @teachers = Teacher.left_joins(:lectures).distinct.sort_by do |teacher|
+    @teachers = Teacher.all do |teacher|
       sum = 0
       count = 0
       lectures = teacher.lectures do |lecture|
@@ -28,6 +28,7 @@ class StaticPagesController < ApplicationController
       else
         sum / count
       end
+      logger.debug "#{sum / count}"
     end.reverse
     @teachers = Kaminari.paginate_array(@teachers).page(params[:page]).per(20)
   end
