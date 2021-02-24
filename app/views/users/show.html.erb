@@ -23,6 +23,7 @@
     <% if @user == current_user %>
       <%= link_to '名前を編集する', edit_user_path(@user.id)%>
     <% end %>
+
     <p>
       <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
     </p>
@@ -46,7 +47,6 @@
         </table>
       </div>
     </div>
-    
 
     <% if @reviews.any? %>
       <h3>レビュー数 (<%= @reviews.count %>)</h3>
