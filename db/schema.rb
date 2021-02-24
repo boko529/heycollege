@@ -33,12 +33,15 @@ ActiveRecord::Schema.define(version: 2021_02_22_030647) do
     t.integer "lecture_size"
     t.integer "group_work"
     t.bigint "user_id", null: false
+    t.bigint "teacher_id", null: false
+    t.string "teacher_name"
     t.index ["group_work"], name: "index_lectures_on_group_work"
     t.index ["language_used"], name: "index_lectures_on_language_used"
     t.index ["lecture_size"], name: "index_lectures_on_lecture_size"
     t.index ["lecture_term"], name: "index_lectures_on_lecture_term"
     t.index ["lecture_type"], name: "index_lectures_on_lecture_type"
-    t.index ["name"], name: "index_lectures_on_name", unique: true
+    t.index ["name"], name: "index_lectures_on_name"
+    t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
   end
@@ -111,6 +114,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_030647) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"

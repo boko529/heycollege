@@ -3,7 +3,9 @@ require "test_helper"
 class LectureTest < ActiveSupport::TestCase
   def setup
     @user = users(:user1)
-    @lecture = @user.lectures.build(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", user_id: @user.id)
+    @teacher = teachers(:teacher1)
+    @teacher2 = teachers(:teacher2)
+    @lecture = @user.lectures.build(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", user_id: @user.id, teacher_id: @teacher.id)
   end
   
   test "should be valid" do
@@ -20,10 +22,22 @@ class LectureTest < ActiveSupport::TestCase
     assert_not @lecture.valid?
   end
 
-  test "name should be unique" do
+  test "name(& teacher_id) should be unique" do
     duplicate_lecture = @lecture.dup
     @lecture.save
     assert_not duplicate_lecture.valid?
+  end
+
+  test "name (teacher_id different) shoud not be unique" do
+    duplicate_lecture = @lecture.dup
+    duplicate_lecture.teacher_id = @teacher2.id
+    @lecture.save
+    assert duplicate_lecture.valid?
+  end
+
+  test "teacher_id should be present" do
+    @lecture.teacher_id = nil
+    assert_not @lecture.valid?
   end
 
   test "language_used should be present" do
