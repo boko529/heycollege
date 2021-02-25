@@ -18,7 +18,11 @@ class Teacher < ApplicationRecord
           count += 1
         end
       end
-      average_score = sum / count
+      if count == 0
+        average_score = 0
+      else
+        average_score = sum / count
+      end
       return average_score.round(1)
     end
   end
