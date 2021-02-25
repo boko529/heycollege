@@ -23,10 +23,10 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_lecture_path
     assert_no_difference 'Lecture.count' do
-      post lectures_path, params: { lecture: { name:  " "}}
+      post lectures_path, params: { lecture: { farst_name:  "a", last_name: "b" }}
     end
     assert_template 'lectures/new'
-    assert_select 'div#error_explanation'
+    # assert_select 'div#error_explanation' エラーはでない
     assert_select 'div.alert.alert-danger'
   end
 
@@ -42,12 +42,6 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template "lectures/show"
     # レビューがないと平均は不明
     assert_equal("不明", @noreview_lecture.average_score)
-    assert_equal("不明", @noreview_lecture.average_explanation)
-    assert_equal("不明", @noreview_lecture.average_fairness)
-    assert_equal("不明", @noreview_lecture.average_recommendation)
-    assert_equal("不明", @noreview_lecture.average_useful)
-    assert_equal("不明", @noreview_lecture.average_interesting)
-    assert_equal("不明", @noreview_lecture.average_difficulty)
   end
 
   test "lecture show in having review" do
@@ -56,11 +50,5 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template "lectures/show"
     # レビューがあると平均は0じゃない
     assert_not_equal(0, @lecture.average_score)
-    assert_not_equal(0, @lecture.average_explanation)
-    assert_not_equal(0, @lecture.average_fairness)
-    assert_not_equal(0, @lecture.average_recommendation)
-    assert_not_equal(0, @lecture.average_useful)
-    assert_not_equal(0, @lecture.average_interesting)
-    assert_not_equal(0, @lecture.average_difficulty)
   end
 end

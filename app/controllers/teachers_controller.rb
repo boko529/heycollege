@@ -2,6 +2,7 @@ class TeachersController < ApplicationController
     include UsersHelper
     before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
     before_action :baria_user, only: [:edit, :destroy, :update]
+    before_action :name_set, only: [:create, :update]
     def index
         @p = Teacher.ransack(params[:q])
         @p.sorts = 'updated_at desc' if @p.sorts.empty?
@@ -17,7 +18,7 @@ class TeachersController < ApplicationController
     end
       
     def create
-      @teacher = current_user.teachers.build(teacher_params)
+      @teacher = current_user.teachers.build(name: @name)
       if @teacher.save
         flash[:success] = "先生ページを作成しました"
         redirect_to @teacher
@@ -32,7 +33,7 @@ class TeachersController < ApplicationController
     
     def update
       @teacher = Teacher.find(params[:id])
-      if @teacher.update(teacher_params)
+      if @teacher.update(name: @name)
         flash[:success] = "先生情報は更新されました！"
         redirect_to @teacher
       else
@@ -48,13 +49,21 @@ class TeachersController < ApplicationController
     
     private
       def teacher_params
-        params.require(:teacher).permit(:name)
+        params.require(:teacher).permit(:first_name, :last_name)
       end
     
       def baria_user
         unless Teacher.find_by(id: params[:id]).user_id == current_user.id
           flash[:danger] = "権限がありません"
           redirect_to teacher_path
+        end
+      end
+
+      def name_set
+        if teacher_params[:last_name] && teacher_params[:first_name]
+          @name = teacher_params[:last_name] + " " + teacher_params[:first_name]
+        else
+          @name = ""
         end
       end
 end
