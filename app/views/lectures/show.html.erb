@@ -18,17 +18,24 @@
       <%= link_to "編集", edit_lecture_path %>
       <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
     <% end %>
-    <%# レビュー投稿欄 %>
-    <p>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-        レビューを書く
-      </button>
-    </p>
-  </div>
-  <div class="collapse" id="collapseReview">
-    <div class="card card-body">
-      <%= render 'reviews/form' %>
-    </div>
+
+    <%# 自分がレビューしたことあるかを確認 %>
+    <% if @lecture.review?(current_user) %>
+      <%# 自分が書いたレビューへのリンクを表示 %>
+      <%= link_to "自分が書いたレビュー", lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
+    <% else %>
+      <%# レビュー投稿欄 %>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+          レビューを書く
+        </button>
+      </p>
+      <div class="collapse" id="collapseReview">
+        <div class="card card-body">
+          <%= render 'reviews/form' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <%# レビュー表示 %>
