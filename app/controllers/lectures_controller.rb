@@ -43,7 +43,8 @@ class LecturesController < ApplicationController
         render 'new'
       end
     else
-      @teacher = current_user.teachers.build(name: teacher_params[:name])
+      @teacher = current_user.teachers.build(name: @teacher_name)
+      @a = true
       if @teacher.save
         @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
         if @lecture.save
@@ -61,6 +62,7 @@ class LecturesController < ApplicationController
   end
 
   def update
+    @lecture = Lecture.find(params[:id])
     if @teacher = Teacher.find_by(name: @teacher_name)
       if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
         flash[:success] = "講義情報は更新されました！"
@@ -69,10 +71,14 @@ class LecturesController < ApplicationController
         render 'edit'
       end
     else 
-      @teacher = current_user.teachers.build(name: teacher_params[:name])
-      if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
-        flash[:success] = "講義情報は更新されました！&先生ページを作成しました!"
-        redirect_to @lecture
+      @teacher = current_user.teachers.build(name: @teacher_name)
+      if @teacher.save
+        if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
+          flash[:success] = "講義情報は更新されました！&先生ページを作成しました!"
+          redirect_to @lecture
+        else
+          render 'edit'
+        end
       else
         render 'edit'
       end
