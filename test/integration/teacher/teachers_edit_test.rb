@@ -13,7 +13,7 @@ class TeachersEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_teacher_path(@teacher)
     # assert_template 'teachers/edit'  CSRF保護でエラーになる
-    patch teacher_path(@teacher), params: { teacher: { name: " " }}
+    patch teacher_path(@teacher), params: { teacher: { first_name: " ", last_name: " " }}
     # assert_template 'teachers/edit'　CSRF保護でエラーになる
     @teacher.reload
     assert_not_equal " ", @teacher.name 
@@ -23,8 +23,10 @@ class TeachersEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_teacher_path(@teacher)
     # assert_template 'teachers/edit'  CSRF保護でエラーになる
-    name  = "Foo Bar"
-    patch teacher_path(@teacher), params: { teacher: { name:  name } }
+    first_name = "二郎"
+    last_name = "山田"
+    name = last_name + " " + first_name
+    patch teacher_path(@teacher), params: { teacher: { first_name: first_name, last_name: last_name } }
     assert_not flash.empty?
     assert_redirected_to @teacher
     @teacher.reload
@@ -58,13 +60,13 @@ class TeachersEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  # test "teacher create in lectures edit" do
-  #   login_as(@user, scope: :user)
-  #   get edit_lecture_path(@lecture)
-  #   assert_template 'lectures/edit'
-  #   teacher_name  = "FooBar"
-  #   assert_difference 'Teacher.count', 1 do
-  #     patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
-  #   end
-  # end
+  test "teacher create in lectures edit" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture)
+    assert_template 'lectures/edit'
+    teacher_name  = "FooBar"
+    assert_difference 'Teacher.count', 1 do
+      patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
+    end
+  end
 end

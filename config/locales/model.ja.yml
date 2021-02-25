@@ -7,6 +7,7 @@ ja:
     attributes:
       lecture:
         name: "講義名"
+        teacher_name: "先生名"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻

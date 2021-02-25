@@ -1,6 +1,7 @@
 class LecturesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
   before_action :baria_user, only: [:edit, :destroy, :update]
+  before_action :set_teacher_name, only: [:create, :update]
   def index
     @q = Lecture.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
@@ -33,11 +34,8 @@ class LecturesController < ApplicationController
   end
   
   def create
-    @lecture = current_user.lectures.build(lecture_params)
-    @teacher = Teacher.find_by(name: @lecture.teacher_name)
-
-    if @teacher
-      @lecture.teacher_id = @teacher.id
+    if @teacher = Teacher.find_by(name: @teacher_name)
+      @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
       if @lecture.save
         flash[:success] = "講義ページを作成しました"
         redirect_to @lecture
@@ -45,17 +43,15 @@ class LecturesController < ApplicationController
         render 'new'
       end
     else
-      @teacher = current_user.teachers.build(name: @lecture.teacher_name)
-      @a = true # @teacher.saveが成功すればtrueのまま.
-      unless @teacher.save
-        @a = false # ここから直接render 'new' はできない.
-      end
-      @lecture.teacher_id = @teacher.id
-      if @lecture.save && @a == true
-        flash[:success] = "講義ページ&先生ページを作成しました"
-        redirect_to @lecture
-      else
-        render 'new'
+      @teacher = current_user.teachers.build(name: teacher_params[:name])
+      if @teacher.save
+        @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
+        if @lecture.save
+          flash[:success] = "講義ページ&先生ページを作成しました"
+          redirect_to @lecture
+        else
+          render 'new'
+        end
       end
     end
   end
@@ -65,34 +61,21 @@ class LecturesController < ApplicationController
   end
 
   def update
-    @lecture = Lecture.find(params[:id])
-    if @lecture.update(lecture_params)
-      @teacher = Teacher.find_by(name: @lecture.teacher_name)
-      if @teacher
-        @lecture.teacher_id = @teacher.id
-        if @lecture.save
-          flash[:success] = "講義情報は更新されました！"
-          redirect_to @lecture
-        else
-          render 'edit'
-        end
-      else 
-        @teacher = current_user.teachers.build(name: @lecture.teacher_name)
-        if @teacher.save
-          @lecture.teacher_id = @teacher.id
-          @lecture.teacher_name = @teacher.name
-          if @lecture.save
-            flash[:success] = "講義情報は更新されました！&先生ページを作成しました!"
-            redirect_to @lecture
-          else
-            render 'edit'
-          end
-        else
-          render 'edit'
-        end
+    if @teacher = Teacher.find_by(name: @teacher_name)
+      if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
+        flash[:success] = "講義情報は更新されました！"
+        redirect_to @lecture
+      else
+        render 'edit'
       end
-    else
-      render 'edit'
+    else 
+      @teacher = current_user.teachers.build(name: teacher_params[:name])
+      if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
+        flash[:success] = "講義情報は更新されました！&先生ページを作成しました!"
+        redirect_to @lecture
+      else
+        render 'edit'
+      end
     end
   end
 
@@ -104,7 +87,7 @@ class LecturesController < ApplicationController
 
   private
     def lecture_params
-      params.require(:lecture).permit(:name, :teacher_name)
+      params.require(:lecture).permit(:name, :last_name, :first_name)
     end
 
     def baria_user
@@ -114,4 +97,11 @@ class LecturesController < ApplicationController
       end
     end
 
+    def set_teacher_name
+      if lecture_params[:last_name] && lecture_params[:first_name]
+        @teacher_name = lecture_params[:last_name] + " " + lecture_params[:first_name]
+      else
+        @teacher_name = ""
+      end
+    end
 end
