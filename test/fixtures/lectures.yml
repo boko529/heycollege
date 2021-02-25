@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+lecture_1:
+  name: "行動経済学入門"
+  user: user1
+  teacher: teacher1
+
+
+lecture_2:
+  name: "数値解析"
+  user: user2
+  teacher: teacher2
+
+<% 50.times do |n| %>
+lecture_<%= n+3 %>:
+  name:  lecture + <%= n+3 %>
+  user: user1
+  teacher: teacher1
+<% end %>

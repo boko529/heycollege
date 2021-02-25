@@ -1,0 +1,45 @@
+<% provide(:title, @lecture.name) %>
+<% provide(:button_text,"レビューを投稿する") %>
+<div class="lecture_show">
+  <%= link_to "講義一覧へ", lectures_path %>
+  <div class="lecture-info">
+    <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to "先生名", "#" %></span></h3>
+    <%# <p class="teacher-name">-先生名</p> %>
+    <div class="scores">
+      <% if @lecture.reviews.blank? %>
+        <p>レビューはありません。</p>
+      <% else %>
+        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count"></span></h4>
+      <% end %>
+    </div>
+    <p>製作者： <%= link_to @lecture.user.name, @lecture%></p>
+    <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+    <%# 自分の投稿のときのみ表示 %>
+    <% if current_user?(@lecture.user) %>
+      <%= link_to "編集", edit_lecture_path %>
+      <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+    <% end %>
+    <%# レビュー投稿欄 %>
+    <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+        レビューを書く
+      </button>
+    </p>
+  </div>
+  <div class="collapse" id="collapseReview">
+    <div class="card card-body">
+      <%= render 'reviews/form' %>
+    </div>
+  </div>
+
+  <%# レビュー表示 %>
+  <div class="col-md-10 lecture-reviews">
+    <% if @reviews.any? %>
+      <p>レビュー数 (<%= @reviews.count %>)</p>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+      <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+    <% end %>
+  </div>
+</div>

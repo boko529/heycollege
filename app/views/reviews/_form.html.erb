@@ -1,0 +1,33 @@
+<%= form_with(model:[@lecture, @review]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :content %>
+  <span>(必須)</span>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
+
+  <div class="form-group" id="score">
+    <%= f.label :score,'満足度' , class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :score, id: :review_score %>
+  </div>
+
+  <%= f.hidden_field :lecture_id, value: @lecture.id %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
+  <!-- 評価javascript -->
+  <script>
+  $('#score').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    <% unless @review.score == nil %>
+      score: <%= @review.score %>,
+    <% else %>
+      score: 3,
+    <% end %>
+    scoreName: 'review[score]',
+    half: false,
+  });
+  </script>
+
+<% end %>
