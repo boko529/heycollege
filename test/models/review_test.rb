@@ -11,14 +11,14 @@ class ReviewTest < ActiveSupport::TestCase
     assert @review.valid?
   end
 
-  test "content should be present" do
+  test "content should no be present" do
     @review.content = nil
-    assert_not @review.valid?
+    assert @review.valid?
   end
 
-  test "content should not be blank" do
+  test "blank content be valid" do
     @review.content = ' '
-    assert_not @review.valid?
+    assert @review.valid?
   end
 
   test "content should not be too long" do
