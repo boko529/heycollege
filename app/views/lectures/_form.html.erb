@@ -15,7 +15,6 @@
           <%= f.text_field :first_name, class: 'form-control', placeholder: "名", value: @lecture.init_first_name %>
       </div>
   </div>
-  <p>先生登録は<%= link_to "こちら", new_teacher_path %></p>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
