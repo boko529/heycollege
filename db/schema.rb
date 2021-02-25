@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_011900) do
+ActiveRecord::Schema.define(version: 2021_02_24_010523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,19 +27,9 @@ ActiveRecord::Schema.define(version: 2021_02_23_011900) do
     t.text "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "language_used"
-    t.integer "lecture_type"
-    t.integer "lecture_term"
-    t.integer "lecture_size"
-    t.integer "group_work"
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
     t.string "teacher_name"
-    t.index ["group_work"], name: "index_lectures_on_group_work"
-    t.index ["language_used"], name: "index_lectures_on_language_used"
-    t.index ["lecture_size"], name: "index_lectures_on_lecture_size"
-    t.index ["lecture_term"], name: "index_lectures_on_lecture_term"
-    t.index ["lecture_type"], name: "index_lectures_on_lecture_type"
     t.index ["name"], name: "index_lectures_on_name"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
@@ -67,19 +57,12 @@ ActiveRecord::Schema.define(version: 2021_02_23_011900) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.bigint "user_id", null: false
     t.bigint "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "explanation", null: false
-    t.float "fairness", null: false
-    t.float "recommendation", null: false
-    t.float "useful", null: false
-    t.float "interesting", null: false
-    t.float "difficulty"
-    t.float "score"
+    t.float "score", null: false
     t.index ["lecture_id"], name: "index_reviews_on_lecture_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

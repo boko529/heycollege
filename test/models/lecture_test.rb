@@ -5,7 +5,7 @@ class LectureTest < ActiveSupport::TestCase
     @user = users(:user1)
     @teacher = teachers(:teacher1)
     @teacher2 = teachers(:teacher2)
-    @lecture = @user.lectures.build(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", user_id: @user.id, teacher_id: @teacher.id)
+    @lecture = @user.lectures.build(name:  "日本大学史", user_id: @user.id, teacher_id: @teacher.id)
   end
   
   test "should be valid" do
@@ -37,26 +37,6 @@ class LectureTest < ActiveSupport::TestCase
 
   test "teacher_id should be present" do
     @lecture.teacher_id = nil
-    assert_not @lecture.valid?
-  end
-
-  test "language_used should be present" do
-    @lecture.language_used = nil
-    assert_not @lecture.valid?
-  end
-
-  test "lecture_type should be present" do
-    @lecture.lecture_type = nil
-    assert_not @lecture.valid?
-  end
-
-  test "lecture_term should be present" do
-    @lecture.lecture_term = nil
-    assert_not @lecture.valid?
-  end
-
-  test "lecture_size should be present" do
-    @lecture.lecture_term = nil
     assert_not @lecture.valid?
   end
 end
