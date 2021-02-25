@@ -44,7 +44,6 @@ class LecturesController < ApplicationController
       end
     else
       @teacher = current_user.teachers.build(name: @teacher_name)
-      @a = true
       if @teacher.save
         @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
         if @lecture.save

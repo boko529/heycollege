@@ -76,12 +76,13 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
   end
 
   test "teacher_name(does not exist) edit" do
+    # teacherを新規登録するためinvalidにならない.書き直すのが面倒なので、@invalidのままにしておく.
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture)
     assert_template 'lectures/edit'
     patch lecture_path(@lecture), params: { lecture: { first_name: @invalid_first_name, last_name: @invalid_last_name } }
     assert_not flash.empty?
     @lecture.reload
-    assert_not_equal @invalid_teacher_name,  @lecture.teacher.name
+    assert_equal @invalid_teacher_name,  @lecture.teacher.name
   end
 end

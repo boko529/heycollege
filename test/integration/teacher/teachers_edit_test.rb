@@ -66,7 +66,7 @@ class TeachersEditTest < ActionDispatch::IntegrationTest
     assert_template 'lectures/edit'
     teacher_name  = "FooBar"
     assert_difference 'Teacher.count', 1 do
-      patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
+      patch lecture_path(@lecture), params: { lecture: { first_name: "Teacher", last_name: "Example" } }
     end
   end
 end

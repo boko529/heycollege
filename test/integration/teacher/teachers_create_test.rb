@@ -38,7 +38,7 @@ class TeachersCreateTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_lecture_path
     assert_difference 'Teacher.count', 1 do
-      post lectures_path, params: { lecture: { name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included", teacher_name: "ExampleTeacher" } } # 存在していないExampleTeacherを自動生成
+      post lectures_path, params: { lecture: { name:  "日本大学史", first_name: "Teacher", last_name: "Example" } } # 存在していないExampleTeacherを自動生成
     end
   end
 end
