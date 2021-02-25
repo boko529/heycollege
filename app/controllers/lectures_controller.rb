@@ -35,20 +35,28 @@ class LecturesController < ApplicationController
   def create
     @lecture = current_user.lectures.build(lecture_params)
     @teacher = Teacher.find_by(name: @lecture.teacher_name)
-    @a = true  # 先生が未登録の場合にfalseになって、先生登録画面へ誘導する.
 
     if @teacher
       @lecture.teacher_id = @teacher.id
-    end
-
-    if @lecture.save
-      flash[:success] = "講義ページを作成しました"
-      redirect_to @lecture
-    else
-      unless @teacher
-        @a = false
+      if @lecture.save
+        flash[:success] = "講義ページを作成しました"
+        redirect_to @lecture
+      else
+        render 'new'
       end
-      render 'new'
+    else
+      @teacher = current_user.teachers.build(name: @lecture.teacher_name)
+      @a = true # @teacher.saveが成功すればtrueのまま.
+      unless @teacher.save
+        @a = false # ここから直接render 'new' はできない.
+      end
+      @lecture.teacher_id = @teacher.id
+      if @lecture.save && @a == true
+        flash[:success] = "講義ページ&先生ページを作成しました"
+        redirect_to @lecture
+      else
+        render 'new'
+      end
     end
   end
 
@@ -92,4 +100,5 @@ class LecturesController < ApplicationController
         redirect_to lecture_path
       end
     end
+
 end
