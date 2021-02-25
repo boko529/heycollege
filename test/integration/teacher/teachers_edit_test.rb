@@ -6,6 +6,7 @@ class TeachersEditTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @teacher = teachers(:teacher1)          # user1に紐づけ
     @others_teacher = teachers(:teacher2)   # user2に紐づけ
+    @lecture = lectures(:lecture_1)
   end
 
   test "blank edit" do
@@ -56,4 +57,14 @@ class TeachersEditTest < ActionDispatch::IntegrationTest
     assert_template nil
     assert_not flash.empty?
   end
+
+  # test "teacher create in lectures edit" do
+  #   login_as(@user, scope: :user)
+  #   get edit_lecture_path(@lecture)
+  #   assert_template 'lectures/edit'
+  #   teacher_name  = "FooBar"
+  #   assert_difference 'Teacher.count', 1 do
+  #     patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
+  #   end
+  # end
 end

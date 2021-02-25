@@ -68,15 +68,28 @@ class LecturesController < ApplicationController
     @lecture = Lecture.find(params[:id])
     if @lecture.update(lecture_params)
       @teacher = Teacher.find_by(name: @lecture.teacher_name)
-      @a = true  # 先生が未登録の場合にfalseになって、先生登録画面へ誘導する.
-
       if @teacher
         @lecture.teacher_id = @teacher.id
-        flash[:success] = "講義情報は更新されました！"
-        redirect_to @lecture
+        if @lecture.save
+          flash[:success] = "講義情報は更新されました！"
+          redirect_to @lecture
+        else
+          render 'edit'
+        end
       else 
-        @a = false
-        render 'edit'
+        @teacher = current_user.teachers.build(name: @lecture.teacher_name)
+        if @teacher.save
+          @lecture.teacher_id = @teacher.id
+          @lecture.teacher_name = @teacher.name
+          if @lecture.save
+            flash[:success] = "講義情報は更新されました！&先生ページを作成しました!"
+            redirect_to @lecture
+          else
+            render 'edit'
+          end
+        else
+          render 'edit'
+        end
       end
     else
       render 'edit'

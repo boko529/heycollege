@@ -71,8 +71,8 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     assert_template 'lectures/edit'
     teacher_name  = "FooBar"
     patch lecture_path(@lecture), params: { lecture: { teacher_name:  teacher_name } }
-    assert flash.empty?
+    assert_not flash.empty?
     @lecture.reload
-    assert_not_equal teacher_name,  @lecture.teacher.name
+    assert_equal teacher_name,  @lecture.teacher.name
   end
 end
