@@ -1,6 +1,6 @@
 <%= form_with(model: @teacher, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    
+
     <%= f.label :name %>
     <div class="row">
         <div class="col">
@@ -10,7 +10,5 @@
             <%= f.text_field :first_name, class: 'form-control', placeholder: "名" %>
         </div>
     </div>
-  
-   
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

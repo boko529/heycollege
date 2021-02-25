@@ -60,6 +60,10 @@ class TeachersController < ApplicationController
       end
 
       def name_set
-        @name = teacher_params[:last_name] + teacher_params[:first_name]
+        if teacher_params[:last_name] && teacher_params[:first_name]
+          @name = teacher_params[:last_name] + " " + teacher_params[:first_name]
+        else
+          @name = ""
+        end
       end
 end

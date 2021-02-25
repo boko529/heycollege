@@ -4,6 +4,7 @@ class Lecture < ApplicationRecord
   has_many :reviews, dependent: :destroy
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: {scope: :teacher_id}
   validates :user_id, presence: true
+  validates :teacher_id, presence: true
   attr_accessor :score
 
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
