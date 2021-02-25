@@ -6,7 +6,7 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @lecture = lectures(:lecture_1)
     @others_lecture = lectures(:lecture_2)
-    @valid_first_name = "二郎"
+    @valid_first_name = "太郎"
     @valid_last_name= "山田"
     @valid_teacher_name = @valid_last_name + " " + @valid_first_name
     @invalid_first_name = "はるか"
@@ -68,7 +68,7 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture)
     assert_template 'lectures/edit'
-    patch lecture_path(@lecture), params: { lecture: { first_name: @valid_first_name, last_name: @valid_last_name } }
+    patch lecture_path(@lecture), params: { lecture: { name: "name", first_name: @valid_first_name, last_name: @valid_last_name } }
     assert_not flash.empty?
     assert_redirected_to @lecture
     @lecture.reload
