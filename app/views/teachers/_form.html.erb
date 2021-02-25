@@ -1,9 +1,15 @@
 <%= form_with(model: @teacher, local: true) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    
+
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-  
-   
+    <span>ex) 山田 太郎, John Smith</span>
+    <div class="row">
+        <div class="col">
+            <%= f.text_field :last_name, class: 'form-control' ,placeholder: "姓", value: @teacher.init_last_name %>
+        </div>
+        <div class="col">
+            <%= f.text_field :first_name, class: 'form-control', placeholder: "名", value: @teacher.init_first_name %>
+        </div>
+    </div>
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
