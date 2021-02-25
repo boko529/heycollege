@@ -20,4 +20,17 @@ class Lecture < ApplicationRecord
       return average_score.round(2)
     end
   end
+
+  #editのときはフォームに初期値をnewのときは空白にする 
+  def init_first_name
+    if self.teacher.present?
+      return self.teacher.name.split(" ")[1]
+    end
+  end
+
+  def init_last_name
+    if self.teacher.present?
+      return self.teacher.name.split(" ")[0]
+    end
+  end
 end
