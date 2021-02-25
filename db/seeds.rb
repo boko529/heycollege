@@ -22,24 +22,22 @@ User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", a
   confirmed_at: Time.now)
 end
 
+Teacher.create!(name: "森直樹", user_id: 1)
+Teacher.create!(name: "藤岡真由美", user_id: 2)
+
 users = User.order(:created_at).take(5)
 10.times do |n|
   subject_name = Faker::Science.element
   next_name = "#{n+1}"
   name = subject_name + next_name
-  language_used = n % 3
-  lecture_type = n % 4
-  lecture_size = n % 4
-  group_work = n % 2
-  lecture_term = n % 4
-  users.each { |user| user.lectures.create!(name: user.id.to_s + name, language_used: language_used, lecture_type: lecture_type, lecture_term: lecture_term, lecture_size: lecture_size, group_work: group_work)}
+  teacher_name = "森直樹"
+  users.each { |user| user.lectures.create!(name: user.id.to_s + name, teacher_id: 1, teacher_name: teacher_name)}
 end
 
 5.times do |n|
-  title = "レビュー#{n}"
   content = Faker::Lorem.sentence(word_count: 10)
   lecture_id = 50 - n
-  users.each{ |user| user.reviews.create!(title: title, content: content, lecture_id: lecture_id, explanation: 3, useful: 3, fairness: 2, recommendation: 4, interesting: 3, difficulty: 4, score: 3) }
+  users.each{ |user| user.reviews.create!(content: content, lecture_id: lecture_id, score: 3) }
 end
 
 # adminユーザーへの参考になるとリンク
