@@ -1,0 +1,21 @@
+<% provide(:title, @teacher.name) %>
+<%= link_to "先生一覧へ", teachers_path %>
+<%= link_to "講義一覧へ", lectures_path %>
+<h3><%= @teacher.name %></h3>
+<p><%= @teacher.user.name %></p>
+<p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+<% if current_user?(@teacher.user) %>
+  <%= link_to "編集", edit_teacher_path %>
+  <%= link_to "削除", @teacher, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+<% end %>
+
+<%# 講義表示 %>
+  <div class="col-md-8">
+    <% if @teacher.lectures.any? %>
+      <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
+      <ol class="lectures">
+        <%= render @teacher.lectures %>
+      </ol>
+    <% end %>
+  </div>
+</div>

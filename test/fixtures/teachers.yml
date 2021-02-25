@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+teacher1:
+  name: "森 直樹"
+  created_at: <%= 10.minutes.ago %>
+  user: user1
+
+teacher2:
+  name: "橋本 虎太郎"
+  created_at: <%= 2.hours.ago %>
+  user: user2
+
+teacher3:
+  name: "山田 太郎"
+  created_at: <%= 3.hours.ago %>
+  user: user2
+
+teacher4:
+  name: "本田 圭佑"
+  created_at: <%= 4.hours.ago %>
+  user: user2

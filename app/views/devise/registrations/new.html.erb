@@ -1,0 +1,61 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :name,'名前' %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender,'性別' %><br />
+    <%= f.radio_button :gender, '', {:checked => true} %>指定なし
+    <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grade,'学年' %><br />
+    <%= f.radio_button :grade, '', {:checked => true} %>指定なし  
+    <%= f.collection_radio_buttons :grade, User.grades_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :faculty,'学部' %><br />
+    <%= f.radio_button :faculty, '', {:checked => true} %>指定なし
+    <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
+      <%=  b.radio_button(class: "form-contorl") %>
+      <%= b.label %>
+    <% end %> 
+  </div> 
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %>文字以上)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

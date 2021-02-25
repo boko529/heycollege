@@ -1,0 +1,144 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// fontawsome用
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+ 
+/* タイポグラフィー */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+// header
+header{
+  position: fixed;
+  height: 80px;
+  background-color: #EEEEEE;
+  width: 100%;
+  z-index: 2;
+  a{
+    color: black;
+  }
+  .row{
+    display: flex;
+    align-items: center;
+  }
+
+  .form-inline {
+    justify-content: center;
+  }
+  input .btn{
+    height: 40px;
+  }
+}
+
+// サイドバー
+.sidebar_col{
+  a{
+    color: black;
+  }
+  background-color: #EEEEEE;
+  .sidebar_fixed {
+    position: sticky;
+    top: 80px;
+    margin: 0 auto;
+    .list-group-item{
+      margin: 5px 10px;
+      text-align: center;
+      span{
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+// メインコンテンツの高さをヘッダーに合わせる
+.main_content{
+  margin-top: 80px;
+  min-height: 800px;
+}
+
+/* footer */
+footer {
+  margin-top: 0px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  a{
+    color: #777;
+    &:hover{
+      color: #222;
+    }
+  }
+  ul{
+    float: right;
+    list-style: none;
+    li{
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
+
+// デバック表示(開発環境)の整形
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  box-sizing: border-box;
+  background-color: #eaeaea;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  .form-control {
+    @extend .invalid !optional;
+    color: red;
+  }
+}
