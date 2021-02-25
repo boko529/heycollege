@@ -3,45 +3,14 @@
   
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
-  
-  <%= f.label :language_used %>
-  <div>
-    <%= f.collection_radio_buttons :language_used, Lecture.language_useds_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
 
-  <%= f.label :lecture_type %>
-  <div>
-    <%= f.collection_radio_buttons :lecture_type, Lecture.lecture_types_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
+  <%= f.label :teacher_name %>
+  <%= f.text_field :teacher_name, class: 'form-control' %>
+  <p>
+  <% if @a == false %>
+    先生が未登録です。
+  <% end %>
+  先生登録は<%= link_to "こちら", new_teacher_path %></p>
 
-  <%= f.label :lecture_size %>
-  <div>
-    <%= f.collection_radio_buttons :lecture_size, Lecture.lecture_sizes_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <%= f.label :lecture_term %>
-  <div>
-    <%= f.collection_radio_buttons :lecture_term, Lecture.lecture_terms_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <%= f.label :group_work %>
-  <div>
-    <%= f.collection_radio_buttons :group_work, Lecture.group_works_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
