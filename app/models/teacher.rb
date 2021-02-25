@@ -27,4 +27,16 @@ class Teacher < ApplicationRecord
     end
   end
 
+  #editのときはフォームに初期値をnewのときは空白にする 
+  def init_first_name
+    if self.name.present?
+      return self.name.split(" ")[1]
+    end
+  end
+
+  def init_last_name
+    if self.name.present?
+      return self.name.split(" ")[0]
+    end
+  end
 end
