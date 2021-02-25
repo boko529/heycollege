@@ -23,7 +23,7 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_lecture_path
     assert_no_difference 'Lecture.count' do
-      post lectures_path, params: { lecture: { name:  " " }}
+      post lectures_path, params: { lecture: { farst_name:  "a", last_name: "b" }}
     end
     assert_template 'lectures/new'
     # assert_select 'div#error_explanation' エラーはでない
