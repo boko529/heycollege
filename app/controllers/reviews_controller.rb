@@ -9,7 +9,6 @@ class ReviewsController < ApplicationController
   def create
     @lecture = Lecture.find(params[:lecture_id])
     @review = current_user.reviews.new(review_params)
-    @review.score = @review.average_score
     if @review.save
       flash[:success] = "レビューを投稿しました"
       redirect_to lecture_review_path(@lecture,@review)
@@ -28,7 +27,7 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:title, :content, :lecture_id, :user_id, :explanation, :fairness, :recommendation, :useful, :interesting, :difficulty)
+      params.require(:review).permit(:content, :lecture_id, :user_id, :score)
     end
 
     def baria_user

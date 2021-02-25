@@ -2,7 +2,14 @@
     <%= render 'shared/error_messages', object: f.object %>
     
     <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <div class="row">
+        <div class="col">
+            <%= f.text_field :last_name, class: 'form-control' ,placeholder: "姓" %>
+        </div>
+        <div class="col">
+            <%= f.text_field :first_name, class: 'form-control', placeholder: "名" %>
+        </div>
+    </div>
   
    
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
