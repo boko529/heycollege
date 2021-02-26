@@ -28,7 +28,6 @@
       <%= link_to 'プロフィールを編集する', edit_user_path(@user.id)%><br>
       <small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
     <% end %>
-
     <p>
       <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
     </p>
@@ -46,7 +45,7 @@
           <tr>
             <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
             <td><%= review.score %></td>
-            <td><%= link_to review.title, lecture_review_path(review.lecture.id,review.id) %></td>
+            <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
           </tr>
           <% end %>
         </table>
