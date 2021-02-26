@@ -1,6 +1,7 @@
 <header>
   <div class="container-fluid p-0 px-md-4"> 
     <div class="row h-auto mt-2 p-sm-o p-0">
+      <%#　スマホ画面用ハンバーガーボタン　%>
       <div class="col-1 d-block d-md-none">
         <button type="button" class="btn btn-success mx-2" data-toggle="collapse" data-target="#aaa"><i class="fas fa-bars"></i>
         </button>
@@ -9,68 +10,68 @@
             <% if user_signed_in? %>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-home fa-2x"></i><span>Home</span>
+                <i class="fas fa-medal fa-2x"></i></i><span>ランキング</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="far fa-plus-square fa-2x"></i><span>Create</span>
+                <i class="far fa-plus-square fa-2x"></i><span>作る</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-question fa-2x"></i><span>Help</span>
+                <i class="fas fa-question fa-2x"></i><span>ヘルプ</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to "#" do %>
-                <i class="fas fa-envelope fa-2x"></i><span>Contact</span>
+                <i class="fas fa-envelope fa-2x"></i><span>コンタクト</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-2x"></i><span>Log out</span>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span>ログアウト</span>
               <% end %>
             </li>
               <% else %>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-home fa-2x"></i><span>Home</span>
+                <i class="fas fa-home fa-2x"></i><span>ランキング</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to new_user_registration_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span>Sign up</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>サインイン</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to new_user_session_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span>Log in</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>ログイン</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-question fa-2x"></i><span>Help</span>
+                <i class="fas fa-question fa-2x"></i><span>ヘルプ</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to "#" do %>
-                <i class="fas fa-envelope fa-2x"></i><span>Contact</span>
+                <i class="fas fa-envelope fa-2x"></i><span>コンタクト</span>
               <% end %>
             </li>
             <% end %>
           </div>
         </div>
       </div>
-      <%#ヘイカレッジロゴ %>
+      <%#　ヘイカレッジロゴ %>
       <div class="logo col mx-0">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "100px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-5 offset-md-1 offset-0 mx-auto d-none d-sm-block">
+      <div class="search col-6 offset-md-1 offset-0 mx-auto d-none d-sm-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_cont, class: "form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
+            <%= f.search_field :name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append ">
               <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
@@ -84,17 +85,20 @@
           </div>
         <% end %>
       </div>
+      <%#　スマホ画面での検索ボタン　%>
       <div class="search col offset-2 d-sm-none d-block">
         <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
           <i class="fas fa-search"></i>    
         </button>
       </div>
       <% if user_signed_in? %>
+        <%#　ユーザーアイコン　%>
         <div class="user col col-md-1 ">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
+        <%#　お知らせアイコン　%>
         <div class="bell col col-md-1">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
