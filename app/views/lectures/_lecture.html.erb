@@ -2,4 +2,5 @@
   <span class="score"><%= lecture.average_score %></span>
   <%= link_to lecture.name, lecture %>
   <span class="teacher-name">  <%= link_to lecture.teacher.name, lecture.teacher %></span>
+  <span>レビュー数: <%= lecture.all_reviews_count %></span>
 </li>

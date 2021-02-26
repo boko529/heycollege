@@ -4,7 +4,7 @@ class ReviewsCreateTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   def setup
     @user = users(:user1)
-    @lecture = lectures(:lecture_1)
+    @lecture = lectures(:lecture_2)
   end
 
   test "valid review create" do

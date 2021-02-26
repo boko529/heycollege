@@ -18,8 +18,8 @@ class LecturesController < ApplicationController
 
   def show
     @lecture = Lecture.find(params[:id])
-    # 参考になる順で表示
-    reviews = @lecture.reviews.includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
+    # 参考になる順で表示 + 詳細が書かれているものに限定
+    reviews = @lecture.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
     @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(7)
 
     # 最新順で表示
@@ -54,7 +54,6 @@ class LecturesController < ApplicationController
           render 'new'
         end
       else
-        flash[:danger] = "講師名を入力してください"
         render 'new'
       end
     end

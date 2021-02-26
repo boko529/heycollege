@@ -7,7 +7,6 @@ ja:
     attributes:
       lecture:
         name: "講義名"
-        teacher_name: "先生名"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -34,7 +33,6 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
       review:
-        title: タイトル
         content: 詳細
 
   enums:

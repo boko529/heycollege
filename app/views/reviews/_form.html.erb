@@ -1,14 +1,14 @@
 <%= form_with(model:[@lecture, @review]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :content %>
-  <span>(必須)</span>
-  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
-
   <div class="form-group" id="score">
-    <%= f.label :score,'満足度' , class:'col-md-3 col-form-label' %>
+    <%= f.label :score,'満足度(必須)' , class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :score, id: :review_score %>
   </div>
+
+  <%= f.label :content %>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
+
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
 

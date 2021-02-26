@@ -52,6 +52,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     patch user_path(@other_user.id), params: { user: { name:  name } }
     assert_template 'users/edit'
   end
+  
   test "others gender faculty gender update" do
     login_as(@user, scope: :user)
     patch user_path(@other_user.id), params: { user: { gender:  "female" } }

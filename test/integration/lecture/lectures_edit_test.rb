@@ -80,7 +80,11 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture)
     assert_template 'lectures/edit'
-    patch lecture_path(@lecture), params: { lecture: { first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    assert_difference "Teacher.count", 1 do
+      patch lecture_path(@lecture), params: { lecture: { name: "name", first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    end
+    follow_redirect!
+    assert_template 'lectures/show'
     assert_not flash.empty?
     @lecture.reload
     assert_equal @invalid_teacher_name,  @lecture.teacher.name
