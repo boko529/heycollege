@@ -34,6 +34,7 @@ class LecturesController < ApplicationController
   end
   
   def create
+    @lecture = current_user.lectures.build
     if @teacher = Teacher.find_by(name: @teacher_name)
       @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
       if @lecture.save
@@ -52,6 +53,8 @@ class LecturesController < ApplicationController
         else
           render 'new'
         end
+      else
+        render 'new'
       end
     end
   end

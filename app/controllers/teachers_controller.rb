@@ -6,13 +6,13 @@ class TeachersController < ApplicationController
     def index
         @p = Teacher.ransack(params[:p])
         @p.sorts = 'updated_at desc' if @p.sorts.empty?
-        @teachers = Teacher.all do |teacher|
+        @teachers = Teacher.all.sort_by do |teacher|
           if teacher.average_score == "不明" 
             0
           else
             teacher.average_score
           end
-        end
+        end.reverse
         @teachers = Kaminari.paginate_array(@teachers).page(params[:page]).per(20)
 
     end

@@ -20,14 +20,14 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "invalid name lecture create" do
+    # 正確には先生は新規登録されるように変更したのでinvalidではない.
     login_as(@user, scope: :user)
     get new_lecture_path
-    assert_no_difference 'Lecture.count' do
-      post lectures_path, params: { lecture: { farst_name:  "a", last_name: "b" }}
+    assert_difference 'Teacher.count', 1 do
+      post lectures_path, params: { lecture: { first_name:  "a", last_name: "b" }}
     end
-    assert_template 'lectures/new'
-    # assert_select 'div#error_explanation' エラーはでない
-    assert_select 'div.alert.alert-danger'
+    # follow_redirect! RuntimeErrorが起こる.
+    # assert_template 'lectures/show'
   end
 
   test "lecture show in not login" do
@@ -50,5 +50,16 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template "lectures/show"
     # レビューがあると平均は0じゃない
     assert_not_equal(0, @lecture.average_score)
+  end
+
+  test "blank name lecture create" do
+    login_as(@user, scope: :user)
+    get new_lecture_path
+    assert_no_difference 'Lecture.count' do
+      post lectures_path, params: { lecture: { first_name:  " ", last_name: " " }}
+    end
+    assert_template 'lectures/new'
+    # assert_select 'div#error_explanation'  エラーはでない
+    # assert_select 'div.alert.alert-danger' エラーはでない
   end
 end

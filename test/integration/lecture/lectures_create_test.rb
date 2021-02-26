@@ -21,7 +21,9 @@ class LecturesCreateTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_lecture_path
     assert_difference 'Lecture.count', 1 do
-      post lectures_path, params: { lecture: { name:  "日本大学史", first_name: "Teacher", last_name: "Example" } } # ExampleTeacherは存在しない.
+      assert_difference 'Teacher.count', 1 do
+        post lectures_path, params: { lecture: { name:  "日本大学史", first_name: "Teacher", last_name: "Example" } } # ExampleTeacherは存在しない.
+      end
     end
     follow_redirect!
     assert_template 'lectures/show'
