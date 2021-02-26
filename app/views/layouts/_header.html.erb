@@ -10,53 +10,53 @@
             <% if user_signed_in? %>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-home fa-2x"></i><span>Home</span>
+                <i class="fas fa-medal fa-2x"></i></i><span>ランキング</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="far fa-plus-square fa-2x"></i><span>Create</span>
+                <i class="far fa-plus-square fa-2x"></i><span>作る</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-question fa-2x"></i><span>Help</span>
+                <i class="fas fa-question fa-2x"></i><span>ヘルプ</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to "#" do %>
-                <i class="fas fa-envelope fa-2x"></i><span>Contact</span>
+                <i class="fas fa-envelope fa-2x"></i><span>コンタクト</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-2x"></i><span>Log out</span>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span>ログアウト</span>
               <% end %>
             </li>
               <% else %>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-home fa-2x"></i><span>Home</span>
+                <i class="fas fa-home fa-2x"></i><span>ランキング</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to new_user_registration_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span>Sign up</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>サインイン</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to new_user_session_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span>Log in</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>ログイン</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-question fa-2x"></i><span>Help</span>
+                <i class="fas fa-question fa-2x"></i><span>ヘルプ</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to "#" do %>
-                <i class="fas fa-envelope fa-2x"></i><span>Contact</span>
+                <i class="fas fa-envelope fa-2x"></i><span>コンタクト</span>
               <% end %>
             </li>
             <% end %>
@@ -71,7 +71,7 @@
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_cont, class: "form-control d-md-block d-none w-50" ,placeholder: '講義名を検索' %>
+            <%= f.search_field :name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append ">
               <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">

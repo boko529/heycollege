@@ -52,7 +52,7 @@ p {
 header{
   position: fixed;
   height: 65px;
-  background-color: #EEEEEE;
+  background-color: rgb(180, 245, 143);
   width: 100%;
   z-index: 2;
   a{
@@ -65,6 +65,7 @@ header{
 
   .form-inline {
     justify-content: center;
+    display: block;
   }
   input .btn{
     height: 40px;
