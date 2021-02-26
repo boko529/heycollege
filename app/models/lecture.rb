@@ -19,4 +19,9 @@ class Lecture < ApplicationRecord
       return average_score.round(2)
     end
   end
+  
+  #詳細が省略されているものも含む。レビュー数表示用
+  def all_reviews_count
+    return self.reviews.count
+  end
 end

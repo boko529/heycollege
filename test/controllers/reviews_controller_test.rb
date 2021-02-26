@@ -12,16 +12,24 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
   test "review create" do
     login_as(@user, scope: :user)
     assert_difference 'Review.count', 1 do
-      post lecture_reviews_path(@lecture), params: { review: { title:  "タイトル", content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, score: 2}}
+      post lecture_reviews_path(@lecture), params: { review: { content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, score: 2}}
     end
-    assert_template nil
+    follow_redirect!
+    assert_template 'reviews/show'
+  end
+
+  test "review create without content" do
+    login_as(@user, scope: :user)
+    assert_difference 'Review.count', 1 do
+      post lecture_reviews_path(@lecture), params: { review: { user_id: @user.id, lecture_id: @lecture.id, score: 2}}
+    end
     follow_redirect!
     assert_template 'reviews/show'
   end
 
   test "review create in not login" do
     assert_no_difference 'Review.count' do
-      post lecture_reviews_path(@lecture), params: { review: { title:  "タイトル", content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, score: 2}}
+      post lecture_reviews_path(@lecture), params: { review: { content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, score: 2}}
     end
     assert_template nil
     assert_not flash.empty?
