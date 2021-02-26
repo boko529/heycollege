@@ -8,13 +8,20 @@ class ReviewsController < ApplicationController
 
   def create
     @lecture = Lecture.find(params[:lecture_id])
-    @review = current_user.reviews.new(review_params)
-    if @review.save
-      flash[:success] = "レビューを投稿しました"
-      redirect_to lecture_review_path(@lecture,@review)
+    # 既にその講義にレビューを書いているか確認
+    unless @lecture.review?(current_user)
+      @review = current_user.reviews.new(review_params)
+      if @review.save
+        flash[:success] = "レビューを投稿しました"
+        redirect_to lecture_review_path(@lecture,@review)
+      else
+        flash[:danger] = "レビューの投稿に失敗しました"
+        redirect_back(fallback_location: root_path)
+        # render 'lectures/show'
+      end
     else
+      flash[:danger] = "一つのクラスにレビューは一度のみです"
       redirect_back(fallback_location: root_path)
-      # render 'lectures/show'
     end
   end
 

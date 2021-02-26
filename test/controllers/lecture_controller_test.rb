@@ -50,6 +50,10 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template "lectures/show"
     # レビューがあると平均は0じゃない
     assert_not_equal(0, @lecture.average_score)
+    #詳細がなくても数には入れる
+    assert_equal(3, @lecture.all_reviews_count)
+    #詳細があるレビューのみviewに表示
+    assert_select 'li.review', count: 2
   end
 
   test "blank name lecture create" do

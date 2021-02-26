@@ -1,8 +1,9 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
-
-  <h4 class="title">
-    <span><%= review.score %></span>
-  </h4>
+  <%= link_to lecture_review_path(review.lecture, review) do %>
+    <h4 class="title">
+      <span><%= review.score %></span>
+    </h4>
+  <% end %>
   <span class="username"><%= link_to review.user.name, user_path(review.user.id) %></span>
   <p class="content">
     <%= review.content %>
