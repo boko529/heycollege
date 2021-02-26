@@ -24,4 +24,16 @@ class Lecture < ApplicationRecord
   def all_reviews_count
     return self.reviews.count
   end
+
+  # ユーザーがその投稿にレビューをしているかの確認
+  def review?(user)
+    user.reviews.where(lecture_id: self.id).exists?
+  end
+
+  # ユーザーがその投稿にしたレビューを返す
+  def my_review(user)
+    if self.review?(user)
+      return user.reviews.where(lecture_id: self.id).first
+    end
+  end
 end
