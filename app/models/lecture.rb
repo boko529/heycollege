@@ -4,6 +4,7 @@ class Lecture < ApplicationRecord
   has_many :reviews, dependent: :destroy
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: {scope: :teacher_id}
   validates :user_id, presence: true
+  validates :teacher_id, presence: true
   attr_accessor :score
 
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
@@ -17,6 +18,19 @@ class Lecture < ApplicationRecord
       end
       average_score = sum / self.reviews.count
       return average_score.round(2)
+    end
+  end
+
+  #editのときはフォームに初期値をnewのときは空白にする 
+  def init_first_name
+    if self.teacher.present?
+      return self.teacher.name.split(" ")[1]
+    end
+  end
+
+  def init_last_name
+    if self.teacher.present?
+      return self.teacher.name.split(" ")[0]
     end
   end
   

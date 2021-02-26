@@ -10,7 +10,7 @@ class TeachersCreateTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_teacher_path
     assert_no_difference 'Teacher.count' do
-      post teachers_path, params: { teacher: { name:  " "}}
+      post teachers_path, params: { teacher: { first_name:  " ", last_name: " "}}
     end
     assert_template 'teachers/new'
     assert_select 'div#error_explanation'
@@ -21,7 +21,7 @@ class TeachersCreateTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_teacher_path
     assert_difference 'Teacher.count', 1 do
-      post teachers_path, params: { teacher: { name: "藤岡真由美" }}
+      post teachers_path, params: { teacher: { first_name: "真由美", last_name: "藤岡" }}
     end
     follow_redirect!
     assert_template 'teachers/show'
@@ -33,4 +33,5 @@ class TeachersCreateTest < ActionDispatch::IntegrationTest
     assert_template nil
     assert_not flash.empty?
   end
+
 end
