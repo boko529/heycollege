@@ -2,6 +2,10 @@
 <%= link_to "先生一覧へ", teachers_path %>
 <%= link_to "講義一覧へ", lectures_path %>
 <h3><%= @teacher.name %></h3>
+<div class="scores">
+  <h4>満足度： <span class="score"><%= @teacher.average_score %></span><span class="review-count"></span></h4>
+  <div id="star-teacher<%= @teacher.id %>"></div>
+</div>
 <p><%= @teacher.user.name %></p>
 <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 <% if current_user?(@teacher.user) %>
@@ -13,9 +17,24 @@
   <div class="col-md-8">
     <% if @teacher.lectures.any? %>
       <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
-      <ol class="lectures">
-        <%= render @teacher.lectures %>
-      </ol>
+      <%# 講義一覧をパーシャルで表示 %>
+      <div class="list-group">
+        <% @teacher.lectures.each do |lecture| %>
+          <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-teacher<%= @teacher.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : '<%= asset_path('star-half.png') %>',
+    readOnly: true,
+    score: <%= @teacher.average_score %>,
+  });
+</script>

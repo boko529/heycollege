@@ -4,7 +4,6 @@
   <%= link_to "講義一覧へ", lectures_path %>
   <div class="lecture-info">
     <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to @lecture.teacher.name, @lecture.teacher %></span></h3>
-    <%# <p class="teacher-name">-先生名</p> %>
     <div class="scores">
       <% if @lecture.reviews.blank? %>
         <p>レビューはありません。</p>
@@ -45,6 +44,7 @@
   </div>
 </div>
 
+<%# 星表示のためのjavascript %>
 <script>
   $('#star-lecture<%= @lecture.id %>').raty({
     size      : 36,
