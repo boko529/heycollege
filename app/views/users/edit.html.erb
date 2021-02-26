@@ -1,8 +1,11 @@
 <h2>ユーザー情報</h2>
 
+<div class="field">
+  <%= gravatar_for @user %>
+  <a href="http://gravatar.com/emails" target="_blank">プロフィール画像を変更する</a><br><small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
+</div>
 <%= form_with model: @user, local:true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <p>name</p>
 
   <div class="field">
     <%= f.label :name,'名前' %><br />
