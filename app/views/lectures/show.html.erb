@@ -8,7 +8,8 @@
       <% if @lecture.reviews.blank? %>
         <p>レビューはありません。</p>
       <% else %>
-        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count"></span><span>(<%= @lecture.all_reviews_count %>)</span></h4>
+        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count">(<%= @lecture.all_reviews_count %>)</span></h4>
+        <div id="star-lecture<%= @lecture.id %>"></div>
       <% end %>
     </div>
     <p>製作者： <%= link_to @lecture.user.name, @lecture%></p>
@@ -49,3 +50,16 @@
     <% end %>
   </div>
 </div>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-lecture<%= @lecture.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    starHalf  : '<%= asset_path('star-half.png') %>',
+    half      : true,
+    readOnly: true,
+    score: <%= @lecture.average_score %>,
+  });
+</script>

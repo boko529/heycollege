@@ -1,9 +1,7 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
-  <%= link_to lecture_review_path(review.lecture, review) do %>
-    <h4 class="title">
-      <span><%= review.score %></span>
-    </h4>
-  <% end %>
+  <h4>
+    <span><%= review.score %></span><div id="star-review<%= review.id %>"></div>
+  </h4>
   <span class="username"><%= link_to review.user.name, user_path(review.user.id) %></span>
   <p class="content">
     <%= review.content %>
@@ -18,3 +16,15 @@
     <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
   </div>
 </li>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-review<%= review.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= review.score %>,
+  });
+</script>
