@@ -12,7 +12,7 @@
         <div id="star-lecture<%= @lecture.id %>"></div>
       <% end %>
     </div>
-    <p>製作者： <%= link_to @lecture.user.name, @lecture%></p>
+    <p>製作者： <%= link_to @lecture.user.name, @lecture.user %></p>
     <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
     <%# 自分の投稿のときのみ表示 %>
     <% if current_user?(@lecture.user) %>
