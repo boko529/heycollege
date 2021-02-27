@@ -48,7 +48,7 @@ class LecturesDeleteTest < ActionDispatch::IntegrationTest
     get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
     assert_template 'lectures/edit'
     assert_difference "Teacher.count", -1 do # teacher3が保持するlectureインスタンスの数が0のため削除.
-    delete lecture_path(@lecture_3)
+      delete lecture_path(@lecture_3)
     end
     follow_redirect!
     assert_template 'lectures/index'

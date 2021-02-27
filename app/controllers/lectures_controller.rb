@@ -55,6 +55,7 @@ class LecturesController < ApplicationController
           redirect_to @lecture
         else
           render 'new'
+          @teacher.destroy
         end
       else
         render 'new'

@@ -1,5 +1,6 @@
 class TeachersController < ApplicationController
     include UsersHelper
+    before_action :authenticate_user!, only: :show
     def index
         @p = Teacher.ransack(params[:p])
         @p.sorts = 'updated_at desc' if @p.sorts.empty?
