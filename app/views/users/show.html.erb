@@ -4,7 +4,11 @@
 
     <table class="table">
     <tr>
-        <th>name</th>
+        <th>プロフィール画像</th>
+        <td><%= gravatar_for @user %></td>
+    </tr>
+    <tr>
+        <th>ニックネーム</th>
         <td><%= @user.name %></td>
     </tr>
     <tr>
@@ -13,15 +17,16 @@
     </tr>
     <tr>
         <th>学部</th>
-        <td><%= @user.faculty %></td>
+        <td><%= @user.faculty_i18n %></td>
     </tr>
     <tr>
         <th>学年</th>
-        <td><%= @user.grade %></td>
+        <td><%= @user.grade_i18n %></td>
     </tr>
     </table>
     <% if @user == current_user %>
-      <%= link_to '名前を編集する', edit_user_path(@user.id)%>
+      <%= link_to 'プロフィールを編集する', edit_user_path(@user.id)%><br>
+      <small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
     <% end %>
     <p>
       <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>

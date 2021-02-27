@@ -11,16 +11,30 @@ class Teacher < ApplicationRecord
       sum = 0
       count = 0  # lecture.average_scoreが"不明"のものはcountしたくないのでself.lectures.countは使用しない.
       self.lectures.each do |lecture|
-        if lecture.average_score == "不明"
-          0
-        else
+        unless lecture.average_score == "不明"
           sum += lecture.average_score
           count += 1
         end
       end
-      average_score = sum / count
+      if count == 0
+        average_score = 0
+      else
+        average_score = sum / count
+      end
       return average_score.round(1)
     end
   end
 
+  #editのときはフォームに初期値をnewのときは空白にする 
+  def init_first_name
+    if self.name.present?
+      return self.name.split(" ")[1]
+    end
+  end
+
+  def init_last_name
+    if self.name.present?
+      return self.name.split(" ")[0]
+    end
+  end
 end

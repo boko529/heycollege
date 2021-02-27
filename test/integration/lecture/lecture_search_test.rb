@@ -20,7 +20,7 @@ class LectureIndexTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     assert_select 'form#lecture_search'
-    get lectures_path, params: { q: { teacher_name_cont:  "ET2"}}
+    get lectures_path, params: { q: { teacher_name_cont:  "橋本 虎太郎"}}
     assert_template 'lectures/index'
     assert_select 'a[href=?]', lecture_path(@lecture2)
     assert_select 'li.lecture', count: 1
