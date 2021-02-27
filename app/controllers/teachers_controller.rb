@@ -35,20 +35,6 @@ class TeachersController < ApplicationController
       end
     end
     
-    def edit
-      @teacher = Teacher.find(params[:id])
-    end
-    
-    def update
-      @teacher = Teacher.find(params[:id])
-      if @teacher.update(name: @name)
-        flash[:success] = "先生情報は更新されました！"
-        redirect_to @teacher
-      else
-        render 'edit'
-      end
-    end
-    
     def destroy
       Teacher.find(params[:id]).destroy
       flash[:success] = "先生を削除しました"
