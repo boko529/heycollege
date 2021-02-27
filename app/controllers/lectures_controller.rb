@@ -84,10 +84,10 @@ class LecturesController < ApplicationController
           redirect_to @lecture
         else
           render 'edit'
+          @teacher.destroy
         end
       else
         render 'edit'
-        @teacher.destroy
       end
     end
   end
