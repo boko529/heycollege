@@ -70,7 +70,8 @@ Rails.application.configure do
   # 本番環境でのメール認証
   config.action_mailer.delivery_method = :smtp
   host = "heycollege.herokuapp.com"
-  config.action_mailer.smtp_settings = {
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
     :authentication => :plain,
