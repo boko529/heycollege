@@ -8,9 +8,6 @@
 </div>
 <p><%= @teacher.user.name %></p>
 <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
-<% if current_user?(@teacher.user) %>
-  <%= link_to "削除", @teacher, method: :delete, data: { confirm: "本当に削除しますか？"} %>
-<% end %>
 
 <%# 講義表示 %>
   <div class="col-md-8">

@@ -14,7 +14,6 @@ class TeachersController < ApplicationController
           end
         end.reverse
         @teachers = Kaminari.paginate_array(@teachers).page(params[:page]).per(20)
-
     end
     
     def show
@@ -33,12 +32,6 @@ class TeachersController < ApplicationController
       else
         render 'new'
       end
-    end
-    
-    def destroy
-      Teacher.find(params[:id]).destroy
-      flash[:success] = "先生を削除しました"
-      redirect_to teachers_url
     end
     
     private
