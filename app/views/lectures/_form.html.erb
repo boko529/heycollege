@@ -3,45 +3,18 @@
   
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
-  
-  <%= f.label :language_used %>
-  <div>
-    <%= f.collection_radio_buttons :language_used, Lecture.language_useds_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
+
+  <%= f.label :name %>
+  <span>ex) 山田 太郎, John Smith</span>
+  <%# valueで既に名前があるときは初期値として代入 %>
+  <div class="row">
+      <div class="col">
+          <%= f.text_field :last_name, class: 'form-control' ,placeholder: "姓", value: @lecture.init_last_name %>
+      </div>
+      <div class="col">
+          <%= f.text_field :first_name, class: 'form-control', placeholder: "名", value: @lecture.init_first_name %>
+      </div>
   </div>
 
-  <%= f.label :lecture_type %>
-  <div>
-    <%= f.collection_radio_buttons :lecture_type, Lecture.lecture_types_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <%= f.label :lecture_size %>
-  <div>
-    <%= f.collection_radio_buttons :lecture_size, Lecture.lecture_sizes_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <%= f.label :lecture_term %>
-  <div>
-    <%= f.collection_radio_buttons :lecture_term, Lecture.lecture_terms_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <%= f.label :group_work %>
-  <div>
-    <%= f.collection_radio_buttons :group_work, Lecture.group_works_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

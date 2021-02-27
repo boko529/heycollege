@@ -51,8 +51,8 @@ p {
 // header
 header{
   position: fixed;
-  height: 80px;
-  background-color: #EEEEEE;
+  height: 65px;
+  background-color: rgb(180, 245, 143);
   width: 100%;
   z-index: 2;
   a{
@@ -65,6 +65,7 @@ header{
 
   .form-inline {
     justify-content: center;
+    display: block;
   }
   input .btn{
     height: 40px;
@@ -74,12 +75,12 @@ header{
 // サイドバー
 .sidebar_col{
   a{
-    color: black;
+    color: green;
   }
   background-color: #EEEEEE;
   .sidebar_fixed {
     position: sticky;
-    top: 80px;
+    top: 65px;
     margin: 0 auto;
     .list-group-item{
       margin: 5px 10px;

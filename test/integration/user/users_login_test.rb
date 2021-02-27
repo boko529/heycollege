@@ -34,7 +34,4 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'devise/sessions/new'
     assert_not @not_confirm_user.confirmed_at.present?
   end
-
-
-  
 end
