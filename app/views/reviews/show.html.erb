@@ -1,19 +1,16 @@
-<% provide(:title, @review.title) %>
+<%# レビューに詳細が存在するときは詳細の冒頭をタイトルにして、ないときはレビューの番号をタイトルにしてる。三項演算子で書いてます(分からなかったら調べてね)。 %>
+<% provide(:title, @review.content.blank? ? "review#{@review.id}" : @review.content.truncate(8, omission: '・・・')) %>
 <div class="review-show">
   <%= link_to "#{@lecture.name}に戻る", lecture_path(@lecture) %>
 
-
-  <h3><%= @review.title %></h3>
   <span>講義：<%= @lecture.name %></span>
   <span>講師： Teacher</span>
   <h4>スコア：<%= @review.score %></h4>
-  <p><%= safe_join(@review.content.split("\n"),tag(:br)) %></p>
-  <span>わかりやすさ：<%= @review.explanation %></span>
-  <span>評価の公正さ：<%= @review.fairness %></span>
-  <span>友達への勧めたさ：<%= @review.recommendation %></span>
-  <span>役に立ったか：<%= @review.useful %></span>
-  <span>おもしろさ：<%= @review.interesting %></span>
-  <span>難易度：<%= @review.difficulty %></span>
+  <% unless @review.content.blank? %>
+    <p><%= safe_join(@review.content.split("\n"),tag(:br)) %></p>
+  <% else %>
+    <p>このレビューに詳細はありません。</p>
+  <% end %>
 
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= @review.id %>">
