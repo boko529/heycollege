@@ -14,6 +14,15 @@ class LecturesController < ApplicationController
       end
     end.reverse
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+
+    # teacher.lectures.count == 0 をみたすteacherを自動削除
+    # lecture削除後にindexページに遷移されるので、実質的に自動削除.
+    # teacher.lectures.count == 0 となるのがlecture登録or編集後or削除後のみに限られるため.(teachers_controllerのshowメソッドにも記述あり)
+    Teacher.all.each do |teacher|
+      if teacher.lectures.count == 0
+        teacher.destroy
+      end
+    end
   end
 
   def show
@@ -30,7 +39,7 @@ class LecturesController < ApplicationController
 
     # teacher.lectures.count == 0 をみたすteacherを自動削除
     # lecture登録or編集後にshowページに遷移されるので、実質的に自動削除.
-    # teacher.lectures.count == 0 となるのがlecture登録or編集後のみに限られるため.
+    # teacher.lectures.count == 0 となるのがlecture登録or編集後or削除後のみに限られるため.(teachers_controllerのindexメソッドにも同様の記述あり)
     Teacher.all.each do |teacher|
       if teacher.lectures.count == 0
         teacher.destroy
