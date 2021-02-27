@@ -3,13 +3,13 @@
 <div class="lecture_show">
   <%= link_to "講義一覧へ", lectures_path %>
   <div class="lecture-info">
-    <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to "先生名", "#" %></span></h3>
-    <%# <p class="teacher-name">-先生名</p> %>
+    <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to @lecture.teacher.name, @lecture.teacher %></span></h3>
     <div class="scores">
       <% if @lecture.reviews.blank? %>
         <p>レビューはありません。</p>
       <% else %>
-        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count"></span></h4>
+        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count">(<%= @lecture.all_reviews_count %>)</span></h4>
+        <div id="star-lecture<%= @lecture.id %>"></div>
       <% end %>
     </div>
     <p>製作者： <%= link_to @lecture.user.name, @lecture%></p>
@@ -19,23 +19,30 @@
       <%= link_to "編集", edit_lecture_path %>
       <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
     <% end %>
-    <%# レビュー投稿欄 %>
-    <p>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-        レビューを書く
-      </button>
-    </p>
-  </div>
-  <div class="collapse" id="collapseReview">
-    <div class="card card-body">
-      <%= render 'reviews/form' %>
-    </div>
+
+    <%# 自分がレビューしたことあるかを確認 %>
+    <% if @lecture.review?(current_user) %>
+      <%# 自分が書いたレビューへのリンクを表示 %>
+      <%= link_to "自分が書いたレビュー", lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
+    <% else %>
+      <%# レビュー投稿欄 %>
+      <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
+          レビューを書く
+        </button>
+      </p>
+      <div class="collapse" id="collapseReview">
+        <div class="card card-body">
+          <%= render 'reviews/form' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <%# レビュー表示 %>
   <div class="col-md-10 lecture-reviews">
     <% if @reviews.any? %>
-      <p>レビュー数 (<%= @reviews.count %>)</p>
+      <p>レビュー数 (<%= @lecture.all_reviews_count %>)</p>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>
@@ -43,3 +50,16 @@
     <% end %>
   </div>
 </div>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-lecture<%= @lecture.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    starHalf  : '<%= asset_path('star-half.png') %>',
+    half      : true,
+    readOnly: true,
+    score: <%= @lecture.average_score %>,
+  });
+</script>

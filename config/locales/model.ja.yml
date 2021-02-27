@@ -33,7 +33,6 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
       review:
-        title: タイトル
         content: 詳細
 
   enums:
