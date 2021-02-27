@@ -95,12 +95,10 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
     assert_template 'lectures/edit'
-    assert_difference "Teacher.count", 1 do # teacherが新規追加.
+    assert_no_difference "Teacher.count" do # teacherが新規追加. teacher3が保持するlectureインスタンスの数が0のため削除. よってTeacher.countは±0
       patch lecture_path(@lecture_3), params: { lecture: { name: "name", first_name: @invalid_first_name, last_name: @invalid_last_name } }
     end
-    assert_difference "Teacher.count", -1 do # teacher3が保持するlectureインスタンスの数が0のため削除.
-      follow_redirect!
-    end
+    follow_redirect!
     assert_template 'lectures/show'
     assert_not flash.empty?
     @lecture_3.reload

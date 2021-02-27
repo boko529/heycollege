@@ -47,10 +47,10 @@ class LecturesDeleteTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
     assert_template 'lectures/edit'
-    delete lecture_path(@lecture_3)
     assert_difference "Teacher.count", -1 do # teacher3が保持するlectureインスタンスの数が0のため削除.
-      follow_redirect!
+    delete lecture_path(@lecture_3)
     end
+    follow_redirect!
     assert_template 'lectures/index'
     assert_not flash.empty?
   end
