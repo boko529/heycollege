@@ -1,8 +1,5 @@
 class TeachersController < ApplicationController
     include UsersHelper
-    before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
-    before_action :baria_user, only: [:edit, :destroy, :update]
-    before_action :name_set, only: [:create, :update]
     def index
         @p = Teacher.ransack(params[:p])
         @p.sorts = 'updated_at desc' if @p.sorts.empty?
@@ -23,13 +20,6 @@ class TeachersController < ApplicationController
     private
       def teacher_params
         params.require(:teacher).permit(:first_name, :last_name)
-      end
-    
-      def baria_user
-        unless Teacher.find_by(id: params[:id]).user_id == current_user.id
-          flash[:danger] = "権限がありません"
-          redirect_to teacher_path
-        end
       end
 
       def name_set
