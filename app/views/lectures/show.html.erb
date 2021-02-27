@@ -3,7 +3,9 @@
 <div class="lecture_show">
   <div class="lecture-header">
     <%= link_to "講義一覧へ", lectures_path %>
-    <span><%= gravatar_for @lecture.user, 20 %><%= link_to @lecture.user.name, @lecture.user %></span>
+    <%= link_to @lecture.user do %>
+      <%= gravatar_for @lecture.user, 20 %><%= @lecture.user.name %>
+    <% end %>
   </div>
   <div class="lecture-info">
     <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to @lecture.teacher.name, @lecture.teacher %></span></h3>
@@ -86,12 +88,14 @@
   });
 
   // 最も参考になるレビューの星表示
-  $('#star-helpful-review').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    half      : false,
-    readOnly: true,
-    score: <%= @helpful_review.score %>,
-  });
+  <% if @helpful_review %>
+    $('#star-helpful-review').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      half      : false,
+      readOnly: true,
+      score: <%= @helpful_review.score %>,
+    });
+  <% end %>
 </script>
