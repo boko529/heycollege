@@ -87,7 +87,7 @@ class LecturesController < ApplicationController
         end
       else
         render 'edit'
-        @teacher.save
+        @teacher.destroy
       end
     end
   end
