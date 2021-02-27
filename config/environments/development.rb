@@ -41,7 +41,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
-    :user_name => "heycollege.authentication@gmail.com",    #自分で適当に作ったgメールアカウント
+    :user_name => "heycollege.authentication@gmail.com",    #メール認証用gmail
     :password => "ffejogrdauwcgwkw",    #二段階認証パスワード
     :authentication => :plain,
     :enable_starttls_auto => true
