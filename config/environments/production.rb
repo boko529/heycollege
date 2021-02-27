@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
-    :port => 587,
+    :port => "587",
     :authentication => :plain,
     :user_name => "heycollege.authentication@gmail.com",    #メール認証用gmail
     :password => "ffejogrdauwcgwkw",    #二段階認証パスワード
