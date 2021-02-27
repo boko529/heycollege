@@ -2,6 +2,9 @@ class LecturesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
   before_action :baria_user, only: [:edit, :destroy, :update]
   before_action :set_teacher_name, only: [:create, :update]
+  before_action :set_past_teacher, only: [:update, :destroy]
+  after_action :delete_teacher_automatically, only: [:update, :destroy]
+
   def index
     @q = Lecture.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
@@ -14,15 +17,6 @@ class LecturesController < ApplicationController
       end
     end.reverse
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
-
-    # teacher.lectures.count == 0 をみたすteacherを自動削除
-    # lecture削除後にindexページに遷移されるので、実質的に自動削除.
-    # teacher.lectures.count == 0 となるのがlecture登録or編集後or削除後のみに限られるため.(teachers_controllerのshowメソッドにも記述あり)
-    Teacher.all.each do |teacher|
-      if teacher.lectures.count == 0
-        teacher.destroy
-      end
-    end
   end
 
   def show
@@ -36,16 +30,6 @@ class LecturesController < ApplicationController
     @review = current_user.reviews.new
 
     @teacher = @lecture.teacher
-
-    # teacher.lectures.count == 0 をみたすteacherを自動削除
-    # lecture登録or編集後にshowページに遷移されるので、実質的に自動削除.
-    # teacher.lectures.count == 0 となるのがlecture登録or編集後or削除後のみに限られるため.(teachers_controllerのindexメソッドにも同様の記述あり)
-    Teacher.all.each do |teacher|
-      if teacher.lectures.count == 0
-        teacher.destroy
-      end
-    end
-
   end
 
   def new
@@ -129,6 +113,17 @@ class LecturesController < ApplicationController
         @teacher_name = lecture_params[:last_name] + " " + lecture_params[:first_name]
       else
         @teacher_name = ""
+      end
+    end
+
+    def set_past_teacher
+      @lecture = Lecture.find(params[:id])
+      @past_teacher = @lecture.teacher
+    end
+
+    def delete_teacher_automatically
+      if @past_teacher.lectures.count == 0
+        @past_teacher.destroy
       end
     end
 end
