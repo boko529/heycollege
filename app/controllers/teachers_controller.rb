@@ -19,20 +19,6 @@ class TeachersController < ApplicationController
     def show
       @teacher = Teacher.find(params[:id])
     end
-
-    def new
-      @teacher = current_user.teachers.build
-    end
-      
-    def create
-      @teacher = current_user.teachers.build(name: @name)
-      if @teacher.save
-        flash[:success] = "先生ページを作成しました"
-        redirect_to @teacher
-      else
-        render 'new'
-      end
-    end
     
     private
       def teacher_params

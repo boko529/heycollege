@@ -1,8 +1,5 @@
 <% provide(:title, '先生一覧') %>
 <h1>先生</h1>
-<% if user_signed_in? %>
-  <%= link_to "先生の新規作成",  new_teacher_path %>
-<% end %>
 
 <ul class="teachers">
   <% @teachers.each do |teacher| %>
