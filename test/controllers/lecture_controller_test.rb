@@ -24,7 +24,7 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get new_lecture_path
     assert_difference 'Teacher.count', 1 do
-      post lectures_path, params: { lecture: { first_name:  "a", last_name: "b" }}
+      post lectures_path, params: { lecture: { name: "name", first_name:  "a", last_name: "b" }}
     end
     # follow_redirect! RuntimeErrorが起こる.
     # assert_template 'lectures/show'
