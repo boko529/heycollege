@@ -68,18 +68,17 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   
   # 本番環境でのメール認証
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+  host = "heycollege.herokuapp.com"
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
     :port => 587,
+    :authentication => :plain,
     :user_name => "heycollege.authentication@gmail.com",    #メール認証用gmail
     :password => "ffejogrdauwcgwkw",    #二段階認証パスワード
-    :authentication => :plain,
+    :domain => 'gmail.com',
     :enable_starttls_auto => true
   }
-
-  Rails.application.routes.default_url_options = {  host: ENV['HOST_ID'], port: ENV['PORT_ID'] } 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
