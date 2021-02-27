@@ -104,4 +104,14 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     @lecture_3.reload
     assert_equal @invalid_teacher_name,  @lecture_3.teacher.name
   end
+
+  test "do not save teacher when lecture name is blank" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
+    assert_template 'lectures/edit'
+    assert_no_difference "Teacher.count" do # teacherが新規追加. teacher3が保持するlectureインスタンスの数が0のため削除. よってTeacher.countは±0
+      patch lecture_path(@lecture_3), params: { lecture: { name: "  ", first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    end
+    assert_template 'lectures/edit'
+  end
 end
