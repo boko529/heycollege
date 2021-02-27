@@ -6,6 +6,7 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @lecture = lectures(:lecture_1)
     @others_lecture = lectures(:lecture_2)
+    @lecture_3 = lectures(:lecture_53)
     @valid_first_name = "太郎"
     @valid_last_name= "山田"
     @valid_teacher_name = @valid_last_name + " " + @valid_first_name
@@ -88,5 +89,21 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     @lecture.reload
     assert_equal @invalid_teacher_name,  @lecture.teacher.name
+  end
+
+  test "delete teacher automatically" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
+    assert_template 'lectures/edit'
+    assert_difference "Teacher.count", 1 do # teacherが新規追加.
+      patch lecture_path(@lecture_3), params: { lecture: { name: "name", first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    end
+    assert_difference "Teacher.count", -1 do # teacher3が保持するlectureインスタンスの数が0のため削除.
+      follow_redirect!
+    end
+    assert_template 'lectures/show'
+    assert_not flash.empty?
+    @lecture_3.reload
+    assert_equal @invalid_teacher_name,  @lecture_3.teacher.name
   end
 end
