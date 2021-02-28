@@ -30,4 +30,12 @@ class LecturesCreateTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
+  test "do not save teacher when lecture name is blank" do
+    login_as(@user, scope: :user)
+    get new_lecture_path
+    assert_no_difference 'Teacher.count' do
+      post lectures_path, params: { lecture: { name:  "  ", first_name: "Teacher", last_name: "Example" } } # ExampleTeacherは存在しない.
+    end
+    assert_template 'lectures/new'
+  end
 end
