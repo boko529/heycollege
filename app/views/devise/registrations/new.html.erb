@@ -20,11 +20,7 @@
 
   <div class="field">
     <%= f.label :grade,'学年' %><br />
-    <%= f.radio_button :grade, '', {:checked => true} %>指定なし  
-    <%= f.collection_radio_buttons :grade, User.grades_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
+    <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
   </div>
 
   <div class="field">
