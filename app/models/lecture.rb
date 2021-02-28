@@ -50,4 +50,9 @@ class Lecture < ApplicationRecord
       return user.reviews.where(lecture_id: self.id).first
     end
   end
+
+  #最も参考になるが多いレビューを返す。
+  def most_helpful_review
+    self.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
+  end
 end

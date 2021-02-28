@@ -1,9 +1,10 @@
+<% provide(:title, 'マイページ編集') %>
 <h2>ユーザー情報</h2>
 
 <%= form_with model: @user, local:true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= gravatar_for @user %>
+    <%= gravatar_for @user, 80 %>
     <a href="http://gravatar.com/emails" target="_blank">プロフィール画像を変更する</a><br><small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
   </div>
 
