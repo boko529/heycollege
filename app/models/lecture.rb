@@ -13,7 +13,7 @@ class Lecture < ApplicationRecord
       return "不明"
     else
       sum = 0
-      self.reviews.each do |review|
+      self.reviews.includes(:lecture).each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count
