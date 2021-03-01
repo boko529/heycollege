@@ -1,6 +1,6 @@
 <li id = lecture_<%= lecture.id %> class = "lecture" >
   <span class="rank">
-    <%# ページネートに合わせて順位を表示 %>
+    <%# ページネートに合わせて順位を表示。1ページ目はnil %>
     <% if params[:page] %>
       <%= i + 20 * ( params[:page].to_i - 1 ) %>位
     <% else %>
