@@ -109,12 +109,15 @@ footer {
       color: #222;
     }
   }
-  ul{
-    float: right;
-    list-style: none;
-    li{
-      float: left;
-      margin-left: 15px;
+  .footer_logos, .footer_words {
+    text-align: center;
+      ul{
+      padding: 0 auto;
+      li{
+        display: inline;
+        text-align:center;
+        margin-left: 10px;
+      }
     }
   }
 }
