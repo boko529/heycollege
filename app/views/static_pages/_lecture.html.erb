@@ -1,0 +1,15 @@
+<li id = lecture_<%= lecture.id %> class = "lecture" >
+  <span class="rank">
+    <%# ページネートに合わせて順位を表示 %>
+    <% if params[:page] %>
+      <%= i + 20 * ( params[:page].to_i - 1 ) %>位
+    <% else %>
+      <%= i + 20 * params[:page].to_i %>位
+    <% end %>
+  </span>
+  
+  <span class="score"><%= lecture.average_score %></span>
+  <%= link_to lecture.name, lecture %>
+  <span class="teacher-name">  <%= link_to lecture.teacher.name, lecture.teacher %></span>
+  <span>レビュー数: <%= lecture.all_reviews_count %></span>
+</li>
