@@ -8,24 +8,27 @@
 <div class="ranking-index">
   <h2>ランキング</h2>
   <nav>
+    <%# 講義ランキング先生ランキング切り替えタブ %>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true">講義</a>
       <a class="nav-item nav-link" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false">先生</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
+    <%# 講義ランキング表示 %>
     <div class="tab-pane fade show active" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
       <ul class="rankings">
-        <% @lectures.each do |lecture| %>
-          <%= render lecture %>
+        <% @lectures.each.with_index(1) do |lecture, i| %>
+          <%= render partial: "static_pages/lecture", locals: {lecture: lecture, i: i} %>
         <% end %>
         <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
+    <%# 先生ランキング表示 %>
     <div class="tab-pane fade" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
       <ul class="rankings">
-        <% @teachers.each do |teacher| %>
-          <%= render teacher %>
+        <% @teachers.each.with_index(1) do |teacher, i| %>
+          <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
         <% end %>
         <%= paginate @teachers, theme: 'twitter-bootstrap-4' %>
       </ul>
