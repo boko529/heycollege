@@ -52,4 +52,8 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "sign up user don't have twitter_url" do
+    assert_not @user1.twitter_url.present?
+  end
+
 end
