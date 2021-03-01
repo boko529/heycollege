@@ -5,30 +5,30 @@
       <% if user_signed_in? %>
         <li class="list-group-item">
           <%= link_to root_path do %>
-            <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-block">ランキング</span>
+            <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to new_lecture_path do %>
-            <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-block">作る</span>
+            <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-inline">ページ作成</span>
           <% end %>
         </li>
-        <li class="list-group-item">
-            <i class="far fa-bookmark fa-2x"></i><span class="d-none d-lg-block">保存</span>
+        <li class="list-group-item text-success">
+            <i class="far fa-bookmark fa-2x "></i><span class="d-none d-lg-inline">保存</span>
         </li>
         <li class="list-group-item">
           <%= link_to root_path do %>
-            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-block">ヘルプ</span>
+            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to "#" do %>
-            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-block">コンタクト</span>
+            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">コンタクト</span>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-block">ログアウト</span>
+            <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-inline">ログアウト</span>
           <% end %>
         </li>
       <%# ログインしてない時 %>

@@ -84,9 +84,10 @@ header{
     margin: 0 auto;
     .list-group-item{
       margin: 5px 10px;
-      text-align: center;
+      text-align: left;
       span{
         font-size: 20px;
+        margin-left: 10px;
       }
     }
   }
@@ -120,6 +121,11 @@ footer {
       }
     }
   }
+}
+
+// コピーライト
+.copyright {
+  text-align:center;
 }
 
 // デバック表示(開発環境)の整形
@@ -158,3 +164,5 @@ footer {
   background-color: #edd4d4;
   border-color: #e6c3c3;
 }
+
+// この頃すぐお腹空くんですよね。
