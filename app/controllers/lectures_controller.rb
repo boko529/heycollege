@@ -2,6 +2,9 @@ class LecturesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
   before_action :baria_user, only: [:edit, :destroy, :update]
   before_action :set_teacher_name, only: [:create, :update]
+  before_action :set_past_teacher, only: [:update, :destroy]
+  after_action :delete_teacher_automatically, only: [:update, :destroy]
+
   def index
     @q = Lecture.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
@@ -21,12 +24,12 @@ class LecturesController < ApplicationController
     # 参考になる順で表示 + 詳細が書かれているものに限定
     reviews = @lecture.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
     @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(7)
-
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
-
     @teacher = @lecture.teacher
+    #最も参考になったレビュー
+    @helpful_review = @lecture.most_helpful_review
   end
 
   def new
@@ -52,6 +55,7 @@ class LecturesController < ApplicationController
           redirect_to @lecture
         else
           render 'new'
+          @teacher.destroy
         end
       else
         render 'new'
@@ -80,6 +84,7 @@ class LecturesController < ApplicationController
           redirect_to @lecture
         else
           render 'edit'
+          @teacher.destroy
         end
       else
         render 'edit'
@@ -110,6 +115,17 @@ class LecturesController < ApplicationController
         @teacher_name = lecture_params[:last_name] + " " + lecture_params[:first_name]
       else
         @teacher_name = ""
+      end
+    end
+
+    def set_past_teacher
+      @lecture = Lecture.find(params[:id])
+      @past_teacher = @lecture.teacher
+    end
+
+    def delete_teacher_automatically
+      if @past_teacher.lectures.count == 0
+        @past_teacher.destroy
       end
     end
 end
