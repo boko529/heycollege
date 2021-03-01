@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :helpfuls, only: [:create]
     end
   end
-  resources :teachers, only: [:index, :show]
+  resources :teachers
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
