@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_094814) do
+ActiveRecord::Schema.define(version: 2021_02_28_005803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "helpfuls", force: :cascade do |t|
     t.integer "review_id"
@@ -92,7 +98,9 @@ ActiveRecord::Schema.define(version: 2021_02_25_094814) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.bigint "group_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -101,4 +109,5 @@ ActiveRecord::Schema.define(version: 2021_02_25_094814) do
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"
   add_foreign_key "teachers", "users"
+  add_foreign_key "users", "groups"
 end
