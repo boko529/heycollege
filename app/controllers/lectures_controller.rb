@@ -24,12 +24,12 @@ class LecturesController < ApplicationController
     # 参考になる順で表示 + 詳細が書かれているものに限定
     reviews = @lecture.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
     @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(7)
-
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
-
     @teacher = @lecture.teacher
+    #最も参考になったレビュー
+    @helpful_review = @lecture.most_helpful_review
   end
 
   def new

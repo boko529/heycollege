@@ -17,7 +17,9 @@
     <%= render partial: 'helpfuls/helpful', locals: { lecture: @lecture, review: @review } %>
   </div>
 
-  <p><%= @review.user.name %></p>
+  <%= link_to @review.user do %>
+    <%= gravatar_for @review.user, 20 %><%= @review.user.name %>
+  <% end %>
   <span class="time-stamp"><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
 
   <%# 自分のレビューのときのみ表示 %>

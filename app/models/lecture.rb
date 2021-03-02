@@ -13,7 +13,7 @@ class Lecture < ApplicationRecord
       return "不明"
     else
       sum = 0
-      self.reviews.each do |review|
+      self.reviews.includes(:lecture).each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count
@@ -49,5 +49,10 @@ class Lecture < ApplicationRecord
     if self.review?(user)
       return user.reviews.where(lecture_id: self.id).first
     end
+  end
+
+  #最も参考になるが多いレビューを返す。
+  def most_helpful_review
+    self.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
   end
 end
