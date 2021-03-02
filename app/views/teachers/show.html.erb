@@ -18,7 +18,7 @@
       <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
       <%# 講義一覧をパーシャルで表示 %>
       <div class="list-group">
-        <% @teacher.lectures.each do |lecture| %>
+        <% @teacher.lectures.includes(:reviews).each do |lecture| %>
           <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
         <% end %>
       </div>
