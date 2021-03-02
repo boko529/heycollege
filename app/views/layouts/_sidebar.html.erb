@@ -13,8 +13,10 @@
             <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-inline">ページ作成</span>
           <% end %>
         </li>
-        <li class="list-group-item text-success">
-            <i class="far fa-bookmark fa-2x "></i><span class="d-none d-lg-inline">保存</span>
+        <li class="list-group-item">
+          <%= link_to bookmarks_path do %>
+            <i class="far fa-bookmark fa-2x"></i><span class="d-none d-lg-inline">保存</span>
+          <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to root_path do %>
