@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     #講義ランキング処理
-    @lectures = Lecture.includes(:teacher, :reviews).sort_by do |lecture|
+    @lectures = Lecture.all.sort_by do |lecture|
       if lecture.reviews.present?
         lecture.average_score
       else
@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
 
     #先生ランキング処理
-    @teachers = Teacher.includes(lectures: :reviews).sort_by do |teacher|
+    @teachers = Teacher.all.sort_by do |teacher|
       if teacher.lectures.present?
         teacher.average_score
       else

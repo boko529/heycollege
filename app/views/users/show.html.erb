@@ -23,20 +23,6 @@
         <th>学年</th>
         <td><%= @user.grade_i18n %></td>
     </tr>
-    <tr>
-        <th>Twitter</th>
-          <% if @user.twitter_url.present? %>
-            <td class="profile-link">
-              <%= link_to @user.twitter_url, target: :_blank do %>
-              <i class="fab fa-twitter-square fa-2x"></i>
-              <% end %>
-            </td>
-          <% else %>
-            <td class="profile-link">
-              <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id)%>
-            </td>
-          <% end %>
-    </tr>
     </table>
     <% if @user == current_user %>
       <%= link_to 'プロフィールを編集する', edit_user_path(@user.id)%><br>

@@ -3,18 +3,7 @@
 <div class="lecture_show">
   <%= link_to "講義一覧へ", lectures_path %>
   <div class="lecture-info">
-    <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to @lecture.teacher.name, @lecture.teacher %></span>
-    <% if @lecture.bookmarked_by?(current_user) %>
-      <%= link_to lecture_bookmarks_path(@lecture), method: :delete , class:"userBookmark" do %>
-        <i class= "fa fa-bookmark"></i>
-      <% end %>
-    <% else %>
-      <%= link_to  lecture_bookmarks_path(@lecture), method: :lecture, class:"userBookmark"  do%>
-      <i class= "far fa-bookmark"></i>
-      <% end %>
-    <% end %>
-    </h3>
-    
+    <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to @lecture.teacher.name, @lecture.teacher %></span></h3>
     <div class="scores">
       <% if @lecture.reviews.blank? %>
         <p>レビューはありません。</p>
