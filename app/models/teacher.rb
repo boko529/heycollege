@@ -10,7 +10,7 @@ class Teacher < ApplicationRecord
     else
       sum = 0
       count = 0  # lecture.average_scoreが"不明"のものはcountしたくないのでself.lectures.countは使用しない.
-      self.lectures.includes(:reviews).each do |lecture|
+      self.lectures.each do |lecture|
         unless lecture.average_score == "不明"
           sum += lecture.average_score
           count += 1

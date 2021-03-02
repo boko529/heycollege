@@ -1,14 +1,12 @@
 <% if current_user?(review.user) %>
   <%# 自分のレビューに対して %>
-  <p><i class="fas fa-thumbs-up"></i>： <%= review.helpfuls.count %></p>
+  <p>役に立った😊： <%= review.helpfuls.count %></p>
 <% else %>
   <% if review.helpfuled_by?(current_user) %>
     <%# 自分のレビューじゃない&&参考になるを押した %>
-    <p><i class="fas fa-thumbs-up"></i>： <%= review.helpfuls.count %></p>
+    <p>ありがとうございます😊： <%= review.helpfuls.count %></p>
   <% else %>
     <%# 自分のレビューじゃない&&参考になるを押してない %>
-    <%=link_to lecture_review_helpfuls_path(lecture_id: review.lecture.id, review_id: review.id), method: :post, remote: true do %>
-      <p><i class="far fa-thumbs-up"></i>： <%= review.helpfuls.count %></p>
-    <% end %>
+    <p><%=link_to "役に立った： #{review.helpfuls.count}", lecture_review_helpfuls_path(lecture_id: review.lecture.id, review_id: review.id), method: :post, remote: true %></p>
   <% end %>
 <% end %>
