@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_point: 1.5
+  total_point: 1.5
+  user: user1
+
+two:
+  current_point: 1.5
+  total_point: 1.5
+  user: user2
