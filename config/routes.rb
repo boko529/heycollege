@@ -12,13 +12,12 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :show, :destroy] do
       resources :helpfuls, only: [:create]
     end
+    resource :bookmarks, only: [:create,:destroy]
   end
+  resources :bookmarks, only: [:index]
   resources :teachers, only: [:index, :show]
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
-  resources :lectures, except: [:index] do
-    resource :bookmarks, only: [:create, :destroy]
-  end
-  resources :bookmarks, only: [:index]
+
 end

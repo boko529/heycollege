@@ -1,9 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  lecture: one
+bookmark_1:
+  user_id: 1
+  lecture_id: 1
 
-two:
-  user: two
-  lecture: two

@@ -5,10 +5,10 @@ class BookmarksController < ApplicationController
     @lecture = Lecture.find(params[:lecture_id])
     bookmark = @lecture.bookmarks.new(user_id: current_user.id)
     if bookmark.save
-      redirect_to request.referer
+      redirect_to lecture_path(bookmark.lecture_id)
       flash[:notice] = "ブックマークに追加しました"
     else
-      redirect_to request.referer
+      redirect_to lecture_path(bookmark.lecture_id)
     end
   end
 
@@ -18,9 +18,9 @@ class BookmarksController < ApplicationController
     if bookmark.present?
         bookmark.destroy
         flash[:notice] = "ブックマークを外しました"
-        redirect_to request.referer
+        redirect_to lecture_path(bookmark.lecture_id)
     else
-        redirect_to request.referer
+      redirect_to lecture_path(bookmark.lecture_id)
     end
   end
 
