@@ -4,7 +4,7 @@ class TeachersController < ApplicationController
     def index
         @p = Teacher.ransack(params[:p])
         @p.sorts = 'updated_at desc' if @p.sorts.empty?
-        @teachers = Teacher.all.sort_by do |teacher|
+        @teachers = Teacher.includes(lectures: :reviews).sort_by do |teacher|
           if teacher.average_score == "不明" 
             0
           else

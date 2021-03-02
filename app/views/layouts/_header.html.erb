@@ -70,7 +70,7 @@
       <div class="search col-6 offset-md-1 offset-0 mx-auto d-none d-sm-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
-           <div class="input-group"> 
+          <div class="input-group justify-content-center">
             <%= f.search_field :name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append ">

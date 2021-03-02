@@ -5,12 +5,12 @@
       <% if user_signed_in? %>
         <li class="list-group-item">
           <%= link_to root_path do %>
-            <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+            <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-block">ランキング</span>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to new_lecture_path do %>
-            <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-inline">作る</span>
+            <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-inline">ページ作成</span>
           <% end %>
         </li>
         <li class="list-group-item">
@@ -20,44 +20,44 @@
         </li>
         <li class="list-group-item">
           <%= link_to root_path do %>
-            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
+            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-block">ヘルプ</span>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to "#" do %>
-            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">コンタクト</span>
+            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-block">コンタクト</span>
           <% end %>
         </li>
         <li class="list-group-item">
           <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-inline">ログアウト</span>
+            <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-block">ログアウト</span>
           <% end %>
         </li>
       <%# ログインしてない時 %>
       <% else %>
         <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+                <i class="fas fa-home fa-2x"></i><span>ランキング</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to new_user_registration_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">サインアップ</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>サインアップ</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to new_user_session_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">ログイン</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>ログイン</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
+                <i class="fas fa-question fa-2x"></i><span>ヘルプ</span>
               <% end %>
             </li>
             <li class="list-group-item">
               <%= link_to "#" do %>
-                <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">コンタクト</span>
+                <i class="fas fa-envelope fa-2x"></i><span>コンタクト</span>
               <% end %>
             </li>
       <% end %>

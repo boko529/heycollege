@@ -1,20 +1,24 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
-  <h4>
-    <span><%= review.score %></span><div id="star-review<%= review.id %>"></div>
-  </h4>
-  <span class="username"><%= link_to review.user.name, user_path(review.user.id) %></span>
-  <p class="content">
-    <%= review.content %>
-    <%# review.content.truncate(24, omission: '・・・') %>
-  </p>
-  <p class="timestamp">
-    <%= review.updated_at.strftime("%Y-%m-%d") %>
-  </p>
+  <%# 全体をリンクにしてる %>
+  <%= link_to lecture_review_path( id: review.id, lecture_id: review.lecture.id ) do %>
+    <h4>
+      <span><%= review.score %></span><div id="star-review<%= review.id %>"></div>
+    </h4>
+    <%= link_to review.user do %>
+      <%= gravatar_for review.user, 20 %><%= review.user.name %>
+    <% end %>
+    <p class="content">
+      <%= safe_join(review.content.split("\n"),tag(:br)) %>
+    </p>
+    <p class="timestamp">
+      <%= review.updated_at.strftime("%Y-%m-%d") %>
+    </p>
 
-  <%# 役に立ったボタン %>
-  <div id="helpfuls_buttons_<%= review.id %>">
-    <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
-  </div>
+    <%# 役に立ったボタン %>
+    <div id="helpfuls_buttons_<%= review.id %>">
+      <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
+    </div>
+  <% end %>
 </li>
 
 <%# 星表示のためのjavascript %>

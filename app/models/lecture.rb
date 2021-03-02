@@ -14,7 +14,7 @@ class Lecture < ApplicationRecord
       return "不明"
     else
       sum = 0
-      self.reviews.each do |review|
+      self.reviews.includes(:lecture).each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count
@@ -55,5 +55,10 @@ class Lecture < ApplicationRecord
   # ブックマーク機能
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
+  end
+  
+  #最も参考になるが多いレビューを返す。
+  def most_helpful_review
+    self.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
   end
 end
