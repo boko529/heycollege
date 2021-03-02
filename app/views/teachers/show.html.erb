@@ -11,10 +11,6 @@
   <div id="star-teacher<%= @teacher.id %>"></div>
 </div>
 <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
-<% if current_user?(@teacher.user) %>
-  <%= link_to "編集", edit_teacher_path %>
-  <%= link_to "削除", @teacher, method: :delete, data: { confirm: "本当に削除しますか？"} %>
-<% end %>
 
 <%# 講義表示 %>
   <div class="col-md-8">

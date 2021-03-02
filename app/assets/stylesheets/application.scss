@@ -64,7 +64,6 @@ header{
   }
 
   .form-inline {
-    justify-content: center;
     display: block;
   }
   input .btn{
@@ -74,19 +73,20 @@ header{
 
 // サイドバー
 .sidebar_col{
+  background-color: #EEEEEE;
   a{
     color: green;
   }
-  background-color: #EEEEEE;
   .sidebar_fixed {
     position: sticky;
     top: 65px;
     margin: 0 auto;
     .list-group-item{
+      display:inline-block;
       margin: 5px 10px;
-      text-align: center;
       span{
         font-size: 20px;
+        margin-left: 10px;
       }
     }
   }
@@ -142,4 +142,16 @@ footer {
     @extend .invalid !optional;
     color: red;
   }
+}
+
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-alert,.alert-danger {
+  color: #571515;
+  background-color: #edd4d4;
+  border-color: #e6c3c3;
 }
