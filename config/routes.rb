@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'news/show'
-  devise_for :users
+  devise_for :users, :controllers => {
+    :confirmation => 'devises/confirmations',
+    :registrations => 'devises/registrations',
+    :sessions => 'devises/sessions',
+    :passwords => 'devises/passwords'
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update]
   namespace :admin do
