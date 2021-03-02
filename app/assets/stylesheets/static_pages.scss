@@ -44,6 +44,16 @@ div.ranking-index{
       overflow: auto;
       padding: 10px 0;
       border-bottom: 1px solid gray;
+      .rank{
+        font-weight: bold;
+        display: inline-block;
+        text-align: center;
+        width: 70px;
+        padding: 5px;
+        background-color: gold;
+        margin: 5px;
+        border-radius: 10px;
+      }
       .score{
         background-color: springgreen;
         border-radius: 20%;
