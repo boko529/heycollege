@@ -3,6 +3,7 @@
 class Devises::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  after_action :create_user_point, only: [:create]
 
   # GET /resource/sign_up
   def new
@@ -59,4 +60,9 @@ class Devises::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+
+  private
+    def create_user_point
+      @user.build_user_point(current_point: 10, total_point: 10)
+    end
 end
