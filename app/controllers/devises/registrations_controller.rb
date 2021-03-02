@@ -62,7 +62,13 @@ class Devises::RegistrationsController < Devise::RegistrationsController
   end
 
   private
+    # ユーザー新規登録時にメール認証関係する前にUserPointを作成
     def create_user_point
-      @user.build_user_point(current_point: 10, total_point: 10)
+      # resourceが@userと近い意味っぽい
+      if resource
+        UserPoint.create(current_point: 10, total_point: 10, user_id: resource.id)
+        #下はなぜかうまく作成できない
+        # resource.build_user_point(current_point: 10, total_point: 10)
+      end
     end
 end

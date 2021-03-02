@@ -9,3 +9,18 @@ two:
   current_point: 1.5
   total_point: 1.5
   user: user2
+  
+three:
+  current_point: 1.5
+  total_point: 1.5
+  user: user3
+
+four:
+  current_point: 1.5
+  total_point: 1.5
+  user: user4
+
+admin:
+  current_point: 1.5
+  total_point: 1.5
+  user: test_admin
