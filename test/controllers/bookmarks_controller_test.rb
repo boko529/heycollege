@@ -27,6 +27,7 @@ class BookmarksControllerTest < ActionDispatch::IntegrationTest
     assert_template nil
     assert_not flash.empty?
   end
+
   test "login user destroy bookmark" do
     login_as(@user, scope: :user)
     get lecture_path(@lecture.id)
@@ -46,5 +47,17 @@ class BookmarksControllerTest < ActionDispatch::IntegrationTest
     end
     assert_template nil
     assert_not flash.empty?
+  end
+
+  test "login user watch bookmark" do
+    login_as(@user, scope: :user)
+    get bookmarks_path
+    assert_template 'bookmarks/index'
+  end
+
+  test "logout user watch bookmark" do
+    get bookmarks_path
+    follow_redirect!
+    assert_template 'devise/sessions/new'
   end
 end
