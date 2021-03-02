@@ -61,4 +61,5 @@ class Lecture < ApplicationRecord
   def most_helpful_review
     self.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
   end
+
 end

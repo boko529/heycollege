@@ -17,13 +17,3 @@ lecture_<%= n+3 %>:
   user: user1
   teacher: teacher1
 <% end %>
-
-lecture_53:
-  name: "人工知能"
-  user: user1
-  teacher: teacher3
-
-lecture_54:
-  name: "人工無能"
-  user: user1
-  teacher: teacher4
