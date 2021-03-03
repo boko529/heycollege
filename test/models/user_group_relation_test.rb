@@ -20,12 +20,13 @@ class UserGroupRelationTest < ActiveSupport::TestCase
     assert_not @relation.valid?
   end
 
-  test "should follow and unfollow a user" do
+  test "should join and unjoin a group" do
     user = users(:user1)
     group = groups(:group1)
     assert_not user.belongs?(group)
     user.join(group)
     assert user.belongs?(group)
+    assert group.users.include?(user)
     user.unjoin(group)
     assert_not user.belongs?(group)
   end
