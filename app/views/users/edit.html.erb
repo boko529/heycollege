@@ -1,5 +1,7 @@
 <% provide(:title, 'マイページ編集') %>
-<h2>ユーザー情報</h2>
+<div class="row">
+  <div class="col-md-8 offset-md-2 user-info-form">
+  <h2>ユーザー情報</h2><br>
 
 <%= form_with model: @user, local:true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
@@ -42,3 +44,6 @@
   </div>
   <%= f.submit "更新する" %>
 <% end %>
+
+</div>
+</div>

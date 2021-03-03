@@ -5,31 +5,41 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h2>ユーザー情報</h2>
+  <div class="col-md-8 offset-md-2">
+    <h2>ユーザー情報</h2><br>
 
     <table class="table">
-    <tr>
-        <th>プロフィール画像</th>
-        <td><%= gravatar_for @user, 80 %></td>
-    </tr>
-    <tr>
-        <th>ニックネーム</th>
+    <tr align="center">
+        <th><%= gravatar_for @user, 80 %></th>
         <td><%= @user.name %></td>
+        <td>
+          <% unless @user == current_user %>
+            <% if current_user.following?(@user) %>
+              <%= link_to 'フォロー解除', unfollow_path(@user), method: :post, class: 'btn btn-info', data: { confirm: '本当にフォロー解除しますか？' } %>
+            <% else %>
+              <%= link_to 'フォローする', follow_path(@user), method: :post, class: 'btn btn-outline-info' %>
+            <% end %>
+          <% end %>
+        </td>
     </tr>
-    <tr>
+    <tr align="center">
+        <th></th>
+        <td><%= @user.follower.count %>フォロ-中</td>
+        <td><%= @user.followed.count %>フォロワー</td>
+    </tr>
+    <tr align="center">
         <th>性別</th>
         <td><%= @user.gender_i18n  %></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>学部</th>
         <td><%= @user.faculty_i18n %></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>学年</th>
         <td><%= @user.grade_i18n %></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>Twitter</th>
           <% if @user.twitter_url.present? %>
             <td class="profile-link">
