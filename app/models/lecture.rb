@@ -2,6 +2,7 @@ class Lecture < ApplicationRecord
   belongs_to :user
   belongs_to :teacher
   has_many :reviews, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: {scope: :teacher_id}
   validates :user_id, presence: true
   validates :teacher_id, presence: true
@@ -13,7 +14,7 @@ class Lecture < ApplicationRecord
       return "不明"
     else
       sum = 0
-      self.reviews.each do |review|
+      self.reviews.includes(:lecture).each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count
@@ -50,4 +51,15 @@ class Lecture < ApplicationRecord
       return user.reviews.where(lecture_id: self.id).first
     end
   end
+
+  # ブックマーク機能
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
+  end
+  
+  #最も参考になるが多いレビューを返す。
+  def most_helpful_review
+    self.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
+  end
+
 end
