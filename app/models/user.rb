@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_many :teachers, dependent: :destroy   #  dependentは削除する可能性あり.
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  belongs_to :group
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -19,8 +18,21 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
   has_many :active_relations, class_name:  "UserGroupRelation",
-                                  foreign_key: "user_id"
+                              foreign_key: "user_id"
+  has_many :group, through: :active_relations
 
   include Gravtastic
   gravtastic
+
+  def join(group1)
+    group << group1
+  end
+
+  def unjoin(group1)
+    active_relations.find_by(group_id: group1.id).destroy
+  end
+
+  def belongs?(group1)
+    group.include?(group1)
+  end
 end
