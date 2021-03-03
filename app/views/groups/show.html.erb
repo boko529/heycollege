@@ -1,2 +1,15 @@
 <% provide(:title, @group.name) %>
-<%= @group.name %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="group_info">
+      <h1>
+        <%= @group.name %>
+      </h1>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats_group' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%= render 'join_form' %>
+  </div>

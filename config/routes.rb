@@ -29,4 +29,5 @@ Rails.application.routes.draw do
       get :group
     end
   end
+  resources :user_group_relations, only: [:create, :destroy]
 end
