@@ -51,8 +51,8 @@ p {
 // header
 header{
   position: fixed;
-  height: 80px;
-  background-color: #EEEEEE;
+  height: 65px;
+  background-color: rgb(180, 245, 143);
   width: 100%;
   z-index: 2;
   a{
@@ -65,6 +65,7 @@ header{
 
   .form-inline {
     justify-content: center;
+    display: block;
   }
   input .btn{
     height: 40px;
@@ -74,16 +75,16 @@ header{
 // サイドバー
 .sidebar_col{
   a{
-    color: black;
+    color: green;
   }
   background-color: #EEEEEE;
   .sidebar_fixed {
     position: sticky;
-    top: 80px;
+    top: 65px;
     margin: 0 auto;
     .list-group-item{
       margin: 5px 10px;
-      text-align: center;
+      text-align: left;
       span{
         font-size: 20px;
       }
@@ -108,14 +109,22 @@ footer {
       color: #222;
     }
   }
-  ul{
-    float: right;
-    list-style: none;
-    li{
-      float: left;
-      margin-left: 15px;
+  .footer_logos, .footer_words {
+    text-align: center;
+      ul{
+      padding: 0 auto;
+      li{
+        display: inline;
+        text-align:center;
+        margin-left: 10px;
+      }
     }
   }
+}
+
+// コピーライト
+.copyright {
+  text-align:center;
 }
 
 // デバック表示(開発環境)の整形
@@ -141,4 +150,16 @@ footer {
     @extend .invalid !optional;
     color: red;
   }
+}
+
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-alert,.alert-danger {
+  color: #571515;
+  background-color: #edd4d4;
+  border-color: #e6c3c3;
 }

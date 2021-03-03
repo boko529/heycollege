@@ -6,13 +6,20 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @lecture = lectures(:lecture_1)
     @others_lecture = lectures(:lecture_2)
+    @lecture_3 = lectures(:lecture_53)
+    @valid_first_name = "太郎"
+    @valid_last_name= "山田"
+    @valid_teacher_name = @valid_last_name + " " + @valid_first_name
+    @invalid_first_name = "はるか"
+    @invalid_last_name = "中百舌鳥"
+    @invalid_teacher_name  = @invalid_last_name + " " + @invalid_first_name
   end
 
   test "blank edit" do
     login_as(@user, scope: :user)
     get edit_lecture_path(@lecture)
     assert_template 'lectures/edit'
-    patch lecture_path(@lecture), params: { lecture: { name: " " }}
+    patch lecture_path(@lecture), params: { lecture: { first_name: " ", last_name: " " }}
     assert_template 'lectures/edit'
   end
 
@@ -21,11 +28,12 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     get edit_lecture_path(@lecture)
     assert_template 'lectures/edit'
     name  = "Foo Bar"
-    patch lecture_path(@lecture), params: { lecture: { name:  name } }
+    patch lecture_path(@lecture), params: { lecture: { name: name, first_name: @valid_first_name, last_name: @valid_last_name} }
     assert_not flash.empty?
     assert_redirected_to @lecture
     @lecture.reload
     assert_equal name,  @lecture.name
+    assert_equal @valid_teacher_name,  @lecture.teacher.name
   end
 
   test "not login edit" do
@@ -40,7 +48,8 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     get lecture_path(@others_lecture)
     assert_template 'lectures/show'
     get edit_lecture_path(@others_lecture)
-    assert_template nil
+    follow_redirect!
+    assert_template 'lectures/show'
     assert_not flash.empty?
   end
 
@@ -48,8 +57,61 @@ class LecturesEditTest < ActionDispatch::IntegrationTest
     login_as(@user, scope: :user)
     get lecture_path(@others_lecture)
     assert_template 'lectures/show'
-    patch lecture_path(@others_lecture), params: { lecture: { name:  name } }
-    assert_template nil
+    patch lecture_path(@others_lecture), params: { lecture: { first_name: @valid_first_name, last_name: @valid_last_name} }
+    follow_redirect!
+    assert_template 'lectures/show'
     assert_not flash.empty?
+    @others_lecture.reload
+    assert_not_equal @valid_teacher_name,  @others_lecture.teacher.name
+  end
+
+  test "teacher_name edit" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture)
+    assert_template 'lectures/edit'
+    patch lecture_path(@lecture), params: { lecture: { name: "name", first_name: @valid_first_name, last_name: @valid_last_name } }
+    assert_not flash.empty?
+    assert_redirected_to @lecture
+    @lecture.reload
+    assert_equal @valid_teacher_name,  @lecture.teacher.name
+  end
+
+  test "teacher_name(does not exist) edit" do
+    # teacherを新規登録するためinvalidにならない.書き直すのが面倒なので、@invalidのままにしておく.
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture)
+    assert_template 'lectures/edit'
+    assert_difference "Teacher.count", 1 do
+      patch lecture_path(@lecture), params: { lecture: { name: "name", first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    end
+    follow_redirect!
+    assert_template 'lectures/show'
+    assert_not flash.empty?
+    @lecture.reload
+    assert_equal @invalid_teacher_name,  @lecture.teacher.name
+  end
+
+  test "delete teacher automatically" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
+    assert_template 'lectures/edit'
+    assert_no_difference "Teacher.count" do # teacherが新規追加. teacher3が保持するlectureインスタンスの数が0のため削除. よってTeacher.countは±0
+      patch lecture_path(@lecture_3), params: { lecture: { name: "name", first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    end
+    follow_redirect!
+    assert_template 'lectures/show'
+    assert_not flash.empty?
+    @lecture_3.reload
+    assert_equal @invalid_teacher_name,  @lecture_3.teacher.name
+  end
+
+  test "do not save teacher when lecture name is blank" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
+    assert_template 'lectures/edit'
+    assert_no_difference "Teacher.count" do # teacherが新規追加. teacher3が保持するlectureインスタンスの数が0のため削除. よってTeacher.countは±0
+      patch lecture_path(@lecture_3), params: { lecture: { name: "  ", first_name: @invalid_first_name, last_name: @invalid_last_name } }
+    end
+    assert_template 'lectures/edit'
   end
 end

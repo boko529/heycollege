@@ -93,6 +93,10 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.2)
       devise (>= 4.7.1)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.10.0)
@@ -101,6 +105,7 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gravtastic (3.2.6)
     i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -265,8 +270,10 @@ DEPENDENCIES
   chart-js-rails (~> 0.1.4)
   devise
   devise-i18n
+  dotenv-rails
   enum_help
   faker
+  gravtastic
   jbuilder (~> 2.7)
   kaminari
   listen (~> 3.3)

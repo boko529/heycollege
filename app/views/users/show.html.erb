@@ -1,10 +1,20 @@
+<% if @user == current_user %>
+  <% provide(:title, 'マイページ編集') %>
+<% else %>
+  <% provide(:title, @user.name) %>
+<% end %>
+
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <h2>ユーザー情報</h2>
 
     <table class="table">
     <tr>
-        <th>name</th>
+        <th>プロフィール画像</th>
+        <td><%= gravatar_for @user, 80 %></td>
+    </tr>
+    <tr>
+        <th>ニックネーム</th>
         <td><%= @user.name %></td>
     </tr>
     <tr>
@@ -13,16 +23,34 @@
     </tr>
     <tr>
         <th>学部</th>
-        <td><%= @user.faculty %></td>
+        <td><%= @user.faculty_i18n %></td>
     </tr>
     <tr>
         <th>学年</th>
-        <td><%= @user.grade %></td>
+        <td><%= @user.grade_i18n %></td>
+    </tr>
+    <tr>
+        <th>Twitter</th>
+          <% if @user.twitter_url.present? %>
+            <td class="profile-link">
+              <%= link_to @user.twitter_url, target: :_blank do %>
+              <i class="fab fa-twitter-square fa-2x"></i>
+              <% end %>
+            </td>
+          <% else %>
+            <td class="profile-link">
+              <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id)%>
+            </td>
+          <% end %>
     </tr>
     </table>
     <% if @user == current_user %>
-      <%= link_to '名前を編集する', edit_user_path(@user.id)%>
+      <%= link_to 'プロフィールを編集する', edit_user_path(@user.id)%><br>
+      <small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
     <% end %>
+    <p>
+      <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
+    </p>
     
     <div class="collapse mx-auto" id="collapsemyreview">
       <div class="card card-body">
@@ -37,13 +65,12 @@
           <tr>
             <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
             <td><%= review.score %></td>
-            <td><%= link_to review.title, lecture_review_path(review.lecture.id,review.id) %></td>
+            <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
           </tr>
           <% end %>
         </table>
       </div>
     </div>
-    
 
     <% if @reviews.any? %>
       <h3>レビュー数 (<%= @reviews.count %>)</h3>

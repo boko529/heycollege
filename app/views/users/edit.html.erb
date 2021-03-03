@@ -1,11 +1,15 @@
+<% provide(:title, 'マイページ編集') %>
 <h2>ユーザー情報</h2>
 
 <%= form_with model: @user, local:true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <p>name</p>
+  <div class="field">
+    <%= gravatar_for @user, 80 %>
+    <a href="http://gravatar.com/emails" target="_blank">プロフィール画像を変更する</a><br><small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
+  </div>
 
   <div class="field">
-    <%= f.label :name,'名前' %><br />
+    <%= f.label :name,'ニックネーム' %><br />
     <%= f.text_field :name, autofocus:true, id:"inputName" %>
   </div>
 
@@ -20,11 +24,7 @@
 
   <div class="field">
     <%= f.label :grade,'学年' %><br />
-    <%= f.radio_button :grade, '', {:checked => true} %>指定なし  
-    <%= f.collection_radio_buttons :grade, User.grades_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
+    <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
   </div>
 
   <div class="field">
@@ -35,5 +35,10 @@
       <%= b.label %>
     <% end %> 
   </div>
-  <%= f.submit "Update User" %>
+
+  <div class="field">
+    <%= f.label :twitter_url,'Twitter URL' %><br />
+    <%= f.text_field :twitter_url, autofocus:true %>
+  </div>
+  <%= f.submit "更新する" %>
 <% end %>
