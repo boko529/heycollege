@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_075020) do
+ActiveRecord::Schema.define(version: 2021_03_03_093427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,17 @@ ActiveRecord::Schema.define(version: 2021_03_02_075020) do
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
+  create_table "user_point_histories", force: :cascade do |t|
+    t.integer "point_type"
+    t.float "amount"
+    t.bigint "user_id", null: false
+    t.bigint "user_point_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_point_histories_on_user_id"
+    t.index ["user_point_id"], name: "index_user_point_histories_on_user_point_id"
+  end
+
   create_table "user_points", force: :cascade do |t|
     t.float "current_point"
     t.float "total_point"
@@ -111,5 +122,7 @@ ActiveRecord::Schema.define(version: 2021_03_02_075020) do
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"
   add_foreign_key "teachers", "users"
+  add_foreign_key "user_point_histories", "user_points"
+  add_foreign_key "user_point_histories", "users"
   add_foreign_key "user_points", "users"
 end

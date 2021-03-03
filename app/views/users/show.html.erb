@@ -30,6 +30,14 @@
         <td><%= @user.grade_i18n %></td>
     </tr>
     <tr>
+        <th>ポイント</th>
+        <td><%= @user.user_point.current_point %></td>
+    </tr>
+    <tr>
+        <th>スコア</th>
+        <td><%= @user.user_point.total_point %></td>
+    </tr>
+    <tr>
         <th>Twitter</th>
           <% if @user.twitter_url.present? %>
             <td class="profile-link">

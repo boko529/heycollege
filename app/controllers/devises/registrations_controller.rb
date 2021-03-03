@@ -66,7 +66,8 @@ class Devises::RegistrationsController < Devise::RegistrationsController
     def create_user_point
       # resourceが@userと近い意味っぽい
       if resource
-        UserPoint.create(current_point: 10, total_point: 10, user_id: resource.id)
+        @point = UserPoint.create(current_point: 10, total_point: 10, user_id: resource.id)
+        UserPointHistory.create(amount: 10, point_type: 0, user_id: resource.id, user_point_id: @point.id)
         #下はなぜかうまく作成できない
         # resource.build_user_point(current_point: 10, total_point: 10)
       end

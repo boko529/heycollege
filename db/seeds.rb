@@ -22,6 +22,11 @@ User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", a
   confirmed_at: Time.now)
 end
 
+# ユーザーごとにポイントテーブルを作成
+User.all.each do |user|
+  user.create_user_point(current_point: 10, total_point: 10)
+end
+
 Teacher.create!(name: "森 直樹", user_id: 1)
 Teacher.create!(name: "藤岡 真由美", user_id: 2)
 

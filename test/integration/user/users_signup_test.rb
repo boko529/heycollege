@@ -63,15 +63,17 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     test "valid signup information and confirmed user" do
       get new_user_registration_path
       # 認証する前にUserPointは作成される
-      assert_difference 'UserPoint.count', 1 do
-        assert_difference 'User.count' ,1 do
-          post user_registration_path, params: { user: { name:  "taro",
-                                            email: "taro@example.com",
-                                            password: "password",
-                                            password_confirmation: "password",
-                                            gender: "male",
-                                            grade: "B1",
-                                            faculty:"APS" } }
+      assert_difference 'UserPointHistory.count', 1 do
+        assert_difference 'UserPoint.count', 1 do
+          assert_difference 'User.count' ,1 do
+            post user_registration_path, params: { user: { name:  "taro",
+                                              email: "taro@example.com",
+                                              password: "password",
+                                              password_confirmation: "password",
+                                              gender: "male",
+                                              grade: "B1",
+                                              faculty:"APS" } }
+          end
         end
       end
       user = assigns(:user)
