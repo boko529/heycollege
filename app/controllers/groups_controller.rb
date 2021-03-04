@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
+
   def index
     @groups = Group.all
   end
