@@ -1,0 +1,39 @@
+<% provide(:title, "Bookmark") %>
+<div class="ranking-index">
+  <h2>ブックマーク</h2>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <h3>講義</h3>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <% if @bookmarks.exists? %>
+    <div class="tab-pane fade show active" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
+      <ul class="rankings">
+        <% @bookmarks.each do |bookmark| %>
+            <li id = lecture_<%= bookmark.lecture.id %> class = "lecture" >
+              <span class="score">
+                <%= bookmark.lecture.average_score %>
+              </span>
+              <%= link_to bookmark.lecture.name, bookmark.lecture %>
+              <span class="teacher-name">
+                <%= link_to bookmark.lecture.teacher.name, bookmark.lecture.teacher %>
+              </span>
+              <span>
+                レビュー数: <%= bookmark.lecture.all_reviews_count %>
+              </span>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+    <% else %>
+    <div>
+        <p>
+          ブックマークに登録した講義はありません。<br>
+          <small>※講義詳細ページから講義をブックマークに追加できます</small>
+        </p>
+    </div>
+    <% end %>
+  </div>
+
+</div>

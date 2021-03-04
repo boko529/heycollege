@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2021_03_03_093427) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lecture_id"], name: "index_bookmarks_on_lecture_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "helpfuls", force: :cascade do |t|
     t.integer "review_id"
     t.integer "user_id"
@@ -117,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_03_03_093427) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "lectures"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"
