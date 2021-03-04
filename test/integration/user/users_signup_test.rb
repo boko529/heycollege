@@ -78,6 +78,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       end
       user = assigns(:user)
       user.confirm
+      # initポイントがちゃんとあるか&履歴はちゃんと作られているか
+      assert_equal 10, user.user_point.current_point
+      assert_equal "init", user.user_point_history.first.point_type
+      assert_equal 10, user.user_point_history.first.amount
       assert_template 'devise/mailer/confirmation_instructions'
       post user_session_path params: { session: { email: 'taro@example.com', password: 'password' } }
       get user_path(user.id)

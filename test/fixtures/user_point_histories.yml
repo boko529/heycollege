@@ -1,2 +1,31 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+one:
+  amount: 10
+  point_type: 0
+  user: user1
+  user_point: one
+
+two:
+  amount: 10
+  point_type: 0
+  user: user2
+  user_point: two
+  
+three:
+  amount: 10
+  point_type: 0
+  user: user3
+  user_point: three
+  
+four:
+  amount: 10
+  point_type: 0
+  user: user4
+  user_point: four
+  
+admin:
+  amount: 10
+  point_type: 0
+  user: test_admin
+  user_point: admin

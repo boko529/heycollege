@@ -3,7 +3,6 @@
 class Devises::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  after_action :create_user_point, only: [:create]
 
   # GET /resource/sign_up
   def new
@@ -13,6 +12,10 @@ class Devises::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    # ユーザー新規登録時にメール認証関係する前にUserPointを作成してinitialポイント生成
+    if user = User.find_by(id: resource.id)
+      user.initial_point
+    end
   end
 
   # GET /resource/edit
@@ -60,16 +63,4 @@ class Devises::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
-
-  private
-    # ユーザー新規登録時にメール認証関係する前にUserPointを作成
-    def create_user_point
-      # resourceが@userと近い意味っぽい
-      if resource
-        @point = UserPoint.create(current_point: 10, total_point: 10, user_id: resource.id)
-        UserPointHistory.create(amount: 10, point_type: 0, user_id: resource.id, user_point_id: @point.id)
-        #下はなぜかうまく作成できない
-        # resource.build_user_point(current_point: 10, total_point: 10)
-      end
-    end
 end
