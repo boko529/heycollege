@@ -13,19 +13,15 @@
         <th><%= gravatar_for @user, 80 %></th>
         <td><%= @user.name %></td>
         <td>
-          <% unless @user == current_user %>
-            <% if current_user.following?(@user) %>
-              <%= link_to 'フォロー解除', unfollow_path(@user), method: :post, class: 'btn btn-info', data: { confirm: '本当にフォロー解除しますか？' } %>
-            <% else %>
-              <%= link_to 'フォローする', follow_path(@user), method: :post, class: 'btn btn-outline-info' %>
-            <% end %>
-          <% end %>
+        <span id='follow-button_<%= @user.id %>'>
+          <%= render 'users/follow-button', user: @user  %>
+        </span>
         </td>
     </tr>
     <tr align="center">
         <th></th>
-        <td><%= @user.follower.count %>フォロ-中</td>
-        <td><%= @user.followed.count %>フォロワー</td>
+        <td id='following-count_<%= @user.id%>'><%= link_to users_following_path(@user) do%><%= @user.follower.count %>フォロ-中<% end %></td>
+        <td id='follower-count_<%= @user.id%>'><%= link_to users_follower_path(@user) do%><%= @user.followed.count %>フォロワー<% end %></td>
     </tr>
     <tr align="center">
         <th>性別</th>
@@ -44,6 +40,7 @@
     </tr>
     <tr align="center">
         <th>Twitter</th>
+        <% if user_signed_in? %>
           <% if @user.twitter_url.present? && @user.id == current_user.id %>
             <td class="profile-link">
               <%= link_to @user.twitter_url, target: :_blank do %>
@@ -55,6 +52,7 @@
               <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id)%>
             </td>
           <% end %>
+        <% end %>
         <td></td>
     </tr>
     </table>
