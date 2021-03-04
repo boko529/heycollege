@@ -12,4 +12,8 @@
   </aside>
   <div class="col-md-8">
     <%= render 'join_form' %>
+    <h1>Members</h1>
+    <% @users.each do |user| %>
+      <%= link_to user.name, user %>
+    <% end %>
   </div>
