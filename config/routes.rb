@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'news/show'
   devise_for :users, :controllers => {
     :confirmation => 'devises/confirmations',
     :registrations => 'devises/registrations',
@@ -22,4 +21,7 @@ Rails.application.routes.draw do
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
+  # herokuに既存のユーザーにinitポイントを付与、一度限りのやつです
+  get 'admin/user/set_init_point', to: 'admin/users#set_init_point'
+
 end
