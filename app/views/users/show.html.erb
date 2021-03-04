@@ -5,51 +5,63 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h2>ユーザー情報</h2>
+  <div class="col-md-8 offset-md-2">
+    <h2>ユーザー情報</h2><br>
 
     <table class="table">
-    <tr>
-        <th>プロフィール画像</th>
-        <td><%= gravatar_for @user, 80 %></td>
-    </tr>
-    <tr>
-        <th>ニックネーム</th>
+    <tr align="center">
+        <th><%= gravatar_for @user, 80 %></th>
         <td><%= @user.name %></td>
+        <td>
+        <span id='follow-button_<%= @user.id %>'>
+          <%= render 'users/follow-button', user: @user  %>
+        </span>
+        </td>
     </tr>
-    <tr>
+    <tr align="center">
+        <th></th>
+        <td id='following-count_<%= @user.id%>'><%= link_to users_following_path(@user) do%><%= @user.follower.count %>フォロ-中<% end %></td>
+        <td id='follower-count_<%= @user.id%>'><%= link_to users_follower_path(@user) do%><%= @user.followed.count %>フォロワー<% end %></td>
+    </tr>
+    <tr align="center">
         <th>性別</th>
         <td><%= @user.gender_i18n  %></td>
+        <td></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>学部</th>
         <td><%= @user.faculty_i18n %></td>
+        <td></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>学年</th>
         <td><%= @user.grade_i18n %></td>
+        <td></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>ポイント</th>
         <td><%= @user.user_point.current_point %></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>スコア</th>
         <td><%= @user.user_point.total_point %></td>
     </tr>
-    <tr>
+    <tr align="center">
         <th>Twitter</th>
-          <% if @user.twitter_url.present? %>
+        <% if user_signed_in? %>
+          <% if @user.twitter_url.present? && @user.id == current_user.id %>
             <td class="profile-link">
               <%= link_to @user.twitter_url, target: :_blank do %>
               <i class="fab fa-twitter-square fa-2x"></i>
               <% end %>
             </td>
-          <% else %>
+          <% elsif @user.id == current_user.id %>
             <td class="profile-link">
               <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id)%>
             </td>
           <% end %>
+        <% end %>
+        <td></td>
     </tr>
     </table>
     <% if @user == current_user %>
