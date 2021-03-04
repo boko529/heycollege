@@ -6,13 +6,11 @@
         <%= @group.name %>
       </h1>
     </section>
-    <section class="stats">
-      <%= render 'shared/stats_user' %>
-    </section>
   </aside>
   <div class="col-md-8">
     <%= render 'join_form' %>
     <h1>Members</h1>
+    <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
       <%= link_to user.name, user %>
     <% end %>

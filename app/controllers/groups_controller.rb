@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy, :users]
+  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
 
   def index
     @groups = Group.all
@@ -36,13 +36,6 @@ class GroupsController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def users
-    @title = "Members"
-    @group  = Group.find(params[:id])
-    @users = @group.users
-    render 'show_users'
   end
 
   private
