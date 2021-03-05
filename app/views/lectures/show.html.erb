@@ -9,15 +9,9 @@
   </div>
   <div class="lecture-info">
     <h3><%= @lecture.name %><span class="teacher-name">-<%= link_to @lecture.teacher.name, @lecture.teacher %></span>
-    <% if @lecture.bookmarked_by?(current_user) %>
-      <%= link_to lecture_bookmarks_path(@lecture), method: :delete , class:"userBookmark" do %>
-        <i class= "fa fa-bookmark"></i>
-      <% end %>
-    <% else %>
-      <%= link_to  lecture_bookmarks_path(@lecture), method: :lecture, class:"userBookmark"  do%>
-      <i class= "far fa-bookmark"></i>
-      <% end %>
-    <% end %>
+    <span id ="bookmark-<%= @lecture.id %>">
+      <%= render 'bookmarks/bookmark', lecture: @lecture %>
+    </span>
     </h3>
     
     <div class="scores">

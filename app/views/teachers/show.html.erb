@@ -13,17 +13,16 @@
 <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
 <%# 講義表示 %>
-  <div class="col-md-8">
-    <% if @teacher.lectures.any? %>
-      <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
-      <%# 講義一覧をパーシャルで表示 %>
-      <div class="list-group">
-        <% @teacher.lectures.includes(:reviews).each do |lecture| %>
-          <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+<div class="col-md-8">
+  <% if @teacher.lectures.any? %>
+    <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
+    <%# 講義一覧をパーシャルで表示 %>
+    <div class="list-group">
+      <% @teacher.lectures.includes(:reviews).each do |lecture| %>
+        <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <%# 星表示のためのjavascript %>
