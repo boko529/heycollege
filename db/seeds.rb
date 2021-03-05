@@ -47,5 +47,6 @@ News.create(title: "<お知らせ>ベータ版につきまして", message: "ベ
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
 group = Group.create(name: "白鷺祭")
 users = User.all
-members = users[2..11]
+UserGroupRelation.create(user_id: 1, group_id: 1, admin: true)
+members = users[3..11]
 members.each { |user| user.join(group) }

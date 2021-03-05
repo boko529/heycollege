@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_115423) do
+ActiveRecord::Schema.define(version: 2021_03_05_125624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_115423) do
     t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
     t.index ["group_id"], name: "index_user_group_relations_on_group_id"
     t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_user_group_relations_on_user_id"
