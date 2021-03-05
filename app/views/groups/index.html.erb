@@ -1,0 +1,9 @@
+<% provide(:title, '団体一覧') %>
+<div class="groups-index">
+  <h2 class="title">団体</h2>
+  <ul class="groups">
+    <% @groups.each do |group| %>
+      <p><%= group.name %></p>
+    <% end %>
+  </ul>
+</div>

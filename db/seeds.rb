@@ -50,3 +50,7 @@ Notification.create(visitor_id: 2, visited_id: 1, review_id: 1, action: "helpful
 
 News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
+group = Group.create(name: "白鷺祭")
+users = User.all
+members = users[2..11]
+members.each { |user| user.join(group) }

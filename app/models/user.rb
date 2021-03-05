@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :user_point_history, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+  :recoverable, :rememberable, :validatable, :confirmable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
@@ -25,6 +25,10 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+  has_many :active_relations, class_name:  "UserGroupRelation", foreign_key: "user_id"
+  has_many :group, through: :active_relations
+  include Gravtastic
+  gravtastic
 
   # ユーザーをフォローする
   def follow(user_id)
@@ -41,7 +45,15 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
-  include Gravtastic
-  gravtastic
+  def join(group1)
+    group << group1
+  end
 
+  def unjoin(group1)
+    active_relations.find_by(group_id: group1.id).destroy
+  end
+
+  def belongs?(group1)
+    group.include?(group1)
+  end
 end

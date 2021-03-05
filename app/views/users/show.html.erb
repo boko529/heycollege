@@ -98,5 +98,14 @@
         <%= render @reviews %>
       </ol>
     <% end %>
+
+    <% if @groups.any? %>
+      <ul class="group join">
+        <h3>所属団体（<%= @groups.count %>）</h3>
+        <% @groups.each do |group| %>
+          <%= link_to group.name, group %>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
 </div>

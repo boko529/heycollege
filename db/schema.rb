@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 2021_03_05_060911) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "helpfuls", force: :cascade do |t|
     t.integer "review_id"
     t.integer "user_id"
@@ -95,6 +101,16 @@ ActiveRecord::Schema.define(version: 2021_03_05_060911) do
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
+  create_table "user_group_relations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_user_group_relations_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
+    t.index ["user_id"], name: "index_user_group_relations_on_user_id"
+  end
+
   create_table "user_point_histories", force: :cascade do |t|
     t.integer "point_type"
     t.float "amount"
@@ -132,8 +148,10 @@ ActiveRecord::Schema.define(version: 2021_03_05_060911) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.bigint "group_id"
     t.string "twitter_url"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -147,4 +165,5 @@ ActiveRecord::Schema.define(version: 2021_03_05_060911) do
   add_foreign_key "user_point_histories", "user_points"
   add_foreign_key "user_point_histories", "users"
   add_foreign_key "user_points", "users"
+  add_foreign_key "users", "groups"
 end
