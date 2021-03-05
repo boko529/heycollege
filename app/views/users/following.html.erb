@@ -1,0 +1,13 @@
+<table>
+<tr>
+<% @followings.each do |f_user| %>
+    <td><%= gravatar_for f_user, 20 %><%= link_to f_user.name, user_path(f_user.id) %></td>
+    <td><%= f_user.faculty_i18n %></td>
+    <td>
+        <span id='follow-button_<%= f_user.id %>'>
+            <%= render 'users/follow-button', user: f_user  %>
+        </span>
+    </td>
+<% end %>
+</tr>
+</table>
