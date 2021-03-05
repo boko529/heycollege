@@ -1,4 +1,5 @@
-<li id = teacher_<%= teacher.id %> class = "teacher" >
+<div id = teacher_<%= teacher.id %> class = "teacher" >
+
   <span class="rank">
     <%# ページネートに合わせて順位を表示。1ページ目はnil %>
     <% if params[:page] %>
@@ -10,4 +11,4 @@
 
   <span class="score"><%= teacher.average_score %></span>
   <%= link_to teacher.name, teacher %>
-</li>
+</div>

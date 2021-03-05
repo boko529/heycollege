@@ -1,0 +1,19 @@
+current directory: /Users/masakikoga/Desktop/Ruby/heycollege/vender/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+/Users/masakikoga/.rbenv/versions/2.7.2/bin/ruby -I /Users/masakikoga/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20210305-47598-1fue6ix.rb extconf.rb
+creating Makefile
+
+current directory: /Users/masakikoga/Desktop/Ruby/heycollege/vender/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/masakikoga/Desktop/Ruby/heycollege/vender/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/masakikoga/Desktop/Ruby/heycollege/vender/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20210305-47598-10e1om6/byebug
