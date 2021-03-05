@@ -15,7 +15,7 @@ class ReviewsCreateTest < ActionDispatch::IntegrationTest
       post lecture_reviews_path(@lecture), params: { review: { content: "コンテント", user_id: @user.id, lecture_id: @lecture.id, score: 1}}
     end
     follow_redirect!
-    assert_template 'reviews/show'
+    assert_template 'lectures/show'
     assert_not flash.empty?
   end
 end
