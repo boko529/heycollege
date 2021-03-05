@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @user1 = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar")
+    @user1 = User.new(name: "ExampleUser", email: "user@apu.ac.jp",password: "foobar",password_confirmation: "foobar")
     @teacher = teachers(:teacher1)
   end
 
@@ -24,7 +24,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should not be too long" do
-    @user1.email = "a" * 244 + "@example.com"
+    @user1.email = "a" * 246 + "@apu.ac.jp"
     assert_not @user1.valid?
   end
 

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
 

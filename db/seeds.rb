@@ -9,12 +9,12 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", admin: true, confirmed_at: Time.now)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", admin: true, confirmed_at: Time.now)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
   name  = Faker::Name.name
-  email = "user-#{n+1}@example.com"
+  email = "user-#{n+1}@apu.ac.jp"
   password = "foobar"
   User.create!(name:  name,
   email: email,
