@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
-    <% if lecture.bookmarked_by?(current_user) %>
-        <%= link_to lecture_bookmarks_path(lecture), method: :delete, data: { confirm: '本当にブックマークから削除しますか？' }, remote: true do %>
-            <i class= "fa fa-bookmark"></i>
-        <% end %>
-    <% else %>
-        <%= link_to  lecture_bookmarks_path(lecture), method: :post, remote: true do%>
-            <i class= "far fa-bookmark"></i>
-        <% end %>
+  <% if lecture.bookmarked_by?(current_user) %>
+    <%= link_to lecture_bookmarks_path(lecture), method: :delete, data: { confirm: '本当にブックマークから削除しますか？' }, remote: true do %>
+      <i class= "fa fa-bookmark"></i>
     <% end %>
+  <% else %>
+    <%= link_to  lecture_bookmarks_path(lecture), method: :post, remote: true do%>
+      <i class= "far fa-bookmark"></i>
+    <% end %>
+  <% end %>
 <% end %>
