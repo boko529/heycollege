@@ -13,7 +13,8 @@ class ReviewsController < ApplicationController
       @review = current_user.reviews.new(review_params)
       if @review.save
         flash[:success] = "レビューを投稿しました"
-        redirect_to lecture_review_path(@lecture,@review)
+        # 自分が作ったレビューをidで指定して表示
+        redirect_to "/lectures/#{@lecture.id}/#review-#{@review.id}"
       else
         flash[:danger] = "レビューの投稿に失敗しました"
         redirect_back(fallback_location: root_path)
