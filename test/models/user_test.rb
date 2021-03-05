@@ -6,6 +6,7 @@ class UserTest < ActiveSupport::TestCase
   # end
   def setup
     @user1 = User.new(name: "ExampleUser", email: "user@apu.ac.jp",password: "foobar",password_confirmation: "foobar")
+    @gmail_user = User.new(name: "GmailUser", email: "user@gmil.com",password: "foobar",password_confirmation: "foobar")
     @teacher = teachers(:teacher1)
   end
 
@@ -54,6 +55,10 @@ class UserTest < ActiveSupport::TestCase
 
   test "sign up user don't have twitter_url" do
     assert_not @user1.twitter_url.present?
+  end
+
+  test "gmail user don't sign up" do
+    assert_not @gmail_user.valid?
   end
 
 end
