@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point_type: 0
+  amount: 10
+  group: group1
+  group_point: one
+
+two:
+  point_type: 0
+  amount: 10
+  group: group2
+  group_point: two

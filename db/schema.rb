@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_091918) do
+ActiveRecord::Schema.define(version: 2021_03_06_072834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2021_03_05_091918) do
     t.index ["lecture_id"], name: "index_bookmarks_on_lecture_id"
     t.index ["user_id", "lecture_id"], name: "index_bookmarks_on_user_id_and_lecture_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "group_point_histories", force: :cascade do |t|
+    t.integer "point_type"
+    t.float "amount"
+    t.bigint "group_id", null: false
+    t.bigint "group_point_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_point_histories_on_group_id"
+    t.index ["group_point_id"], name: "index_group_point_histories_on_group_point_id"
   end
 
   create_table "group_points", force: :cascade do |t|
@@ -166,6 +177,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_091918) do
 
   add_foreign_key "bookmarks", "lectures"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "group_point_histories", "group_points"
+  add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
