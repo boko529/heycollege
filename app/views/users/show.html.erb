@@ -41,7 +41,7 @@
     <p>
       <font size="5"><strong><%= @user.name %></strong></font>
        <br>フォロー：
-          <span id='following-count_<%= @user.id%>'><%= link_to users_following_path(@user) do%><%= @user.follower.count %>フォロ-中<% end %></span>
+          <span id='following-count_<%= @user.id%>'><%= link_to users_following_path(@user) do%><%= @user.follower.count %>フォロー中<% end %></span>
         フォロワー：
           <span id='follower-count_<%= @user.id%>'><%= link_to users_follower_path(@user) do%><%= @user.followed.count %>フォロワー<% end %></span>
     </p>
