@@ -4,13 +4,13 @@
 
 .frame{
   width: 100%;
-  padding: 0.5rem 0 0.6rem 0;
+  padding: 0.5rem 0 0rem 0;
 }
 
 .frame_icon{
   float: left; /*左に回り込み*/
   padding-right: 1rem;
-  /*丸アイコン*/
+   /*丸アイコン*/
   .circle {
    overflow: hidden; /*画像が円から出た部分は隠す*/
     background: #fff; /*背景色*/
@@ -35,7 +35,7 @@
   line-height: 1.5;
   position: relative;
   padding: 0.2rem 1rem;
-  margin-right: 0.3rem;
+  margin-right: 1rem;
   margin-top: 0.5rem;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -51,14 +51,12 @@
 
 .follow-btn{
   float: right;
-  border: 1.5px solid #000; /*枠線の幅、線種、色*/
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 1.5;
   position: relative;
   padding: 0.2rem 1rem;
   margin-right: 0.3rem;
-  margin-top: -1.5rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -68,7 +66,7 @@
   text-align: center;
   vertical-align: middle;
   text-decoration: none;
-  border-radius: 100rem;
+
 }
 
 .sns{
