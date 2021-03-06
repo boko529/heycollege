@@ -17,6 +17,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(name: group_params[:name])
     if @group.save
+      # ポイントテーブル作成+初期ポイント付与
+      @group.initial_point
       flash[:success] = "団体ページ作成しました"
       redirect_to @group
     else

@@ -5,5 +5,5 @@ class GroupPointHistory < ApplicationRecord
   validates :group_point_id, presence: true
   validates :amount, presence: true
   validates :point_type, presence: true
-  enum point_type: { init: 0 }, _prefix: :true
+  enum point_type: { init: 0, helpfuled: 1 }, _prefix: :true
 end

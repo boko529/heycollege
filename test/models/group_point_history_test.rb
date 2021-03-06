@@ -4,7 +4,7 @@ class GroupPointHistoryTest < ActiveSupport::TestCase
   def setup
     @group = groups(:group1)
     @group_point = @group.create_group_point(current_point: 10, total_point: 10)
-    @point_history = @group.group_point_history.build(point_type: 1, amount: 10, group_point_id: @group_point.id)
+    @point_history = @group.group_point_history.build(point_type: 0, amount: 10, group_point_id: @group_point.id)
   end
 
   test "should be valid" do
