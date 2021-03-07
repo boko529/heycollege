@@ -95,6 +95,26 @@ ActiveRecord::Schema.define(version: 2021_03_05_060911) do
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
+  create_table "user_point_histories", force: :cascade do |t|
+    t.integer "point_type"
+    t.float "amount"
+    t.bigint "user_id", null: false
+    t.bigint "user_point_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_point_histories_on_user_id"
+    t.index ["user_point_id"], name: "index_user_point_histories_on_user_point_id"
+  end
+
+  create_table "user_points", force: :cascade do |t|
+    t.float "current_point"
+    t.float "total_point"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_points_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -124,4 +144,7 @@ ActiveRecord::Schema.define(version: 2021_03_05_060911) do
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"
   add_foreign_key "teachers", "users"
+  add_foreign_key "user_point_histories", "user_points"
+  add_foreign_key "user_point_histories", "users"
+  add_foreign_key "user_points", "users"
 end

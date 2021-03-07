@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # Point関係のメソッドはuser/point.rbに記載
+  include User::Point
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum grade: { B1: 1, B2: 2, B3: 3, B4: 4, M1: 5, M2: 6, D1: 7, D2: 8,D3: 9}, _prefix: :true
@@ -11,6 +13,8 @@ class User < ApplicationRecord
   has_many :teachers, dependent: :destroy   #  dependentは削除する可能性あり.
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_one :user_point, dependent: :destroy
+  has_many :user_point_history, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -39,4 +43,5 @@ class User < ApplicationRecord
 
   include Gravtastic
   gravtastic
+
 end
