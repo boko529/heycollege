@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
   get 'groups/:id/edit_admin', to: 'groups#edit_admin'
-  get 'groups/:id/update_admin', to: 'groups#update_admin'
+  patch 'groups/:id/update_admin', to: 'groups#update_admin'
   resources :users do
     member do
       get :group
