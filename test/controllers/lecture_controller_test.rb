@@ -53,7 +53,7 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     #詳細がなくても数には入れる
     assert_equal(3, @lecture.all_reviews_count)
     #詳細があるレビューのみviewに表示
-    assert_select 'li.review', count: 2
+    assert_select 'li.review', count: 1
   end
 
   test "blank name lecture create" do
