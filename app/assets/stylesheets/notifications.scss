@@ -11,3 +11,23 @@
   color: #efa04c;
   z-index: 3;
 }
+
+.notifications-index{
+  h2{
+    margin: 20px 0;
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li{
+      padding: 10px;
+    }
+    hr{
+      margin: 0;
+    }
+  }
+  a{
+    color: black;
+  }
+}

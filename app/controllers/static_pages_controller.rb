@@ -1,13 +1,26 @@
 class StaticPagesController < ApplicationController
   def home
-    @lectures = Lecture.left_joins(:reviews).distinct.sort_by do |lecture|
-      reviews = lecture.reviews
-      if reviews.present?
-        reviews.map(&:score).sum / reviews.size
+    #講義ランキング処理
+    @lectures = Lecture.includes(:teacher, :reviews).sort_by do |lecture|
+      if lecture.reviews.present?
+        lecture.average_score
       else
         0
       end
     end.reverse
     @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+
+    #先生ランキング処理
+    @teachers = Teacher.includes(lectures: :reviews).sort_by do |teacher|
+      if teacher.lectures.present?
+        teacher.average_score
+      else
+        0
+      end
+    end.reverse
+    @teachers = Kaminari.paginate_array(@teachers).page(params[:page]).per(20)
+
+    #最新のニュースを表示
+    @news = News.all
   end
 end

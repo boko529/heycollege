@@ -1,8 +1,48 @@
-<h2>ユーザー情報</h2>
+<% provide(:title, 'マイページ編集') %>
+<div class="row">
+  <div class="col-md-8 offset-md-2 user-info-form">
+    <h2>ユーザー情報</h2><br>
 
-<%= form_with model: @user, local:true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <p>name</p>
-  <%= f.text_field :name, autofocus:true, id:"inputName" %>
-  <%= f.submit "Update User" %>
-<% end %>
+    <%= form_with model: @user, local:true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= gravatar_for @user, 80 %>
+        <a href="http://gravatar.com/emails" target="_blank">プロフィール画像を変更する</a><br><small>※プロフィール画像は反映まで少し時間がかかることがあります</small>
+      </div>
+
+      <div class="field">
+        <%= f.label :name,'ニックネーム' %><br />
+        <%= f.text_field :name, autofocus:true, id:"inputName" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :gender,'性別' %><br />
+        <%= f.radio_button :gender, '', {:checked => true} %>指定なし
+        <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
+          <%=  b.radio_button(class: "form-contorl") %>
+          <%= b.label %>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :grade,'学年' %><br />
+        <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :faculty,'学部' %><br />
+        <%= f.radio_button :faculty, '', {:checked => true} %>指定なし
+        <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
+          <%=  b.radio_button(class: "form-contorl") %>
+          <%= b.label %>
+        <% end %> 
+      </div>
+
+      <div class="field">
+        <%= f.label :twitter_url,'Twitter URL' %><br />
+        <%= f.text_field :twitter_url, autofocus:true %>
+      </div>
+      <%= f.submit "更新する" %>
+    <% end %>
+  </div>
+</div>

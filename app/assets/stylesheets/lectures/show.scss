@@ -1,33 +1,64 @@
 .lecture_show{
   margin-top: 20px;
-  h3{
-    font-weight: bold;
-    font-size: 40px;
-    background-color: beige;
-    display: inline-block;
-  }
-  h4{
-    margin-left: 30px;
-  }
+  margin: 0 auto;
   a{
+    border-bottom: 1px black solid;
     color: black;
+    &:hover{
+      background-color: lightgray;
+    }
   }
-  div.lecture-box{
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  .lecture-header{
     display: flex;
+    justify-content: space-between;
   }
-  div.lecture-left{
-    p{
-      padding: 0;
-      margin: 0;
+  .lecture-info{
+    width: 85%;
+    margin: 0 auto;
+    h3{
+      font-size: 50px;
+      font-weight: bold;
+      padding: 15px 0;
+    }
+    .teacher-name{
+      font-size: 20px;
       margin-left: 20px;
     }
-    a{
-      color: black;
-      margin-left: 30px;
+    .scores{
+      padding: 15px 0;
+      h4{
+        font-size: 30px;
+        span.score{
+          font-weight: bold;
+        }
+      }
     }
   }
-  div.lecture-right{
-    width: 70%;
-    margin-top: -120px;
+  .most_helpful_review{
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .lecture-reviews{
+    margin: 0 auto;
+    margin-top: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    ol{
+      padding: 0px;
+      margin-top: 10px;
+      li{
+        padding: 30px;
+        .timestamp{
+          font-size: 10px;
+        }
+      }
+    }
   }
 }

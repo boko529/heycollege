@@ -4,9 +4,45 @@
   </nav>
   <nav class="d-none d-md-block">
     <%# ウェブサイト用のフッター %>
-    <ul>
-      <li><%= link_to "連絡先", '#' %></li>
-      <li><%= link_to "公式Instagram", '#' %></li>
-    </ul>
-  </nav>
+    
+ <div class="container">
+   <div class="row text-center">
+      <div class="footer_logos col-md-6 col-sm-6 col-xs-12">
+        <%# ロゴ %>
+        <ul class="list-inline">   
+          <li>
+              <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          </li>
+          <li>
+              <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+          </li>
+          <li>
+              <a href="#"><i class="fab fa-twitter-square fa-2x"></i></a> 
+          </li>     
+        </ul>
+      </div>
+      <div class="footer_words col-md-6 col-sm-6 col-xs-12">
+        <ul class="menu list-inline">       
+          <li>
+            <a href="#">Home</a>
+          </li>      
+          <li>
+              <a href="#">About</a>
+          </li>   
+          <li>
+            <a href="#">Blog</a>
+          </li>   
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div> 
+  </div>
 </footer>
+<%# 著作権は気にするなそれワカチコワカチコ %>
+<div class="copyright">
+  <div class="container">
+     	<p>Copyright © 2021 All rights reserved</p>
+  </div>
+</div>

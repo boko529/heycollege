@@ -1,15 +1,97 @@
+<%# ページのタイトル %>
+<% if @user == current_user %>
+  <% provide(:title, 'マイページ編集') %>
+<% else %>
+  <% provide(:title, @user.name) %>
+<% end %>
+
 <div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h2>ユーザー情報</h2>
+  <div class="col-lg-8 offset-lg-2">
+    <div class="frame">
+      <div class="frame_icon">
+       <div class="circle">
+        <%= gravatar_for @user, 80 %>
+       </div>
+      </div>
+      <% if @user == current_user %>
+        <div class="edit-btn">
+          <%= link_to '編集', edit_user_path(@user.id)%>
+        </div>
+      <% else %>
+        <div class="follow-btn">
+          <span id='follow-button_<%= @user.id %>'>
+            <%= render 'users/follow-button', user: @user  %>
+          </span>
+        </div>
+      <% end %>
+    
 
-    <table class="table">
-    <tr>
-        <th>name</th>
-        <td><%= @user.name %></td>
-    </tr>
-    </table>
+     <div class="frame profile">
+       <!---
+        <br>性別:
+          <%= @user.gender_i18n  %> -->
+          学部：
+          <%= @user.faculty_i18n %>
+        <br>学年：
+          <%= @user.grade_i18n %>
+        <br>カレッジポイント：
+        <br>スコア：
+      </div>
+    </div>
+    <p>
+      <font size="5"><strong><%= @user.name %></strong></font>
+       <br>フォロー：
+          <span id='following-count_<%= @user.id%>'><%= link_to users_following_path(@user) do%><%= @user.follower.count %>フォロー中<% end %></span>
+        フォロワー：
+          <span id='follower-count_<%= @user.id%>'><%= link_to users_follower_path(@user) do%><%= @user.followed.count %>フォロワー<% end %></span>
+    </p>
+    <div class="sns">
+      <small>メッセージ<br>テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、</small>
+      <br>
+      <small>Instagram: @insuta</small>
+      &nbsp;&nbsp;
+      <small>Twitter:
+        <% if user_signed_in? %>
+          <% if @user.twitter_url.present? && @user.id == current_user.id %>
+            <%= link_to @user.twitter_url, target: :_blank do %>
+            <i class="fab fa-twitter-square fa-2x"></i>
+            <% end %>
+          <% elsif @user.id == current_user.id %>
+              <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id) %>
+          <% end %>
+        <% end %>
+      </small>
+    </div>
+    <!--
+    <p>
+      <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
+    </p>
+    
+    <div class="collapse mx-auto" id="collapsemyreview">
+      <div class="card card-body">
+        <h2>過去のレビュー</h2>
+        <table class="table">
+          <tr>
+            <th>講義名</th>
+            <th>スコア</th>
+            <th>レビュータイトル</th>
+          </tr>
+          <% @reviews.each do |review| %>
+          <tr>
+            <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
+            <td><%= review.score %></td>
+            <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>-->
 
-    <%= link_to '名前を編集する', edit_user_path(@user.id)%>
-
+    <% if @reviews.any? %>
+      <h3>レビュー数 (<%= @reviews.count %>)</h3>
+      <ol class="reviews">
+        <%= render @reviews %>
+      </ol>
+    <% end %>
   </div>
 </div>

@@ -5,47 +5,10 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :language_used %>
-    <%= f.radio_button :language_used_eq, '', {:checked => true} %>指定なし
-    <%= f.radio_button :language_used_eq, 0 %>日本語
-    <%= f.radio_button :language_used_eq, 1 %>英語
-    <%= f.radio_button :language_used_eq, 2 %>その他
+    <%= f.label :teacher_name_cont, "先生名" %>
+    <%= f.search_field :teacher_name_cont, class: "form-control mr-sm-2" ,placeholder: '検索する先生の名前を入力...' %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :lecture_type %>
-    <%= f.radio_button :lecture_type_eq, '', {:checked => true} %>指定なし
-    <%= f.radio_button :lecture_type_eq, 0 %>APM
-    <%= f.radio_button :lecture_type_eq, 1 %>APS
-    <%= f.radio_button :lecture_type_eq, 2 %>一般教養
-    <%= f.radio_button :lecture_type_eq, 3 %>言語
-    <%= f.radio_button :lecture_type_eq, 4 %>ゼミ
-  </div>
-
-  <div class="form-group">
-    <%= f.label :lecture_term %>
-    <%= f.radio_button :lecture_term_eq, '', {:checked => true} %>指定なし
-    <%= f.radio_button :lecture_term_eq, 0 %>春セミスター
-    <%= f.radio_button :lecture_term_eq, 1 %>夏セッション
-    <%= f.radio_button :lecture_term_eq, 2 %>秋セミスター
-    <%= f.radio_button :lecture_term_eq, 2 %>冬セッション
-  </div>
-
-  <div class="form-group">
-    <%= f.label :lecture_size %>
-    <%= f.radio_button :lecture_size_eq, '', {:checked => true} %>指定なし
-    <%= f.radio_button :lecture_size_eq, 0 %>20人以下
-    <%= f.radio_button :lecture_size_eq, 1 %>20人～70人
-    <%= f.radio_button :lecture_size_eq, 2 %>70人～100人
-    <%= f.radio_button :lecture_size_eq, 3 %>100人以上
-  </div>
-
-  <div class="form-group">
-    <%= f.label :group_work %>
-    <%= f.radio_button :group_work_eq, '', {:checked => true} %>指定なし
-    <%= f.radio_button :group_work_eq, 0 %>あり
-    <%= f.radio_button :group_work_eq, 1 %>なし
-  </div>
   <%= f.submit ("検索") , class: 'btn btn-outline-success my-2 my-sm-0 mx-auto d-block'%>
 <% end %>
 

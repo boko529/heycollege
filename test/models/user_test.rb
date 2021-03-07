@@ -5,7 +5,9 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @user1 = User.new(name: "ExampleUser", email: "user@example.com",password: "foobar",password_confirmation: "foobar")
+    @user1 = User.new(name: "ExampleUser", email: "user@apu.ac.jp",password: "foobar",password_confirmation: "foobar")
+    @gmail_user = User.new(name: "GmailUser", email: "user@gmil.com",password: "foobar",password_confirmation: "foobar")
+    @teacher = teachers(:teacher1)
   end
 
   test "should be valid" do
@@ -23,7 +25,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should not be too long" do
-    @user1.email = "a" * 244 + "@example.com"
+    @user1.email = "a" * 246 + "@apu.ac.jp"
     assert_not @user1.valid?
   end
 
@@ -43,11 +45,20 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "associated microposts should be destroyed" do
+    @user1.skip_confirmation!
     @user1.save
-    @user1.lectures.create!(name:  "日本大学史", language_used: "Japanese", lecture_type: "Language", lecture_term: "spring", lecture_size: "small", group_work: "included")
+    @user1.lectures.create!(name:  "日本大学史", teacher_id: @teacher.id)
     assert_difference 'Lecture.count', -1 do
       @user1.destroy
     end
+  end
+
+  test "sign up user don't have twitter_url" do
+    assert_not @user1.twitter_url.present?
+  end
+
+  test "gmail user don't sign up" do
+    assert_not @gmail_user.valid?
   end
 
 end

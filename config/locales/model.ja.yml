@@ -7,11 +7,6 @@ ja:
     attributes:
       lecture:
         name: "講義名"
-        language_used: "使用言語"
-        lecture_type: "講義のタイプ"
-        lecture_size: "講義規模"
-        lecture_term: "ターム"
-        group_work: "グループワーク"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -38,31 +33,23 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
       review:
-        title: タイトル
         content: 詳細
 
   enums:
-    lecture:
-      language_used:
-        Japanese: "日本語"
-        English: "英語"
-        others: "その他"
-      lecture_type:
-        APM: "APM"
+    user:
+      gender:
+        male: "男性"
+        female: "女性"
+      grade:
+        B1: "1年"
+        B2: "2年"
+        B3: "3年"
+        B4: "4年"
+        M1: "修士1年"
+        M2: "修士2年"
+        D1: "博士1年"
+        D2: "博士2年"
+        D3: "博士3年"
+      faculty:
         APS: "APS"
-        Liberal_arts: "一般教養"
-        Language: "言語"
-        Seminar: "ゼミ"
-      lecture_term:
-        spring: "春セミスター"
-        summer: "夏セッション"
-        autumn: "秋セミスター"
-        winter: "冬セッション"
-      lecture_size:
-        small: "20人以下"
-        medium: "20人～70人"
-        large: "70人～100人"
-        extra_large: "100人以上"
-      group_work:
-        included: "あり"
-        not_included: "なし"
+        APM: "APM"
