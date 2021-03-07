@@ -13,4 +13,10 @@ class GroupTest < ActiveSupport::TestCase
     @group.name = "   "
     assert_not @group.valid?
   end
+
+  test "name should be unique" do
+    duplicate_group = @group.dup
+    @group.save
+    assert_not duplicate_group.valid?
+  end
 end

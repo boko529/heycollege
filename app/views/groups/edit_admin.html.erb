@@ -11,6 +11,8 @@
     <p>団体ページの編集権を許可するユーザーを1人選択してください。</p>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
-      <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id} %>
+      <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).admin == false %>
+        <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id} %>
+      <% end %>
     <% end %>
   </div>
