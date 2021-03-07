@@ -2,7 +2,7 @@
 
   <div class="row">
 
-    <div class="col">
+    <div class="col-sm-1 col-2">
       <span class="rank">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:page] %>
@@ -14,14 +14,13 @@
     </div>
 
     <%# スコア %>
-    <div class="col">
+    <div class="col-2 col-lg-1 px-0 py-auto">
       <span class="score"><%= teacher.average_score %></span>
     </div>
 
-    <div class="col">
+    <div class="col-sm-3 col-4 p-0 p-sm-auto">
       <%= link_to teacher.name, teacher %>
     </div>
-
   </div>
 
 </div>

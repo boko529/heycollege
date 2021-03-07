@@ -23,12 +23,15 @@
           <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
         <% end %>
         <div class="container">
+
+          <%# 詳細検索からぷすコメントアウトしたよ%>
           <%# 詳細検索 %>
-          <div class="collapse mx-auto" id="collapseSearchLecture">
-            <div class="card card-body">
-              <%= render('layouts/search_form') %>
-            </div>
-          </div>
+          <%# <div class="collapse mx-auto" id="collapseSearchLecture">
+            <div class="card card-body"> %>
+              <%# render('layouts/search_form') %>
+              <%# </div>
+          </div> %>
+            
           <div class="container">
             <%# 他のページをここに代入 %>
             <%= yield %>

@@ -1,3 +1,80 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.frame{
+  width: 100%;
+  padding: 0.5rem 0 0rem 0;
+}
+
+.frame_icon{
+  float: left; /*左に回り込み*/
+  padding-right: 1rem;
+   /*丸アイコン*/
+  .circle {
+   overflow: hidden; /*画像が円から出た部分は隠す*/
+    background: #fff; /*背景色*/
+   float: left; /*左に回り込み*/
+   border: 2px solid #fff; /*枠線の幅、線種、色*/
+   border-radius: 50%; /*アイコン画像を円にする*/
+  }
+}
+
+.frame_profile{
+  float: left; /*左に回り込み*/
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.edit-btn{
+  float: right;
+  border: 1.5px solid #000; /*枠線の幅、線種、色*/
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  padding: 0.2rem 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+.follow-btn{
+  float: right;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  padding: 0.2rem 1rem;
+  margin-right: 0.3rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+
+}
+
+.sns{
+  margin-left: 0.5rem;
+  margin-top: -1.5rem;
+}
+
+.reviews{
+  float: left; /*左に回り込み*/
+  padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
+}
