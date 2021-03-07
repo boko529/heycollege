@@ -7,11 +7,10 @@ class HelpfulsController < ApplicationController
   def create
     helpful = Helpful.create(user_id: current_user.id, review_id: params[:review_id])
     helpful.save
-    review = Review.find(params[:review_id])
     # 通知を発行
     helpful.create_notification_helpful!(current_user)
     # ポイントを発行
-    review.user.helpfuled_point
+    helpful.review.user.helpfuled_point
   end
 
   private
