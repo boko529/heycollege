@@ -12,10 +12,12 @@ class HelpfulsControllerTest < ActionDispatch::IntegrationTest
   test "valid create helpful" do
     login_as(@user2, scope: :user)
     #参考になるによってお知らせ、参考になる、ポイント履歴の数が1つ増える
-    assert_difference 'UserPointHistory.count', 1 do
-      assert_difference 'Notification.count', 1 do
-        assert_difference 'Helpful.count', 1 do
-          post lecture_review_helpfuls_path(@lecture, @review), params: { helpful: {lecture_id: @lecture.id, review_id: @review.id }}
+    assert_difference 'GroupPointHistory.count', 1 do
+      assert_difference 'UserPointHistory.count', 1 do
+        assert_difference 'Notification.count', 1 do
+          assert_difference 'Helpful.count', 1 do
+            post lecture_review_helpfuls_path(@lecture, @review), params: { helpful: {lecture_id: @lecture.id, review_id: @review.id }}
+          end
         end
       end
     end
