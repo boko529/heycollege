@@ -29,7 +29,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       assert_difference 'User.count' ,1 do
         post user_registration_path, params: { user: { 
           name:  "taro",
-          email: "taro@example.com",
+          email: "taro@apu.ac.jp",
           password: "password",
           password_confirmation: "password",
           gender: "male",
@@ -47,7 +47,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       assert_difference 'UserPoint.count', 1 do
         assert_difference 'User.count' ,1 do
           post user_registration_path, params: { user: { name:  "taro",
-                                            email: "taro@example.com",
+                                            email: "taro@apu.ac.jp",
                                             password: "password",
                                             password_confirmation: "password",
                                             gender: "male",
@@ -56,7 +56,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         end
       end
       assert_template 'devise/mailer/confirmation_instructions'
-      post user_session_path params: { session: { email: 'taro@example.com', password: 'password' } }
+      post user_session_path params: { session: { email: 'taro@apu.ac.jp', password: 'password' } }
       assert_template 'devise/sessions/new'
     end
 
@@ -67,7 +67,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         assert_difference 'UserPoint.count', 1 do
           assert_difference 'User.count' ,1 do
             post user_registration_path, params: { user: { name:  "taro",
-                                              email: "taro@example.com",
+                                              email: "taro@apu.ac.jp",
                                               password: "password",
                                               password_confirmation: "password",
                                               gender: "male",
@@ -83,7 +83,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       assert_equal "init", user.user_point_history.first.point_type
       assert_equal 10, user.user_point_history.first.amount
       assert_template 'devise/mailer/confirmation_instructions'
-      post user_session_path params: { session: { email: 'taro@example.com', password: 'password' } }
+      post user_session_path params: { session: { email: 'taro@apu.ac.jp', password: 'password' } }
       get user_path(user.id)
       assert_template 'users/show'
     end
