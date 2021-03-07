@@ -9,12 +9,13 @@
   </div>
   <div class="lecture-info">
     <h3>
+    <p class="bookmark-mark">
       <span id ="bookmark-<%= @lecture.id %>">
         <%= render 'bookmarks/bookmark', lecture: @lecture %>
       </span>
-      <%= @lecture.name %>
+      <%= @lecture.name %></p>
       <span class="teacher-name">
-      <br>担当教員：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+      <p>担当教員：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
       </span>
     </h3>
     
@@ -31,7 +32,7 @@
     <%# 自分の投稿のときのみ表示 %>
     <% if current_user?(@lecture.user) %>
       <%= link_to "編集", edit_lecture_path %>
-      <%= link_to "削除", @lecture, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+      <%= link_to "削除", @lecture, method: :delete, data: { confirm: "削除すると、この講義に関するすべてのレビューが削除されます。本当に削除しますか？"} %>
     <% end %>
     <%# 最も参考になっているレビュー関係 %>
     <div>

@@ -8,6 +8,11 @@
       background-color: lightgray;
     }
   }
+  .bookmark-mark{
+    margin-bottom: -4rem;
+    a{border-bottom: none;/*ブックマークに追加するアイコンの下の線を消す*/
+    }
+  }
   p{
     margin: 0;
     padding: 0;
