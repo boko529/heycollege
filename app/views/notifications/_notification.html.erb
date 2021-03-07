@@ -11,6 +11,8 @@
         <% case notification.action %>
         <% when 'helpful' then %>
           <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を参考になるにしました
+        <% when 'follow' then %>
+          あなたをフォローしました
         <% end %>
       </strong>
   </span>
