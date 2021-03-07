@@ -3,5 +3,13 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .col-md-10.lecture-reviews{
+  width: 85%;
+  margin: 0 auto;
   padding: 0 ;
+  border: none; /*デフォルトの枠線を消す*/
+}
+
+.btn-primary{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
