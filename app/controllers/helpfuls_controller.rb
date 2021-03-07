@@ -9,7 +9,7 @@ class HelpfulsController < ApplicationController
     helpful.save
     review = Review.find(params[:review_id])
     # 通知を発行
-    review.create_notification_helpful!(current_user)
+    helpful.create_notification_helpful!(current_user)
   end
 
   private
