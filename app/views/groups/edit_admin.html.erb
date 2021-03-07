@@ -8,8 +8,7 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'join_form' %>
-    <h1>Members</h1>
+    <p>団体ページの編集権を許可するユーザーを1人選択してください。</p>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
       <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id} %>
