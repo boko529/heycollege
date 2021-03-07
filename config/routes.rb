@@ -24,10 +24,12 @@ Rails.application.routes.draw do
       get :users
     end
   end
+  get 'groups/:id/edit_admin', to: 'groups#edit_admin'
+  get 'groups/:id/update_admin', to: 'groups#update_admin'
   resources :users do
     member do
       get :group
     end
   end
-  resources :user_group_relations, only: [:create, :destroy]
+  resources :user_group_relations, only: [:create, :destroy, :edit, :update]
 end

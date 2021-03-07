@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :destroy]
-  before_action :admin_group, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update]
+  before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin]
 
   def index
     @groups = Group.all
@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @users = @group.users
+    @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
   end
 
   def new
@@ -39,6 +40,23 @@ class GroupsController < ApplicationController
       render 'edit'
     end
   end
+
+  def edit_admin
+    @group = Group.find(params[:id])
+    @users = @group.users
+  end
+
+  def update_admin
+    @group = Group.find(params[:id])
+    @user = User.find_by(id: params[:user_id])
+    if relation = UserGroupRelation.find_by(user_id: @user.id, group_id: @group.id)
+      relation.admin = true
+      relation.save
+      flash[:success] = "#{@user.name}さんに編集権を付与しました。"
+      redirect_to @group
+    end
+  end
+
 
   private
     def group_params

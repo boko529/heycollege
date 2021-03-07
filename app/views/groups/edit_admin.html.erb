@@ -12,9 +12,6 @@
     <h1>Members</h1>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
-      <%= link_to user.name, user %>
+      <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id} %>
     <% end %>
   </div>
-  <% if @relation.admin %>
-    <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
-  <% end %>
