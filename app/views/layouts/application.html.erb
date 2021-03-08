@@ -8,7 +8,7 @@
 
   <body>
     <%= render 'layouts/header'%>
-    <div class="row">
+    <div class="row m-0">
 
       <%# サイドバー %>
       <div class="sidebar_col col-2 d-none d-md-block p-0">
@@ -18,34 +18,35 @@
       <%#　メインコンテント %>
       <div class="main_content col p-0">
       
-        <%# ここから3行はフラッシュ表示 %>
-        <% flash.each do |message_type, message| %>
-          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-        <% end %>
-        <div class="container">
+        <div>
+          <%# ここから3行はフラッシュ表示 %>
+          <% flash.each do |message_type, message| %>
+            <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+          <% end %>
 
-          <%# 詳細検索からぷすコメントアウトしたよ%>
+          <%# 詳細検索colapseコメントアウトしたよ%>
           <%# 詳細検索 %>
           <%# <div class="collapse mx-auto" id="collapseSearchLecture">
             <div class="card card-body"> %>
               <%# render('layouts/search_form') %>
               <%# </div>
           </div> %>
-            
-          <div class="container">
+              
+          <div class="container-fluid">
             <%# 他のページをここに代入 %>
             <%= yield %>
           </div>
         </div>
 
-        <%# フッターと開発者用のやつ卍 %>
+          <%# フッターと開発者用のやつ卍 %>
         <div>
-        <%# 次の行は開発用の表示 %>
-            <%= debug(params) if Rails.env.development? %>
-            <%= render 'layouts/footer'%>
+          <%# 次の行は開発用の表示 %>
+          <%= debug(params) if Rails.env.development? %>
+          <%= render 'layouts/footer'%>
         </div>
 
       </div>
+
     </div>
   </body>
 </html>

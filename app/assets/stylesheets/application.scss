@@ -21,7 +21,20 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/regular';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
- 
+
+// リセット
+html, body {
+  top: 0;
+  z-index: -9999!important;
+  margin: 0!important;
+  padding: 0!important;
+  max-width: 100%;
+  max-height: 100%;
+  div.row {
+    width: 100%;
+  }
+}
+
 /* タイポグラフィー */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -51,6 +64,7 @@ p {
 // header
 header{
   position: fixed;
+  top: 0;
   height: 65px;
   background-color: rgb(203, 241, 191);
   width: 100%;
@@ -59,6 +73,9 @@ header{
     color: rgb(90, 82, 82);
   }
   .row{
+    max-height: 100%;
+    margin: 0;
+    
     display: flex;
     align-items: center;
   }
@@ -79,6 +96,7 @@ header{
 .sidebar_col{
   a{
     color: rgb(90, 82, 82);
+    z-index: 99999;
   }
   background-color: #EEEEEE;
   .sidebar_fixed {
@@ -95,6 +113,9 @@ header{
   }
 }
 
+// メインコンテント
+
+
 // メインコンテンツの高さをヘッダーに合わせる
 .main_content{
   margin-top: 80px;
@@ -106,6 +127,20 @@ footer {
   margin-top: 0px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
+  .footer_button {
+    
+    width: 100%;
+    height: 70px;
+    .row {
+      padding-top: 20px;
+    }
+    .rank, .add, .book, .other {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    
+  }
   a{
     color: #777;
     &:hover{

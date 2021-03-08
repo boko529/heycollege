@@ -2,8 +2,9 @@
 
   <div class="row">
 
+    <%# 順位 %>
     <div class="col-sm-1 col-2">
-      <span class="rank">
+      <span class="rank ml-1 ml-sm-3">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:page] %>
           <%= i + 20 * ( params[:page].to_i - 1 ) %>位

@@ -1,14 +1,47 @@
 <footer class="footer">
-  <nav class="d-block d-md-none">
-    <%# スマホ用のフッター %>
-  </nav>
-  <nav class="d-none d-md-block">
-    <%# ウェブサイト用のフッター %>
+
+<%# スマホ用フッターボタン %>
+<div class="footer_button container d-block d-sm-none fixed-bottom bg-white border-top">
+  <div class="row">
+  <% if user_signed_in? %>
+
+    <%# ランキング %>
+    <div class="rank col">
+    <%= link_to root_path do %>
+      <i class="fas fa-medal fa-2x"></i>
+    <% end %>
+    </div>
+
+    <%# 作る %>
+    <div class="add col">
+      <%= link_to new_lecture_path do %>
+        <i class="far fa-plus-square fa-2x"></i>
+      <% end %>
+    </div>
+
+    <%# ブックマーク %>
+    <div class="book col">
+      <%= link_to bookmarks_path do %>
+        <i class="far fa-bookmark fa-2x"></i>
+      <% end %>
+    </div>
+
+    <%# その他 %>
+    <div class="other col">
+      <a href="">
+        <i class="fas fa-ellipsis-h fa-2x"></i>
+      </a>
+    </div>
     
- <div class="container">
-   <div class="row text-center">
+  <% end %>
+  </div>
+</div>
+    
+  <div class="container">
+    <div class="row text-center">
+
+      <%# ロゴ %>
       <div class="footer_logos col-md-6 col-sm-6 col-xs-12">
-        <%# ロゴ %>
         <ul class="list-inline">   
           <li>
               <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
@@ -21,6 +54,7 @@
           </li>     
         </ul>
       </div>
+
       <div class="footer_words col-md-6 col-sm-6 col-xs-12">
         <ul class="menu list-inline">       
           <li>
@@ -37,12 +71,13 @@
           </li>
         </ul>
       </div>
+
     </div> 
   </div>
 </footer>
 <%# 著作権は気にするなそれワカチコワカチコ %>
 <div class="copyright">
   <div class="container">
-     	<p>Copyright © 2021 All rights reserved</p>
+      <p>Copyright © 2021 All rights reserved</p>
   </div>
 </div>
