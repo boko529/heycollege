@@ -17,7 +17,7 @@
       <%# 通知内容を種類ごとに変更 %>
        <% case notification.action %>
          <% when 'helpful' then %>
-         <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を ”参考になる” にしました
+         <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>にいいねしました
          <% when 'follow' then %>
           あなたをフォローしました
        <% end %>
