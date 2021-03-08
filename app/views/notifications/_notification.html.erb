@@ -16,8 +16,8 @@
       が
       <%# 通知内容を種類ごとに変更 %>
        <% case notification.action %>
-       <% when 'helpful' then %>
-       <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を参考になるにしました
+         <% when 'helpful' then %>
+         <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を ”参考になる” にしました
        <% end %>
     </strong>
     <span class="small text_muted text-right">
