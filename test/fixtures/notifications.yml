@@ -8,8 +8,15 @@ one:
   visitor_id: 3
   visited_id: 1
   review_id: 1
+  action: 'helpful'
 
 two:
   visitor_id: 4
   visited_id: 1
   review_id: 1
+  action: 'helpful'
+
+three:
+  visitor_id: 3
+  visited_id: 4
+  action: 'follow'
