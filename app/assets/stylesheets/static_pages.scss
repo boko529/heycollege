@@ -46,7 +46,8 @@ div.ranking-index {
       border-radius: 4px;
       margin: 5px 0;
       overflow: auto;
-      padding: 10px 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
       border-bottom: 1px solid gray;
 
       .rank {
