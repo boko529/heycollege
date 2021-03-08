@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # Point関係のメソッドはuser/point.rbに記載
+  include User::Point
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum grade: { B1: 1, B2: 2, B3: 3, B4: 4, M1: 5, M2: 6, D1: 7, D2: 8,D3: 9}, _prefix: :true
@@ -11,6 +13,8 @@ class User < ApplicationRecord
   has_many :teachers, dependent: :destroy   #  dependentは削除する可能性あり.
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_one :user_point, dependent: :destroy
+  has_many :user_point_history, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
@@ -21,6 +25,8 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+  include Gravtastic
+  gravtastic
 
   # ユーザーをフォローする
   def follow(user_id)
@@ -37,6 +43,17 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
-  include Gravtastic
-  gravtastic
+  # フォローした際に通知を発行
+  def create_notification_follow(followed_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", self.id, followed_user.id, 'follow'])
+    # 既に通知が存在するか確認
+    if temp.blank?
+      notification = self.active_notifications.new(
+        visited_id: followed_user.id,
+        action: 'follow'
+      )
+    end
+    notification.save if notification.valid?
+  end
+
 end
