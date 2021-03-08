@@ -16,6 +16,7 @@ class TeachersController < ApplicationController
     
     def show
       @teacher = Teacher.find(params[:id])
+      @lectures = @teacher.lectures.includes(:reviews).page(params[:page]).per(5)
     end
     
     private

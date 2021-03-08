@@ -37,4 +37,14 @@ class Teacher < ApplicationRecord
       return self.name.split(" ")[0]
     end
   end
+
+  # 最も参考になるレビューを表示
+  def most_helpful_review
+    all_reviews = []
+    self.lectures.includes(:reviews).each do |lecture|
+      all_reviews.push(lecture.reviews.where.not(content: "").includes(:helpfuls))
+    end
+    all_reviews = all_reviews.flatten!
+    return all_reviews.sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
+  end
 end

@@ -15,14 +15,20 @@
 <%# 講義表示 %>
 <div class="col-md-8">
   <% if @teacher.lectures.any? %>
-    <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
-    <%# 講義一覧をパーシャルで表示 %>
+    <h3>教えているクラス (<%= @teacher.lectures.count %>)</h3>
+    <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
     <div class="list-group">
-      <% @teacher.lectures.includes(:reviews).each do |lecture| %>
+      <% @lectures.each do |lecture| %>
         <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
       <% end %>
+      <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
     </div>
   <% end %>
+</div>
+
+<%# 最も参考になるレビュー %>
+<div class="most-helpful-review">
+  <%= @teacher.most_helpful_review %>
 </div>
 
 <%# 星表示のためのjavascript %>
