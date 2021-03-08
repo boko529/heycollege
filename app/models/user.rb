@@ -25,6 +25,8 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+  include Gravtastic
+  gravtastic
 
   # ユーザーをフォローする
   def follow(user_id)
@@ -41,7 +43,17 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
-  include Gravtastic
-  gravtastic
+  # フォローした際に通知を発行
+  def create_notification_follow(followed_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", self.id, followed_user.id, 'follow'])
+    # 既に通知が存在するか確認
+    if temp.blank?
+      notification = self.active_notifications.new(
+        visited_id: followed_user.id,
+        action: 'follow'
+      )
+    end
+    notification.save if notification.valid?
+  end
 
 end
