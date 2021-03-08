@@ -8,6 +8,11 @@
       background-color: lightgray;
     }
   }
+  .bookmark-mark{
+    margin-bottom: -4rem;
+    a{border-bottom: none;/*ブックマークに追加するアイコンの下の線を消す*/
+    }
+  }
   p{
     margin: 0;
     padding: 0;
@@ -19,6 +24,7 @@
   .lecture-info{
     width: 85%;
     margin: 0 auto;
+    margin-bottom: 2rem;
     h3{
       font-size: 50px;
       font-weight: bold;
@@ -39,9 +45,10 @@
     }
   }
   .most_helpful_review{
-    border: 1px solid black;
+    border: 1.5px solid #eee;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 0.1rem;
+    margin-bottom: 0.5rem;
   }
 
   .lecture-reviews{
