@@ -52,11 +52,11 @@ p {
 header{
   position: fixed;
   height: 65px;
-  background-color: rgb(180, 245, 143);
+  background-color: rgb(203, 241, 191);
   width: 100%;
   z-index: 2;
   a{
-    color: black;
+    color: rgb(90, 82, 82);
   }
   .row{
     display: flex;
@@ -70,12 +70,15 @@ header{
   input .btn{
     height: 40px;
   }
+  .bell, .user {
+    text-align: right;
+  }
 }
 
 // サイドバー
 .sidebar_col{
   a{
-    color: green;
+    color: rgb(90, 82, 82);
   }
   background-color: #EEEEEE;
   .sidebar_fixed {
