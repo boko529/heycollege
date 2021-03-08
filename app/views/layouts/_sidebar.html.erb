@@ -39,6 +39,20 @@
           <i class="fas fa-ellipsis-h fa-2x"></i><span class="d-none d-lg-inline">その他</span> 
         </a>
         </li>
+        <%# 管理者の場合のみ表示 %>
+        <% if current_user.admin? %>
+          <span>ーー管理者用</span>
+          <li class="list-group-item">
+            <%= link_to new_admin_news_path do %>
+              <i class="fas fa-bullhorn fa-2x"></i><span class="d-none d-lg-inline">アナウンス作成</span>
+            <% end %>
+          </li>
+          <li class="list-group-item">
+            <%= link_to admin_users_path do %>
+              <i class="fas fa-users fa-2x"></i><span class="d-none d-lg-inline">ユーザー一覧</span>
+            <% end %>
+          </li>
+        <% end %>
       <%# ログインしてない時 %>
       <% else %>
         <li class="list-group-item text-center text-lg-left">
