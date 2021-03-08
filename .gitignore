@@ -6,8 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-# まさきの環境用
-/vender
 
 # Ignore all logfiles and tempfiles.
 /log/*

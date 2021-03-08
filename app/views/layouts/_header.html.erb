@@ -6,12 +6,11 @@
         <button type="button" class="btn btn-success mx-2" data-toggle="collapse" data-target="#aaa"><i class="fas fa-bars"></i>
         </button>
         <div class="collapse position-fixed" id="aaa">
-          <%# ハンバーガー中身 %>
           <div class="list-grou">
             <% if user_signed_in? %>
             <li class="list-group-item">
               <%= link_to root_path do %>
-                <i class="fas fa-medal fa-2x"></i><span>ランキング</span>
+                <i class="fas fa-medal fa-2x"></i></i><span>ランキング</span>
               <% end %>
             </li>
             <li class="list-group-item">
@@ -65,45 +64,43 @@
         </div>
       </div>
       <%#　ヘイカレッジロゴ %>
-      <div class="logo col-5 col-sm-3 mx-md-0 ml-3">
+      <div class="logo col mx-0">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
-      <%# 検索バー %>
-      <div class="search col-sm-4 col-md-6 offset-0 mx-auto d-none d-sm-block">
+      <div class="search col-6 offset-md-1 offset-0 mx-auto d-none d-sm-block">
+        <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: '講義名を検索' %>
-
-            <%# 詳細検索をコメントアウトしたよ %>
-            <%#  <div class="input-group-append ">
-              <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
+            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: 'クラス名か先生名で検索' %>
+            <%# 詳細検索表示ボタン %>
+            <div class="input-group-append ">
+              <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
+              <%# <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
                 条件
-              </button>%>
-
-              <%# 詳細検索表示ボタン %>
+              </button> %>
               <%# f.submit ("検索") , class: 'btn btn-outline-success'%>
               <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
                 <i class="fas fa-search"></i>
               <% end %>
-            <%#</div> %>
+            </div> 
           </div>
         <% end %>
       </div>
       <%#　スマホ画面での検索ボタン　%>
-      <div class="search col-1 offset-2 d-sm-none d-block">
+      <div class="search col offset-2 d-sm-none d-block">
         <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
           <i class="fas fa-search"></i>    
         </button>
       </div>
       <% if user_signed_in? %>
         <%#　ユーザーアイコン　%>
-        <div class="user col-1 mx-2">
+        <div class="user col col-md-1 ">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
         <%#　お知らせアイコン　%>
-        <div class="bell col-1">
+        <div class="bell col col-md-1">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
           <% end %>

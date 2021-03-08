@@ -11,27 +11,25 @@
     <div class="row">
 
       <%# サイドバー %>
-      <div class="sidebar_col col-2 d-none d-md-block p-0">
+      <div class="col-2 d-none d-md-block sidebar_col p-0">
         <%= render 'layouts/sidebar'%>
       </div>
 
       <%#　メインコンテント %>
-      <div class="main_content col p-0">
+      <div class="col main_content p-0">
       
         <%# ここから3行はフラッシュ表示 %>
         <% flash.each do |message_type, message| %>
           <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
         <% end %>
         <div class="container">
-
-          <%# 詳細検索からぷすコメントアウトしたよ%>
+          <%# 詳細検索欄、表示用のボタンはヘッダーでコメントアウト %>
           <%# 詳細検索 %>
-          <%# <div class="collapse mx-auto" id="collapseSearchLecture">
-            <div class="card card-body"> %>
+          <%# <div class="collapse mx-auto" id="collapseSearchLecture"> %>
+            <%# <div class="card card-body"> %>
               <%# render('layouts/search_form') %>
-              <%# </div>
-          </div> %>
-            
+            <%# </div> %>
+          <%# </div> %>
           <div class="container">
             <%# 他のページをここに代入 %>
             <%= yield %>
