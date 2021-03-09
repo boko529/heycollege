@@ -21,6 +21,16 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/regular';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
+
+// リセット
+// html, body {
+//   top: 0;
+//   margin: 0;
+//   padding: 0;
+//   div.row {
+//     width: 100%;
+//   }
+// }
  
 /* タイポグラフィー */
 h1, h2, h3, h4, h5, h6 {
@@ -52,13 +62,16 @@ p {
 header{
   position: fixed;
   height: 65px;
-  background-color: rgb(180, 245, 143);
+  background-color: rgb(203, 241, 191);
   width: 100%;
   z-index: 2;
   a{
-    color: black;
+    color: rgb(90, 82, 82);
   }
   .row{
+    display: flex;
+    align-items: center;
+
     display: flex;
     align-items: center;
   }
@@ -70,12 +83,16 @@ header{
   input .btn{
     height: 40px;
   }
+
+  .bell, .user {
+  text-align: right;
+  }
 }
 
 // サイドバー
 .sidebar_col{
   a{
-    color: green;
+    color: rgb(90, 82, 82);
   }
   background-color: #EEEEEE;
   .sidebar_fixed {
@@ -107,6 +124,21 @@ footer {
   margin-top: 0px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
+  .footer_button {
+    
+    width: 100%;
+    height: 70px;
+    .row {
+      padding-top: 20px;
+    }
+    .rank, .add, .book, .other {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    
+  }
+  
   a{
     color: #777;
     &:hover{
