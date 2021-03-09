@@ -1,8 +1,8 @@
 <% provide(:title, @lecture.name) %>
-<% provide(:button_text,"レビューを投稿する") %>
+<% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
   <div class="lecture-header">
-    <%= link_to "講義一覧へ", lectures_path %>
+    <%= link_to t('.to-class-list'), lectures_path %>
     <%= link_to @lecture.user do %>
       <%= gravatar_for @lecture.user, 20 %><%= @lecture.user.name %>
     <% end %>
