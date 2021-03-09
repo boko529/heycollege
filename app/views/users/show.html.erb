@@ -15,7 +15,7 @@
       </div>
       <% if @user == current_user %>
         <div class="edit-btn">
-          <%= link_to '編集', edit_user_path(@user.id)%>
+          <%= link_to t('.edit'), edit_user_path(@user.id)%>
         </div>
       <% else %>
         <div class="follow-btn">
