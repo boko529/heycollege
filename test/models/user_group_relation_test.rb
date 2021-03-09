@@ -22,7 +22,7 @@ class UserGroupRelationTest < ActiveSupport::TestCase
 
   test "should join and unjoin a group" do
     user = users(:user1)
-    group = groups(:group1)
+    group = groups(:group3)
     assert_not user.belongs?(group)
     user.join(group)
     assert user.belongs?(group)

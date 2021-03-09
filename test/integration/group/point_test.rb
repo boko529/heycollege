@@ -30,10 +30,12 @@ class Group::PointTest < ActionDispatch::IntegrationTest
   end
 
   test "get helpful point" do
-    assert_difference "GroupPointHistory.count", 1 do
+    # @userが2つのグループに所属しているので2つ増える
+    assert_difference "GroupPointHistory.count", 2 do
       assert @user.group_helpfuled_point
     end
-    assert_equal 20, @group.group_point.current_point
-    assert_equal 20, @group.group_point.total_point
+    # 基本である10ポイント。2つのグループに所属しているので各々に5ポイント追加(元々は10ポイント)
+    assert_equal 15, @group.group_point.current_point
+    assert_equal 15, @group.group_point.total_point
   end
 end
