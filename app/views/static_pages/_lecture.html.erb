@@ -1,15 +1,36 @@
-<li id = lecture_<%= lecture.id %> class = "lecture" >
-  <span class="rank">
-    <%# ページネートに合わせて順位を表示。1ページ目はnil %>
-    <% if params[:page] %>
-      <%= i + 20 * ( params[:page].to_i - 1 ) %>位
-    <% else %>
-      <%= i + 20 * params[:page].to_i %>位
-    <% end %>
-  </span>
+<div id = lecture_<%= lecture.id %> class = "lecture" >
+
+ <div class="row">
+
+    <%# 順位 %>
+    <div class="col-sm-1 col-2">
+      <span class="rank ml-1 ml-sm-3">
+        <%# ページネートに合わせて順位を表示。1ページ目はnil %>
+        <% if params[:page] %>
+          <%= i + 20 * ( params[:page].to_i - 1 ) %>位
+        <% else %>
+          <%= i + 20 * params[:page].to_i %>位
+        <% end %>
+      </span>
+    </div>
   
-  <span class="score"><%= lecture.average_score %></span>
-  <%= link_to lecture.name, lecture %>
-  <span class="teacher-name">  <%= link_to lecture.teacher.name, lecture.teacher %></span>
-  <span>レビュー数: <%= lecture.all_reviews_count %></span>
-</li>
+   <%# スコア %>
+    <div class="col-2 col-lg-1 px-0 py-auto">
+    <span class="score"><%= lecture.average_score %></span>
+    </div>
+
+    <div class="col-3 col-lg-3 px-0 py-auto">
+      <span class="class-name m-0 p-0"> <%= link_to lecture.name, lecture %>
+    </div>
+
+    <div class="col-sm-3 col-4 p-0 p-sm-auto">
+      <%# 先生名前 %>
+      <span class="teacher-name">  <%= link_to lecture.teacher.name, lecture.teacher %></span>
+      <%# レビュー数 %>
+      <span><i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %></span>
+    </div>
+
+    <div class="col-md-2 col-0"></div>
+
+</div>
+</div>
