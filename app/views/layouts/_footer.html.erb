@@ -27,12 +27,35 @@
 
       <%# その他 %>
       <div class="other col">
-        <a href="">
-          <i class="fas fa-ellipsis-h fa-2x"></i>
-        </a>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt fa-2x"></i>
+        <% end %>
       </div>
-      
-    <% end %>
+
+         <%# ログインしてない時 %>
+      <% else %>
+        <div class="rank col">
+          <%= link_to root_path do %>
+            <i class="fas fa-home fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+          <% end %>
+        </div>
+        <div class="signup col">
+          <%= link_to new_user_registration_path do %>
+            <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">サインアップ</span>
+          <% end %>
+        </div>
+        <div class="login col">
+          <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">ログイン</span>
+          <% end %>
+        </div>
+        <div class="others col">
+          <%= link_to "#" do %>
+            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
+          <% end %>
+        </div>
+      <% end %>
+ 
     </div>
   </div>
  <div class="container">
