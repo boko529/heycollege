@@ -23,5 +23,8 @@ module HeyCollege
     #日本語対応
     config.i18n.default_locale = :ja 
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # 複数のファイルを読み取る
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end

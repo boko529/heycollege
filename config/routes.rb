@@ -29,5 +29,7 @@ Rails.application.routes.draw do
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
   get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
+  # 言語切り替え用rooting
+  get "/application/change_language/:language" => "application#change_language"
 
 end

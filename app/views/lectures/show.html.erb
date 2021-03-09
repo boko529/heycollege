@@ -1,8 +1,8 @@
 <% provide(:title, @lecture.name) %>
-<% provide(:button_text,"レビューを投稿する") %>
+<% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
   <div class="lecture-header">
-    <%= link_to "》講義一覧へ戻る", lectures_path %>
+    <%= link_to t('.to-class-list'), lectures_path %>
     <%= link_to @lecture.user do %>
       <%= gravatar_for @lecture.user, 20 %><%= @lecture.user.name %>
     <% end %>
@@ -15,7 +15,7 @@
       </span>
       <%= @lecture.name %></p>
       <span class="teacher-name">
-      <p>担当教員：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
+      <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
       </span>
     </h3>
     
@@ -31,7 +31,7 @@
     <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>-->
     <%# 自分の投稿のときのみ表示 %>
     <% if current_user?(@lecture.user) %>
-      <%= link_to "編集", edit_lecture_path %>
+      <%= link_to t('.edit'), edit_lecture_path %>
       <%= link_to "削除", @lecture, method: :delete, data: { confirm: "削除すると、この講義に関するすべてのレビューが削除されます。本当に削除しますか？"} %>
     <% end %>
     <%# 最も参考になっているレビュー関係 %>

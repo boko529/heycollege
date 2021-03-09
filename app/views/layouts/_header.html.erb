@@ -63,6 +63,16 @@
           </div>
         </div>
       </div>
+      <%# 言語切り替えボタン %>
+      <% if session[:locale] == "en" || session[:locale].blank? %>
+        <%= link_to "/application/change_language/ja" do %>
+        日本語
+        <% end %>
+      <% elsif session[:locale] == "ja" %>
+        <%= link_to "/application/change_language/en" do %>
+        English
+        <% end %>
+      <% end %>
       <%#　ヘイカレッジロゴ %>
       <div class="logo col-5 col-sm-3 mx-md-0 ml-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
