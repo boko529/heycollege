@@ -12,7 +12,9 @@
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
       <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).admin == false %>
-        <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id}, method: :patch %>
+        <ul>
+          <li><%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id}, method: :patch %></li>
+        </ul>  
       <% end %>
     <% end %>
   </div>

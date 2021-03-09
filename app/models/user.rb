@@ -25,20 +25,6 @@ class User < ApplicationRecord
                               foreign_key: "user_id"
   has_many :group, through: :active_relations
 
-  include Gravtastic
-  gravtastic
-
-  def join(group1)
-    group << group1
-  end
-
-  def unjoin(group1)
-    active_relations.find_by(group_id: group1.id).destroy
-  end
-
-  def belongs?(group1)
-    group.include?(group1)
-  end
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
@@ -72,6 +58,19 @@ class User < ApplicationRecord
       )
     end
     notification.save if notification.valid?
+  end
+
+  def join(group1)
+    group << group1
+  end
+
+  def unjoin(group1)
+    active_relations.find_by(group_id: group1.id).destroy
+  end
+
+  # groupに参加しているかどうかを確認する
+  def belongs?(group1)
+    group.include?(group1)
   end
 
 end

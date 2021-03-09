@@ -51,4 +51,18 @@ class GroupsEditTest < ActionDispatch::IntegrationTest
     assert_not_equal @group2.name, name
   end
 
+  test "admin user cannot edit other group" do
+    login_as(@user2, scope: :user)
+    get edit_group_path(@group2)
+    assert_template nil
+  end
+
+  test "admin user cannot update other group" do
+    login_as(@user2, scope: :user)
+    get edit_group_path(@group2)
+    name  = "名大祭"
+    patch group_path(@group2), params: { group: { name: name } }
+    assert_template nil
+    assert_not_equal @group2.name, name
+  end
 end

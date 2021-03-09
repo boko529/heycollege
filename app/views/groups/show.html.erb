@@ -12,7 +12,9 @@
     <h1>Members</h1>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
-      <%= link_to user.name, user %>
+      <ul>
+        <li><%= link_to user.name, user %></li>
+      </ul>
     <% end %>
   </div>
   <% if @relation &&  @relation.admin %>
