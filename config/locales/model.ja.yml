@@ -53,3 +53,7 @@ ja:
       faculty:
         APS: "APS"
         APM: "APM"
+    user_point_history:
+      point_type:
+        init: "初期ポイント"
+        helpfuled: "レビューがいいねされました"

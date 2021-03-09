@@ -9,17 +9,22 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@example.com", password:  "foobar", admin: true, confirmed_at: Time.now)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", admin: true, confirmed_at: Time.now)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
   name  = Faker::Name.name
-  email = "user-#{n+1}@example.com"
+  email = "user-#{n+1}@apu.ac.jp"
   password = "foobar"
   User.create!(name:  name,
   email: email,
   password: password,
   confirmed_at: Time.now)
+end
+
+# ユーザーごとにポイントテーブルを作成
+User.all.each do |user|
+  user.create_user_point(current_point: 10, total_point: 10)
 end
 
 Teacher.create!(name: "森 直樹", user_id: 1)
@@ -39,9 +44,13 @@ end
   users.each{ |user| user.reviews.create!(content: content, lecture_id: lecture_id, score: 3) }
 end
 
-# adminユーザーへの参考になるとリンク
+# adminユーザーへの参考になると通知
 Helpful.create(user_id: 2, review_id: 1)
 Notification.create(visitor_id: 2, visited_id: 1, review_id: 1, action: "helpful")
+
+# adminユーザーへのフォローと通知
+Relationship.create(follower_id: 2, followed_id: 1)
+Notification.create(visitor_id: 2, visited_id: 1, action: "follow")
 
 News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")

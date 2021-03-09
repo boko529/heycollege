@@ -25,6 +25,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # 自分がフォローしているユーザー一覧
+  def following
+    @user = User.find(params[:user_id])
+    @followings = @user.following_user
+  end
+
+  # 自分をフォローしているユーザー一覧
+  def follower
+    @user = User.find(params[:user_id])
+    @followers = @user.follower_user
+  end
+
   private
   def user_params
     params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_url)
