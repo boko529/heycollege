@@ -62,11 +62,12 @@ class User < ApplicationRecord
   def join(group1)
     group << group1
   end
-  
+
   def unjoin(group1)
     active_relations.find_by(group_id: group1.id).destroy
   end
-  
+
+  # groupに参加しているかどうかを確認する
   def belongs?(group1)
     group.include?(group1)
   end

@@ -40,9 +40,22 @@ class GroupsEditAdminTest < ActionDispatch::IntegrationTest
     assert_template nil
   end
 
-  test "update_admin(admin == false" do
+  test "update_admin(admin == false)" do
     login_as(@user1, scope: :user)
-    patch "/groups/#{@group2.id}/update_admin", params: { id: @group1.id, user_id: @user1.id }
+    patch "/groups/#{@group2.id}/update_admin", params: { id: @group2.id, user_id: @user1.id }
+    assert_template nil
+    assert_not_equal @relation.admin, true
+  end
+
+  test "admin user cannot edit other group admin" do
+    login_as(@user2, scope: :user)
+    get "/groups/#{@group2.id}/edit_admin"
+    assert_template nil
+  end
+
+  test "admin user cannot update other group admin" do
+    login_as(@user2, scope: :user)
+    patch "/groups/#{@group2.id}/update_admin", params: { id: @group2.id, user_id: @user2.id }
     assert_template nil
     assert_not_equal @relation.admin, true
   end
