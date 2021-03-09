@@ -17,42 +17,56 @@ class User < ApplicationRecord
   has_many :user_point_history, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :validatable, :confirmable
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
-  validates :name, presence: true, length: { minimum: 2, maximum: 20}
+         :recoverable, :rememberable, :validatable, :confirmable
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
+  has_many :active_relations, class_name:  "UserGroupRelation",
+  foreign_key: "user_id"
+  has_many :group, through: :active_relations
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
-  has_many :active_relations, class_name:  "UserGroupRelation", foreign_key: "user_id"
-  has_many :group, through: :active_relations
+  validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
+  validates :name, presence: true, length: { minimum: 2, maximum: 20}
   include Gravtastic
   gravtastic
-
+  
   # ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
-
+  
   # ユーザーをアンフォローする
   def unfollow(user_id)
     follower.find_by(followed_id: user_id).destroy
   end
-
+  
   # フォローしているかを確認する
   def following?(user)
     following_user.include?(user)
+  end
+  
+  # フォローした際に通知を発行
+  def create_notification_follow(followed_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", self.id, followed_user.id, 'follow'])
+    # 既に通知が存在するか確認
+    if temp.blank?
+      notification = self.active_notifications.new(
+        visited_id: followed_user.id,
+        action: 'follow'
+      )
+    end
+    notification.save if notification.valid?
   end
 
   def join(group1)
     group << group1
   end
-
+  
   def unjoin(group1)
     active_relations.find_by(group_id: group1.id).destroy
   end
-
+  
   def belongs?(group1)
     group.include?(group1)
   end

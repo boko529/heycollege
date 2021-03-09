@@ -2,3 +2,14 @@
 one:
   user: user1
   group: group2
+  admin: false
+
+two:
+  user: user2
+  group: group1
+  admin: true
+
+three:
+  user: user3
+  group: group1
+  admin: false

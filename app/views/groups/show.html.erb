@@ -15,3 +15,6 @@
       <%= link_to user.name, user %>
     <% end %>
   </div>
+  <% if @relation &&  @relation.admin %>
+    <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
+  <% end %>

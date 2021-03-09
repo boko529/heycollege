@@ -23,7 +23,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'devise/sessions/new'
     login_as(@user, scope: :user)
     get user_path(@user.id)
-    assert_select 'td', @user.name
+    assert_select 'strong', @user.name
     assert @user.confirmed_at.present?
   end
 

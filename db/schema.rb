@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_03_06_072834) do
+=======
+ActiveRecord::Schema.define(version: 2021_03_08_005151) do
+>>>>>>> start/group
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,11 +85,11 @@ ActiveRecord::Schema.define(version: 2021_03_06_072834) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.integer "review_id", null: false
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "review_id"
     t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
@@ -126,6 +130,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_072834) do
     t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
     t.index ["group_id"], name: "index_user_group_relations_on_group_id"
     t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_user_group_relations_on_user_id"
@@ -168,10 +173,8 @@ ActiveRecord::Schema.define(version: 2021_03_06_072834) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.bigint "group_id"
     t.string "twitter_url"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -188,5 +191,8 @@ ActiveRecord::Schema.define(version: 2021_03_06_072834) do
   add_foreign_key "user_point_histories", "user_points"
   add_foreign_key "user_point_histories", "users"
   add_foreign_key "user_points", "users"
+<<<<<<< HEAD
   add_foreign_key "users", "groups"
+=======
+>>>>>>> start/group
 end
