@@ -13,3 +13,8 @@ three:
   user: user3
   group: group1
   admin: false
+
+forth:
+  user: user1
+  group: group1
+  admin: false

@@ -11,9 +11,13 @@ class GroupsCreateTest < ActionDispatch::IntegrationTest
   test "valid group create" do
     login_as(@user, scope: :user)
     get new_group_path
-    assert_difference 'UserGroupRelation.count', 1 do
-      assert_difference 'Group.count', 1 do
-        post groups_path, params: { group: { name: @valid_name } }
+    assert_difference 'GroupPointHistory.count', 1 do
+      assert_difference 'GroupPoint.count', 1 do
+        assert_difference 'UserGroupRelation.count', 1 do
+          assert_difference 'Group.count', 1 do
+            post groups_path, params: { group: { name: @valid_name } }
+          end
+        end
       end
     end
     follow_redirect!
@@ -27,8 +31,12 @@ class GroupsCreateTest < ActionDispatch::IntegrationTest
   test "invalid group create(not unique)" do
     login_as(@user, scope: :user)
     get new_group_path
-    assert_no_difference 'Group.count' do
-      post groups_path, params: { group: { name: @invalid_name } }
+    assert_no_difference 'GroupPoint.count' do
+      assert_no_difference 'GroupPointHistory.count' do
+        assert_no_difference 'Group.count' do
+          post groups_path, params: { group: { name: @invalid_name } }
+        end
+      end
     end
     assert_template 'groups/new'
   end
@@ -36,8 +44,12 @@ class GroupsCreateTest < ActionDispatch::IntegrationTest
   test "invalid group create(blank name)" do
     login_as(@user, scope: :user)
     get new_group_path
-    assert_no_difference 'Group.count' do
-      post groups_path, params: { group: { name: "  " } }
+    assert_no_difference 'GroupPoint.count' do
+      assert_no_difference 'GroupPointHistory.count' do
+        assert_no_difference 'Group.count' do
+          post groups_path, params: { group: { name: "  " } }
+        end
+      end
     end
     assert_template 'groups/new'
   end

@@ -19,6 +19,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(name: group_params[:name])
     if @group.save
+      # ポイントテーブル作成+初期ポイント付与
+      @group.initial_point
       UserGroupRelation.create(user_id: current_user.id, group_id: @group.id, admin: true)
       flash[:success] = "団体ページ作成しました"
       redirect_to @group

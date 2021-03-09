@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
+
   resources :groups do
     member do
       get :users
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
       get :group
     end
   end
+
   resources :user_group_relations, only: [:create, :destroy, :edit, :update]
   # herokuに既存のユーザーにinitポイントを付与、一度限りのやつです
   get 'admin/user/set_init_point', to: 'admin/users#set_init_point'
@@ -42,5 +44,4 @@ Rails.application.routes.draw do
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
   get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
-
 end
