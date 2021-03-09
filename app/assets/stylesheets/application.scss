@@ -95,7 +95,11 @@ header{
 // メインコンテンツの高さをヘッダーに合わせる
 .main_content{
   margin-top: 80px;
-  min-height: 650px;
+  min-height: 800px;
+}
+
+.yield_box{
+  min-height: 35rem;
 }
 
 /* footer */
