@@ -1,6 +1,6 @@
 <%# ページのタイトル %>
 <% if @user == current_user %>
-  <% provide(:title, 'マイページ編集') %>
+  <% provide(:title, t('.title_login') ) %>
 <% else %>
   <% provide(:title, @user.name) %>
 <% end %>
@@ -29,12 +29,12 @@
        <!---
         <br>性別:
           <%= @user.gender_i18n  %> -->
-          学部：
+          <%= t('.faculty') %>：
           <%= @user.faculty_i18n %>
-        <br>学年：
+        <br><%= t('.grade') %>：
           <%= @user.grade_i18n %>
-        <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
-        <br>スコア：<%= @user.user_point.total_point.round(0) %>
+        <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
+        <br><%= t('.point_score') %>：<%= @user.user_point.total_point.round(0) %>
       </div>
     </div>
     <p>
@@ -45,7 +45,7 @@
       <span id="follow", id='following-count_<%= @user.id%>'>
         <%= link_to users_following_path(@user) do%>
           <span class=color-brack>
-            <%= @user.follower.count %>フォロー中
+            <%= @user.follower.count %><%= t('.following') %>
           </span>
         <% end %>
       </span>
@@ -53,7 +53,7 @@
       <span id='follower-count_<%= @user.id%>'>
         <%= link_to users_follower_path(@user) do%>
           <span class=color-brack>
-            <%= @user.followed.count %>フォロワー
+            <%= @user.followed.count %><%= t('.follower') %>
           </span>
         <% end %>
       </span>
@@ -70,7 +70,7 @@
             <i class="fab fa-twitter-square fa-2x"></i>
             <% end %>
           <% elsif @user.id == current_user.id %>
-              <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id) %>
+              <%= link_to t('.add_twitter'), edit_user_path(@user.id) %>
           <% end %>
         <% end %>
       </small>
@@ -101,7 +101,7 @@
     </div>-->
 
     <% if @reviews.any? %>
-      <h3>レビュー数 (<%= @reviews.count %>)</h3>
+      <h3><%= t('.reviews_count') %> (<%= @reviews.count %>)</h3>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>

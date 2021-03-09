@@ -2,3 +2,15 @@ en:
   users:
     show:
       edit: "edit"
+      title_login: "MyPage"
+      faculty: "Faculty"
+      grade: "Grade"
+      college_point: "CollegePoint"
+      point_score: "Score"
+      following: "follow"
+      follower: "follower"
+      add_twitter: "Add Twitter"
+      reviews_count: "Reviews"
+    followbutton:
+      follow: "Follow"
+      unfollow: "UnFollow"
