@@ -1,5 +1,13 @@
 ja:
   layouts:
     header:
+      search_insidetext: "クラスまたは先生名で探す"
     sidebar:
       ranking: "ランキング"
+      create: "ページを作る"
+      book: "ブックマーク"
+      help: "ヘルプ"
+      contact: "お問い合わせ"
+      signout: "ログアウト"
+      signup: "新規登録"
+      signin: "ログイン"

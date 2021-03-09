@@ -24,7 +24,7 @@
         <p>レビューはありません。</p>
       <% else %>
         <div id="star-lecture<%= @lecture.id %>"></div>
-        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
+        <h4><%= t('.ratings') %>： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
       <% end %>
     </div>
     <!--
@@ -37,7 +37,7 @@
     <%# 最も参考になっているレビュー関係 %>
     <div>
       <% if @helpful_review %>
-        <p>最も参考になっているレビュー</p>
+        <p><%= t('.most-helpful-rev') %></p>
         <div class="most_helpful_review">
           <span id="star-helpful-review"></span>
           <p><%= link_to @helpful_review.user.name, @helpful_review.user %></p>
@@ -58,7 +58,7 @@
     <%# 自分がレビューしたことあるかを確認 %>
     <% if @lecture.review?(current_user) %>
       <%# 自分が書いたレビューへのリンクを表示 %>
-      <%= link_to "あなたが書いたこの講義のレビューを見る", lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
+      <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
     <% else %>
       <%# レビュー投稿欄 %>
       <p>
@@ -77,7 +77,7 @@
   <%# レビュー表示 %>
   <div class="col-md-10 lecture-reviews">
     <% if @reviews.any? %>
-      <p><strong>レビュー数 (<%= @lecture.all_reviews_count %>)</strong></p>
+      <p><strong><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</strong></p>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>

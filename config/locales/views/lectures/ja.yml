@@ -2,6 +2,10 @@ ja:
   lectures:
     show:
       post_review: "投稿"
-      to-class-list: "》講義一覧へ"
+      to-class-list: "》クラス一覧へ"
       class-teacher: "担当教員"
       edit: "編集"
+      most-helpful-rev: "もっともいいねがあるレビュー"
+      ratings: "評価"
+      show-own-review: "自分のレビューをみる"
+      review-number: "評価数"
