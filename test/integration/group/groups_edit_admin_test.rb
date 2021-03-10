@@ -6,7 +6,7 @@ class GroupsEditAdminTest < ActionDispatch::IntegrationTest
     @user1 = users(:user1) # group2に所属、admin == false
     @user2 = users(:user2) # group1に所属、admin == true
     @user3 = users(:user3) # group1に所属、admin == false
-    @group1 = groups(:group1) # user2が所属
+    @group1 = groups(:group1) # user2(admin),user3が所属
     @group2 = groups(:group2) # user1が所属
     @relation = user_group_relations(:one) # user1がgroup2に所属、admin == false
   end
