@@ -69,6 +69,14 @@
 
 }
 
+.user-name{
+  font-size:x-large ;
+}
+
+.color-brack{
+  color: #000;
+}
+
 .sns{
   margin-left: 0.5rem;
   margin-top: -1.5rem;
@@ -76,4 +84,16 @@
 
 .reviews{
   padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
+}
+
+.following-follower-index{
+  .following-follower{
+    border-bottom: 1px solid gray;
+    height: 3.5rem;
+    .follow-btn{
+      float: right;
+    }
+  }
+
+
 }

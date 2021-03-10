@@ -38,14 +38,28 @@
       </div>
     </div>
     <p>
-      <font size="5"><strong><%= @user.name %></strong></font>
-       <br>フォロー：
-          <span id='following-count_<%= @user.id%>'><%= link_to users_following_path(@user) do%><%= @user.follower.count %>フォロー中<% end %></span>
-        フォロワー：
-          <span id='follower-count_<%= @user.id%>'><%= link_to users_follower_path(@user) do%><%= @user.followed.count %>フォロワー<% end %></span>
+      <span class="user-name">
+        <strong><%= @user.name %></strong>
+      </span>
+      <br>
+      <span id="follow", id='following-count_<%= @user.id%>'>
+        <%= link_to users_following_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.follower.count %>フォロー中
+          </span>
+        <% end %>
+      </span>
+      &nbsp;&nbsp;&nbsp;
+      <span id='follower-count_<%= @user.id%>'>
+        <%= link_to users_follower_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.followed.count %>フォロワー
+          </span>
+        <% end %>
+      </span>
     </p>
     <div class="sns">
-      <small>メッセージ<br>テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、</small>
+      <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
       <br>
       <small>Instagram: @insuta</small>
       &nbsp;&nbsp;
