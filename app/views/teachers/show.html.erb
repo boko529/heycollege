@@ -27,8 +27,22 @@
 </div>
 
 <%# 最も参考になるレビュー %>
-<div class="most-helpful-review">
-  <%= @teacher.most_helpful_review %>
+<div class="most_helpful_review">
+  <p>最も参考になっているレビュー</p>
+  <% if @teacher.most_helpful_review %>
+    <span id="star-helpful-review"></span>
+    <p><%= link_to @teacher.most_helpful_review.user.name, @teacher.most_helpful_review.user %></p>
+    <p class="timestamp">
+      <%= @teacher.most_helpful_review.updated_at.strftime("%Y-%m-%d") %>
+    </p>
+    <p><%= @teacher.most_helpful_review.content %></p>
+    <%# 役に立ったボタン %>
+    <div id="helpfuls_buttons_<%= @teacher.most_helpful_review.id %>">
+      <%= render partial: 'helpfuls/helpful', locals: { lecture: @teacher.most_helpful_review.lecture, review: @teacher.most_helpful_review } %>
+    </div>
+  <% else %>
+    <p>レビューがありません</p>
+  <% end %>
 </div>
 
 <%# 星表示のためのjavascript %>

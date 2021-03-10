@@ -45,6 +45,8 @@ class Teacher < ApplicationRecord
       all_reviews.push(lecture.reviews.where.not(content: "").includes(:helpfuls))
     end
     all_reviews = all_reviews.flatten!
-    return all_reviews.sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
+    unless all_reviews.blank?
+      return all_reviews.sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
+    end
   end
 end
