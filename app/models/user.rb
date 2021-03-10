@@ -54,7 +54,9 @@ class User < ApplicationRecord
         action: 'follow'
       )
     end
-    notification.save if notification.valid?
+    if !notification.blank?
+      notification.save 
+    end
   end
 
 end
