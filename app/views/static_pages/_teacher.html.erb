@@ -1,13 +1,27 @@
-<li id = teacher_<%= teacher.id %> class = "teacher" >
-  <span class="rank">
-    <%# ページネートに合わせて順位を表示。1ページ目はnil %>
-    <% if params[:page] %>
-      <%= i + 20 * ( params[:page].to_i - 1 ) %>位
-    <% else %>
-      <%= i + 20 * params[:page].to_i %>位
-    <% end %>
-  </span>
+<div id = teacher_<%= teacher.id %> class = "teacher container-fluid" >
 
-  <span class="score"><%= teacher.average_score %></span>
-  <%= link_to teacher.name, teacher %>
-</li>
+  <div class="row">
+
+    <%# 順位 %>
+    <div class="col-sm-1 col-2">
+      <span class="rank ml-1 ml-sm-3">
+        <%# ページネートに合わせて順位を表示。1ページ目はnil %>
+        <% if params[:page] %>
+          <%= i + 20 * ( params[:page].to_i - 1 ) %>位
+        <% else %>
+          <%= i + 20 * params[:page].to_i %>位
+        <% end %>
+      </span>
+    </div>
+
+    <%# スコア %>
+    <div class="col-2 col-lg-1 px-0 py-auto">
+      <span class="score"><%= teacher.average_score %></span>
+    </div>
+
+    <%# 先生めい %>
+    <div class="col-sm-10 col-4 p-0 p-sm-auto">
+      <%= link_to teacher.name, teacher %>
+    </div>
+  </div>
+</div>

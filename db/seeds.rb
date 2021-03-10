@@ -9,7 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", admin: true, confirmed_at: Time.now)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
