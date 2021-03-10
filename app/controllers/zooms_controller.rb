@@ -1,47 +1,5 @@
-class UsersController < ApplicationController   
-  before_action :authenticate_user!, only: [:edit,:update]
-  def show
-    @user = User.find(params[:id])
-    @reviews = @user.reviews
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    if @user == current_user
-      render 'edit'
-    else
-      redirect_to user_path(current_user)
-    end
-  end
-
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user.id)
-      flash[:notice] = "プロフィールを変更しました"
-    else
-      render 'edit'
-    end
-  end
-
-  # 自分がフォローしているユーザー一覧
-  def following
-    @user = User.find(params[:user_id])
-    @followings = @user.following_user
-  end
-
-  # 自分をフォローしているユーザー一覧
-  def follower
-    @user = User.find(params[:user_id])
-    @followers = @user.follower_user
-  end
-
-  require 'net/https'
-  require 'net/http'
-  require 'uri'
-  require 'json'
-
-  def create_zoom
+class ZoomsController < ApplicationController
+  def create
     @api_key = "66aoWxi3R1CCqYtfXXX3vA"
     @secret  = "eoEOrBqOAFBidWwGKmrB2HUHwb6YT8a6DRSV"
     @jwt = self.GenerateJWT
@@ -64,9 +22,48 @@ class UsersController < ApplicationController
         }.to_json
     res = http.request(req)
     parseURL = JSON.parse(res.body)
-    @url = parseURL["join_url"]
-    @host_url = parseURL["start_url"]
+
+
+    @zoom = Zoom.new(zoom_params)
+    @zoom.user_id = current_user.id
+    @zoom.host_url = parseURL["start_url"]
+    @zoom.join_url = parseURL["join_url"]
+    if @zoom.save
+      flash[:notice] = "zoomの部屋が作成されました"
+      redirect_to zoom_path(@zoom.id)
+    else
+      render :new
+    end
   end
+
+  def new
+    @zoom = Zoom.new
+  end
+
+  def index
+    @zooms = Zoom.all
+    @zoom = Zoom.new
+    @user=current_user
+  end
+
+  def show
+    @zoom = Zoom.find(params[:id])
+  end
+
+  def destroy
+    @zoom=Zoom.find(params[:id])
+    if @zoom.destroy
+      flash[:notice]="zoomは削除されました"
+      redirect_to zooms_path
+    else
+      render :index
+    end
+  end
+
+  require 'net/https'
+  require 'net/http'
+  require 'uri'
+  require 'json'
 
   def GenerateJWT
     payload = { 
@@ -92,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_url)
+  def zoom_params
+    params.require(:zoom).permit(:join_url,:host_url, :user_id, :title, :description)
   end
 end

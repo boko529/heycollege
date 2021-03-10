@@ -1,0 +1,5 @@
+<% if @zoom.user_id == current_user %>
+  <%= link_to "このzoomにホストとして参加する", @zoom.host_url %>
+<% else %>
+  <%= link_to "このzoomに参加する", @zoom.join_url %>
+<% end %>

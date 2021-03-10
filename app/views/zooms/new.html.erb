@@ -1,0 +1,15 @@
+<% provide(:title, '新規講義作成') %>
+<% provide(:button_text, '作成') %>
+<h1>ZOOM作成</h1>
+
+<div class="row justify-content-center">
+  <%= form_for(@zoom) do |f| %>
+<h4>タイトル</h4>
+  <%= f.text_field :title %>
+  <h4>説明</h4>
+  <%= f.text_area :description %>
+  <p>
+  <%= f.submit 'Create ZOOM', class: "btn btn-primary"%>
+  </p>
+  <% end %>
+</div>
