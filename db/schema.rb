@@ -25,6 +25,32 @@ ActiveRecord::Schema.define(version: 2021_03_09_124912) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "group_point_histories", force: :cascade do |t|
+    t.integer "point_type"
+    t.float "amount"
+    t.bigint "group_id", null: false
+    t.bigint "group_point_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_point_histories_on_group_id"
+    t.index ["group_point_id"], name: "index_group_point_histories_on_group_point_id"
+  end
+
+  create_table "group_points", force: :cascade do |t|
+    t.float "current_point"
+    t.float "total_point"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_points_on_group_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "helpfuls", force: :cascade do |t|
     t.integer "review_id"
     t.integer "user_id"
@@ -95,6 +121,17 @@ ActiveRecord::Schema.define(version: 2021_03_09_124912) do
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
+  create_table "user_group_relations", force: :cascade do |t|
+    t.integer "user_id", default: 0, null: false
+    t.integer "group_id", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
+    t.index ["group_id"], name: "index_user_group_relations_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
+    t.index ["user_id"], name: "index_user_group_relations_on_user_id"
+  end
+
   create_table "user_point_histories", force: :cascade do |t|
     t.integer "point_type"
     t.float "amount"
@@ -140,6 +177,9 @@ ActiveRecord::Schema.define(version: 2021_03_09_124912) do
 
   add_foreign_key "bookmarks", "lectures"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "group_point_histories", "group_points"
+  add_foreign_key "group_point_histories", "groups"
+  add_foreign_key "group_points", "groups"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"

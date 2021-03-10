@@ -1,0 +1,22 @@
+<% provide(:title, @group.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="group_info">
+      <h1>
+        <%= @group.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <%= render 'join_form' %>
+    <h1>Members</h1>
+    <%= render 'shared/stats_user' %>
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= link_to user.name, user %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% if @relation &&  @relation.admin %>
+    <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
+  <% end %>

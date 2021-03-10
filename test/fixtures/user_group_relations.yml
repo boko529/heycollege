@@ -1,0 +1,32 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# group1→admin2人
+# group2→admin1人
+one:
+  user: user1
+  group: group2
+  admin: false
+
+two:
+  user: user2
+  group: group1
+  admin: true
+
+three:
+  user: user3
+  group: group1
+  admin: false
+
+forth:
+  user: user1
+  group: group1
+  admin: false
+
+five:
+  user: user4
+  group: group1
+  admin: true
+
+six:
+  user: user4
+  group: group2
+  admin: true

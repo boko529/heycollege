@@ -19,7 +19,7 @@ module User::Point
   end
 
   #ポイント使用,amountは正の値,ポイント使用する所でif文を用いて呼び出して(下記コメントの用に)。
-  # if point_use(amount: 10, point_type: 3)
+  # if @user.point_use(amount: 10, point_type: 3)
   #   # 実行したい処理
   # else
   #   flash[:danger] = "ポイントは足りません"
@@ -47,5 +47,15 @@ module User::Point
   # 参考になるを押された際のメソッド
   def helpfuled_point
     self.point_get(amount: 10, point_type: 1)
+  end
+
+  # 参考になるを押された際の団体へのポイント付与
+  def group_helpfuled_point
+    unless self.group.blank?
+      amount = (10 / self.group.count).floor
+      self.group.each do |group|
+        group.point_get(amount: amount, point_type: 1)
+      end
+    end
   end
 end
