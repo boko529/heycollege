@@ -71,7 +71,7 @@
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: 'クラス名か先生名で検索' %>
+            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: '講義名か先生名で検索' %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append ">
               <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
