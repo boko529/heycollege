@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UsersPointTest < ActionDispatch::IntegrationTest
+class User::PointTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   def setup
     @user = users(:user3)

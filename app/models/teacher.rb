@@ -37,4 +37,16 @@ class Teacher < ApplicationRecord
       return self.name.split(" ")[0]
     end
   end
+
+  # 先生に関係するレビューを参考になっている順で獲得(内容があるもの限定、空白表示してもしょうがないかなと思って)
+  def teacher_reviews
+    all_reviews = []
+    self.lectures.includes(:reviews).each do |lecture|
+      all_reviews.push(lecture.reviews.where.not(content: "").includes(:helpfuls))
+    end
+    all_reviews = all_reviews.flatten!  #これで配列の中に複数の配列が入っている状態を展開して一つの配列にしている。いきなり配列うまく行かなかった。
+    unless all_reviews.blank?
+      return all_reviews.sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
+    end
+  end
 end
