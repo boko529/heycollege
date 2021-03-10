@@ -7,8 +7,8 @@
 <p>説明: <%= @zoom.description %></p>
 
 <% if @zoom.user_id == current_user.id %>
-  <%= link_to "このzoomにホストとして参加する", @zoom.host_url, class: "btn btn-primary" %>
+  <%= link_to "このzoomにホストとして参加する", @zoom.host_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer" %>
   <%= link_to "Destroy", zoom_path(@zoom.id), method: :delete,class: "btn btn-danger"%>
 <% else %>
-  <%= link_to "このzoomに参加する", @zoom.join_url, class: "btn btn-primary" %>
+  <%= link_to "このzoomに参加する", @zoom.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer" %>
 <% end %>

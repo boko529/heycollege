@@ -9,8 +9,8 @@
   <% end %>
   
   <p>説明: <%= truncate(f.description, length: 10)%></p>
-  
-    <%= link_to "このzoomに参加する", f.join_url, class: "btn btn-primary"  %>
+  <%= f.created_at.strftime("%m/%d %H:%M")%>
+  <%= link_to "このzoomに参加する", f.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer" %>
   </div>
 <% end %>
 
