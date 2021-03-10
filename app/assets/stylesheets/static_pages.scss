@@ -37,36 +37,67 @@ div.ranking-index{
     list-style: none;
     margin: 0;
     padding: 0;
-    li.lecture, li.teacher{
+
+     // 中身
+    div.lecture,
+    div.teacher{
       background-color: #eeeeee;
       border-radius: 4px;
-      margin: 5px 0;
+      margin:0;
       overflow: auto;
-      padding: 10px 0;
+      // padding: 10px 0;
       border-bottom: 1px solid gray;
       .rank{
         font-weight: bold;
-        display: inline-block;
+        display: flex;
         text-align: center;
-        width: 70px;
+        min-width: 50px;
         padding: 5px;
-        background-color: gold;
-        margin: 5px;
+        margin-left: 5%;
+        margin-right: 5%;
         border-radius: 10px;
       }
+
+      div {
+        text-align: center;
+      }
+
       .score{
-        background-color: springgreen;
+        background-color: gold;
         border-radius: 20%;
+        height: 29px;
+        width: 55px;
         padding: 10px;
         font-weight: bold;
-        color: black;
-        margin-left: 10px;
+        color: rgb(39, 33, 33);
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
+
+      .class-name{
+        display: inline-block;
+        height: 29px;
+        padding: 10px;
+        font-weight: bold;
+        color: rgb(39, 33, 33);
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+      }
+
       a{
-        color: black;
-        padding-left: 5px;
+        display: inline-block;
+        color: rgb(39, 33, 33);
+        padding-left: 1px;
         padding-top: 5px;
         font-weight: bold;
+        margin-left: 2%;
+        margin-right: 5%;
       }
     }
   }
