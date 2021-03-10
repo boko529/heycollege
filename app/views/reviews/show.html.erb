@@ -3,7 +3,7 @@
 <div class="review-show">
   <%= link_to "#{@lecture.name}に戻る", lecture_path(@lecture) %>
 
-  <span>講義：<%= @lecture.name %></span>
+  <span>クラス：<%= @lecture.name %></span>
   <span>講師： Teacher</span>
   <h4>スコア：<%= @review.score %></h4>
   <% unless @review.content.blank? %>
