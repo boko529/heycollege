@@ -20,7 +20,13 @@ four:
   total_point: 10
   user: user4
 
+five:
+  current_point: 10
+  total_point: 10
+  user: user5
+
 admin:
   current_point: 10
   total_point: 10
   user: test_admin
+

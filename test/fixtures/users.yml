@@ -21,7 +21,6 @@ user3:
   email: user3@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
-
   gender: "male"
   grade: "B1"
   faculty: "APS"
@@ -29,6 +28,15 @@ user3:
 user4:
   name: user4
   email: user4@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+user5:
+  name: user5
+  email: user5@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
   gender: "male"

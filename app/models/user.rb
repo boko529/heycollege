@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+  has_many :active_relations, class_name:  "UserGroupRelation",
+  foreign_key: "user_id"
+  has_many :group, through: :active_relations
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
@@ -28,22 +31,22 @@ class User < ApplicationRecord
   validates :message, length: { maximum: 100 }
   include Gravtastic
   gravtastic
-
+  
   # ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
-
+  
   # ユーザーをアンフォローする
   def unfollow(user_id)
     follower.find_by(followed_id: user_id).destroy
   end
-
+  
   # フォローしているかを確認する
   def following?(user)
     following_user.include?(user)
   end
-
+  
   # フォローした際に通知を発行
   def create_notification_follow(followed_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", self.id, followed_user.id, 'follow'])
@@ -57,4 +60,16 @@ class User < ApplicationRecord
     end
   end
 
+  def join(group1)
+    group << group1
+  end
+
+  def unjoin(group1)
+    active_relations.find_by(group_id: group1.id).destroy
+  end
+
+  # groupに参加しているかどうかを確認する
+  def belongs?(group1)
+    group.include?(group1)
+  end
 end
