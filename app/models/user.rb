@@ -47,15 +47,13 @@ class User < ApplicationRecord
   # フォローした際に通知を発行
   def create_notification_follow(followed_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", self.id, followed_user.id, 'follow'])
-    # 既に通知が存在するか確認
+    # 既に通知が存在するか確認,通知がない場合のみ送信
     if temp.blank?
       notification = self.active_notifications.new(
         visited_id: followed_user.id,
         action: 'follow'
       )
-    end
-    if notification.present?
-      notification.save 
+      notification.save if notification.valid?
     end
   end
 
