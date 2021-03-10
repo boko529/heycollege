@@ -58,6 +58,13 @@ class UserGroupRelationsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'groups/show'
   end
 
-  
+  test "cannot destroy should others relation(admin == true)" do
+    # relaiton6はadmin == trueだが、user1(relation6と関係のないuser)からはdestroyできない 
+    login_as(@user1, scope: :user)
+    assert_no_difference 'UserGroupRelation.count' do
+      delete user_group_relation_path(@relation6)
+    end
+    assert_template nil
+  end  
 
 end
