@@ -49,4 +49,18 @@ class Teacher < ApplicationRecord
       return all_reviews.sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }
     end
   end
+
+  #先生に関するレビュー数(星のみを含む)をかえす(helpfulはincludeしない)
+  def review_comment_count
+    all_reviews = []
+    self.lectures.includes(:reviews).each do |lecture|
+      all_reviews.push(lecture.reviews)
+    end
+    all_reviews = all_reviews.flatten!
+    unless all_reviews.blank?
+      return all_reviews.count
+    else
+      return 0
+    end
+  end
 end

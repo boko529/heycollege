@@ -8,7 +8,7 @@
   <% end %>
   <h3><%= @teacher.name %></h3>
   <div class="scores">
-    <h4>満足度： <span class="score"><%= @teacher.average_score %></span><span class="review-count"></span></h4>
+    <h4>満足度： <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span></h4>
     <div id="star-teacher<%= @teacher.id %>"></div>
   </div>
   <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
@@ -39,7 +39,7 @@
   <%# レビュー表示 %>
   <div class="col-md-10 lecture-reviews">
     <% if @reviews.present? %>
-      <p><strong>レビュー数 (<%= @all_reviews.count %>)</strong></p>
+      <p><strong>レビュー数 (<%= @teacher.review_comment_count %>)</strong></p>
       <ol class="reviews">
         <% @reviews.each do |review| %>
           <%= render partial: "teachers/review", locals: {review: review} %>

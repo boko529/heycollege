@@ -20,8 +20,13 @@
     </div>
 
     <%# 先生めい %>
-    <div class="col-sm-10 col-4 p-0 p-sm-auto">
+    <div class="col-sm-9 col-3 p-0 p-sm-auto">
       <%= link_to teacher.name, teacher %>
+    </div>
+
+    <div class="col-sm-1 col-1 p-0 p-sm-auto" >
+      <%# レビュー数 %>
+      <span><i class="far fa-comment-dots"></i><%= teacher.review_comment_count %></span>
     </div>
   </div>
 </div>
