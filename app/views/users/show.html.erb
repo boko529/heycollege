@@ -59,7 +59,7 @@
       </span>
     </p>
     <div class="sns">
-      <small>メッセージ<br>テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、</small>
+      <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
       <br>
       <small>Instagram: @insuta</small>
       &nbsp;&nbsp;

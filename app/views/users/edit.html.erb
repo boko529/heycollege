@@ -42,6 +42,12 @@
         <%= f.label :twitter_url,'Twitter URL' %><br />
         <%= f.text_field :twitter_url, autofocus:true %>
       </div>
+
+      <div class="field">
+        <%= f.label :message,'メッセージ' %><br />
+        <%= f.text_area :message, autofocus:true, placeholder: "100字以内" %>
+      </div>
+
       <%= f.submit "更新する" %>
     <% end %>
   </div>

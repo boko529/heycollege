@@ -77,4 +77,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not @gmail_user.valid?
   end
 
+  test "message should not be too long" do
+    @user1.message = "a" * 101
+    assert_not @user1.valid?
+  end
+
 end
