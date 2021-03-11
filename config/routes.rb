@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
-
+  resources :group_profiles, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :groups do
     member do
       get :users
