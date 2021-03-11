@@ -19,6 +19,15 @@ class StaticPagesController < ApplicationController
       end
     end.reverse
     @teachers = Kaminari.paginate_array(teachers).page(params[:page]).per(20)
+    
+    #ユーザーランキング処理
+    users = User.includes(user_point: :user_point_history).sort_by  do |user|
+      if user.user_point.present?
+      else
+        0
+      end
+    end.reverse
+    @users = Kaminari.paginate_array(users).page(params[:page]).per(20)
 
     #最新のニュースを表示
     @news = News.all

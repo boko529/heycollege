@@ -34,4 +34,10 @@
       </ul>
     </div>
   </div>
+  <ul class="rankings">
+        <% @users.each.with_index(1) do |user, i| %>
+          <%= render partial: "static_pages/user", locals: {user: user, i: i} %>
+        <% end %>
+        <%= paginate @users, theme: 'twitter-bootstrap-4' %>
+      </ul>
 </div>
