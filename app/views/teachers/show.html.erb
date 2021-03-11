@@ -19,8 +19,7 @@
     <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
     <%# 講義表示 %>
-    <div class="col-md-8">
-      <div class="teachers_class">
+      <div class="col-md-8 teachers_class">
         <% if @teacher.lectures.any? %>
           <h3>教えているクラス (<%= @teacher.lectures.count %>)</h3>
           <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
@@ -32,17 +31,16 @@
           </div>
         <% end %>
       </div>
-    </div>
-
-    <%# 最も参考になるレビュー %>
-    <div class="most_helpful_review">
-      <p class="most_helpful"><strong>最も参考になっているレビュー</strong></p>
-      <% if @most_helpful_review %>
-        <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
-      <% else %>
-        <p>レビューがありません</p>
-      <% end %>
-    </div>
+      <%# 最も参考になるレビュー %>
+      <div class="most_helpful_review">
+        <strong><p class="most_helpful">最も参考になっているレビュー</p></strong>
+        <% if @most_helpful_review %>
+          <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
+        <% else %>
+          <p>レビューがありません</p>
+        <% end %>
+      </div>
+  
     <%# レビュー表示 %>
     <div class="col-md-12 lecture-reviews">
       <% if @reviews.present? %>

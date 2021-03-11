@@ -37,7 +37,8 @@
 
 .teacher_show{
   margin-top: 20px;
-  margin: 0 auto;
+  margin: 0;
+  width: 100%;
   a{
     border-bottom: 1px black solid;
     color: black;
@@ -53,9 +54,9 @@
     float: right;
   }
   .teacher-info{
-  width: 85%;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+   width: 95%;
+   margin: 0 auto;
+   margin-bottom: 2rem;
     h3{
       font-size: 50px;
       font-weight: bold;
@@ -72,25 +73,33 @@
         }
       }
     }
-    .teachers_class{
-      h3{
-        font-size: 28px;
-        font-weight: normal;
+      .teachers_class{
+        width: 45%;
         padding: 0px;
+        float: left;
+        h3{
+          font-size: 28px;
+          font-weight: normal;
+          padding: 0px;
+        }
       }
-    }
-    .most_helpful_review{
-      padding: 0px;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-      .most_helpful{
+      .most_helpful_review{
+        width: 50%;
+        padding: 0px;
+        margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+        margin-left: 5%;
+        float: left;
+        .most_helpful{
+          margin-bottom: 0.5rem;
+        }
       }
-    }
     .lecture-reviews{
+      width: 100%;
       margin: 0 auto;
       margin-top: 30px;
       padding: 0 ;
+      clear: both;
       ol{
         padding: 0px;
         margin-top: 10px;
@@ -109,4 +118,22 @@
 .btn-primary{
   margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+
+
+/*画面幅md(768px)以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:768px){/*スマホ版で教えているクラスと最も参考になるレビューを縦並びに戻すのに必要*/
+  .teacher_show{
+    .teacher-info{
+        .teachers_class{
+          width: 100%;
+        }
+        .most_helpful_review{
+          width: 100%;
+          margin-left: 0;
+        }
+    }
+  }
 }
