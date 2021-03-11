@@ -28,7 +28,7 @@
             <% @lectures.each do |lecture| %>
               <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
             <% end %>
-            <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
+            <%= paginate @lectures, window:2, theme: 'twitter-bootstrap-4' %>
           </div>
         <% end %>
       </div>
