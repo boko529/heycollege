@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
-  group: one
+profile1:
+  content: "content"
+  group: group1
 
-two:
-  content: MyText
-  group: two
+profile3:
+  content: "content"
+  group: group3
