@@ -1,8 +1,7 @@
 class GroupProfilesController < ApplicationController
-  def show
-    @group = Group.find(params[:id])
-    @profile = GroupProfile.find_by(group_id: @group.id)
-  end
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :admin_group, only: [:new, :create]
+  before_action :admin_group_2, only: [:edit, :update, :destroy]
 
   def new
     @group = Group.find(params[:id])
@@ -55,5 +54,24 @@ class GroupProfilesController < ApplicationController
   private
     def profile_params
       params.require(:group_profile).permit(:content)
+    end
+
+    def admin_group
+      group = Group.find(params[:id])
+      if user_group_relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
+        redirect_to(group) unless user_group_relation.admin?
+      else
+        redirect_to(group)
+      end
+    end
+
+    def admin_group_2 # 取得idの違いによる.
+      profile = GroupProfile.find(params[:id])
+      group = profile.group
+      if user_group_relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
+        redirect_to(group) unless user_group_relation.admin?
+      else
+        redirect_to(group)
+      end
     end
 end
