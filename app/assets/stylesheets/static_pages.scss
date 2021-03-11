@@ -13,10 +13,6 @@
   color: black;
 }
 
-ul {
-    padding: 0px;
-}
-
 div.ranking-index{
   h2{
     margin: 30px 0;
@@ -38,49 +34,47 @@ div.ranking-index{
     list-style: none;
     margin: 0;
     padding: 0;
+    color: rgb(39, 33, 33);
 
      // 中身
     div.lecture,
     div.teacher{
+      height: 85px;;
       background-color: #eeeeee;
       border-radius: 4px;
-      margin:1px;
-      padding: 5px;
       overflow: auto;
       border-bottom: 1px solid gray;
+
+      .row {
+        height: 100%;
+      }
+
       .rank{
         font-weight: bold;
-        display: flex;
-        text-align: center;
         min-width: 50px;
-        padding: 5px;
-        margin-left: 5%;
-        margin-right: 5%;
         border-radius: 10px;
-      }
-
-      div {
-        text-align: center;
-      }
-
-      .score{
-        background-color: gold;
-        border-radius: 20%;
-        height: 29px;
-        width: 55px;
-        padding: 10px;
-        font-weight: bold;
-        color: rgb(39, 33, 33);
-        margin-left: 5%;
-        margin-right: 5%;
         display: flex;
-        justify-content: center;
         align-items: center;
       }
 
-      .class-name{
-        display: inline-block;
+      .score{
+        border-radius: 20%;
         height: 29px;
+        width: 55px;
+        font-weight: bold;
+        color: rgb(39, 33, 33);
+        display: flex;
+        align-items: center;
+        height: 100%;
+        a{
+          background-color: gold;
+          margin: 10%;
+          margin-left: 15%;
+        }
+      }
+
+      .class-name{
+        height: 100%;
         padding: 10px;
         font-weight: bold;
         color: rgb(39, 33, 33);
@@ -91,14 +85,47 @@ div.ranking-index{
         align-items: center;
       }
 
+      .teacher-name{
+        height: 100%;
+        padding: 10px;
+        font-weight: bold;
+        color: rgb(39, 33, 33);
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        .web-reviewcount{
+          margin: 10px;
+      }
+      }
+
+      
+
+      .mobile-class-and-teacher{
+        height: 100%;
+      }
+
+      .mobile-class-name, .mobile-teacher-name{
+        height: 40px;
+        display: flex;
+        align-items: center;
+      }
+
+      .review-count{
+        display: flex;
+        align-items: center;
+      }
+
       a{
         display: inline-block;
         color: rgb(39, 33, 33);
-        padding-left: 1px;
-        padding-top: 5px;
         font-weight: bold;
-        margin-left: 2%;
-        margin-right: 5%;
+      }
+
+      .teacher-teachername{
+        display: flex;
+        align-items: center
       }
     }
   }
