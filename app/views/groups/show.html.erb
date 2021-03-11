@@ -20,7 +20,9 @@
   <% if @relation &&  @relation.admin %>
     <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
   <% end %>
-  <%# プロフィール表示 %>
+</div>
+<%# プロフィール表示 %>
+<% if @relation &&  @relation.admin %>
   <div>
     <% if @profile %>
       <p>Profile</p>
@@ -34,5 +36,5 @@
         <p><%= link_to "プロフィール作成", {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %></p>
     <% end %>
   </div>
-</div>
+<% end %>
 
