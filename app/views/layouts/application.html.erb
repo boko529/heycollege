@@ -35,12 +35,9 @@
           <div>
           <%# 次の行は開発用の表示 %>
               <%= debug(params) if Rails.env.development? %>
-              <%# スマホ画面では消滅 %>
-              <div class="d-none d-sm-block">
-                <%= render 'layouts/footer'%>
-              </div>
+              <%= render 'layouts/footer'%>
           </div>
-
+          
         </div>
       </div>
     </div>
