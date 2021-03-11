@@ -3,9 +3,12 @@
 <div class="lecture_show">
   <div class="lecture-header">
     <%= link_to "》クラス一覧へ戻る", lectures_path %>
-    <%= link_to @lecture.user do %>
-      <%= gravatar_for @lecture.user, 20 %><%= @lecture.user.name %>
-    <% end %>
+    <span class="creator_name">
+    作成者：
+      <%= link_to @lecture.user do %>
+        <%= gravatar_for @lecture.user, 20 %><%= @lecture.user.name %>
+      <% end %>
+    </span>
   </div>
   <div class="lecture-info">
     <h3>
@@ -37,7 +40,7 @@
     <%# 最も参考になっているレビュー関係 %>
     <div>
       <% if @helpful_review %>
-        <p>最も参考になっているレビュー</p>
+        <p><strong>最も参考になっているレビュー</strong></p>
         <div class="most_helpful_review">
           <span id="star-helpful-review"></span>
           <p><%= link_to @helpful_review.user.name, @helpful_review.user %></p>
@@ -77,7 +80,7 @@
   <%# レビュー表示 %>
   <div class="col-md-10 lecture-reviews">
     <% if @reviews.any? %>
-      <p><strong>レビュー数 (<%= @lecture.all_reviews_count %>)</strong></p>
+      <p>レビュー数 (<%= @lecture.all_reviews_count %>)</p>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>

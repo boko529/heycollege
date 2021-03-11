@@ -35,6 +35,77 @@
   }
 }
 
+.teacher_show{
+  margin-top: 20px;
+  margin: 0 auto;
+  a{
+    border-bottom: 1px black solid;
+    color: black;
+    &:hover{
+      background-color: lightgray;
+    }
+  }
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  .creator_name{
+    float: right;
+  }
+  .teacher-info{
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+    h3{
+      font-size: 50px;
+      font-weight: bold;
+      padding-top: 20px;
+      padding-left: 0;
+      padding-bottom: 0;
+    }
+    .scores{
+      padding: 10px 0;
+      h4{
+        font-size: 30px;
+        span.score{
+          font-weight: bold;
+        }
+      }
+    }
+    .teachers_class{
+      h3{
+        font-size: 28px;
+        font-weight: normal;
+        padding: 0px;
+      }
+    }
+    .most_helpful_review{
+      padding: 0px;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      .most_helpful{
+        margin-bottom: 0.5rem;
+      }
+    }
+    .lecture-reviews{
+      margin: 0 auto;
+      margin-top: 30px;
+      padding: 0 ;
+      ol{
+        padding: 0px;
+        margin-top: 10px;
+        li{
+          padding: 30px;
+          .timestamp{
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 .btn-primary{
   margin-top: 1rem;
   margin-bottom: 2rem;
