@@ -2,10 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-ul {
-    padding: 0px;
-}
-
+// ブックマークのCSSはここ
 .news_by{
   display: block;  
   background-color: rgb(176, 238, 82);
@@ -14,6 +11,10 @@ ul {
   padding-left: 10px;
   border-radius: 5px;
   color: black;
+}
+
+ul {
+    padding: 0px;
 }
 
 div.ranking-index{
@@ -43,9 +44,9 @@ div.ranking-index{
     div.teacher{
       background-color: #eeeeee;
       border-radius: 4px;
-      margin:0;
+      margin:1px;
+      padding: 5px;
       overflow: auto;
-      // padding: 10px 0;
       border-bottom: 1px solid gray;
       .rank{
         font-weight: bold;
