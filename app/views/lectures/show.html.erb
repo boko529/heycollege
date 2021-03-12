@@ -26,7 +26,7 @@
       <% if @lecture.reviews.blank? %>
         <p>レビューはありません。</p>
       <% else %>
-        <div id="star-lecture<%= @lecture.id %>"></div>
+        <div class="star" data-rating="<%= @lecture.average_score %>"></div>
         <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
       <% end %>
     </div>
@@ -42,7 +42,7 @@
       <% if @helpful_review %>
         <p><strong>最も参考になっているレビュー</strong></p>
         <div class="most_helpful_review">
-          <span id="star-helpful-review"></span>
+          <span class="star" data-rating="<%= @helpful_review.score %>"></span>
           <p><%= link_to @helpful_review.user.name, @helpful_review.user %></p>
           <p class="timestamp">
             <%= @helpful_review.updated_at.strftime("%Y-%m-%d") %>
@@ -88,28 +88,3 @@
     <% end %>
   </div>
 </div>
-
-<%# 星表示のためのjavascript %>
-<script>
-  $('#star-lecture<%= @lecture.id %>').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    starHalf  : '<%= asset_path('star-half.png') %>',
-    half      : true,
-    readOnly: true,
-    score: <%= @lecture.average_score %>,
-  });
-
-  // 最も参考になるレビューの星表示
-  <% if @helpful_review %>
-    $('#star-helpful-review').raty({
-      size      : 36,
-      starOff   : '<%= asset_path('star-off.png') %>',
-      starOn    : '<%= asset_path('star-on.png') %>',
-      half      : false,
-      readOnly: true,
-      score: <%= @helpful_review.score %>,
-    });
-  <% end %>
-</script>

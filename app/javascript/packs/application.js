@@ -22,4 +22,6 @@ import '../stylesheets/application';
 
 // raty.jsのため
 window.$ = window.jQuery = require('jquery');
-require('packs/raty');
+require('packs/raty/raty');
+require('packs/raty/star_input');
+require('packs/raty/star_output');

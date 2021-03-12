@@ -2,7 +2,7 @@
   <%# 全体をリンクにしてる %>
   <%= link_to lecture_review_path( id: review.id, lecture_id: review.lecture.id ) do %>
     <h4>
-      <span><%= review.score %></span><div id="star-review<%= review.id %>"></div>
+      <span><%= review.score %></span><div class="star" data-rating="<%= review.score %>"></div>
     </h4>
     <%= link_to review.user do %>
       <%= gravatar_for review.user, 20 %><%= review.user.name %>
@@ -20,15 +20,3 @@
     </div>
   <% end %>
 </li>
-
-<%# 星表示のためのjavascript %>
-<script>
-  $('#star-review<%= review.id %>').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    half      : false,
-    readOnly: true,
-    score: <%= review.score %>,
-  });
-</script>

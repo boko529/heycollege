@@ -1,5 +1,5 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
-    <span id="star-review<%= review.id %>"></span>
+    <span class="star" data-rating="<%= review.score %>"></span>
 
   <p><%= link_to review.lecture.name, review.lecture %></p>
   <%= link_to review.user do %>
@@ -17,15 +17,3 @@
     <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
   </div>
 </li>
-
-<%# 星表示のためのjavascript %>
-<script>
-  $('#star-review<%= review.id %>').raty({
-    size      : 36,
-    starOff   : '<%= asset_path('star-off.png') %>',
-    starOn    : '<%= asset_path('star-on.png') %>',
-    half      : false,
-    readOnly: true,
-    score: <%= review.score %>,
-  });
-</script>
