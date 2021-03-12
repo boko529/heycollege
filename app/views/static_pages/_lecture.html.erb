@@ -4,12 +4,12 @@
 
     <%# 順位 %>
     <div class="col-sm-1 col-1 d-flex p-0 pl-sm-4">
-      <span class="rank ml-1 ml-sm-3　p-0">
+      <span class="rank ml-1 ml-sm-3 p-0">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
-        <% if params[:page] %>
-          <%= i + 20 * ( params[:page].to_i - 1 ) %>位
+        <% if params[:lectures_page] %>
+          <%= i + 20 * ( params[:lectures_page].to_i - 1 ) %>位
         <% else %>
-          <%= i + 20 * params[:page].to_i %>位
+          <%= i + 20 * params[:lectures_page].to_i %>位
         <% end %>
       </span>
     </div>
@@ -37,8 +37,6 @@
           <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
         </span>
       </span>
-       
-      
     </div>
 
     <%# クラス名＆先生名スマホ %>
@@ -57,8 +55,8 @@
 
     <%# レビュー数スマホ%>
    <span class="review-count co-1 d-sm-none">
-        <i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %>
-      </span>
+      <i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %>
+    </span>
 
 
     <%# <div class="col-md-2 col-0"></div> %>
