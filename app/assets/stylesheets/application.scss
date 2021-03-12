@@ -64,7 +64,7 @@ header{
   height: 65px;
   background-color: rgb(203, 241, 191);
   width: 100%;
-  z-index: 2;
+  z-index: 4;
   a{
     color: rgb(90, 82, 82);
   }
@@ -198,4 +198,43 @@ footer {
   color: #571515;
   background-color: #edd4d4;
   border-color: #e6c3c3;
+}
+
+// groupとかの統計情報とかで使う。
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid gray;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
 }

@@ -9,8 +9,10 @@ class HelpfulsController < ApplicationController
     helpful.save
     # 通知を発行
     helpful.create_notification_helpful!(current_user)
-    # ポイントを発行
+    # 個人ポイントを発行
     helpful.review.user.helpfuled_point
+    # 団体ポイントを発行
+    helpful.review.user.group_helpfuled_point
   end
 
   private

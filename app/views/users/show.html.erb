@@ -59,7 +59,7 @@
       </span>
     </p>
     <div class="sns">
-      <small>メッセージ<br>テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、テストメッセージ、</small>
+      <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
       <br>
       <small>Instagram: @insuta</small>
       &nbsp;&nbsp;
@@ -85,7 +85,7 @@
         <h2>過去のレビュー</h2>
         <table class="table">
           <tr>
-            <th>講義名</th>
+            <th>クラス名</th>
             <th>スコア</th>
             <th>レビュータイトル</th>
           </tr>
@@ -105,6 +105,15 @@
       <ol class="reviews">
         <%= render @reviews %>
       </ol>
+    <% end %>
+
+    <% if @groups.any? %>
+      <ul class="group join">
+        <h3>所属団体（<%= @groups.count %>）</h3>
+        <% @groups.each do |group| %>
+          <%= link_to group.name, group %>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 </div>

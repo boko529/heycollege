@@ -9,7 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", admin: true, confirmed_at: Time.now)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now)
 
 #追加のユーザーをまとめて生成する
 10.times do |n|
@@ -24,7 +24,7 @@ end
 
 # ユーザーごとにポイントテーブルを作成
 User.all.each do |user|
-  user.create_user_point(current_point: 10, total_point: 10)
+  user.initial_point
 end
 
 Teacher.create!(name: "森 直樹", user_id: 1)
@@ -54,3 +54,13 @@ Notification.create(visitor_id: 2, visited_id: 1, action: "follow")
 
 News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
+group = Group.create(name: "白鷺祭")
+users = User.all
+UserGroupRelation.create(user_id: 1, group_id: 1, admin: true)
+members = users[3..11]
+members.each { |user| user.join(group) }
+
+# 団体ごとにポイントテーブルを作成
+Group.all.each do |group|
+  group.initial_point
+end

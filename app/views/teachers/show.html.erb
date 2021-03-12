@@ -1,28 +1,59 @@
 <% provide(:title, @teacher.name) %>
-<%= link_to "先生一覧へ", teachers_path %>
-<%= link_to "講義一覧へ", lectures_path %>
-<%# プロフィール画像と作成者の名前 %>
-<%= link_to @teacher.user do %>
-  <%= gravatar_for @teacher.user, 20 %><%= @teacher.user.name %>
-<% end %>
-<h3><%= @teacher.name %></h3>
-<div class="scores">
-  <h4>満足度： <span class="score"><%= @teacher.average_score %></span><span class="review-count"></span></h4>
-  <div id="star-teacher<%= @teacher.id %>"></div>
-</div>
-<p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+<div class="teacher_show">
+  <%= link_to "》先生一覧へ戻る", teachers_path %>&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to "》クラス一覧へ戻る", lectures_path %>
+  <%# プロフィール画像と作成者の名前 %>
+  <span class="creator_name">
+    作成者：
+    <%= link_to @teacher.user do %>
+      <%= gravatar_for @teacher.user, 20 %><%= @teacher.user.name %>
+    <% end %>
+  </span>
+  <div class="teacher-info">
+    <h3><%= @teacher.name %></h3>
+    <div class="scores">
+    <div id="star-teacher<%= @teacher.id %>"></div>
+      <h4>満足度： <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span></h4>
+      
+    </div>
+    <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
-<%# 講義表示 %>
-<div class="col-md-8">
-  <% if @teacher.lectures.any? %>
-    <h3>登録講義数 (<%= @teacher.lectures.count %>)</h3>
-    <%# 講義一覧をパーシャルで表示 %>
-    <div class="list-group">
-      <% @teacher.lectures.includes(:reviews).each do |lecture| %>
-        <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
+    <%# 講義表示 %>
+      <div class="col-md-8 teachers_class">
+        <% if @teacher.lectures.any? %>
+          <h3>教えているクラス (<%= @teacher.lectures.count %>)</h3>
+          <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
+          <div class="list-group">
+            <% @lectures.each do |lecture| %>
+              <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
+            <% end %>
+            <%= paginate @lectures, window:2, theme: 'twitter-bootstrap-4' %>
+          </div>
+        <% end %>
+      </div>
+      <%# 最も参考になるレビュー %>
+      <div class="most_helpful_review">
+        <strong><p class="most_helpful">最も参考になっているレビュー</p></strong>
+        <% if @most_helpful_review %>
+          <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
+        <% else %>
+          <p>レビューがありません</p>
+        <% end %>
+      </div>
+  
+    <%# レビュー表示 %>
+    <div class="col-md-12 lecture-reviews">
+      <% if @reviews.present? %>
+        <p>レビュー数 (<%= @teacher.review_comment_count %>)</p>
+        <ol class="reviews">
+          <% @reviews.each do |review| %>
+            <%= render partial: "teachers/review", locals: {review: review} %>
+          <% end %>
+        </ol>
+        <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
       <% end %>
     </div>
-  <% end %>
+  </div>
 </div>
 
 <%# 星表示のためのjavascript %>
