@@ -46,7 +46,7 @@
             </li>
             <li class="list-group-item">
               <%= link_to new_user_session_path do %>
-                <i class="fas fa-sign-in-alt fa-2x"></i><span>ログイン</span>
+                <i class="fas fa-sign-in-alt fa-2x"></i><span>ログイン&新規登録</span>
               <% end %>
             </li>
             <li class="list-group-item">
@@ -94,13 +94,13 @@
       </div>
       <% if user_signed_in? %>
         <%#　ユーザーアイコン　%>
-        <div class="user col-1 mx-2">
+        <div class="user col-1 mx-2 d-none d-sm-block">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
         <%#　お知らせアイコン　%>
-        <div class="bell col-1">
+        <div class="bell col-1 offset-1 offset-sm-0">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
           <% end %>
