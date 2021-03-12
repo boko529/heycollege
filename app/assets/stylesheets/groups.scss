@@ -1,3 +1,67 @@
 // Place all the styles related to the Groups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.group-index{
+  .frame{
+    /*丸アイコン*/
+    .circle {
+      width: 84px;
+      height: 84px;
+      overflow: hidden; /*画像が円から出た部分は隠す*/
+      background: #fff; /*背景色*/
+      float: left; /*左に回り込み*/
+      border: 2px solid #000; /*枠線の幅、線種、色*/
+      border-radius: 50%; /*アイコン画像を円にする*/
+    }
+    .float-right-btn{
+      float: right;
+      .btn-primary{
+        float: right;
+        margin-top: 0rem;
+        margin-bottom: 0.1rem;
+      }
+      .btn-secondary{
+        float: right;
+        margin-top: 0rem;
+        margin-bottom: 0.1rem;
+      }
+    }
+    .frame-profile{
+      float: left;
+    }
+  }
+  .group-name{
+    font-size:x-large ;
+    clear: both;
+  }
+  .follow{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .float-right-btn{
+    float: right;
+  }
+  .member-list{
+    margin-top: 1rem;
+    .member{
+      font-size: larger;
+    }
+  }
+}
+
+
+
+.group_profiles-btn{
+  .btn-primary{
+    float: left;
+    margin-top: 1rem;
+    margin-bottom: 0;
+
+  }
+  .btn-danger{
+    float: left;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+  }
+}
