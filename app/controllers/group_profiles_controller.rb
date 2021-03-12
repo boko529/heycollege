@@ -12,8 +12,7 @@ class GroupProfilesController < ApplicationController
     @group = Group.find(params[:id])
     # 既にプロフィールを書いているか確認
     unless GroupProfile.find_by(group_id: @group.id)
-      @profile = GroupProfile.new(profile_params)
-      @profile.group_id = @group.id
+      @profile = @group.build_group_profile(profile_params)
       if @profile.save
         flash[:success] = "プロフィールを作成しました"
         # プロフィールをidで指定して表示
