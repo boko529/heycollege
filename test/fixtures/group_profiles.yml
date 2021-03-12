@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+profile1:
+  content: "content"
+  group: group1
+
+profile3:
+  content: "content"
+  group: group3

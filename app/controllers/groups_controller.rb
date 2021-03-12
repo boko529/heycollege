@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @users = @group.users
     @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
+    @profile = @group.group_profile
   end
 
   def new
