@@ -1,7 +1,6 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
-  <%= link_to lecture_review_path( id: review.id, lecture_id: review.lecture.id ) do %>
     <span id="star-review<%= review.id %>"></span>
-  <% end %>
+
   <p><%= link_to review.lecture.name, review.lecture %></p>
   <%= link_to review.user do %>
     <%= gravatar_for review.user, 20 %><%= review.user.name %>
