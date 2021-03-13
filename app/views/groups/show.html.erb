@@ -17,22 +17,23 @@
         <%= render 'join_form' %>  
       </span>
       <div class="frame profile">
-        <br>スコア：<!--ここに団体スコア-->
+        <br>スコア：<%= @group.group_point.current_point.round(0) %>
       </div>
       <div class="float_clear"></div>
     </span>
     <div class="group-name">
       <strong><%= @group.name %></strong>
     </div>
+    <!--
     <div class="follow">
       <span class=color-brack>
-        <!--ここにフォローしている人数-->フォロー中
+        <!-ここにフォローしている人数->フォロー中
       </span>
       &nbsp;&nbsp;&nbsp;
       <span class=color-brack>
-        <!--ここにフォロワーの人数-->フォロワー
+        <!-ここにフォロワーの人数->フォロワー
       </span>
-    </div>
+    </div>-->
     <div>
       <%# プロフィール表示 %>
       <% if @relation &&  @relation.admin %>
@@ -41,7 +42,6 @@
             プロフィール
             <br><%= @profile.content %>
           <% else %>
-            プロフィールがありません
             <%# プロフィール作成欄 %>
             <%= link_to "プロフィール作成", {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
           <% end %>
@@ -65,7 +65,7 @@
         </li>
       <% end %>
       <div class="page-box">
-        <%= paginate @users, param_name: "group_page", theme: 'twitter-bootstrap-4' %>
+        <%= paginate @users, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
       </div>
     </div>
   </div>
