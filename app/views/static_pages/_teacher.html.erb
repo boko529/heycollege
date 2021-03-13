@@ -3,8 +3,8 @@
   <div class="row">
 
     <%# 順位 %>
-    <div class="col-sm-1 col-2">
-      <span class="rank ml-1 ml-sm-3">
+    <div class="col-1 d-flex p-0 pl-sm-">
+      <span class="rank ml-1 ml-sm-3 p-0">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:page] %>
           <%= i + 20 * ( params[:page].to_i - 1 ) %>位
@@ -15,18 +15,40 @@
     </div>
 
     <%# スコア %>
-    <div class="col-2 col-lg-1 px-0 py-auto">
-      <span class="score"><%= teacher.average_score %></span>
+    <div class="col-2 col-lg-1 px-0 d-flex">
+      <span class="score p-sx-4">
+        <a><%= teacher.average_score %></a>
+      </span>
     </div>
 
-    <%# 先生めい %>
-    <div class="col-sm-9 col-3 p-0 p-sm-auto">
-      <%= link_to teacher.name, teacher %>
+    <%# ウェブ %>
+    <div class="col-sm-7 p-0 p-sm-auto d-none d-sm-flex">
+    <%# 先生名 %>
+      <span class="teacher-teachername">
+        <%= link_to teacher.name, teacher %>
+     
+        <%# レビュー数 %>
+        <span　class="web-reviewcount m-5" style="margin:10px;">
+          <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+        </span>
+
+      </span>
     </div>
 
-    <div class="col-sm-1 col-1 p-0 p-sm-auto" >
-      <%# レビュー数 %>
-      <span><i class="far fa-comment-dots"></i><%= teacher.review_comment_count %></span>
+    <%# スマホ版 %>
+    <div class="col-9 d-inline d-sm-none p-0 m-0">
+      <div class="mobile-teacher">
+        <span class="mobile-teacher-name d-inlineblock" style="min-width:100px;">
+          <%= link_to teacher.name, teacher %>
+            <%# レビュー数 %>
+          
+        </span>
+        <span　class="web-reviewcount m-5" style="margin:10px;">
+            <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+          </span>
+      </div>
     </div>
+
+
   </div>
 </div>

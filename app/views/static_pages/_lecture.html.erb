@@ -3,8 +3,8 @@
  <div class="row">
 
     <%# 順位 %>
-    <div class="col-sm-1 col-2">
-      <span class="rank ml-1 ml-sm-3">
+    <div class="col-sm-1 col-1 d-flex p-0 pl-sm-4">
+      <span class="rank ml-1 ml-sm-3　p-0">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:page] %>
           <%= i + 20 * ( params[:page].to_i - 1 ) %>位
@@ -15,22 +15,51 @@
     </div>
   
    <%# スコア %>
-    <div class="col-2 col-lg-1 px-0 py-auto">
-    <span class="score"><%= lecture.average_score %></span>
+    <div class="col-2 col-lg-1 px-0 d-flex">
+    <span class="score p-sx-4">
+      <a><%= lecture.average_score %></a>
+    </span>
     </div>
 
-    <div class="col-3 col-lg-3 px-0 py-auto">
-      <span class="class-name m-0 p-0"> <%= link_to lecture.name, lecture %>
+    <%# クラス名 ウェブ%>
+    <div class="col-2 col-lg-4 px-0 py-auto d-none d-sm-inline">
+      <span class="class-name p-0">
+        <%= link_to lecture.name, lecture %>
+      </span>
     </div>
 
-    <div class="col-sm-3 col-4 p-0 p-sm-auto">
+    <%# ウェブ %>
+    <div class="col-sm-5 col-4 p-0 p-sm-auto d-none d-sm-flex">
       <%# 先生名前 %>
-      <span class="teacher-name">  <%= link_to lecture.teacher.name, lecture.teacher %></span>
-      <%# レビュー数 %>
-      <span><i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %></span>
+      <span class="teacher-name">
+        <%= link_to lecture.teacher.name, lecture.teacher %>
+
+        <%# レビュー数 %>
+        <span class="web-reviewcount">
+          <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
+        </span>
+        
+      </span>
     </div>
 
-    <div class="col-md-2 col-0"></div>
+    <%# クラス名＆先生名スマホ %>
+    <div class="col-8 d-inline d-sm-none p-0 m-0">
+    <%# 二段構成 %>
+     <div class="mobile-class-and-teacher d-inlineblock mr-0">
+        <span class="mobile-class-name d-inlineblock">
+            <%= link_to lecture.name, lecture %>
+          </span>
+        <span class="mobile-teacher-name d-inlineblock">
+            <%= link_to lecture.teacher.name, lecture.teacher %>
+        </span>
+     </div>
+    </div>
+
+
+    <%# レビュー数スマホ%>
+   <span class="review-count co-1 d-sm-none">
+        <i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %>
+      </span>
 
   </div>
 </div>
