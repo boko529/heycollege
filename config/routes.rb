@@ -23,12 +23,15 @@ Rails.application.routes.draw do
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
-
   resources :groups do
     member do
       get :users
     end
+    member do
+      resources :group_profiles, only: [:new, :create] # new, createはgroupのidを取得したい.
+    end
   end
+  resources :group_profiles, only: [:edit, :update, :destroy] # edit, update, destroyはgroupのid必要ない.
   get 'groups/:id/edit_admin', to: 'groups#edit_admin'
   patch 'groups/:id/update_admin', to: 'groups#update_admin'
   resources :users do
