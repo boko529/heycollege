@@ -25,12 +25,12 @@
         <% end %>
       </div>
 
-      <%# その他 %>
-      <div class="other col">
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt fa-2x"></i>
-        <% end %>
-      </div>
+      <%# ユーザー %>
+      <div class="user col">
+          <%= link_to user_path(current_user) do %>
+            <i class="fas fa-user-circle fa-2x"></i>
+          <% end %>
+        </div>
 
          <%# ログインしてない時 %>
       <% else %>
@@ -58,7 +58,9 @@
  
     </div>
   </div>
- <div class="container">
+
+
+ <div class="container d-none d-sm-block">
    <div class="row text-center">
       <div class="footer_logos col-md-6 col-sm-6 col-xs-12">
         <%# ロゴ %>
@@ -93,8 +95,10 @@
     </div> 
   </div>
 </footer>
+
 <%# 著作権は気にするなそれワカチコワカチコ %>
-<div class="copyright">
+
+<div class="copyright　d-none d-sm-block">
   <div class="container">
      	<p>Copyright © 2021 All rights reserved</p>
   </div>

@@ -41,20 +41,50 @@ module User::Point
   # ユーザーを新規作成した際のポイントテーブル作成 + 初期ポイント発行
   def initial_point
     self.create_user_point(current_point: 0, total_point: 0)
-    self.point_get(amount: 10, point_type: 0)
+    self.point_get(amount: 10.0, point_type: 0)
   end
 
-  # 参考になるを押された際のメソッド
+  # 参考になるを押された際にレビュー作成者へのメソッド
   def helpfuled_point
-    self.point_get(amount: 10, point_type: 1)
+    self.point_get(amount: 100.0, point_type: 1)
   end
 
-  # 参考になるを押された際の団体へのポイント付与
+  # 参考になるを押された際に講義作成者へのメソッド
+  def helpfuled_lecture_point
+    self.point_get(amount: 1.0, point_type: 2)
+  end
+
+  # 参考になるを押された際に先生作成者へのメソッド
+  def helpfuled_teacher_point
+    self.point_get(amount: 1.0, point_type: 3)
+  end
+
+  # 参考になるを押された際レビュー書き手の団体へのポイント付与
   def group_helpfuled_point
     unless self.group.blank?
-      amount = (10 / self.group.count).floor
+      amount = (100.0 / self.group.count).floor(1)
       self.group.each do |group|
         group.point_get(amount: amount, point_type: 1)
+      end
+    end
+  end
+  
+  # 参考になるを押された際の講義作成者の団体へのポイント付与
+  def group_helpfuled_lecture_point
+    unless self.group.blank?
+      amount = (1.0 / self.group.count).floor(1)
+      self.group.each do |group|
+        group.point_get(amount: amount, point_type: 2)
+      end
+    end
+  end
+
+  # 参考になるを押された際の先生作成者の団体へのポイント付与
+  def group_helpfuled_teacher_point
+    unless self.group.blank?
+      amount = (1.0 / self.group.count).floor(1)
+      self.group.each do |group|
+        group.point_get(amount: amount, point_type: 3)
       end
     end
   end
