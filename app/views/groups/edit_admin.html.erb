@@ -1,20 +1,11 @@
 <% provide(:title, @group.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="group_info">
-      <h1>
-        <%= @group.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="col-md-8">
+<div class="col-md-8　offset-md-2 edit-admin-index">
     <p>団体ページの編集権を許可するユーザーを1人選択してください。</p>
     <%= render 'shared/stats_user' %>
-    <ul>
-      <% @users.each do |user| %>
-        <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).admin == false %>
-          <li><%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id}, method: :patch %></li>
+    <% @users.each do |user| %>
+      <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).admin == false %>
+        <li class="list-group-item list-group-item-action member-list-box">
+        <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id}, method: :patch %></li>
         <% end %>
       <% end %>
-    </ul>
-  </div>
+</div>
