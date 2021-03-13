@@ -2,9 +2,59 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+html, body {
+  height: 100%;
+  width: 100%;
+}
 .frame{
   width: 100%;
   padding: 0.5rem 0 0rem 0;
+}
+
+.other-button {
+  float: right;
+  border: 1.5px solid #000;
+  /*枠線の幅、線種、色*/
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  padding: 0.2rem 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+.other-bottomup {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 3;
+  ul {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    li {
+      display: block;
+
+    }
+    .close {
+      height: 30px;
+    }
+    .blank {
+      height: 100%;
+    }
+  }
 }
 
 .frame_icon{
@@ -19,6 +69,8 @@
    border-radius: 50%; /*アイコン画像を円にする*/
   }
 }
+
+
 
 .frame_profile{
   float: left; /*左に回り込み*/
