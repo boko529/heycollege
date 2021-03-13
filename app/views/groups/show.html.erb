@@ -10,7 +10,9 @@
           <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
         <% end %>
         <br>
-        <%= link_to "プロフィール編集", {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+        <% if @profile%>
+          <%= link_to "プロフィール編集", {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+        <% end %>
         <br>
         <%= render 'join_form' %>  
       </span>
