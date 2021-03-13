@@ -62,8 +62,6 @@
   }
 }
 
-
-
 .group_profiles-btn{
   .btn-primary{
     float: left;
@@ -75,5 +73,18 @@
     float: left;
     margin-left: 0.5rem;
     margin-top: 1rem;
+  }
+}
+
+.edit-admin-index{
+  width: 90%;
+  margin: 0 auto;
+  .member-list-box{
+    width: 60%;
+    margin-top: 0.2rem;
+    margin-left: 1rem;
+    a{
+      color: black;
+    }
   }
 }
