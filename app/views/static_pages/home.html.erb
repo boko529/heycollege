@@ -40,7 +40,7 @@
         <% @users.each.with_index(1) do |user, i| %>
           <%= render partial: "static_pages/user", locals: {user: user, i: i} %>
         <% end %>
-        <%= paginate @users, theme: 'twitter-bootstrap-4' %>
+        <%= paginate @users, param_name: 'users_page', theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
   </div>

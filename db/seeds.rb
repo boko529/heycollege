@@ -27,6 +27,11 @@ User.all.each do |user|
   user.initial_point
 end
 
+User.all.each do |user|
+  user_p = user.create_user_point(current_point: 10, total_point: 10)
+  user.user_point_history.create(point_type: 1, amount: 10, user_point_id: user_p.id)
+end
+
 Teacher.create!(name: "森 直樹", user_id: 1)
 Teacher.create!(name: "藤岡 真由美", user_id: 2)
 
