@@ -2,23 +2,15 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
+      <div class="modal-header text-center">
+        <%= search_form_for @q, class: "form-inline mobile-search-form", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
             <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control" ,placeholder: 'クラス名か先生名で検索' %>
-            <%# 詳細検索表示ボタン %>
+            <%# 検索ボタン %>
             <div class="input-group-append">
-              <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
-              <%# <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
-                条件
-              </button> %>
-              <%# f.submit ("検索") , class: 'btn btn-outline-success'%>
               <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
                 <i class="fas fa-search"></i>
               <% end %>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
             </div> 
           </div>
         <% end %>
