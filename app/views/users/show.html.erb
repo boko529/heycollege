@@ -7,7 +7,7 @@
 
 <div class="row">
   <div class="col-lg-8 offset-lg-2">
-    <div class="frame">
+    <span class="frame">
       <div class="frame_icon">
        <div class="circle">
         <%= gravatar_for @user, 80 %>
@@ -25,7 +25,7 @@
         </div>
       <% end %>
     
-     <div class="frame profile">
+     <div class="frame-profile">
        <!---
         <br>性別:
           <%= @user.gender_i18n  %> -->
@@ -36,7 +36,7 @@
         <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
         <br>スコア：<%= @user.user_point.total_point.round(0) %>
       </div>
-    </div>
+    </span>
     <p>
       <span class="user-name">
         <strong><%= @user.name %></strong>

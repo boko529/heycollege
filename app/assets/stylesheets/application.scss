@@ -22,15 +22,9 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
 
-// リセット
-// html, body {
-//   top: 0;
-//   margin: 0;
-//   padding: 0;
-//   div.row {
-//     width: 100%;
-//   }
-// }
+body {
+  background-color: rgb(253, 249, 245)!important;
+}
  
 /* タイポグラフィー */
 h1, h2, h3, h4, h5, h6 {
@@ -62,7 +56,7 @@ p {
 header{
   position: fixed;
   height: 65px;
-  background-color: rgb(203, 241, 191);
+  background-color: rgb(239, 255, 234);
   width: 100%;
   z-index: 4;
   a{
@@ -104,6 +98,12 @@ header{
       text-align: left;
       span{
         font-size: 20px;
+      }
+      a{
+        color: #777;
+        &:hover{
+          color: #222;
+        }
       }
     }
   }
