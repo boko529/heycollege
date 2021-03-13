@@ -3,7 +3,7 @@
   <div class="row">
 
     <%# 順位 %>
-    <div class="col-sm-1 col-2">
+    <div class="col-sm-1 d-flex col-2">
       <span class="rank ml-1 ml-sm-3">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:users_page] %>
@@ -16,7 +16,7 @@
 
     <%# ユーザーポイント %>
     <div class="col-2 col-lg-1 px-0 py-auto">
-      <span class="user_point score"><%= user.user_point.total_point %></span>
+      <span class="user_point score"><a><%= user.user_point.total_point %></a></span>
     </div>
 
     <%# ユーザー名 %>
