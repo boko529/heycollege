@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_03_11_024022) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "profile"
   end
 
   create_table "helpfuls", force: :cascade do |t|
