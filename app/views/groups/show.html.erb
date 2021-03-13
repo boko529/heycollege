@@ -57,11 +57,14 @@
     <div class="member-list">
       <strong class="member">メンバー</strong>
       <%= render 'shared/stats_user' %>
-      <ul>
-        <% @users.each do |user| %>
-          <li><%= link_to user.name, user %></li>
-        <% end %>
-      </ul>
+      <% @users.each do |user| %>
+        <li class="list-group-item list-group-item-action member-list-box">
+          <%= link_to user.name, user %>
+        </li>
+      <% end %>
+      <div class="page-box">
+        <%= paginate @users, param_name: "group_page", theme: 'twitter-bootstrap-4' %>
+      </div>
     </div>
   </div>
 </div>

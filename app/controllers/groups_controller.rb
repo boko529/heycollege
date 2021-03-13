@@ -11,6 +11,7 @@ class GroupsController < ApplicationController
     @users = @group.users
     @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
     @profile = @group.group_profile
+    @users = Kaminari.paginate_array(@users).page(params[:group_page]).per(10)
   end
 
   def new
