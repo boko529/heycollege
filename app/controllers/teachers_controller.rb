@@ -23,10 +23,10 @@ class TeachersController < ApplicationController
           0
         end
       end.reverse
-      @lectures = Kaminari.paginate_array(lectures).page(params[:page]).per(5)
+      @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(5)
       @all_reviews = @teacher.teacher_reviews  #先生に関するレビューを参考になっている順で獲得
       @most_helpful_review = @all_reviews.first if @all_reviews.present? #最も参考になっているレビュー
-      @reviews = Kaminari.paginate_array(@all_reviews.drop(1)).page(params[:page]).per(20) if @all_reviews.present? #先生に関するレビューのうち、もっとも参考になるレビュー以外
+      @reviews = Kaminari.paginate_array(@all_reviews.drop(1)).page(params[:reviews_page]).per(20) if @all_reviews.present? #先生に関するレビューのうち、もっとも参考になるレビュー以外
     end
     
     private
