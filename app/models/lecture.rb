@@ -3,7 +3,7 @@ class Lecture < ApplicationRecord
   belongs_to :teacher
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  validates :name, presence: true, length: { maximum: 20 }, uniqueness: {scope: :teacher_id}
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}
   validates :user_id, presence: true
   validates :teacher_id, presence: true
   attr_accessor :score
