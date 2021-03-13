@@ -7,4 +7,5 @@ class Group < ApplicationRecord
     has_many :users, through: :passive_relations
     has_one :group_point, dependent: :destroy
     has_many :group_point_history, dependent: :destroy
+    has_one :group_profile, dependent: :destroy
 end

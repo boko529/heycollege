@@ -28,17 +28,18 @@
       </span>
     </div>
 
-    <div class="col-sm-5 col-4 p-0 p-sm-auto d-none d-sm-inline">
+    <%# ウェブ %>
+    <div class="col-sm-5 col-4 p-0 p-sm-auto d-none d-sm-flex">
       <%# 先生名前 %>
       <span class="teacher-name">
         <%= link_to lecture.teacher.name, lecture.teacher %>
+
         <%# レビュー数 %>
         <span class="web-reviewcount">
           <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
         </span>
+        
       </span>
-       
-      
     </div>
 
     <%# クラス名＆先生名スマホ %>
@@ -59,9 +60,6 @@
    <span class="review-count co-1 d-sm-none">
         <i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %>
       </span>
-
-
-    <%# <div class="col-md-2 col-0"></div> %>
 
   </div>
 </div>
