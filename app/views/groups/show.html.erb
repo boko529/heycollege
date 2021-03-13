@@ -20,3 +20,21 @@
   <% if @relation &&  @relation.admin %>
     <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
   <% end %>
+</div>
+<%# プロフィール表示 %>
+<% if @relation &&  @relation.admin %>
+  <div>
+    <% if @profile %>
+      <p>Profile</p>
+      <div class="most_helpful_review">
+        <p><%= @profile.content %></p>
+        <p><%= link_to "プロフィール編集", {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %></p>
+        <p><%= link_to "プロフィール削除", @profile, method: :delete, data: { confirm: "本当にプロフィールを削除しますか？"}, class: 'btn btn-danger' %></p>
+    <% else %>
+      <p>プロフィールがありません</p>
+        <%# プロフィール作成欄 %>
+        <p><%= link_to "プロフィール作成", {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %></p>
+    <% end %>
+  </div>
+<% end %>
+

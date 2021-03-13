@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_124912) do
+ActiveRecord::Schema.define(version: 2021_03_11_024022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,10 +45,19 @@ ActiveRecord::Schema.define(version: 2021_03_09_124912) do
     t.index ["group_id"], name: "index_group_points_on_group_id"
   end
 
+  create_table "group_profiles", force: :cascade do |t|
+    t.text "content"
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_profiles_on_group_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "profile"
   end
 
   create_table "helpfuls", force: :cascade do |t|
@@ -175,11 +184,22 @@ ActiveRecord::Schema.define(version: 2021_03_09_124912) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "zooms", force: :cascade do |t|
+    t.text "host_url"
+    t.text "join_url"
+    t.integer "user_id"
+    t.text "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "bookmarks", "lectures"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "group_point_histories", "group_points"
   add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
+  add_foreign_key "group_profiles", "groups"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"

@@ -13,7 +13,7 @@
   color: black;
 }
 
-div.ranking-index{
+div.ranking-index, .lectures-index {
   h2{
     margin: 30px 0;
   }
@@ -37,9 +37,8 @@ div.ranking-index{
     color: rgb(39, 33, 33);
 
      // 中身
-    div.lecture,
-    div.teacher{
-      height: 85px;;
+    div.lecture,div.teacher,div.user{
+      height: 85px;
       background-color: #eeeeee;
       border-radius: 4px;
       overflow: auto;
@@ -85,8 +84,9 @@ div.ranking-index{
         align-items: center;
       }
 
-      .teacher-name{
+      .teacher-name, .teacher-teachername{
         height: 100%;
+        width: 100%;
         padding: 10px;
         font-weight: bold;
         color: rgb(39, 33, 33);
@@ -99,6 +99,13 @@ div.ranking-index{
           margin: 10px;
       }
       }
+
+      .mobile-teacher {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
 
       
 
@@ -121,11 +128,6 @@ div.ranking-index{
         display: inline-block;
         color: rgb(39, 33, 33);
         font-weight: bold;
-      }
-
-      .teacher-teachername{
-        display: flex;
-        align-items: center
       }
     }
   }

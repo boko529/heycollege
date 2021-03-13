@@ -1,0 +1,8 @@
+<%= form_with(model: @profile, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%= f.label :content %>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
+  
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
