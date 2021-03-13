@@ -22,17 +22,15 @@ class StaticPagesController < ApplicationController
     
     #ユーザーランキング処理
     users = User.includes(:user_point_history).sort_by  do |user|
+      total_amount = 0
       if user.user_point_history.present?
-        total_amount = 0
         user.user_point_history.all.each do |user_point_history|
           if user_point_history.created_at.month == Time.now.month
             total_amount += user_point_history.amount
           end
         end
-        total_amount
-      else
-        0
       end
+      total_amount
     end.reverse
     @users = Kaminari.paginate_array(users).page(params[:users_page]).per(20)
 
