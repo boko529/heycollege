@@ -99,6 +99,12 @@ header{
       span{
         font-size: 20px;
       }
+      a{
+        color: #777;
+        &:hover{
+          color: #222;
+        }
+      }
     }
   }
 }
