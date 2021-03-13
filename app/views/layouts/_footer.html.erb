@@ -25,12 +25,12 @@
         <% end %>
       </div>
 
-      <%# その他 %>
-      <div class="other col">
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt fa-2x"></i>
-        <% end %>
-      </div>
+      <%# ユーザー %>
+      <div class="user col">
+          <%= link_to user_path(current_user) do %>
+            <i class="fas fa-user-circle fa-2x"></i>
+          <% end %>
+        </div>
 
          <%# ログインしてない時 %>
       <% else %>
