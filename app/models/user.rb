@@ -25,10 +25,10 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
-  # メアドのバリデーション削除
+  # APUメアドのバリデーション削除
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
-  # validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
-  validates :email, presence: true, length: { maximum: 255 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
   validates :message, length: { maximum: 100 }
   include Gravtastic
