@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
   get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
   resources :zooms, only: [:index,:new,:create,:show,:destroy]
-  get 'users/:id/zoom_room', to: 'zooms#create', as:'create_zoom'
+  post 'zooms/:id/count', to: 'zooms#numbercount', as:'zoom_number_count'
 end

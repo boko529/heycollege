@@ -45,9 +45,22 @@ class ZoomsController < ApplicationController
     @zoom = Zoom.new
     @user=current_user
   end
-
+  
   def show
     @zoom = Zoom.find(params[:id])
+  end
+  
+  def numbercount
+    zoom = Zoom.find(params[:id])
+    cnt = zoom.count + 1
+    if zoom.update(count: cnt)
+      redirect_to zoom.join_url
+    else
+      @zoom = Zoom.new
+      @user=current_user
+      @zooms = Zoom.all
+      render :index
+    end
   end
 
   def destroy
