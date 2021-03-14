@@ -6,11 +6,13 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
 .frame{
   width: 100%;
   padding: 0.5rem 0 0rem 0;
 }
 
+// 設定開くボタン
 .other-button {
   float: right;
   border: 1.5px solid #000;
@@ -33,29 +35,55 @@ html, body {
   text-decoration: none;
   border-radius: 0.5rem;
 }
-
+// 下から上がってくる設定
 .other-bottomup {
+  display: block;
   height: 100%;
   width: 100%;
   position: absolute;
   left: 0;
   z-index: 3;
-  ul {
+  top: 10px;
+}
+// アニメーション前
+.other-bottomup-transition {
+  opacity:0;
+  bottom: -100%;
+  top: 100%;
+  height: 0;
+  transition: 0.3s;
+  visibility: hidden;
+}
+
+// アニメーション後
+.other-bottomup-transition-active {
+  opacity: 1;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+  transition: 0.3s;
+  visibility: visible
+}
+  // 閉じるボタン
+  #closeIcone {
+    text-align: right;
+    font-size: 35px;
+    padding-right: 40px;
+    background-color: #fff;
+  }
+  ul.other-bottomup-ul {
     padding: 0;
     margin: 0;
     height: 100%;
+    position:absolute;
+    width:100%;
     li {
       display: block;
-
     }
-    .close {
-      height: 30px;
-    }
-    .blank {
+    .usershow-blank {
       height: 100%;
     }
-  }
-}
+  } 
 
 .frame_icon{
   float: left; /*左に回り込み*/
@@ -69,8 +97,6 @@ html, body {
    border-radius: 50%; /*アイコン画像を円にする*/
   }
 }
-
-
 
 .frame_profile{
   float: left; /*左に回り込み*/
@@ -126,7 +152,7 @@ html, body {
 }
 
 .color-brack{
-  color: #000;
+  color:rgb(90, 82, 82);
 }
 
 .sns{
