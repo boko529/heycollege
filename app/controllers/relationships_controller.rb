@@ -7,6 +7,8 @@ class RelationshipsController < ApplicationController
     current_user.create_notification_follow(@user)
     # 非同期通信後でページ遷移(redirect_to)があるとうまくいかない(turbolinksをoffにしている場合)
     # redirect_to user_path(@user.id)
+    # コントローラーの名前とviewがあるディレクトリの名前が違うので明示的に示さないといけない
+    render "users/follow"
   end
 
   # アンフォローする
@@ -15,5 +17,7 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:id])
     # 非同期通信後でページ遷移(redirect_to)があるとうまくいかない(turbolinksをoffにしている場合)
     # redirect_to user_path(@user.id)
+    # コントローラーの名前とviewがあるディレクトリの名前が違うので明示的に示さないといけない
+    render "users/unfollow"
   end
 end
