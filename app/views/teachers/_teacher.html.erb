@@ -1,4 +1,14 @@
 <li id = teacher_<%= teacher.id %> class = "teacher" >
-  <span class="score"><%= teacher.average_score %></span>
-  <%= link_to teacher.name, teacher %>
+
+  <span class="score">
+    <%= teacher.average_score %>
+  </span>
+  <span class="teacher-name">
+    <%= link_to teacher.name, teacher %>
+  </span>
+
+  <%# レビュー数 %>
+  <span　class="web-reviewcount m-5" style="margin:10px;">
+    <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+   </span>
 </li>
