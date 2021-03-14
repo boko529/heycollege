@@ -1,30 +1,23 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 <li>
-  <strong>
-    <%= link_to user_path(visitor) do %>
-      <div class="circle">
-      <%= gravatar_for visitor, 50 %>
-      </div>
-    <% end %>
-  </strong>      
-  <div>
-    <strong>
-      <%= link_to user_path(visitor) do %>
-        <%= visitor.name %>さん
-      <% end %>
-      が
-      <%# 通知内容を種類ごとに変更 %>
-      <% case notification.action %>
+  <span>
+      <strong>
+        <%= link_to user_path(visitor) do %>
+          <%= visitor.name %>さん
+        <% end %>
+        が
+        <%# 通知内容を種類ごとに変更 %>
+        <% case notification.action %>
         <% when 'helpful' then %>
-          <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>にいいねしました
+          <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>を参考になるにしました
         <% when 'follow' then %>
           あなたをフォローしました
         <% end %>
-    </strong>
-    <span class="small text_muted text-right">
-      <br><%= time_ago_in_words(notification.created_at).upcase %>前
-    </span>
-  </div>
+      </strong>
+  </span>
+  <span class="small text_muted text-right">
+    <%= time_ago_in_words(notification.created_at).upcase %>
+  </span>
 </li>
 <hr>

@@ -30,7 +30,3 @@ admin:
   total_point: 10
   user: test_admin
 
-not_confirm:
-  current_point: 10
-  total_point: 10
-  user: not_confirm_user

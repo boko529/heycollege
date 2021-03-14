@@ -9,8 +9,3 @@ two:
   current_point: 10
   total_point: 10
   group: group2
-
-three:
-  current_point: 10
-  total_point: 10
-  group: group3
