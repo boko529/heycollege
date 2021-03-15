@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update]
   def show
     @user = User.find(params[:id])
-    @reviews = @user.reviews
+    @reviews = @user.reviews.includes(lecture: :teacher).page(params[:reviews_page]).per(10)
+    @lectures = @user.lectures.includes(:reviews, :teacher).page(params[:lectures_page]).per(20)
     @groups = @user.group
   end
 
