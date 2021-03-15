@@ -9,11 +9,11 @@
   <div class="col-lg-8 offset-lg-2">
     <div class="frame">
 
-      <%# <div class="frame_icon">
-       <div class="circle"> %>
-        <%# <%= gravatar_for @user, 80 %>
-       <%# </div>
-      </div> %>
+      <div class="frame_icon">
+       <div class="circle">
+        <%= gravatar_for @user, 80 %>
+       </div>
+      </div>
 
       <%# その他・設定ボタン %>
       <div class="other-button" id="open" onclick="openBottomup()">
@@ -59,18 +59,15 @@
           </span>
         </div>
       <% end %>
-
-    
     </div>
-    <p>
 
+    <p>
       <%# ユーザーネーム %>
       <span class="user-name">
         <strong><%= @user.name %></strong>
       </span>
 
       <%# フォロー %>
-     
       <br>
       <div>
       <span id="follow", id='following-count_<%= @user.id%>'>

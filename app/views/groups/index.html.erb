@@ -1,9 +1,10 @@
 <% provide(:title, '団体一覧') %>
 <div class="groups-index">
   <h2 class="title">団体</h2>
+  <p><%= link_to "新規団体作成", new_group_path %></p>
   <ul class="groups">
     <% @groups.each do |group| %>
-      <p><%= group.name %></p>
+      <li><%= link_to group.name, group %></li>
     <% end %>
   </ul>
 </div>
