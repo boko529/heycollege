@@ -61,18 +61,12 @@
     <div class="sns">
       <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
       <br>
-      <small>Instagram: @insuta</small>
+      <small>Instagram:
+        <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %>
+      </small>
       &nbsp;&nbsp;
       <small>Twitter:
-        <% if user_signed_in? %>
-          <% if @user.twitter_url.present? && @user.id == current_user.id %>
-            <%= link_to @user.twitter_url, target: :_blank do %>
-            <i class="fab fa-twitter-square fa-2x"></i>
-            <% end %>
-          <% elsif @user.id == current_user.id %>
-              <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id) %>
-          <% end %>
-        <% end %>
+        <%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %>
       </small>
     </div>
     <!--

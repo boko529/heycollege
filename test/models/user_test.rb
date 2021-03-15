@@ -69,8 +69,12 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "sign up user don't have twitter_url" do
-    assert_not @user1.twitter_url.present?
+  test "sign up user don't have twitter_name" do
+    assert_not @user1.twitter_name.present?
+  end
+
+  test "sign up user don't have instagram_name" do
+    assert_not @user1.instagram_name.present?
   end
 
   # メアドのバリデーション削除
