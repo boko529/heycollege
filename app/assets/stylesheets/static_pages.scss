@@ -13,7 +13,7 @@
   color: black;
 }
 
-div.ranking-index, .lectures-index {
+div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
   h2{
     margin: 30px 0;
   }
@@ -30,14 +30,14 @@ div.ranking-index, .lectures-index {
       }
     }
   }
-  ul.rankings{
+  ul.rankings,ul.groups {
     list-style: none;
     margin: 0;
     padding: 0;
     color: rgb(39, 33, 33);
 
      // 中身
-    div.lecture,div.teacher,div.user{
+    div.lecture,div.teacher,div.user,div.teacher,{
       height: 85px;
       background-color: #eeeeee;
       border-radius: 4px;
@@ -46,6 +46,7 @@ div.ranking-index, .lectures-index {
 
       .row {
         height: 100%;
+        border-bottom: none;
       }
 
       .rank{
@@ -105,10 +106,6 @@ div.ranking-index, .lectures-index {
         display: flex;
         align-items: center;
       }
-
-
-      
-
       .mobile-class-and-teacher{
         height: 100%;
       }
