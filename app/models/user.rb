@@ -31,8 +31,6 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
   validates :message, length: { maximum: 100 }
-  include Gravtastic
-  gravtastic
   
   # ユーザーをフォローする
   def follow(user_id)
