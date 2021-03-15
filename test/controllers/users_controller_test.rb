@@ -74,9 +74,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_template nil
   end
 
-  test "should get show" do
+  test "don't login user don't not watch other user information" do
     get user_path(@user.id)
-    assert_response :success
+    follow_redirect!
+    assert_template 'devise/sessions/new'
+    assert_select "div.alert"
   end
 
   test "user should not watch user index" do
