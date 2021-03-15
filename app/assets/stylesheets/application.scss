@@ -84,7 +84,7 @@ header{
 }
 
 // サイドバー
-.sidebar_col{
+.sidebar_col, .sub-sidebar{
   a{
     color: rgb(90, 82, 82);
   }
@@ -97,7 +97,10 @@ header{
       margin: 5px 10px;
       text-align: left;
       span{
-        font-size: 20px;
+        font-size: 15px;
+        margin-left:2px;
+        display: flex;
+        align-items: center;
       }
       a{
         color: #777;
@@ -107,6 +110,10 @@ header{
       }
     }
   }
+}
+
+.mobile-search-form{
+  width: 100%;
 }
 
 // メインコンテンツの高さをヘッダーに合わせる
