@@ -34,4 +34,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'devise/sessions/new'
     assert_not @not_confirm_user.confirmed_at.present?
   end
+
+  #退会済みユーザーのログインテスト
+  test "invalid login with is_deleted" do 
+    login_as(@user, scope: :user)
+    patch users_hide_path(@user) #退会
+    follow_redirect!
+    assert_template root_path
+    get new_user_session_path
+    assert_template 'devise/sessions/new'
+    login_as(@user, scope: :user)
+    assert_not flash.empty? #なぜかtrueになってしまう
+  end
 end

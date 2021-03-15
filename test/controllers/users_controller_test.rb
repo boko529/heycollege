@@ -88,4 +88,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'static_pages/home'
   end
+
+  test "valid is_deleted" do 
+    login_as(@user)
+    assert @user.active_for_authentication?
+    patch users_hide_path(@user)
+    assert_not @user.active_for_authentication? #何故かテストがFAILになる
+  end
 end

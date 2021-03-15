@@ -1,5 +1,5 @@
 class UsersController < ApplicationController   
-  before_action :authenticate_user!, only: [:edit,:update,:show,:following,:follower]
+  before_action :authenticate_user!, only: [:edit,:update,:show,:following,:follower, :hide]
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
@@ -35,6 +35,15 @@ class UsersController < ApplicationController
   def follower
     @user = User.find(params[:user_id])
     @followers = @user.follower_user
+  end
+
+  # 退会(論理削除)
+  def hide
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心からお待ちしております。"
+    redirect_to root_path
   end
 
   private
