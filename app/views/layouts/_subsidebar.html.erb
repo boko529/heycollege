@@ -1,5 +1,5 @@
  <%# サブサイドバー %>
-<div class="sub-sidebar d-md-none">
+<div class="sub-sidebar d-md-none d-none d-sm-block">
   <ul class="list-group">
     <%# ログイン中 %>
     <% if user_signed_in? %>
@@ -92,12 +92,12 @@
 <script>
   // ワカチコ製最強開閉ボタン（ボタンはheader,html.erbの最初あたりに記載）
   function openSubSide() {
-  var leftSpace = document.querySelector('.sub-sidebar');
-  if (leftSpace.style.left == '-100%') {
-    leftSpace.style.left="0"
+    var leftSpace = document.querySelector('.sub-sidebar');
+    if (leftSpace.style.left == '-100%') {
+      leftSpace.style.left="0"
+    }
+    else {
+      leftSpace.style.left="-100%"
+    }
   }
-  else {
-    leftSpace.style.left="-100%"
-  }
-}
 </script>
