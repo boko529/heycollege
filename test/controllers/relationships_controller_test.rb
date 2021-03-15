@@ -17,8 +17,9 @@ class RelationshipsControllerTest < ActionDispatch::IntegrationTest
         post follow_path(@user.id), params: { relationship: { follower_id: @user.id, followed_id: @other_user.id } }
       end
     end
-    follow_redirect!
-    assert_template 'users/show'
+    # turbolinksなくしてrenderに変更
+    # follow_redirect!
+    assert_template 'users/follow'
   end
   
   test "login user unfollow other user" do
@@ -31,8 +32,9 @@ class RelationshipsControllerTest < ActionDispatch::IntegrationTest
         post unfollow_path(@user.id), params: { relationship: { follower_id: @user.id, followed_id: @other_user.id } }
       end
     end
-    follow_redirect!
-    assert_template 'users/show'
+    # turbolinksなくしてrenderに変更
+    # follow_redirect!
+    assert_template 'users/unfollow'
   end
 
   test "logout user don't follow other user" do
