@@ -67,13 +67,13 @@
       <div class="logo col-5 col-sm-3 mx-md-0 ml-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-6 offset-md-1 offset-0 mx-auto d-none d-sm-block">
+      <div class="search col-5 col-md-6 offset-md-1 offset-1 mx-auto d-none d-sm-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-md-block d-none" ,placeholder: 'クラス名か先生名で検索' %>
+            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: 'クラス名か先生名で検索' %>
             <%# 詳細検索表示ボタン %>
-            <div class="input-group-append ">
+            <div class="input-group-append justify-content-right">
               <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
               <%# <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
                 条件
@@ -114,3 +114,6 @@
     </div>
   </div>
 </header>
+<script>
+ 
+</script>
