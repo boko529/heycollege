@@ -43,12 +43,10 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
       border-radius: 4px;
       overflow: auto;
       border-bottom: 1px solid gray;
-
       .row {
         height: 100%;
         border-bottom: none;
       }
-
       .rank{
         font-weight: bold;
         min-width: 50px;
@@ -56,7 +54,6 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
         display: flex;
         align-items: center;
       }
-
       .score{
         border-radius: 20%;
         height: 29px;
@@ -65,14 +62,14 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
         color: rgb(39, 33, 33);
         display: flex;
         align-items: center;
+        text-align: left;
         height: 100%;
         a{
           background-color: gold;
-          margin: 10%;
-          margin-left: 15%;
+          margin: 7%;
+          margin-left: 20%;
         }
       }
-
       .class-name{
         height: 100%;
         padding: 10px;
@@ -84,7 +81,6 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
         justify-content: left;
         align-items: center;
       }
-
       .teacher-name, .teacher-teachername{
         height: 100%;
         width: 100%;
@@ -98,7 +94,7 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
         align-items: center;
         .web-reviewcount{
           margin: 10px;
-      }
+        }
       }
 
       .mobile-teacher {
@@ -109,18 +105,15 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
       .mobile-class-and-teacher{
         height: 100%;
       }
-
       .mobile-class-name, .mobile-teacher-name{
         height: 40px;
         display: flex;
         align-items: center;
       }
-
       .review-count{
         display: flex;
         align-items: center;
       }
-
       a{
         display: inline-block;
         color: rgb(39, 33, 33);
