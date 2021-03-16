@@ -7,3 +7,15 @@
 <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 <%= render 'layouts/shim' %>
 <%= favicon_link_tag('Pict.png') %>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<%# グーグルアナリティクス用(これが一番下になるように) %>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3MPTN80HHL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3MPTN80HHL');
+</script>
