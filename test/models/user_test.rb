@@ -87,4 +87,14 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user1.valid?
   end
 
+  test "twitter name should not be too long" do
+    @user1.twitter_name = "a" * 31
+    assert_not @user1.valid?
+  end
+
+  test "instagram name should not be too long" do
+    @user1.instagram_name = "a" * 31
+    assert_not @user1.valid?
+  end
+
 end

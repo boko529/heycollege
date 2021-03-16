@@ -33,6 +33,8 @@ class User < ApplicationRecord
   validates :message, length: { maximum: 100 }
   include Gravtastic
   gravtastic
+  validates :twitter_name, length: { maximum: 30}
+  validates :instagram_name, length: { maximum: 30}
   
   # ユーザーをフォローする
   def follow(user_id)
