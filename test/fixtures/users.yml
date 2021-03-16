@@ -57,3 +57,13 @@ test_admin:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
   admin: true
+
+is_deleted_user:  # 退会済みユーザー
+  name: is_deleted_user
+  email: user_isdeleted@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+  is_deleted: true
