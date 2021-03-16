@@ -2,7 +2,7 @@
   <%= render 'shared/error_messages', object: f.object %>
 	<div class="container">
 		<div class="row">
-			<div class="col"></div>
+			<div class="col d-sm-block d-none"></div>
 			<div class="col">
 				<div class="classname">
 					<%= f.label :name %>
@@ -27,7 +27,7 @@
 					<%= f.submit yield(:button_text), class: "btn btn-primary" %>
 				</div>
 			</div>
-			<div class="col"></div>
+			<div class="col d-sm-block d-none"></div>
 		</div>
 	</div>
 <% end %>
