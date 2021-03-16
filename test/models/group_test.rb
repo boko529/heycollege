@@ -19,4 +19,14 @@ class GroupTest < ActiveSupport::TestCase
     @group.save
     assert_not duplicate_group.valid?
   end
+
+  test "twitter name should not be too long" do
+    @group.twitter_name = "a" * 31
+    assert_not @group.valid?
+  end
+
+  test "instagram name should not be too long" do
+    @group.instagram_name = "a" * 31
+    assert_not @group.valid?
+  end
 end
