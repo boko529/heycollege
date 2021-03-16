@@ -130,6 +130,48 @@ header{
   width: 100%;
 }
 
+// ページネーションカスタマイズ
+nav{
+  ul.pagination{
+    margin-top: 0.1rem;
+    margin-bottom: 0.5rem;
+    li.page-item{
+      background-color: #fff;
+      &:last-child .page-link {
+        border-top-right-radius: 0.15rem;
+        border-bottom-right-radius: 0.15rem;
+      }
+      &:first-child .page-link {
+        border-top-left-radius: 0.15rem;
+        border-bottom-left-radius: 0.15rem;
+      }
+      a.page-link{
+        color: #0f0f0f;
+        text-align: center;
+        vertical-align: middle;
+        border: none;
+        border-radius: none;
+        &:hover{
+          background-color: #ccc;
+          color: #0f0f0f;               
+        }
+      }
+    }
+    li.active{
+      a.page-link{
+        color: #000;
+        background-color: #fff;
+        border-bottom:2px solid rgb(40, 110, 19);
+        &:hover{
+        }
+      }      
+    }
+    li.disabled{
+    }
+  }
+}
+
+
 // メインコンテンツの高さをヘッダーに合わせる
 .main_content{
   margin-top: 80px;
