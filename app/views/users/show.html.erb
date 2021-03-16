@@ -58,7 +58,7 @@
 
         <%# 編集 %>
         <% if @user == current_user %>
-          <div class="edit-btn">
+          <div class="edit-btn btn btn-primary">
             <%= link_to '編集', edit_user_path(@user.id)%>
           </div>
         <% else %>
@@ -66,7 +66,6 @@
             <span id='follow-button_<%= @user.id %>'>
               <%= render 'users/follow-button', user: @user  %>
             </span>
-          </div>
         <% end %>
       </div>
 
@@ -123,6 +122,7 @@
           <% end %>
         </small>
       </div>
+
       <!--
       <p>
         <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
@@ -197,5 +197,4 @@
    document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
    document.body.style.overflow = 'scroll';
     }
-
 </script>
