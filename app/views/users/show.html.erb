@@ -43,6 +43,12 @@
                 <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">ログアウト</span>
               <% end %>
               </li>
+              <%# 退会 %>
+              <li class="list-group-item text-left">
+                <%= link_to users_hide_path(@user), method: :patch do %>
+                  <span class="d-inline text-success">退会</span>
+                <% end %>
+              </li>
               <li class="usershow-blank list-group-item text-left d-inlineblock">
                 <span class="d-inline"></span>
               </li>
