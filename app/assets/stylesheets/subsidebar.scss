@@ -1,0 +1,16 @@
+.sub-sidebar {
+  left:-100%;
+  top:65px;
+  position: fixed;
+  width:200px;
+  height: 100%;
+  z-index:999;
+  background-color: gray;
+  border: 3px solid black;
+  ul {
+    margin:5px;
+    .blank{
+      height: 100%;
+    }
+  }
+}
