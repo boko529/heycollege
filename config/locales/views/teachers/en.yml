@@ -1,3 +1,11 @@
 en:
   teachers:
     show:
+      return_to_teachers_list: "Return to Teachers list"
+      return_to_class_list: "Return to Class list"
+      author: Writer
+      level_of_satisfaction: Level of satisfaction
+      classes_taken: Classes taken
+      most_helpful_reviews: Most helpful reviews
+      no_reviews: No reviews
+      number_of_reviews: Number of reviews
