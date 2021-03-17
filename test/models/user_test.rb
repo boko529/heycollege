@@ -83,4 +83,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user1.valid?
   end
 
+  test "is_deleted default false" do
+    @user1.save
+    assert_not @user1.is_deleted # デフォルトでfalse
+  end
+
 end

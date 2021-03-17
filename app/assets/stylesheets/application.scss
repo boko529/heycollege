@@ -46,7 +46,6 @@ h2 {
   font-weight: normal;
   color: #777;
 }
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -61,6 +60,9 @@ header{
   z-index: 4;
   a{
     color: rgb(90, 82, 82);
+    &:hover {
+      color: black;
+    }
   }
   .row{
     display: flex;
@@ -69,7 +71,6 @@ header{
     display: flex;
     align-items: center;
   }
-
   .form-inline {
     justify-content: center;
     display: block;
@@ -77,14 +78,17 @@ header{
   input .btn{
     height: 40px;
   }
-
   .bell, .user {
   text-align: right;
+  color: #5a5252;
+  &:hover{
+    color:black;
+  }
   }
 }
 
 // サイドバー
-.sidebar_col{
+.sidebar_col, .sub-sidebar{
   a{
     color: rgb(90, 82, 82);
   }
@@ -93,16 +97,29 @@ header{
     position: sticky;
     top: 65px;
     margin: 0 auto;
-    .list-group-item{
-      margin: 5px 10px;
-      text-align: left;
-      span{
-        font-size: 20px;
+    .list-group-item:hover{
+      padding-left: 15px;
+      a {
+        color: #222;
       }
-      a{
+    }
+    .list-group-item{
+      margin: 5px 10px 5px 10px;
+      padding-left: 10px;
+      padding: 5px;
+      box-sizing: border-box;
+      height: 60px;
+      display: flex;
+      align-items:center;
+      a {
+        text-decoration: none;
+        display: block;
         color: #777;
-        &:hover{
-          color: #222;
+        span{
+          font-size: 15px;
+          margin-left:2px;
+          display: flex;
+          // align-items: center;
         }
       }
     }
@@ -112,6 +129,48 @@ header{
 .mobile-search-form{
   width: 100%;
 }
+
+// ページネーションカスタマイズ
+nav{
+  ul.pagination{
+    margin-top: 0.1rem;
+    margin-bottom: 0.5rem;
+    li.page-item{
+      background-color: #fff;
+      &:last-child .page-link {
+        border-top-right-radius: 0.15rem;
+        border-bottom-right-radius: 0.15rem;
+      }
+      &:first-child .page-link {
+        border-top-left-radius: 0.15rem;
+        border-bottom-left-radius: 0.15rem;
+      }
+      a.page-link{
+        color: #0f0f0f;
+        text-align: center;
+        vertical-align: middle;
+        border: none;
+        border-radius: none;
+        &:hover{
+          background-color: #ccc;
+          color: #0f0f0f;               
+        }
+      }
+    }
+    li.active{
+      a.page-link{
+        color: #000;
+        background-color: #fff;
+        border-bottom:2px solid rgb(40, 110, 19);
+        &:hover{
+        }
+      }      
+    }
+    li.disabled{
+    }
+  }
+}
+
 
 // メインコンテンツの高さをヘッダーに合わせる
 .main_content{
@@ -129,21 +188,22 @@ footer {
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   .footer_button {
-    
     width: 100%;
     height: 70px;
     .row {
       padding-top: 20px;
     }
     .rank, .add, .book, .other {
-      display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     }
-    
   }
-  
   a{
+    .copyright{
+      display: block;
+      text-align: center;
+    }
     color: #777;
     &:hover{
       color: #222;

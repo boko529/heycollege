@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(5)
   end
 
   def show

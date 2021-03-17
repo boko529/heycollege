@@ -4,6 +4,7 @@
   <head>
     <title><%= yield(:title) %> | HeyCollege</title>
     <%= render 'layouts/head_base' %>
+
   </head>
 
   <body>
@@ -17,6 +18,10 @@
           <%= render 'layouts/sidebar'%>
         </div>
 
+        <div class="subsidebar-file">
+          <%= render 'layouts/subsidebar'%>
+        </div>
+       
         <%#　メインコンテント %>
         <div class="col main_content p-0">
         

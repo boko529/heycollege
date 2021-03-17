@@ -15,9 +15,11 @@ class BookmarksControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Bookmark.count' ,1 do
       post lecture_bookmarks_path(@lecture), params: { bookmark: { user_id: @user.id, lecture_id: @lecture.id }}
     end
-    follow_redirect!
-    assert_template 'lectures/show'
-    assert_select "div.alert"
+    # turbolinksなくしてrenderに変更
+    # follow_redirect!
+    assert_template 'bookmarks/create'
+    # flashなくした
+    # assert_select "div.alert"
   end
   
   test "logout user don't create bookmark" do
@@ -36,9 +38,11 @@ class BookmarksControllerTest < ActionDispatch::IntegrationTest
     assert_difference 'Bookmark.count',-1 do
       delete lecture_bookmarks_path(@lecture) 
     end
-    follow_redirect!
-    assert_template 'lectures/show'
-    assert_select "div.alert"
+    # turbolinkなくしてrenderになった
+    # follow_redirect!
+    assert_template 'bookmarks/destroy'
+    # flashなくした
+    # assert_select "div.alert"
   end
 
   test "logout user don't destroy bookmark" do
