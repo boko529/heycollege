@@ -20,7 +20,22 @@ four:
   total_point: 10
   user: user4
 
+five:
+  current_point: 10
+  total_point: 10
+  user: user5
+
 admin:
   current_point: 10
   total_point: 10
   user: test_admin
+
+not_confirm:
+  current_point: 10
+  total_point: 10
+  user: not_confirm_user
+
+is_deleted:
+  current_point: 10
+  total_point: 10
+  user: is_deleted_user

@@ -12,8 +12,14 @@ review2:
   lecture: lecture_1
   score: 4
 
+review3:
+  content: groupに所属していないユーザーの投稿
+  user: user5
+  lecture: lecture_1
+  score: 4
+
 not_content:
   content: ""
-  user: user6
+  user: user4
   lecture: lecture_1
   score: 3

@@ -3,19 +3,37 @@ require "test_helper"
 class HelpfulsControllerTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   def setup
-    @user1 = users(:user1)
-    @user2 = users(:user2)
-    @lecture = lectures(:lecture_1)
-    @review = reviews(:review1)
+    @user1 = users(:user1) #grouop1とgroup2に所属
+    @user2 = users(:user2) #group1に所属
+    @lecture = lectures(:lecture_1) #user1が作成した講義
+    @review = reviews(:review1) #user1がlecture1に投稿したレビュー
+    @review2 = reviews(:review3) # reviewの書き手がgroupに無所属
   end
 
-  test "valid create helpful" do
+  test "valid create helpful with group" do
     login_as(@user2, scope: :user)
-    #参考になるによってお知らせ、参考になる、ポイント履歴の数が1つ増える
-    assert_difference 'UserPointHistory.count', 1 do
-      assert_difference 'Notification.count', 1 do
-        assert_difference 'Helpful.count', 1 do
-          post lecture_review_helpfuls_path(@lecture, @review), params: { helpful: {lecture_id: @lecture.id, review_id: @review.id }}
+    #参考になるによってお知らせ、参考になる、ポイント履歴(3つ)の数が増える。レビューの書き手、クラス作成者、繊細作成者は2つのグループに所属しているのでGroupPointHistoryは6つ増える
+    assert_difference 'GroupPointHistory.count', 6 do
+      assert_difference 'UserPointHistory.count', 3 do
+        assert_difference 'Notification.count', 1 do
+          assert_difference 'Helpful.count', 1 do
+            post lecture_review_helpfuls_path(@lecture, @review), params: { helpful: {lecture_id: @lecture.id, review_id: @review.id }}
+          end
+        end
+      end
+    end
+    assert_template "helpfuls/create"
+  end
+
+  test "valid create helpful without group" do
+    login_as(@user2, scope: :user)
+    #参考になるによってお知らせ、参考になる、ポイント履歴(3つ)の数が増える。書き手はグループに所属していないが講義作成者と先生作成者は2つのグループに所属しているのでポイント履歴は4つ増える。
+    assert_difference 'GroupPointHistory.count', 4 do
+      assert_difference 'UserPointHistory.count', 3 do
+        assert_difference 'Notification.count', 1 do
+          assert_difference 'Helpful.count', 1 do
+            post lecture_review_helpfuls_path(@lecture, @review2), params: { helpful: {lecture_id: @lecture.id, review_id: @review2.id }}
+          end
         end
       end
     end

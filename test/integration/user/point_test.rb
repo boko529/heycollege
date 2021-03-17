@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UsersPointTest < ActionDispatch::IntegrationTest
+class User::PointTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   def setup
     @user = users(:user3)
@@ -32,7 +32,7 @@ class UsersPointTest < ActionDispatch::IntegrationTest
     assert_difference "UserPointHistory.count", 1 do
       assert @user.helpfuled_point
     end
-    assert_equal 20, @user.user_point.current_point
-    assert_equal 20, @user.user_point.total_point
+    assert_equal 110, @user.user_point.current_point
+    assert_equal 110, @user.user_point.total_point
   end
 end

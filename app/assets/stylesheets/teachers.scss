@@ -2,17 +2,110 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-
-
-
-.col-md-10.lecture-reviews{
-  width: 85%;
-  margin: 0 auto;
-  padding: 0 ;
-  border: none; /*デフォルトの枠線を消す*/
+.teacher_show{
+  margin-top: 20px;
+  margin: 0;
+  width: 100%;
+  a{
+    border-bottom: 1px black solid;
+    color: black;
+    &:hover{
+      background-color: lightgray;
+    }
+  }
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  .creator_name{
+    float: right;
+  }
+  .teacher-info{
+   width: 95%;
+   margin: 0 auto;
+   margin-bottom: 2rem;
+    h3{
+      font-size: 50px;
+      font-weight: bold;
+      padding-top: 20px;
+      padding-left: 0;
+      padding-bottom: 0;
+    }
+    .scores{
+      padding: 10px 0;
+      h4{
+        font-size: 30px;
+        span.score{
+          font-weight: bold;
+        }
+      }
+    }
+      .teachers_class{
+        width: 45%;
+        padding: 0px;
+        float: left;
+        h3{
+          font-size: 28px;
+          font-weight: normal;
+          padding: 0px;
+        }
+        .list-group{
+          // ページネーションカスタマイズ
+          nav{
+            ul.pagination{
+              margin: 0;
+            }
+          }
+        }
+      }
+      .most_helpful_review{
+        width: 50%;
+        padding: 0px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 5%;
+        float: left;
+        .most_helpful{
+          margin-bottom: 0.5rem;
+        }
+      }
+    .lecture-reviews{
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 30px;
+      padding: 0 ;
+      clear: both;
+      ol{
+        padding: 0px;
+        margin-top: 10px;
+        li{
+          padding: 30px;
+          .timestamp{
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .btn-primary{
   margin-top: 1rem;
   margin-bottom: 2rem;
 }
+
+/*画面幅(1200px)以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:1200px){/*スマホ版で教えているクラスと最も参考になるレビューを縦並びに戻すのに必要*/
+  .teacher_show{
+    .teacher-info{
+        .teachers_class{
+          width: 100%;
+        }
+        .most_helpful_review{
+          width: 100%;
+          margin-left: 0;
+        }
+    }
+  }
+} 

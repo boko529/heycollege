@@ -2,7 +2,6 @@
   margin-top: 20px;
   margin: 0 auto;
   a{
-    border-bottom: 1px black solid;
     color: black;
     &:hover{
       background-color: lightgray;
@@ -10,12 +9,13 @@
   }
   .bookmark-mark{
     margin-bottom: -4rem;
-    a{border-bottom: none;/*ブックマークに追加するアイコンの下の線を消す*/
-    }
   }
   p{
     margin: 0;
     padding: 0;
+  }
+  .creator_name{
+    float: right;
   }
   .lecture-header{
     display: flex;
@@ -54,9 +54,6 @@
   .lecture-reviews{
     margin: 0 auto;
     margin-top: 30px;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
     ol{
       padding: 0px;
       margin-top: 10px;
@@ -66,6 +63,17 @@
           font-size: 10px;
         }
       }
+    }
+  }
+}
+
+
+/*画面幅(768px)以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:768px){/*スマホ版で教えているクラスと最も参考になるレビューを縦並びに戻すのに必要*/
+  .lecture_show{
+    p.bookmark-mark{
+      font-size: 30px;
     }
   }
 }

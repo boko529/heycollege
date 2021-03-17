@@ -24,7 +24,12 @@ end
 
 # ユーザーごとにポイントテーブルを作成
 User.all.each do |user|
-  user.create_user_point(current_point: 10, total_point: 10)
+  user.initial_point
+end
+
+User.all.each do |user|
+  user_p = user.create_user_point(current_point: 10, total_point: 10)
+  user.user_point_history.create(point_type: 1, amount: 10, user_point_id: user_p.id)
 end
 
 Teacher.create!(name: "森 直樹", user_id: 1)
@@ -54,3 +59,13 @@ Notification.create(visitor_id: 2, visited_id: 1, action: "follow")
 
 News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
+group = Group.create(name: "白鷺祭")
+users = User.all
+UserGroupRelation.create(user_id: 1, group_id: 1, admin: true)
+members = users[3..11]
+members.each { |user| user.join(group) }
+
+# 団体ごとにポイントテーブルを作成
+Group.all.each do |group|
+  group.initial_point
+end

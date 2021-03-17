@@ -23,6 +23,24 @@ Rails.application.routes.draw do
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
+  resources :groups do
+    member do
+      get :users
+    end
+    member do
+      resources :group_profiles, only: [:new, :create] # new, createはgroupのidを取得したい.
+    end
+  end
+  resources :group_profiles, only: [:edit, :update, :destroy] # edit, update, destroyはgroupのid必要ない.
+  get 'groups/:id/edit_admin', to: 'groups#edit_admin'
+  patch 'groups/:id/update_admin', to: 'groups#update_admin'
+  resources :users do
+    member do
+      get :group
+    end
+  end
+
+  resources :user_group_relations, only: [:create, :destroy, :edit, :update]
   # herokuに既存のユーザーにinitポイントを付与、一度限りのやつです
   get 'admin/user/set_init_point', to: 'admin/users#set_init_point'
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
@@ -31,5 +49,5 @@ Rails.application.routes.draw do
   get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
   # 言語切り替え用rooting
   get "/application/change_language/:language" => "application#change_language"
-
+  patch "/users/:id/hide" => "users#hide", as: 'users_hide' # 退会用
 end

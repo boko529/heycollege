@@ -1,0 +1,12 @@
+<%= form_with(model: @profile, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%= f.label :content %>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
+  <span class="group_profiles-btn">
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <% unless @profile.content.blank? #プロフィールが存在しない(厳密には存在しているがcontentが空になってる)ときは表示しない. %>
+    <%= link_to "プロフィール削除", @profile, method: :delete, data: { confirm: "本当にプロフィールを削除しますか？"}, class: 'btn btn-danger' %>
+  <% end %>
+  </span>
+<% end %>
