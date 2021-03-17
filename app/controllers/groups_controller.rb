@@ -13,6 +13,14 @@ class GroupsController < ApplicationController
     @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
     @profile = @group.group_profile
     @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
+    if @group.twitter_name.present? && @group.instagram_name.present?
+      @twitter = "https://twitter.com/"+@group.twitter_name
+      @instagram = "https://instagram.com/"+@group.instagram_name
+    elsif @group.twitter_name.present?
+      @twitter = "https://twitter.com"+@group.twitter_name
+    elsif @group.instagram_name.present?
+      @instagram = "https://instagram.com"+@group.instagram_name
+    end
   end
 
   def new
@@ -38,7 +46,7 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.update(name: group_params[:name])
+    if @group.update(group_params)
       flash[:success] = "団体情報は更新されました！"
       redirect_to @group
     else
@@ -65,7 +73,7 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :instagram_name, :twitter_name)
     end
 
     def admin_group

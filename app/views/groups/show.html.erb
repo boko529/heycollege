@@ -49,11 +49,11 @@
       <% end %>
       <br>
       <small>
-        Instagram: <!--ここにTwitterアカウント-->
+        Instagram: <%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
       </small>
       &nbsp;&nbsp;
       <small>
-        Twitter:<!--ここにTwitterアカウント-->
+        Twitter:<%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
       </small>
     </div>
     <div class="member-list">
