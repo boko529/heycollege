@@ -18,7 +18,7 @@
   </div>
 
   <%= link_to @review.user do %>
-    <%= image_tag 'default_user.png', :size => '20x20' %><%= @review.user.name %>
+    <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@review.user) %>
   <% end %>
   <span class="time-stamp"><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></span>
 

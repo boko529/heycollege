@@ -10,42 +10,51 @@
       <div class="frame">
 
         <div class="frame_icon">
-        <div class="circle">
-          <%= image_tag 'default_user.png', :size => '80x80' %>
-        </div>
-        </div>
-
-        <%# その他・設定ボタン %>
-        <div class="other-button" id="open" onclick="openBottomup()">
-          <i class="fas fa-ellipsis-h"></i>
-        </div>
-
-        <%# その他ボトムアップスライド %>
-        <div class="other-bottomup other-bottomup-transition" id="close">
-          <div id="closeIcone" id="open" onclick="closeBottomup()">
-            <i class="fas fa-times"></i>
+          <div class="circle">
+            <%= image_tag 'default_user.png', :size => '80x80' %>
           </div>
-          <ul class="other-bottomup-ul">
-            <li class="list-group-item text-left">
-                <%= link_to root_path do %>
-                  <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">ヘルプ</span>
-                <% end %>
-            </li>
-            <li class="list-group-item text-left">
-              <%= link_to "#" do %>
-                <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
-              <% end %>
-            </li>
-            <li class="list-group-item text-left">
-            <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">ログアウト</span>
-            <% end %>
-            </li>
-            <li class="usershow-blank list-group-item text-left d-inlineblock">
-              <span class="d-inline"></span>
-            </li>
-          </ul>
         </div>
+
+        <%# マイページのときのみ表示 %>
+        <% if @user == current_user %>
+          <%# その他・設定ボタン %>
+          <div class="other-button" id="open" onclick="openBottomup()">
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          
+          <%# その他ボトムアップスライド %>
+          <div class="other-bottomup other-bottomup-transition" id="close">
+            <div id="closeIcone" id="open" onclick="closeBottomup()">
+              <i class="fas fa-times"></i>
+            </div>
+            <ul class="other-bottomup-ul">
+              <li class="list-group-item text-left">
+                  <%= link_to root_path do %>
+                    <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">ヘルプ</span>
+                  <% end %>
+              </li>
+              <li class="list-group-item text-left">
+                <%= link_to "#" do %>
+                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
+                <% end %>
+              </li>
+              <li class="list-group-item text-left">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">ログアウト</span>
+              <% end %>
+              </li>
+              <%# 退会 %>
+              <li class="list-group-item text-left">
+                <%= link_to users_hide_path(@user), method: :patch do %>
+                  <span class="d-inline text-success">退会</span>
+                <% end %>
+              </li>
+              <li class="usershow-blank list-group-item text-left d-inlineblock">
+                <span class="d-inline"></span>
+              </li>
+            </ul>
+          </div>
+        <% end %>
 
         <%# 編集 %>
         <% if @user == current_user %>

@@ -6,7 +6,7 @@
     <span class="creator_name">
     作成者：
       <%= link_to @lecture.user do %>
-        <%= image_tag 'default_user.png', :size => '20x20' %><%= @lecture.user.name %>
+        <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@lecture.user) %>
       <% end %>
     </span>
   </div>
@@ -43,7 +43,7 @@
         <p><strong>最も参考になっているレビュー</strong></p>
         <div class="most_helpful_review">
           <span id="star-helpful-review"></span>
-          <p><%= link_to @helpful_review.user.name, @helpful_review.user %></p>
+          <p><%= link_to display_name(@helpful_review.user), @helpful_review.user %></p>
           <p class="timestamp">
             <%= @helpful_review.updated_at.strftime("%Y-%m-%d") %>
           </p>
