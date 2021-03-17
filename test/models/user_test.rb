@@ -95,6 +95,11 @@ class UserTest < ActiveSupport::TestCase
   test "instagram name should not be too long" do
     @user1.instagram_name = "a" * 31
     assert_not @user1.valid?
+   end
+
+  test "is_deleted default false" do
+    @user1.save
+    assert_not @user1.is_deleted # デフォルトでfalse
   end
 
 end

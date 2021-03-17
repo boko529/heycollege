@@ -6,6 +6,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = users(:user3)
     @other_user = users(:user4)
     @new_user = User.new(name: "ExampleUser", email: "user@apu.ac.jp",password: "foobar",password_confirmation: "foobar", gender: "male", grade: "B1", faculty: "APS")
+    @deleted_user = users(:is_deleted_user)
   end
 
   test "invalid user should not edit valid user's name" do
@@ -88,4 +89,39 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'static_pages/home'
   end
+
+  test "valid is_deleted" do 
+    login_as(@user)
+    assert @user.active_for_authentication?
+    patch users_hide_path(@user)
+    assert_not @user.active_for_authentication? #何故かテストがFAILになる
+  end
+
+  test "should not show is_deleted user" do
+    login_as(@user)
+    get user_path(@deleted_user)
+    follow_redirect!
+    # 退会したユーザーのshowページには行けない
+    assert_not flash.empty?
+    assert_template root_path
+  end
+
+  test "should not following is_deleted user" do
+    login_as(@user)
+    get users_following_path(@deleted_user)
+    follow_redirect!
+    # 退会したユーザーのfollowingページには行けない
+    assert_not flash.empty?
+    assert_template root_path
+  end
+
+  test "should not follower is_deleted user" do
+    login_as(@user)
+    get users_follower_path(@deleted_user)
+    follow_redirect!
+    # 退会したユーザーのfollowerページには行けない
+    assert_not flash.empty?
+    assert_template root_path
+  end
+
 end

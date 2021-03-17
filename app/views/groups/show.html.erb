@@ -3,7 +3,7 @@
   <div class="group-index">
     <span class="frame">
       <div class="circle">
-        <!--ここにアイコン画像-->
+        <i class="fas fa-users fa-3x"></i>
       </div>
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
@@ -49,11 +49,11 @@
       <% end %>
       <br>
       <small>
-        Instagram: <!--ここにTwitterアカウント-->
+        Instagram: <%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
       </small>
       &nbsp;&nbsp;
       <small>
-        Twitter:<!--ここにTwitterアカウント-->
+        Twitter:<%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
       </small>
     </div>
     <div class="member-list">
@@ -61,7 +61,7 @@
       <%= render 'shared/stats_user' %>
       <% @users.each do |user| %>
         <li class="list-group-item list-group-item-action member-list-box">
-          <%= link_to user.name, user %>
+          <%= link_to display_name(user), user %>
         </li>
       <% end %>
       <div class="page-box">
