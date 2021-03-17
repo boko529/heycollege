@@ -17,30 +17,69 @@
 
         <%# マイページのときのみ表示 %>
         <% if @user == current_user %>
-          <%# その他・設定ボタン %>
-          <div class="other-button" id="open" onclick="openBottomup()">
+          <%# 編集 %>
+          <% if @user == current_user %>
+            <div class="edit-btn btn btn-primary">
+              <%= link_to '編集', edit_user_path(@user.id)%>
+            </div>
+          <% else %>
+            <div class="follow-btn">
+              <span id='follow-button_<%= @user.id %>'>
+                <%= render 'users/follow-button', user: @user  %>
+              </span>
+          <% end %>
+
+          <%# その他・設定ボタン (PC版)%>
+          <div class="dropdown d-none d-md-block">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">                  
+                <%= link_to root_path do %>
+                  &nbsp;<i class="fas fa-question fa-2x"></i><span class="d-inline text-success"> ヘルプ&nbsp;</span>
+                <% end %>
+              </a>
+              <a class="dropdown-item" href="#">                
+                <%= link_to "#" do %>
+                  &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
+                <% end %>
+              </a>
+              <a class="dropdown-item" href="#">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
+                <% end %>
+              </a>
+              <a class="dropdown-item" href="#">                
+                <%= link_to users_hide_path(@user), method: :patch do %>
+                  &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
+                <% end %>
+              </a>
+            </div>
+          </div>
+          <%# その他・設定ボタン (スマホ版)%>
+          <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
             <i class="fas fa-ellipsis-h"></i>
           </div>
-          
           <%# その他ボトムアップスライド %>
-          <div class="other-bottomup other-bottomup-transition" id="close">
+          <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
             <div id="closeIcone" id="open" onclick="closeBottomup()">
               <i class="fas fa-times"></i>
             </div>
             <ul class="other-bottomup-ul">
               <li class="list-group-item text-left">
                   <%= link_to root_path do %>
-                    <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">ヘルプ</span>
+                    <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">&nbsp;ヘルプ</span>
                   <% end %>
               </li>
               <li class="list-group-item text-left">
                 <%= link_to "#" do %>
-                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
+                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">&nbsp;お問い合わせ</span>
                 <% end %>
               </li>
               <li class="list-group-item text-left">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">ログアウト</span>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;ログアウト</span>
               <% end %>
               </li>
               <%# 退会 %>
@@ -54,18 +93,6 @@
               </li>
             </ul>
           </div>
-        <% end %>
-
-        <%# 編集 %>
-        <% if @user == current_user %>
-          <div class="edit-btn btn btn-primary">
-            <%= link_to '編集', edit_user_path(@user.id)%>
-          </div>
-        <% else %>
-          <div class="follow-btn">
-            <span id='follow-button_<%= @user.id %>'>
-              <%= render 'users/follow-button', user: @user  %>
-            </span>
         <% end %>
       </div>
 
@@ -104,7 +131,7 @@
               学部：<%= @user.faculty_i18n %>
             <br>学年：<%= @user.grade_i18n %>
             <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
-            <br>スコア：<%= @user.user_point.total_point.round(0) %>
+            <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
           </div>
         <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
         <br>
@@ -150,12 +177,12 @@
 
       <%# 所属団体 %>
       <% if @groups.any? %>
-        <ul class="group join">
+        <div class="group-join">
           <h3>所属団体（<%= @groups.count %>）</h3>
           <% @groups.each do |group| %>
-            <%= link_to group.name, group %>
+            <p>・<%= link_to group.name, group %></p>
           <% end %>
-        </ul>
+        </div>
       <% end %>
 
       <nav>
