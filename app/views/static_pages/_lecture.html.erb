@@ -29,17 +29,15 @@
     </div>
 
     <%# ウェブ %>
-    <div class="col-sm-5 col-4 p-0 p-sm-auto d-none d-sm-flex">
+    <div class="col-sm-6 col-4 p-0 p-sm-auto d-none d-sm-flex">
       <%# 先生名前 %>
       <span class="teacher-name">
         <%= link_to lecture.teacher.name, lecture.teacher %>
-
-        <%# レビュー数 %>
-        <span class="web-reviewcount">
-          <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
-        </span>
-        
       </span>
+      <%# レビュー数 %>
+      <div class="web-reviewcount">
+          <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
+      </div>
     </div>
 
     <%# クラス名＆先生名スマホ %>
