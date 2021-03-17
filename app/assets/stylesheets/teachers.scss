@@ -49,6 +49,14 @@
           font-weight: normal;
           padding: 0px;
         }
+        .list-group{
+          // ページネーションカスタマイズ
+          nav{
+            ul.pagination{
+              margin: 0;
+            }
+          }
+        }
       }
       .most_helpful_review{
         width: 50%;
