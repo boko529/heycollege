@@ -31,6 +31,9 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
   validates :message, length: { maximum: 100 }
+  validates :twitter_name, length: { maximum: 30}
+  validates :instagram_name, length: { maximum: 30}
+
   
   # ユーザーをフォローする
   def follow(user_id)
