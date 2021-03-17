@@ -1,40 +1,73 @@
 <% provide(:title, @group.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="group_info">
-      <h1>
-        <%= @group.name %>
-      </h1>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <%= render 'join_form' %>
-    <h1>Members</h1>
-    <%= render 'shared/stats_user' %>
-    <ul>
-      <% @users.each do |user| %>
-        <li><%= link_to user.name, user %></li>
+<div class="col-lg-8 offset-lg-2">
+  <div class="group-index">
+    <span class="frame">
+      <div class="circle">
+        <i class="fas fa-users fa-3x"></i>
+      </div>
+      <span class="float-right-btn">
+        <% if @relation &&  @relation.admin %>
+          <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
+        <% end %>
+        <br>
+        <% if @profile%>
+          <%= link_to "プロフィール編集", {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+        <% end %>
+        <br>
+        <%= render 'join_form' %>  
+      </span>
+      <div class="frame profile">
+        <br>スコア：<%= @group.group_point.current_point.round(0) %>
+      </div>
+      <div class="float_clear"></div>
+    </span>
+    <div class="group-name">
+      <strong><%= @group.name %></strong>
+    </div>
+    <!--
+    <div class="follow">
+      <span class=color-brack>
+        <!-ここにフォローしている人数->フォロー中
+      </span>
+      &nbsp;&nbsp;&nbsp;
+      <span class=color-brack>
+        <!-ここにフォロワーの人数->フォロワー
+      </span>
+    </div>-->
+    <div>
+      <%# プロフィール表示 %>
+      <% if @relation &&  @relation.admin %>
+        <small>
+          <% if @profile %>
+            プロフィール
+            <br><%= @profile.content %>
+          <% else %>
+            <%# プロフィール作成欄 %>
+            <%= link_to "プロフィール作成", {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
+          <% end %>
+        </small>
       <% end %>
-    </ul>
+      <br>
+      <small>
+        Instagram: <!--ここにTwitterアカウント-->
+      </small>
+      &nbsp;&nbsp;
+      <small>
+        Twitter:<!--ここにTwitterアカウント-->
+      </small>
+    </div>
+    <div class="member-list">
+      <strong class="member">メンバー</strong>
+      <%= render 'shared/stats_user' %>
+      <% @users.each do |user| %>
+        <li class="list-group-item list-group-item-action member-list-box">
+          <%= link_to display_name(user), user %>
+        </li>
+      <% end %>
+      <div class="page-box">
+        <%= paginate @users, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
+      </div>
+    </div>
   </div>
-  <% if @relation &&  @relation.admin %>
-    <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
-  <% end %>
 </div>
-<%# プロフィール表示 %>
-<% if @relation &&  @relation.admin %>
-  <div>
-    <% if @profile %>
-      <p>Profile</p>
-      <div class="most_helpful_review">
-        <p><%= @profile.content %></p>
-        <p><%= link_to "プロフィール編集", {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %></p>
-        <p><%= link_to "プロフィール削除", @profile, method: :delete, data: { confirm: "本当にプロフィールを削除しますか？"}, class: 'btn btn-danger' %></p>
-    <% else %>
-      <p>プロフィールがありません</p>
-        <%# プロフィール作成欄 %>
-        <p><%= link_to "プロフィール作成", {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %></p>
-    <% end %>
-  </div>
-<% end %>
 

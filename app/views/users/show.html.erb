@@ -4,116 +4,197 @@
 <% else %>
   <% provide(:title, @user.name) %>
 <% end %>
+<div class="user_show">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="frame">
 
-<div class="row">
-  <div class="col-lg-8 offset-lg-2">
-    <div class="frame">
-      <div class="frame_icon">
-       <div class="circle">
-        <%= gravatar_for @user, 80 %>
-       </div>
-      </div>
-      <% if @user == current_user %>
-        <div class="edit-btn">
-          <%= link_to '編集', edit_user_path(@user.id)%>
+        <div class="frame_icon">
+          <div class="circle">
+            <%= image_tag 'default_user.png', :size => '80x80' %>
+          </div>
         </div>
-      <% else %>
-        <div class="follow-btn">
-          <span id='follow-button_<%= @user.id %>'>
-            <%= render 'users/follow-button', user: @user  %>
-          </span>
-        </div>
-      <% end %>
-    
-     <div class="frame profile">
-       <!---
-        <br>性別:
-          <%= @user.gender_i18n  %> -->
-          学部：
-          <%= @user.faculty_i18n %>
-        <br>学年：
-          <%= @user.grade_i18n %>
-        <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
-        <br>スコア：<%= @user.user_point.total_point.round(0) %>
+
+        <%# マイページのときのみ表示 %>
+        <% if @user == current_user %>
+          <%# その他・設定ボタン %>
+          <div class="other-button" id="open" onclick="openBottomup()">
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          
+          <%# その他ボトムアップスライド %>
+          <div class="other-bottomup other-bottomup-transition" id="close">
+            <div id="closeIcone" id="open" onclick="closeBottomup()">
+              <i class="fas fa-times"></i>
+            </div>
+            <ul class="other-bottomup-ul">
+              <li class="list-group-item text-left">
+                  <%= link_to root_path do %>
+                    <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">ヘルプ</span>
+                  <% end %>
+              </li>
+              <li class="list-group-item text-left">
+                <%= link_to "#" do %>
+                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
+                <% end %>
+              </li>
+              <li class="list-group-item text-left">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">ログアウト</span>
+              <% end %>
+              </li>
+              <%# 退会 %>
+              <li class="list-group-item text-left">
+                <%= link_to users_hide_path(@user), method: :patch do %>
+                  <span class="d-inline text-success">退会</span>
+                <% end %>
+              </li>
+              <li class="usershow-blank list-group-item text-left d-inlineblock">
+                <span class="d-inline"></span>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+
+        <%# 編集 %>
+        <% if @user == current_user %>
+          <div class="edit-btn btn btn-primary">
+            <%= link_to '編集', edit_user_path(@user.id)%>
+          </div>
+        <% else %>
+          <div class="follow-btn">
+            <span id='follow-button_<%= @user.id %>'>
+              <%= render 'users/follow-button', user: @user  %>
+            </span>
+        <% end %>
       </div>
-    </div>
-    <p>
-      <span class="user-name">
-        <strong><%= @user.name %></strong>
-      </span>
-      <br>
-      <span id="follow", id='following-count_<%= @user.id%>'>
-        <%= link_to users_following_path(@user) do%>
-          <span class=color-brack>
-            <%= @user.follower.count %>フォロー中
-          </span>
-        <% end %>
-      </span>
-      &nbsp;&nbsp;&nbsp;
-      <span id='follower-count_<%= @user.id%>'>
-        <%= link_to users_follower_path(@user) do%>
-          <span class=color-brack>
-            <%= @user.followed.count %>フォロワー
-          </span>
-        <% end %>
-      </span>
-    </p>
-    <div class="sns">
-      <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
-      <br>
-      <small>Instagram: @insuta</small>
-      &nbsp;&nbsp;
-      <small>Twitter:
-        <% if user_signed_in? %>
-          <% if @user.twitter_url.present? && @user.id == current_user.id %>
-            <%= link_to @user.twitter_url, target: :_blank do %>
-            <i class="fab fa-twitter-square fa-2x"></i>
+
+      <p>
+        <%# ユーザーネーム %>
+        <span class="user-name">
+          <strong><%= @user.name %></strong>
+        </span>
+
+        <%# フォロー %>
+        <br>
+        <div>
+        <span id="follow", id='following-count_<%= @user.id%>'>
+          <%= link_to users_following_path(@user) do%>
+            <span class=color-brack>
+              <%= @user.follower.count %>フォロー中
+            </span>
+          <% end %>
+        </span>
+        &nbsp;&nbsp;&nbsp;
+        <span id='follower-count_<%= @user.id%>'>
+          <%= link_to users_follower_path(@user) do%>
+            <span class=color-brack>
+              <%= @user.followed.count %>フォロワー
+            </span>
+          <% end %>
+        </span>
+        </div>
+      </p>
+      <%# ステータス %>
+      <div class="sns">
+      <div class="frame profile">
+          <!---
+            <br>性別:
+              <%= @user.gender_i18n  %> -->
+              学部：<%= @user.faculty_i18n %>
+            <br>学年：<%= @user.grade_i18n %>
+            <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
+            <br>スコア：<%= @user.user_point.total_point.round(0) %>
+          </div>
+        <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
+        <br>
+        <small><i class="fab fa-instagram fa-1x"></i> @insuta</small>
+        &nbsp;&nbsp;
+        <small><i class="fab fa-twitter-square fa-1x"></i>
+          <% if user_signed_in? %>
+            <% if @user.twitter_url.present? && @user.id == current_user.id %>
+              <%= link_to @user.twitter_url, target: :_blank do %>
+              <i class="fab fa-twitter-square fa-2x"></i>
+              <% end %>
+            <% elsif @user.id == current_user.id %>
+                <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id) %>
             <% end %>
-          <% elsif @user.id == current_user.id %>
-              <%= link_to 'twitterアカウントを追加する', edit_user_path(@user.id) %>
           <% end %>
-        <% end %>
-      </small>
-    </div>
-    <!--
-    <p>
-      <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
-    </p>
-    
-    <div class="collapse mx-auto" id="collapsemyreview">
-      <div class="card card-body">
-        <h2>過去のレビュー</h2>
-        <table class="table">
-          <tr>
-            <th>クラス名</th>
-            <th>スコア</th>
-            <th>レビュータイトル</th>
-          </tr>
-          <% @reviews.each do |review| %>
-          <tr>
-            <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
-            <td><%= review.score %></td>
-            <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
-          </tr>
-          <% end %>
-        </table>
+        </small>
       </div>
-    </div>-->
 
-    <% if @reviews.any? %>
-      <h3>レビュー数 (<%= @reviews.count %>)</h3>
-      <ol class="reviews">
-        <%= render @reviews %>
-      </ol>
-    <% end %>
+      <!--
+      <p>
+        <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
+      </p>
+      
+      <div class="collapse mx-auto" id="collapsemyreview">
+        <div class="card card-body">
+          <h2>過去のレビュー</h2>
+          <table class="table">
+            <tr>
+              <th>クラス名</th>
+              <th>スコア</th>
+              <th>レビュータイトル</th>
+            </tr>
+            <% @reviews.each do |review| %>
+            <tr>
+              <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
+              <td><%= review.score %></td>
+              <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>-->
 
-    <% if @groups.any? %>
-      <ul class="group join">
-        <h3>所属団体（<%= @groups.count %>）</h3>
-        <% @groups.each do |group| %>
-          <%= link_to group.name, group %>
-        <% end %>
-      </ul>
-    <% end %>
+      <%# 所属団体 %>
+      <% if @groups.any? %>
+        <ul class="group join">
+          <h3>所属団体（<%= @groups.count %>）</h3>
+          <% @groups.each do |group| %>
+            <%= link_to group.name, group %>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">レビュー (<%= @reviews.count %>)</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">クラス (<%= @lectures.count %>)</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <ol class="reviews">
+            <% @reviews.each do |review| %>
+              <%= render partial: "users/review", locals: {review: review} %>
+            <% end %>
+            <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
+          </ol>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <ol class="lectures">
+            <% @lectures.each do |lecture| %>
+              <%= render partial: "users/lecture", locals: {lecture: lecture} %>
+            <% end %>
+            <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+// 表示を消す
+  function openBottomup() {
+   document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
+   document.body.style.overflow = 'hidden';
+  }
+// 表示する
+ function closeBottomup() {
+   document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
+   document.body.style.overflow = 'scroll';
+    }
+</script>

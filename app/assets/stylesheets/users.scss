@@ -2,21 +2,101 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 .frame{
   width: 100%;
   padding: 0.5rem 0 0rem 0;
 }
+
+// 設定開くボタン
+.other-button {
+  float: right;
+  border: 1.5px solid #000;
+  /*枠線の幅、線種、色*/
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  padding: 0.2rem 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+// 下から上がってくる設定
+.other-bottomup {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 3;
+  top: 10px;
+}
+// アニメーション前
+.other-bottomup-transition {
+  opacity:0;
+  bottom: -100%;
+  top: 100%;
+  height: 0;
+  transition: 0.3s;
+  visibility: hidden;
+}
+
+// アニメーション後
+.other-bottomup-transition-active {
+  opacity: 1;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+  transition: 0.3s;
+  visibility: visible
+}
+  // 閉じるボタン
+  #closeIcone {
+    text-align: right;
+    font-size: 35px;
+    padding-right: 40px;
+    background-color: #fff;
+  }
+  ul.other-bottomup-ul {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    position:absolute;
+    width:100%;
+    li {
+      display: block;
+    }
+    .usershow-blank {
+      height: 100%;
+    }
+  } 
 
 .frame_icon{
   float: left; /*左に回り込み*/
   padding-right: 1rem;
    /*丸アイコン*/
   .circle {
-   overflow: hidden; /*画像が円から出た部分は隠す*/
+    width: 84px;
+    height: 84px;
+    overflow: hidden; /*画像が円から出た部分は隠す*/
     background: #fff; /*背景色*/
-   float: left; /*左に回り込み*/
-   border: 2px solid #fff; /*枠線の幅、線種、色*/
-   border-radius: 50%; /*アイコン画像を円にする*/
+    float: left; /*左に回り込み*/
+    border: 2px solid #fff; /*枠線の幅、線種、色*/
+    border-radius: 50%; /*アイコン画像を円にする*/
   }
 }
 
@@ -47,6 +127,12 @@
   vertical-align: middle;
   text-decoration: none;
   border-radius: 0.5rem;
+  a{
+    color: #fff;
+    &:hover{
+      color: #fff;
+    }
+  }
 }
 
 .follow-btn{
@@ -74,7 +160,7 @@
 }
 
 .color-brack{
-  color: #000;
+  color:rgb(90, 82, 82);
 }
 
 .sns{
@@ -82,7 +168,20 @@
   margin-top: -1.5rem;
 }
 
-.reviews{
+.group-join{
+  p{
+    margin: 0.3rem;
+    margin: 0;
+    padding-top: 0;
+    font-size: 1.2rem;
+    a{
+      color: black;
+    }
+  }
+}
+
+
+.reviews, .lectures{
   padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
 }
 
@@ -94,6 +193,20 @@
       float: right;
     }
   }
+}
 
-
+.user_show{
+  nav{
+    a{
+      text-align: center;
+      width: 50%;
+      color: black;
+      font-weight: bold;
+      display: inline-block;
+      padding: 20px;
+      &:hover{
+        background-color: lightgrey;
+      }
+    }
+  }
 }

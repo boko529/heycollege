@@ -73,13 +73,19 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user1.twitter_url.present?
   end
 
-  test "gmail user don't sign up" do
-    assert_not @gmail_user.valid?
-  end
+  # メアドのバリデーション削除
+  # test "gmail user don't sign up" do
+  #   assert_not @gmail_user.valid?
+  # end
 
   test "message should not be too long" do
     @user1.message = "a" * 101
     assert_not @user1.valid?
+  end
+
+  test "is_deleted default false" do
+    @user1.save
+    assert_not @user1.is_deleted # デフォルトでfalse
   end
 
 end
