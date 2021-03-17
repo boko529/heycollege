@@ -3,7 +3,7 @@
 
   <p><%= link_to review.lecture.name, review.lecture %></p>
   <%= link_to review.user do %>
-    <%= gravatar_for review.user, 20 %><%= review.user.name %>
+    <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(review.user) %>
   <% end %>
   <p class="content">
     <%= safe_join(review.content.split("\n"),tag(:br)) %>

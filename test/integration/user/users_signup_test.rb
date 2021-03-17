@@ -83,7 +83,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       assert_equal "init", user.user_point_history.first.point_type
       assert_equal 10, user.user_point_history.first.amount
       assert_template 'devise/mailer/confirmation_instructions'
-      post user_session_path params: { session: { email: 'taro@apu.ac.jp', password: 'password' } }
+      login_as(user, scope: :user)
       get user_path(user.id)
       assert_template 'users/show'
     end

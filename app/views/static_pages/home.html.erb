@@ -22,7 +22,7 @@
         <% @lectures.each.with_index(1) do |lecture, i| %>
           <%= render partial: "static_pages/lecture", locals: {lecture: lecture, i: i} %>
         <% end %>
-        <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
+        <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
     <%# 先生ランキング表示 %>
@@ -31,7 +31,7 @@
         <% @teachers.each.with_index(1) do |teacher, i| %>
           <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
         <% end %>
-        <%= paginate @teachers, theme: 'twitter-bootstrap-4' %>
+        <%= paginate @teachers, param_name: 'teachers_page', theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
     <%# ユーザーランキング表示 %>

@@ -1,3 +1,4 @@
+<%# ブックマークのCSSはstatic %>
 <% provide(:title, "Bookmark") %>
 <div class="ranking-index">
   <h2>ブックマーク</h2>
@@ -11,18 +12,57 @@
     <div class="tab-pane fade show active" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
       <ul class="rankings">
         <% @bookmarks.each do |bookmark| %>
-            <li id = lecture_<%= bookmark.lecture.id %> class = "lecture" >
-              <span class="score">
-                <%= bookmark.lecture.average_score %>
-              </span>
-              <%= link_to bookmark.lecture.name, bookmark.lecture %>
-              <span class="teacher-name">
-                <%= link_to bookmark.lecture.teacher.name, bookmark.lecture.teacher %>
-              </span>
-              <span>
-                レビュー数: <%= bookmark.lecture.all_reviews_count %>
-              </span>
-            </li>
+
+            <%# ブックマーク一表示 %>
+
+            <div id = lecture_<%= bookmark.lecture.id %> class = "lecture container-fluid" >
+
+              <div class="row">
+
+                <%# スコア %>
+                <div class="col-sm-1 col-2">
+                  <span class="score d-flex text-left text-sm-center">
+                    <a class="m-0 m-sm-auto"><%= bookmark.lecture.average_score %></a>
+                  </span>
+                </div>
+                <%# クラス %>
+                <div class="col-3 col-lg-3 px-0 py-auto d-none d-sm-block">
+                  <span class="class-name p-0">
+                    <%= link_to bookmark.lecture.name, bookmark.lecture %>
+                  </span>
+                </div>
+
+                <%# 先生とレビュー数 %>
+                <div class="col-sm-5 p-0 p-sm-auto d-none d-sm-block">
+                  <span class="teacher-name">
+                    <%= link_to bookmark.lecture.teacher.name, bookmark.lecture.teacher %>
+                      <span class="web-reviewcount">
+                        <i class="far fa-comment-dots"></i><%= bookmark.lecture.all_reviews_count %>
+                      </span>
+                  </span>
+                </div>
+
+                <%# クラス名＆先生名スマホ %>
+                <div class="col-8 d-inline d-sm-none p-0 m-0">
+                  <%# 二段構成 %>
+                  <div class="mobile-class-and-teacher d-inlineblock mr-0">
+                      <span class="mobile-class-name d-inlineblock">
+                          <%= link_to bookmark.lecture.name, bookmark.lecture %>
+                        </span>
+                      <span class="mobile-teacher-name d-inlineblock">
+                          <%= link_to bookmark.lecture.teacher.name, bookmark.lecture.teacher %>
+                      </span>
+                  </div>
+                </div>
+
+                <div class="review-count col-2 d-sm-none">
+                <span>
+                  <i class="far fa-comment-dots"></i><%= bookmark.lecture.all_reviews_count %>
+                </span>
+                </div>
+              </div>
+            </div>
+
         <% end %>
       </ul>
     </div>

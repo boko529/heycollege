@@ -25,12 +25,12 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
+  # APUメアドのバリデーション削除
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
   validates :message, length: { maximum: 100 }
-  include Gravtastic
-  gravtastic
   
   # ユーザーをフォローする
   def follow(user_id)
@@ -71,5 +71,10 @@ class User < ApplicationRecord
   # groupに参加しているかどうかを確認する
   def belongs?(group1)
     group.include?(group1)
+  end
+
+  # 退会済みかどうか確認(退会済みならtrue)
+  def active_for_authentication?
+    super && (self.is_deleted == false)
   end
 end

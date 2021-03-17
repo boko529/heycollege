@@ -1,5 +1,4 @@
 const { environment } = require('@rails/webpacker')
-
 // ここからbootstrap用のコード
 const webpack = require('webpack')
 environment.plugins.prepend(
@@ -11,4 +10,5 @@ environment.plugins.prepend(
   })
 )
 // ここまでbootstrap用のコード
+
 module.exports = environment
