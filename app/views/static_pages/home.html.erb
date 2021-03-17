@@ -5,8 +5,14 @@
     <%= link_to news.title, news, class:"news_by" %>
   <% end %>
 <% end %>
+
+<div class="slide_show">
+  <div class="slide_content"><%= image_tag("slideshow/slide1.png", alt: "スライド1", class: "slide") %></div>
+  <div class="slide_content"><%= image_tag("slideshow/slide_sample.png", alt: "スライド2", class: "slide") %></div>
+  <div class="slide_content"><%= image_tag("slideshow/slide_sample.png", alt: "スライド3", class: "slide") %></div>
+</div>
+
 <div class="ranking-index">
-  <h2>ランキング</h2>
   <nav>
     <%# 講義ランキング先生ランキング切り替えタブ %>
     <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
@@ -45,3 +51,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function() {
+    $('.slide_show').slick({
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+    });
+    // マウスをホバーしたときにそのスライドに移動
+    $('.slick-dots li').on('mouseover', function() {
+      $('.slide_show').slick('goTo', $(this).index());
+    });
+  });
+</script>
