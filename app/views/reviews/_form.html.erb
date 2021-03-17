@@ -7,7 +7,7 @@
   </div>
 
   <%= f.label :content %>
-  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' ,placeholder: '例）この授業の難易度はそこまで高くないです。しかし、課題の量が多いです。また、出席が２０％なので、毎回の授業に遅れずに参加しました。先生に分からないとこを尋ねるととても丁寧に答えていただきました。とてもよかったです。'%>
 
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
