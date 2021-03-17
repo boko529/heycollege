@@ -49,23 +49,15 @@
       <% end %>
       <br>
       <% if @group.instagram_name.present? %>
-        <small>
-          Instagram: <%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
-        </small>
+        <small>Instagram: <%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
       <% elsif @relation &&  @relation.admin %>
-        <small>
-          Instagram:<%= link_to "アカウント名を追加",edit_group_path(@group.id), target: :_blank, rel: "noopener noreferrer" %>
-        </small>
+        <small>Instagram:<%= link_to "アカウント名を追加",edit_group_path(@group.id), target: :_blank, rel: "noopener noreferrer" %></small>
       <% end %>
       &nbsp;&nbsp;
       <% if @group.twitter_name.present? %>
-        <small>
-          Twitter:<%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
-        </small>
+        <small>Twitter:<%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
       <% elsif @relation &&  @relation.admin %>
-        <small>
-          Twitter:<%= link_to "アカウント名を追加",edit_group_path(@group.id), target: :_blank, rel: "noopener noreferrer" %>
-        </small>
+        <small>Twitter:<%= link_to "アカウント名を追加",edit_group_path(@group.id), target: :_blank, rel: "noopener noreferrer" %></small>
       <% end %>
     </div>
     <div class="member-list">
