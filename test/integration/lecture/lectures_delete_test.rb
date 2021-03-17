@@ -6,6 +6,7 @@ class LecturesDeleteTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @lecture = lectures(:lecture_1)
     @others_lecture = lectures(:lecture_2)
+    @lecture_3 = lectures(:lecture_53)
   end
 
   test "successful delete" do
@@ -39,6 +40,18 @@ class LecturesDeleteTest < ActionDispatch::IntegrationTest
     end
     #CSRF保護の関係でlecture/indexでは通らないらしい
     assert_template nil
+    assert_not flash.empty?
+  end
+
+  test "delete teacher automatically" do
+    login_as(@user, scope: :user)
+    get edit_lecture_path(@lecture_3) #teacher3が唯一保持しているlectureインスタンス
+    assert_template 'lectures/edit'
+    assert_difference "Teacher.count", -1 do # teacher3が保持するlectureインスタンスの数が0のため削除.
+      delete lecture_path(@lecture_3)
+    end
+    follow_redirect!
+    assert_template 'lectures/index'
     assert_not flash.empty?
   end
 end

@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_point: 10
+  total_point: 10
+  user: user1
+
+two:
+  current_point: 10
+  total_point: 10
+  user: user2
+  
+three:
+  current_point: 10
+  total_point: 10
+  user: user3
+
+four:
+  current_point: 10
+  total_point: 10
+  user: user4
+
+five:
+  current_point: 10
+  total_point: 10
+  user: user5
+
+admin:
+  current_point: 10
+  total_point: 10
+  user: test_admin
+
+not_confirm:
+  current_point: 10
+  total_point: 10
+  user: not_confirm_user
+
+is_deleted:
+  current_point: 10
+  total_point: 10
+  user: is_deleted_user

@@ -1,0 +1,3 @@
+$("#follow-button_<%= @user.id %>").html("<%= j(render 'users/follow-button', user: @user) %>");
+$("#follower-count_<%= @user.id %>").html('<%= link_to "#{ @user.followed.count }フォロワー", users_follower_path(@user) %>');
+$("#following-count_<%= @user.id %>").html('<%= link_to "#{ @user.follower.count }フォロー中", users_following_path(@user) %>');

@@ -1,28 +1,34 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
+  <%# 全体をリンクにしてる %>
+  <%= link_to lecture_review_path( id: review.id, lecture_id: review.lecture.id ) do %>
+    <h4>
+      <span><%= review.score %></span><div id="star-review<%= review.id %>"></div>
+    </h4>
+    <%= link_to review.user do %>
+      <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(review.user) %>
+    <% end %>
+    <p class="content">
+      <%= safe_join(review.content.split("\n"),tag(:br)) %>
+    </p>
+    <p class="timestamp">
+      <%= review.updated_at.strftime("%Y-%m-%d") %>
+    </p>
 
-  <h4 class="title">
-    <span><%= review.score %></span>
-    <%= link_to review.title, lecture_review_path(review.lecture.id, review.id) %>
-  </h4>
-  <span class="username"><%= link_to review.user.name, user_path(review.user.id) %></span>
-  <p class="content">
-    <%= review.content %>
-    <%# review.content.truncate(24, omission: '・・・') %>
-  </p>
-  <div class="each-score">
-    <p>わかりやすさ：<%= review.explanation %></p>
-    <p>評価の公正さ：<%= review.fairness %></p>
-    <p>友達への勧めたさ：<%= review.recommendation %></p>
-    <p>役に立ったか：<%= review.useful %></p>
-    <p>おもしろさ：<%= review.interesting %></p>
-    <p>難易度：<%= review.difficulty %></p>
-  </div>
-  <p class="timestamp">
-    <%= review.updated_at.strftime("%Y-%m-%d") %>
-  </p>
-
-  <%# 役に立ったボタン %>
-  <div id="helpfuls_buttons_<%= review.id %>">
-    <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
-  </div>
+    <%# 役に立ったボタン %>
+    <div id="helpfuls_buttons_<%= review.id %>">
+      <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
+    </div>
+  <% end %>
 </li>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-review<%= review.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= review.score %>,
+  });
+</script>

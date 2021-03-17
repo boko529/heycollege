@@ -5,12 +5,43 @@
     <%= link_to news.title, news, class:"news_by" %>
   <% end %>
 <% end %>
-<div class="lectures-index">
-  <h2>講義ランキング</h2>
-  <ul class="lectures">
-    <% @lectures.each do |lecture| %>
-      <%= render lecture %>
-    <% end %>
-    <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
-  </ul>
+<div class="ranking-index">
+  <h2>ランキング</h2>
+  <nav>
+    <%# 講義ランキング先生ランキング切り替えタブ %>
+    <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
+      <a class="col-4 nav-item nav-link active" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true">クラス</a>
+      <a class="col-4 nav-item nav-link" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false">先生</a>
+      <a class="col-4 nav-item nav-link" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false">ユーザーポイント</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <%# 講義ランキング表示 %>
+    <div class="tab-pane fade show active" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
+      <ul class="rankings">
+        <% @lectures.each.with_index(1) do |lecture, i| %>
+          <%= render partial: "static_pages/lecture", locals: {lecture: lecture, i: i} %>
+        <% end %>
+        <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
+      </ul>
+    </div>
+    <%# 先生ランキング表示 %>
+    <div class="tab-pane fade" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
+      <ul class="rankings">
+        <% @teachers.each.with_index(1) do |teacher, i| %>
+          <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
+        <% end %>
+        <%= paginate @teachers, param_name: 'teachers_page', theme: 'twitter-bootstrap-4' %>
+      </ul>
+    </div>
+    <%# ユーザーランキング表示 %>
+    <div class="tab-pane fade" id="nav-user-lanking" role="tabpanel" aria-labelledby="nav-user-lanking-tab">
+      <ul class="rankings">
+        <% @users.each.with_index(1) do |user, i| %>
+          <%= render partial: "static_pages/user", locals: {user: user, i: i} %>
+        <% end %>
+        <%= paginate @users, param_name: 'users_page', theme: 'twitter-bootstrap-4' %>
+      </ul>
+    </div>
+  </div>
 </div>

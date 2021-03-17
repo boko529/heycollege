@@ -5,24 +5,47 @@
 # below each fixture, per the syntax in the comments below
 #
 user1:
-  email: user1@example.com
+  email: user1@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+
 
 user2:
-  email: user2@example.com
+  email: user2@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+
 
 user3:
   name: user3
-  email: user3@example.com
+  email: user3@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
   gender: "male"
   grade: "B1"
   faculty: "APS"
 
 user4:
   name: user4
-  email: user4@example.com
+  email: user4@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+user5:
+  name: user5
+  email: user5@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+not_confirm_user:
+  name: not_confirm_user
+  email: not_confirm_user@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   gender: "male"
   grade: "B1"
@@ -30,6 +53,17 @@ user4:
 
 test_admin:
   name: testadmin
-  email: testadmin@example.com
+  email: testadmin@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
   admin: true
+
+is_deleted_user:  # 退会済みユーザー
+  name: is_deleted_user
+  email: user_isdeleted@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+  is_deleted: true

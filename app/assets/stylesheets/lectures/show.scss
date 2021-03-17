@@ -1,73 +1,79 @@
 .lecture_show{
   margin-top: 20px;
+  margin: 0 auto;
   a{
-    border-bottom: 1px black solid;
     color: black;
     &:hover{
       background-color: lightgray;
     }
   }
+  .bookmark-mark{
+    margin-bottom: -4rem;
+  }
   p{
     margin: 0;
     padding: 0;
   }
-  div.lecture-box{
+  .creator_name{
+    float: right;
+  }
+  .lecture-header{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
   }
-  div.lecture-left{
-    width: 60%;
+  .lecture-info{
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    h3{
+      font-size: 50px;
+      font-weight: bold;
+      padding: 15px 0;
+    }
+    .teacher-name{
+      font-size: 20px;
+      margin-left: 20px;
+    }
     .scores{
-      margin-top: 5px;
-      span{
-        font-weight: bold;
-      }
-    }
-    .chart{
-      margin-top: 30px;
-    }
-  }
-  div.lecture-right{
-    width: 30%;
-    >div{
-      padding: 20px;
-      border: 1px black solid;
-      border-radius: 5%;
-      h3{
-        font-weight: bold;
-        font-size: 20px;
-        background-color: beige;
-        display: inline-block;
-        margin: 0;
-      }
-      .lecture-info{
-        margin-top: 20px;
-        p{
-          padding: 0;
-          margin: 0;
+      padding: 15px 0;
+      h4{
+        font-size: 30px;
+        span.score{
+          font-weight: bold;
         }
-    }
+      }
     }
   }
+  .most_helpful_review{
+    border: 1.5px solid #eee;
+    padding: 10px;
+    border-radius: 0.1rem;
+    margin-bottom: 0.5rem;
+  }
+
   .lecture-reviews{
     margin: 0 auto;
     margin-top: 30px;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
     ol{
       padding: 0px;
       margin-top: 10px;
       li{
         padding: 30px;
-        .each-score{
-          font-size: 10px;
-        }
         .timestamp{
           font-size: 10px;
         }
       }
+    }
+  }
+}
+
+
+/*画面幅(768px)以下の設定
+------------------------------------------------------------------------------------------------------------------------------------------------------*/
+@media screen and (max-width:768px){/*スマホ版で教えているクラスと最も参考になるレビューを縦並びに戻すのに必要*/
+  .lecture_show{
+    p.bookmark-mark{
+      font-size: 30px;
     }
   }
 }

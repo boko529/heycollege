@@ -7,12 +7,12 @@
 import '@fortawesome/fontawesome-free/js/all';
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+// import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
 
 // bootstrap4
@@ -23,6 +23,3 @@ import '../stylesheets/application';
 // raty.jsのため
 window.$ = window.jQuery = require('jquery');
 require('packs/raty');
-
-// chart.js利用のため追加
-require("chart.js");

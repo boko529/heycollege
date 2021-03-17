@@ -1,0 +1,13 @@
+en:
+  layouts:
+    header:
+      search_insidetext: "Look up by class or teacher name"
+    sidebar:
+      ranking: "Ranking"
+      create: "Add pages"
+      book: "Bookmark"
+      help: "Help"
+      contact: "Contact us"
+      signout: "Logout"
+      signup: "Signup"
+      signin: "Login"

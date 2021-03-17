@@ -1,0 +1,22 @@
+<li class="list-group-item list-group-item-action">
+  <span id="star-lecture<%= lecture.id %>"></span>
+  <span class="score"><%= lecture.average_score %></span>
+  <%= link_to lecture.name, lecture %>
+  <% unless lecture.reviews.blank? %>
+    <span>(<%= lecture.all_reviews_count %>)</span>
+  <% else %>
+    <span>レビューはありません</span>
+  <% end %>
+</li>
+
+<script>
+  $('#star-lecture<%= lecture.id %>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= lecture.average_score %>,
+    });
+</script>

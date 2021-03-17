@@ -34,3 +34,10 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+
+#環境変数
+/.env
+
+# まさき5,000件を無視
+/vender

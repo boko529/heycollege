@@ -1,3 +1,40 @@
-<li id = teacher_<%= teacher.id %> class = "teacher" >
-  <%= link_to teacher.name, teacher %>
-</li>
+<div id = teacher_<%= teacher.id %> class = "teacher container-fluid" >
+  <div class="row">
+    <%# スコア %>
+    <div class="col-2 col-lg-1 px-0 d-flex">
+      <span class="score p-sx-4">
+        <a><%= teacher.average_score %></a>
+      </span>
+    </div>
+
+    <%# ウェブ %>
+    <div class="col-sm-7 p-0 p-sm-auto d-none d-sm-flex">
+    <%# 先生名 %>
+      <span class="teacher-name">
+        <%= link_to teacher.name, teacher %>
+     
+        <%# レビュー数 %>
+        <span　class="web-reviewcount m-5" style="margin:10px;">
+          <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+        </span>
+
+      </span>
+    </div>
+
+    <%# スマホ版 %>
+    <div class="col-9 d-inline d-sm-none p-0 m-0">
+      <div class="mobile-teacher">
+        <span class="mobile-teacher-name d-inlineblock" style="min-width:100px;">
+          <%= link_to teacher.name, teacher %>
+            <%# レビュー数 %>
+          
+        </span>
+        <span　class="web-reviewcount m-5" style="margin:10px;">
+            <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+          </span>
+      </div>
+    </div>
+
+
+  </div>
+</div>

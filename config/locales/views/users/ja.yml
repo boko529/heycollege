@@ -1,0 +1,16 @@
+ja:
+  users:
+    show:
+      edit: "編集"
+      title_login: "マイページ"
+      faculty: "学部"
+      grade: "学年"
+      college_point: "カレッジポイント"
+      point_score: "スコア"
+      following: "フォロー"
+      follower: "フォロワー"
+      add_twitter: "Twitterアカウントを追加する"
+      reviews_count: "レビュー数"
+    followbutton:
+      follow: "フォロー"
+      unfollow: "フォロー解除"

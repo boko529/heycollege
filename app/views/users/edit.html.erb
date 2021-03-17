@@ -1,39 +1,59 @@
-<h2>ユーザー情報</h2>
+<% provide(:title, 'マイページ編集') %>
+<div class="row">
+  <div class="col-md-8 offset-md-2 user-info-form">
+    <h2>ユーザー情報</h2><br>
 
-<%= form_with model: @user, local:true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <p>name</p>
+    <%= form_with model: @user, local:true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= image_tag 'default_user.png', :size => '80x80' %>
+        <small>※プロフィール画像のカスタマイズは近日追加予定です。</small>
+      </div>
 
-  <div class="field">
-    <%= f.label :name,'名前' %><br />
-    <%= f.text_field :name, autofocus:true, id:"inputName" %>
-  </div>
+      <div class="field">
+        <%= f.label :name,'ニックネーム' %><br/>
+        <%= f.text_field :name, autofocus:true, id:"inputName" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :gender,'性別' %><br />
-    <%= f.radio_button :gender, '', {:checked => true} %>指定なし
-    <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
+      <div class="field">
+        <%= f.label :gender,'性別' %><br/>
+        <%= f.radio_button :gender, '', {:checked => true} %>指定なし
+        <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
+          <%=  b.radio_button(class: "form-contorl") %>
+          <%= b.label %>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :grade,'学年' %><br/>
+        <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :faculty,'学部' %><br/>
+        <%= f.radio_button :faculty, '', {:checked => true} %>指定なし
+        <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
+          <%=  b.radio_button(class: "form-contorl") %>
+          <%= b.label %>
+        <% end %> 
+      </div>
+
+      <div class="field">
+        <%= f.label :twitter_name,'Twitter ユーザー名' %><br/>
+        <%= f.text_field :twitter_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :instagram_name,'Instagramユーザー名' %><br/>
+        <%= f.text_field :instagram_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :message,'メッセージ' %><br/>
+        <%= f.text_area :message, placeholder: "100字以内" %>
+      </div>
+
+      <%= f.submit "更新する" %>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :grade,'学年' %><br />
-    <%= f.radio_button :grade, '', {:checked => true} %>指定なし  
-    <%= f.collection_radio_buttons :grade, User.grades_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :faculty,'学部' %><br />
-    <%= f.radio_button :faculty, '', {:checked => true} %>指定なし
-    <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
-      <%=  b.radio_button(class: "form-contorl") %>
-      <%= b.label %>
-    <% end %> 
-  </div>
-  <%= f.submit "Update User" %>
-<% end %>
+</div>

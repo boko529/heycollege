@@ -1,0 +1,19 @@
+<div class="col-lg-6 offset-lg-3">
+    <div class="following-follower-index">
+        <h2>フォロー中</h2>
+        <% @followings.each do |f_user| %>
+        <ul class="following-follower">
+            <div class="circle">
+                <%= gravatar_for f_user, 50 %>
+            </div>
+            <%= link_to display_name(f_user), user_path(f_user.id) %>
+            <%= f_user.faculty_i18n %>
+            <span id='follow-button_<%= f_user.id %>'>
+                <span class="follow-btn">
+                   <%= render 'users/follow-button', user: f_user  %>
+                </span>
+            </span>
+        </ul>     
+        <% end %>
+    </div>
+</div>

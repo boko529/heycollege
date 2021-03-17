@@ -8,14 +8,21 @@ class ReviewsController < ApplicationController
 
   def create
     @lecture = Lecture.find(params[:lecture_id])
-    @review = current_user.reviews.new(review_params)
-    @review.score = @review.average_score
-    if @review.save
-      flash[:success] = "レビューを投稿しました"
-      redirect_to lecture_review_path(@lecture,@review)
+    # 既にその講義にレビューを書いているか確認
+    unless @lecture.review?(current_user)
+      @review = current_user.reviews.new(review_params)
+      if @review.save
+        flash[:success] = "レビューを投稿しました"
+        # 自分が作ったレビューをidで指定して表示
+        redirect_to "/lectures/#{@lecture.id}/#review-#{@review.id}"
+      else
+        flash[:danger] = "レビューの投稿に失敗しました"
+        redirect_back(fallback_location: root_path)
+        # render 'lectures/show'
+      end
     else
+      flash[:danger] = "一つのクラスにレビューは一度のみです"
       redirect_back(fallback_location: root_path)
-      # render 'lectures/show'
     end
   end
 
@@ -28,7 +35,7 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:title, :content, :lecture_id, :user_id, :explanation, :fairness, :recommendation, :useful, :interesting, :difficulty)
+      params.require(:review).permit(:content, :lecture_id, :user_id, :score)
     end
 
     def baria_user

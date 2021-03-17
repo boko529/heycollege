@@ -1,46 +1,12 @@
 class Lecture < ApplicationRecord
   belongs_to :user
+  belongs_to :teacher
   has_many :reviews, dependent: :destroy
-  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
-  validates :language_used, presence: true
-  validates :lecture_type, presence: true
-  validates :lecture_term, presence: true
-  validates :lecture_size, presence: true
-  validates :group_work, presence: true
+  has_many :bookmarks, dependent: :destroy
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}
   validates :user_id, presence: true
+  validates :teacher_id, presence: true
   attr_accessor :score
-
-  enum language_used:{
-    Japanese:        0, #日本語
-    English:         1, #英語
-    others:          2, #その他
-  }
-
-  enum lecture_type:{
-    APM:             0, #APM
-    APS:             1, #APS
-    Liberal_arts:    2, #一般教養
-    Language:        3, #言語
-  }
-
-  enum lecture_term:{
-    spring:          0, #春セミスター
-    summer:          1, #夏セッション
-    autumn:          2, #秋セミスター
-    winter:          3, #冬セッション
-  }
- 
-  enum lecture_size:{
-    small:           0, #20人以下
-    medium:          1, #20人～70人
-    large:           2, #70人～100人
-    extra_large:     3, #100人以上
-  }
-
-  enum group_work:{
-    included:        0, #あり
-    not_included:    1, #なし
-  }
 
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
   def average_score
@@ -48,60 +14,51 @@ class Lecture < ApplicationRecord
       return "不明"
     else
       sum = 0
-      self.reviews.each do |review|
+      self.reviews.includes(:lecture).each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count
       return average_score.round(2)
     end
   end
+
+  #editのときはフォームに初期値をnewのときは空白にする 
+  def init_first_name
+    if self.teacher.present?
+      return self.teacher.name.split(" ")[1]
+    end
+  end
+
+  def init_last_name
+    if self.teacher.present?
+      return self.teacher.name.split(" ")[0]
+    end
+  end
   
-  # ここからカラムを引数にしてアベレージを返すってきれいにできるのかも
-  def average_explanation
-    if self.reviews.blank?
-      return "不明"
-    else
-      return self.reviews.average(:explanation).round(2)
+  #詳細が省略されているものも含む。レビュー数表示用
+  def all_reviews_count
+    return self.reviews.count
+  end
+
+  # ユーザーがその投稿にレビューをしているかの確認
+  def review?(user)
+    user.reviews.where(lecture_id: self.id).exists?
+  end
+
+  # ユーザーがその投稿にしたレビューを返す
+  def my_review(user)
+    if self.review?(user)
+      return user.reviews.where(lecture_id: self.id).first
     end
   end
 
-  def average_fairness
-    if self.reviews.blank?
-      return "不明"
-    else
-      return self.reviews.average(:fairness).round(2)
-    end
+  # ブックマーク機能
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
   end
-
-  def average_recommendation
-    if self.reviews.blank?
-      return "不明"
-    else
-      return self.reviews.average(:recommendation).round(2)
-    end
-  end
-
-  def average_useful
-    if self.reviews.blank?
-      return "不明"
-    else
-      return self.reviews.average(:useful).round(2)
-    end
-  end
-
-  def average_interesting
-    if self.reviews.blank?
-      return "不明"
-    else
-      return self.reviews.average(:interesting).round(2)
-    end
-  end
-
-  def average_difficulty
-    if self.reviews.blank?
-      return "不明"
-    else
-      return self.reviews.average(:difficulty).round(2)
-    end
+  
+  #最も参考になるが多いレビューを返す。
+  def most_helpful_review
+    self.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.first
   end
 end
