@@ -6,7 +6,7 @@
   <span class="creator_name">
     作成者：
     <%= link_to @teacher.user do %>
-      <%= gravatar_for @teacher.user, 20 %><%= @teacher.user.name %>
+      <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@teacher.user) %>
     <% end %>
   </span>
   <div class="teacher-info">

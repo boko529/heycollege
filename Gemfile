@@ -69,8 +69,5 @@ gem 'devise-i18n'
 
 gem 'chart-js-rails', '~> 0.1.4'
 
-gem 'dotenv-rails'
-
-gem 'gravtastic'
-
 gem 'high_voltage' # 利用規約,プライバシーポリシーに使用.静的ページを簡単に作れる.
+gem 'dotenv-rails'

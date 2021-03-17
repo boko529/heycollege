@@ -10,10 +10,38 @@ html, body {
 .frame{
   width: 100%;
   padding: 0.5rem 0 0rem 0;
+  .dropdown{
+    float: right;
+    .btn-secondary{
+      border: 1.5px solid #000;/*枠線の幅、線種、色*/
+      background-color: #00000000;
+      color: black;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.5;
+      position: relative;
+      padding: 0.2rem 1rem;
+      margin-right: 1rem;
+      margin-top: 0.5rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      text-align: center;
+      vertical-align: middle;
+      text-decoration: none;
+      border-radius: 0.5rem;
+    }
+  }
 }
 
+
+
+
 // 設定開くボタン
-.other-button {
+.other-button{
   float: right;
   border: 1.5px solid #000;
   /*枠線の幅、線種、色*/
@@ -127,6 +155,12 @@ html, body {
   vertical-align: middle;
   text-decoration: none;
   border-radius: 0.5rem;
+  a{
+    color: #fff;
+    &:hover{
+      color: #fff;
+    }
+  }
 }
 
 .follow-btn{
@@ -162,7 +196,20 @@ html, body {
   margin-top: -1.5rem;
 }
 
-.reviews{
+.group-join{
+  p{
+    margin: 0.3rem;
+    margin: 0;
+    padding-top: 0;
+    font-size: 1.2rem;
+    a{
+      color: black;
+    }
+  }
+}
+
+
+.reviews, .lectures{
   padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
 }
 
@@ -172,6 +219,22 @@ html, body {
     height: 3.5rem;
     .follow-btn{
       float: right;
+    }
+  }
+}
+
+.user_show{
+  nav{
+    a{
+      text-align: center;
+      width: 50%;
+      color: black;
+      font-weight: bold;
+      display: inline-block;
+      padding: 20px;
+      &:hover{
+        background-color: lightgrey;
+      }
     }
   }
 }

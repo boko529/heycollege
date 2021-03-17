@@ -1,28 +1,34 @@
 <%= form_with(model: @lecture, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
- <div class="classname">
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
-<div>
-
-<div class="name">
-  <%= f.label :name %>
-  <span>ex) 山田 太郎, John Smith</span>
-  <%# valueで既に名前があるときは初期値として代入 %>
-	<div class="container">
-	<div class="row">
-			<div class="col">
-					<%= f.text_field :last_name, class: 'form-control' ,placeholder: "姓", value: @lecture.init_last_name %>
-			</div>
-			<div class="col">
-					<%= f.text_field :first_name, class: 'form-control', placeholder: "名", value: @lecture.init_first_name %>
-			</div>
-	</div>
-	</div>
-</div>
-
-<div class="createbtn">
-	<%= f.submit yield(:button_text), class: "btn btn-primary" %>
-</div>
-
+  <div class="container">
+    <div class="row">
+      <div class="col d-sm-block d-none"></div>
+      <div class="col">
+        <div class="classname">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="name">
+          <%= f.label :name %>
+          <span>ex) 山田 太郎, John Smith</span>
+          <%# valueで既に名前があるときは初期値として代入 %>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <%= f.text_field :last_name, class: 'form-control' ,placeholder: "姓", value: @lecture.init_last_name %>
+              </div>
+              <div class="col">
+                <%= f.text_field :first_name, class: 'form-control', placeholder: "名", value: @lecture.init_first_name %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="createbtn">
+          <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="col d-sm-block d-none"></div>
+    </div>
+  </div>
 <% end %>
+
