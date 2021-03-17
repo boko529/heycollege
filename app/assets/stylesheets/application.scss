@@ -132,11 +132,16 @@ header{
 
 // ページネーションカスタマイズ
 nav{
+  margin: 0 auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
   ul.pagination{
-    margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
+    background-color: #fff;
+    width: 10%;
+    margin: 0 auto;
     li.page-item{
       background-color: #fff;
+      margin: 0 auto; 
       &:last-child .page-link {
         border-top-right-radius: 0.15rem;
         border-bottom-right-radius: 0.15rem;

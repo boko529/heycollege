@@ -2,7 +2,7 @@
     <span id="star-review<%= review.id %>"></span>
 
   <p><%= link_to review.lecture.name, review.lecture %></p>
-  <%= link_to review.lecture.teacher.name, review.lecture.teacher %>
+  &emsp;担当教員：<%= link_to review.lecture.teacher.name, review.lecture.teacher %>
   <p class="content">
     <%= safe_join(review.content.split("\n"),tag(:br)) %>
   </p>
