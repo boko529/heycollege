@@ -7,6 +7,14 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.includes(lecture: :teacher).page(params[:reviews_page]).per(10)
     @lectures = @user.lectures.includes(:reviews, :teacher).page(params[:lectures_page]).per(20)
     @groups = @user.group
+    if @user.twitter_name.present? && @user.instagram_name.present?
+      @twitter = "https://twitter.com/"+@user.twitter_name
+      @instagram = "https://instagram.com/"+@user.instagram_name
+    elsif @user.twitter_name.present?
+      @twitter = "https://twitter.com/"+@user.twitter_name
+    elsif @user.instagram_name.present?
+      @instagram = "https://instagram.com/"+@user.instagram_name
+    end
   end
 
   def edit
@@ -51,7 +59,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_url, :message)
+    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :message)
   end
 
   # 退会しているかを確認(user/show用)
