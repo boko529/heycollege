@@ -2,9 +2,9 @@
 <% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
   <div class="lecture-header">
-    <%= link_to "》クラス一覧へ戻る", lectures_path %>
+    <%= link_to t('.return_to_class_list'), lectures_path %>
     <span class="creator_name">
-    作成者：
+      <%= t('.lecture_creater') %>：
       <%= link_to @lecture.user do %>
         <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@lecture.user) %>
       <% end %>
