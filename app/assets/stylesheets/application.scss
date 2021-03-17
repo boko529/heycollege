@@ -105,13 +105,15 @@ header{
     }
     .list-group-item{
       margin: 5px 10px 5px 10px;
-      padding-left: 10px;
-      padding: 5px;
-      box-sizing: border-box;
+      padding: 5px 5px 5px 10px;
       height: 60px;
+      width: 90%;
+      box-sizing: border-box;
       display: flex;
       align-items:center;
+      text-align: center;
       a {
+        width: 100%;
         text-decoration: none;
         display: block;
         color: #777;
@@ -119,7 +121,6 @@ header{
           font-size: 15px;
           margin-left:2px;
           display: flex;
-          // align-items: center;
         }
       }
     }
