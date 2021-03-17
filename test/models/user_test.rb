@@ -69,8 +69,12 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "sign up user don't have twitter_url" do
-    assert_not @user1.twitter_url.present?
+  test "sign up user don't have twitter_name" do
+    assert_not @user1.twitter_name.present?
+  end
+
+  test "sign up user don't have instagram_name" do
+    assert_not @user1.instagram_name.present?
   end
 
   # メアドのバリデーション削除
@@ -82,6 +86,16 @@ class UserTest < ActiveSupport::TestCase
     @user1.message = "a" * 101
     assert_not @user1.valid?
   end
+
+  test "twitter name should not be too long" do
+    @user1.twitter_name = "a" * 31
+    assert_not @user1.valid?
+  end
+
+  test "instagram name should not be too long" do
+    @user1.instagram_name = "a" * 31
+    assert_not @user1.valid?
+   end
 
   test "is_deleted default false" do
     @user1.save
