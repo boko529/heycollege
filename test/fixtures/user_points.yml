@@ -34,3 +34,8 @@ not_confirm:
   current_point: 10
   total_point: 10
   user: not_confirm_user
+
+is_deleted:
+  current_point: 10
+  total_point: 10
+  user: is_deleted_user
