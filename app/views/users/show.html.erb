@@ -142,7 +142,7 @@
         <% end %>
         &nbsp;&nbsp;
         <% if @user.twitter_name.present? %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter %></small>
         <% elsif @user == current_user %>
           <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
         <% end %>
