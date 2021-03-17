@@ -1,13 +1,14 @@
 <li class="list-group-item list-group-item-action">
   <span id="star-lecture<%= lecture.id %>"></span>
-  <span class="score"><%= lecture.average_score %></span>
-  <%= link_to lecture.name, lecture %>
-  <% unless lecture.reviews.blank? %>
-    <span>(<%= lecture.all_reviews_count %>)</span>
+  <p><%= link_to lecture.name, lecture %></p>
+  &emsp;<%= t('.teachername') %>：
+  <span class="teacher_name"><%= link_to lecture.teacher.name, lecture.teacher %></span>
+  <p><% unless lecture.reviews.blank? %>
+    <span><%= t('.reviews') %>(<%= lecture.all_reviews_count %>)</span>
   <% else %>
-    <span>レビューはありません</span>
-  <% end %>
-  <span class="teacher_name">--<%= link_to lecture.teacher.name, lecture.teacher %></span>
+    <%= t('.noreviews') %>
+  <% end %></p>
+  
 </li>
 
 <script>

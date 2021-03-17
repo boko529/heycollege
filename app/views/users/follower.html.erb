@@ -1,10 +1,10 @@
 <div class="col-lg-6 offset-lg-3">
     <div class="following-follower-index">
-        <h2>フォロワー</h2>
+        <h2><%= t('.follower') %></h2>
         <% @followers.each do |f_user| %>
         <ul class="following-follower">
             <div class="circle">
-                <%= gravatar_for f_user, 50 %>
+                <%# <%= gravatar_for f_user, 50 %>　
             </div>
             <%= link_to display_name(f_user), user_path(f_user.id) %>
             <%= f_user.faculty_i18n %>

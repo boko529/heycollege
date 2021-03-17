@@ -78,7 +78,7 @@ header{
   input .btn{
     height: 40px;
   }
-  .bell, .user {
+  .bell, .user .lang {
   text-align: right;
   color: #5a5252;
   &:hover{
@@ -132,11 +132,16 @@ header{
 
 // ページネーションカスタマイズ
 nav{
+  margin: 0 auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
   ul.pagination{
-    margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
+    background-color: #fff;
+    width: 10%;
+    margin: 0 auto;
     li.page-item{
       background-color: #fff;
+      margin: 0 auto; 
       &:last-child .page-link {
         border-top-right-radius: 0.15rem;
         border-bottom-right-radius: 0.15rem;

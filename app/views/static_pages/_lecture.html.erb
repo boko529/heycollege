@@ -7,9 +7,9 @@
       <span class="rank ml-1 ml-sm-3 p-0">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:lectures_page] %>
-          <%= i + 20 * ( params[:lectures_page].to_i - 1 ) %>位
+          <%= i + 20 * ( params[:lectures_page].to_i - 1 ) %><%= t('.place')%>
         <% else %>
-          <%= i + 20 * params[:lectures_page].to_i %>位
+          <%= i + 20 * params[:lectures_page].to_i %><%= t('.place')%>
         <% end %>
       </span>
     </div>
