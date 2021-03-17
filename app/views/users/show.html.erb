@@ -34,27 +34,16 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-h"></i>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">                  
-                <%= link_to root_path do %>
-                  &nbsp;<i class="fas fa-question fa-2x"></i><span class="d-inline text-success"> ヘルプ&nbsp;</span>
-                <% end %>
-              </a>
-              <a class="dropdown-item" href="#">                
-                <%= link_to "#" do %>
-                  &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
-                <% end %>
-              </a>
-              <a class="dropdown-item" href="#">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
-                <% end %>
-              </a>
-              <a class="dropdown-item" href="#">                
-                <%= link_to users_hide_path(@user), method: :patch do %>
-                  &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
-                <% end %>
-              </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+              <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
+                &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
+              <% end %>
+              <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
+                &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
+              <% end %>              
+              <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch do %>
+                &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
+              <% end %>
             </div>
           </div>
           <%# その他・設定ボタン (スマホ版)%>
@@ -73,8 +62,8 @@
                   <% end %>
               </li>
               <li class="list-group-item text-left">
-                <%= link_to "#" do %>
-                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">&nbsp;お問い合わせ</span>
+                <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
                 <% end %>
               </li>
               <li class="list-group-item text-left">
