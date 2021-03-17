@@ -1,5 +1,4 @@
 <div id = teacher_<%= teacher.id %> class = "teacher container-fluid" >
-
   <div class="row">
 
     <%# 順位 %>
@@ -23,32 +22,31 @@
 
     <%# ウェブ %>
     <div class="col-sm-7 p-0 p-sm-auto d-none d-sm-flex">
-    <%# 先生名 %>
+
+      <%# 先生名 %>
       <span class="teacher-teachername">
         <%= link_to teacher.name, teacher %>
-     
-        <%# レビュー数 %>
+      </span>
+
+      <%# レビュー数 %>
         <span　class="web-reviewcount m-5" style="margin:10px;">
           <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
         </span>
-
-      </span>
     </div>
 
     <%# スマホ版 %>
     <div class="col-9 d-inline d-sm-none p-0 m-0">
+      <%# 先生 %>
       <div class="mobile-teacher">
         <span class="mobile-teacher-name d-inlineblock" style="min-width:100px;">
           <%= link_to teacher.name, teacher %>
-            <%# レビュー数 %>
-          
         </span>
+         <%# レビュー数 %>
         <span　class="web-reviewcount m-5" style="margin:10px;">
-            <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
-          </span>
+          <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+        </span>
       </div>
     </div>
-
 
   </div>
 </div>

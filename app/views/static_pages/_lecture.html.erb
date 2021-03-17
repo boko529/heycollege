@@ -1,9 +1,8 @@
 <div id = lecture_<%= lecture.id %> class = "lecture container-fluid" >
-
  <div class="row">
 
     <%# 順位 %>
-    <div class="col-sm-1 col-1 d-flex p-0 pl-sm-4">
+    <div class="col-lg-1 col-sm-2 col-1 d-flex p-0 pl-sm-4">
       <span class="rank ml-1 ml-sm-3 p-0">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:lectures_page] %>
@@ -29,17 +28,15 @@
     </div>
 
     <%# ウェブ %>
-    <div class="col-sm-5 col-4 p-0 p-sm-auto d-none d-sm-flex">
+    <div class="col-sm-6 col-4 p-0 p-sm-auto d-none d-sm-flex">
       <%# 先生名前 %>
       <span class="teacher-name">
         <%= link_to lecture.teacher.name, lecture.teacher %>
-
-        <%# レビュー数 %>
-        <span class="web-reviewcount">
-          <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
-        </span>
-        
       </span>
+      <%# レビュー数 %>
+      <div class="web-reviewcount">
+          <i class=" far fa-comment-dots"></i><%= lecture.all_reviews_count %>
+      </div>
     </div>
 
     <%# クラス名＆先生名スマホ %>
@@ -55,9 +52,8 @@
      </div>
     </div>
 
-
     <%# レビュー数スマホ%>
-   <span class="review-count co-1 d-sm-none">
+    <span class="review-count co-1 d-sm-none">
       <i class="far fa-comment-dots"></i><%= lecture.all_reviews_count %>
     </span>
 

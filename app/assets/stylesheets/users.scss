@@ -10,10 +10,38 @@ html, body {
 .frame{
   width: 100%;
   padding: 0.5rem 0 0rem 0;
+  .dropdown{
+    float: right;
+    .btn-secondary{
+      border: 1.5px solid #000;/*枠線の幅、線種、色*/
+      background-color: #00000000;
+      color: black;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.5;
+      position: relative;
+      padding: 0.2rem 1rem;
+      margin-right: 1rem;
+      margin-top: 0.5rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      text-align: center;
+      vertical-align: middle;
+      text-decoration: none;
+      border-radius: 0.5rem;
+    }
+  }
 }
 
+
+
+
 // 設定開くボタン
-.other-button {
+.other-button{
   float: right;
   border: 1.5px solid #000;
   /*枠線の幅、線種、色*/
@@ -207,6 +235,15 @@ html, body {
       &:hover{
         background-color: lightgrey;
       }
+    }
+  }
+}
+
+.list-group-item{
+  a{
+    color: #000;
+    &:hover{
+      color: #aaa;
     }
   }
 }

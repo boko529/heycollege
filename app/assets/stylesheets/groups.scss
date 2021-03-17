@@ -11,7 +11,7 @@
       overflow: hidden; /*画像が円から出た部分は隠す*/
       background: #fff; /*背景色*/
       float: left; /*左に回り込み*/
-      border: 2px solid #000; /*枠線の幅、線種、色*/
+      border: 2px solid #fff; /*枠線の幅、線種、色*/
       border-radius: 50%; /*アイコン画像を円にする*/
       /* 以下3行はfontawesomeを中央配置するため */
       display: flex;

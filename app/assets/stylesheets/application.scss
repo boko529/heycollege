@@ -105,13 +105,14 @@ header{
     }
     .list-group-item{
       margin: 5px 10px 5px 10px;
-      padding-left: 10px;
-      padding: 5px;
-      box-sizing: border-box;
+      padding: 5px 5px 5px 10px;
       height: 60px;
+      box-sizing: border-box;
       display: flex;
       align-items:center;
+      text-align: center;
       a {
+        width: 100%;
         text-decoration: none;
         display: block;
         color: #777;
@@ -119,7 +120,6 @@ header{
           font-size: 15px;
           margin-left:2px;
           display: flex;
-          // align-items: center;
         }
       }
     }
@@ -132,11 +132,16 @@ header{
 
 // ページネーションカスタマイズ
 nav{
+  margin: 0 auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
   ul.pagination{
-    margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
+    background-color: #fff;
+    width: 10%;
+    margin: 0 auto;
     li.page-item{
       background-color: #fff;
+      margin: 0 auto; 
       &:last-child .page-link {
         border-top-right-radius: 0.15rem;
         border-bottom-right-radius: 0.15rem;
