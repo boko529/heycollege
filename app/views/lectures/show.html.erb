@@ -10,15 +10,19 @@
       <% end %>
     </span>
   </div>
+
+  <%# lectureshow中身 %>
   <div class="lecture-info">
+
     <h3>
-    <p class="bookmark-mark">
-      <span id ="bookmark-<%= @lecture.id %>">
-        <%= render 'bookmarks/bookmark', lecture: @lecture %>
-      </span>
-      <%= @lecture.name %></p>
+      <p class="bookmark-mark">
+        <span id ="bookmark-<%= @lecture.id %>">
+          <%= render 'bookmarks/bookmark', lecture: @lecture %>
+        </span>
+        <%= @lecture.name %>
+      </p>
       <span class="teacher-name">
-      <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
+        <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
       </span>
     </h3>
     
