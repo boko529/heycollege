@@ -10,7 +10,7 @@
     <% end %>
   </span>
   <div class="teacher-info">
-    <h3><%= @teacher.name %></h3>
+    <p class="teachershow-teachername"><%= @teacher.name %></p>
     <div class="scores">
     <div id="star-teacher<%= @teacher.id %>"></div>
       <h4> <%= t('.level_of_satisfaction') %>： <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span></h4>
