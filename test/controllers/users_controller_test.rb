@@ -9,6 +9,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @deleted_user = users(:is_deleted_user)
   end
 
+  # フレンドリーフォワーディングのtest追加
+  test "valid flendly_fowarding" do
+    get edit_user_path(@user.id)
+    login_as(@user, scope: :user)
+    assert_redirected_to edit_user_path(@user)
+  end
+  
   test "invalid user should not edit valid user's name" do
     login_as(@other_user, scope: :user)
     get edit_user_path(@user.id)
