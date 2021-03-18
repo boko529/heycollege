@@ -49,15 +49,15 @@
       <% end %>
       <br>
       <% if @group.instagram_name.present? %>
-        <small>Instagram: <%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+        <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
       <% elsif @relation &&  @relation.admin %>
-        <small>Instagram:<%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
+        <small><i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
       <% end %>
       &nbsp;&nbsp;
       <% if @group.twitter_name.present? %>
-        <small>Twitter:<%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+        <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
       <% elsif @relation &&  @relation.admin %>
-        <small>Twitter:<%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
+        <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
       <% end %>
     </div>
     <div class="member-list">
