@@ -8,7 +8,9 @@
 
   <%= f.label :content %>
   <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' ,placeholder: '例）この授業の難易度はそこまで高くないです。しかし、課題の量が多いです。また、出席が２０％なので、毎回の授業に遅れずに参加しました。先生に分からないとこを尋ねるととても丁寧に答えていただきました。とてもよかったです。'%>
-
+  <small>※表現には十分に注意して投稿してください。</small><br>
+  <small>　誹謗中傷等の不適切な投稿でユーザーと第三者に生じる紛争等について、当社は一切責任を負いません。</small><br>
+  <small>　詳しくは<%=link_to "「利用規約」", page_path('terms')%>をご覧ください。</small><br>
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
 

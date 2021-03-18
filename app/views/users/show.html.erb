@@ -64,6 +64,18 @@
                 <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;<%= t('.logout') %></span>
               <% end %>
               </li>
+              <%# 利用規約 %>
+              <li class="list-group-item text-left">
+                <%= link_to page_path('terms') do %>
+                  <span class="d-inline text-success">利用規約</span>
+                <% end %>
+              </li>
+              <%# プライバシーポリシー %>
+              <li class="list-group-item text-left">
+                <%= link_to page_path('privacypolicy') do %>
+                  <span class="d-inline text-success">プライバシーポリシー</span>
+                <% end %>
+              </li>
               <%# 退会 %>
               <li class="list-group-item text-left">
                 <%= link_to users_hide_path(@user), method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
@@ -120,13 +132,13 @@
         <% if @user.instagram_name.present? %>
           <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
         <% elsif @user == current_user  %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
+          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
         <% end %>
         &nbsp;&nbsp;
         <% if @user.twitter_name.present? %>
           <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
         <% elsif @user == current_user %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
         <% end %>
       </div>
 
@@ -158,11 +170,7 @@
       <%# 所属団体 %>
       <% if @groups.any? %>
         <div class="group-join">
-<<<<<<< HEAD
-          <h3>所属団体（<%= @groups.count %>）</h3>
-=======
           <h3><%= t('.mygroup') %>（<%= @groups.count %>）</h3>
->>>>>>> 7b8a3af56359a27a0949d68de9cc6a583aef9a6a
           <% @groups.each do |group| %>
             <p>・<%= link_to group.name, group %></p>
           <% end %>

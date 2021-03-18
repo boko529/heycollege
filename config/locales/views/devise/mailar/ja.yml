@@ -1,0 +1,6 @@
+ja:
+  devise:
+   mailer:
+    welcome: "Welcome to Hey College"
+    confirm: "以下をクリックして、メールアドレスの確認を行ってください。"
+    check: "確認する"

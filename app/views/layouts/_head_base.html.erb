@@ -1,4 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name=”description” content=”「HeyCollege」はアジア太平洋大学のクラス・先生評価サイトです。アジア太平洋大学のクラス・先生に対する評価や口コミを掲載しています。”>
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
@@ -12,14 +13,15 @@
 <%= render 'layouts/shim' %>
 <%= favicon_link_tag('Pict.png') %>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
 <%# グーグルアナリティクス用(これが一番下になるように) %>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3MPTN80HHL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<% if Rails.env.production? %>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3MPTN80HHL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-3MPTN80HHL');
-</script>
+    gtag('config', 'G-3MPTN80HHL');
+  </script>
+<% end %>
