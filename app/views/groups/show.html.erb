@@ -11,7 +11,7 @@
         <% end %>
         <br>
         <% if @profile%>
-          <%= link_to t('.profiledit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+          <%= link_to t('.profileedit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
         <% end %>
         <br>
         <%= render 'join_form' %>  
@@ -48,17 +48,19 @@
         </small>
       <% end %>
       <br>
-      <% if @group.instagram_name.present? %>
-        <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
-      <% elsif @relation &&  @relation.admin %>
-        <small><i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
-      <% end %>
-      &nbsp;&nbsp;
-      <% if @group.twitter_name.present? %>
-        <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
-      <% elsif @relation &&  @relation.admin %>
-        <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
-      <% end %>
+      <div class="sns">
+        <% if @group.instagram_name.present? %>
+          <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
+        <% end %>
+        &nbsp;&nbsp;
+        <% if @group.twitter_name.present? %>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
+        <% end %>
+      </div>
     </div>
     <div class="member-list">
       <strong class="member"><%= t('.member') %></strong>

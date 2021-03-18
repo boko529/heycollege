@@ -1,10 +1,10 @@
 <% provide(:title, @teacher.name) %>
 <div class="teacher_show">
-  <%= link_to t('.return_to_teachers_list'), teachers_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to t('.return_to_class_list'), lectures_path %>
+  <%= link_to t('.back-to-teacher-index'), teachers_path %>&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to t('.return-to-class-index'), lectures_path %>
   <%# プロフィール画像と作成者の名前 %>
   <span class="creator_name">
-    <%= t('.author') %>：
+    <%= t('.teacher-creater') %>
     <%= link_to @teacher.user do %>
       <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@teacher.user) %>
     <% end %>
@@ -13,7 +13,7 @@
     <p class="teachershow-teachername"><%= @teacher.name %></p>
     <div class="scores">
     <div id="star-teacher<%= @teacher.id %>"></div>
-      <h4> <%= t('.level_of_satisfaction') %>： <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span></h4>
+      <h4><%= t('.level-of-satisfaction') %>： <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span></h4>
       
     </div>
     <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
@@ -21,7 +21,7 @@
     <%# 講義表示 %>
       <div class="col-md-8 teachers_class">
         <% if @teacher.lectures.any? %>
-          <h3> <%= t('.classes_taken') %> (<%= @teacher.lectures.count %>)</h3>
+          <h3><%= t('.teaching-class') %> (<%= @teacher.lectures.count %>)</h3>
           <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
           <div class="list-group">
             <% @lectures.each do |lecture| %>
@@ -33,18 +33,20 @@
       </div>
       <%# 最も参考になるレビュー %>
       <div class="most_helpful_review">
-        <strong><p class="most_helpful"> <%= t('.most_helpful_reviews') %> </p></strong>
+        <strong><p class="most_helpful"><%= t('.most-helpful-reviews') %></p></strong>
         <% if @most_helpful_review %>
           <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
         <% else %>
-          <p><%= t('.no_reviews') %></p>
+          <p><%= t('.null-review') %></p>
         <% end %>
       </div>
   
     <%# レビュー表示 %>
     <div class="col-md-12 lecture-reviews">
       <% if @reviews.present? %>
-        <p><%= t('.number_of_reviews') %>(<%= @teacher.review_comment_count %>)</p>
+
+        <p><%= t('.number-of-review') %> (<%= @teacher.review_comment_count %>)</p>
+
         <ol class="reviews">
           <% @reviews.each do |review| %>
             <%= render partial: "teachers/review", locals: {review: review} %>
