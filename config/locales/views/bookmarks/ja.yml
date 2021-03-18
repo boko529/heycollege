@@ -1,0 +1,9 @@
+ja:
+  bookmarks:
+      bookmark:
+        confirm: '本当にブックマークから削除しますか？'
+      index:
+        bookmark: "ブックマーク" 
+        class: "クラス"
+        nonexist: "ブックマークに登録したクラスはありません。"
+        abletoadd: "※クラス詳細ページからクラスをブックマークに追加できます"

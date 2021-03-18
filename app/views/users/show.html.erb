@@ -158,11 +158,7 @@
       <%# 所属団体 %>
       <% if @groups.any? %>
         <div class="group-join">
-<<<<<<< HEAD
-          <h3>所属団体（<%= @groups.count %>）</h3>
-=======
           <h3><%= t('.mygroup') %>（<%= @groups.count %>）</h3>
->>>>>>> 7b8a3af56359a27a0949d68de9cc6a583aef9a6a
           <% @groups.each do |group| %>
             <p>・<%= link_to group.name, group %></p>
           <% end %>
