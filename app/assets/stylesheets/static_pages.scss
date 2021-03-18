@@ -13,10 +13,19 @@
   color: black;
 }
 
-div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
-  h2{
-    margin: 30px 0;
+// スライドショーのscss
+.slide_show{
+  .slide_content{
+    .slide{
+      width: 100%;
+      max-height: 200px; //最大高さは指定してその範囲で画像の縦横比を保つ
+      object-fit: contain;
+      background-color: gray;
+    }
   }
+}
+
+div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
   >nav{
     a{
       text-align: center;

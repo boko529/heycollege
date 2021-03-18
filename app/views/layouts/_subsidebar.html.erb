@@ -10,7 +10,7 @@
       </li>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to groups_path do %>
-          <i class="fas fa-users fa-2x"></i><span class="d-none d-lg-inline">グループリスト</span>
+          <i class="fas fa-users fa-2x"></i><span class="d-none d-lg-inline">グループ</span>
         <% end %>
       </li>
       <li class="list-group-item text-center text-lg-left">
@@ -20,24 +20,26 @@
       </li>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to bookmarks_path do %>
-          <i class="far fa-bookmark fa-2x"></i><span class="d-none d-lg-inline">保存</span>
+          <i class="far fa-bookmark fa-2x"></i><span class="d-none d-lg-inline">ブックマーク</span>
         <% end %>
       </li>
       <li class="list-group-item text-center text-lg-left">
-        <%= link_to root_path do %>
-          <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
-        <% end %>
-      </li>
-      <li class="list-group-item text-center text-lg-left">
-        <%= link_to "#" do %>
+        <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
           <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
         <% end %>
       </li>
-      <li class="list-group-item text-center text-lg-left">
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-inline">ログアウト</span>
-        <% end %>
-      </li>
+      <!--
+        <li class="list-group-item text-center text-lg-left">
+          <%= link_to root_path do %>
+            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
+          <% end %>
+        </li>
+        <li class="list-group-item text-center text-lg-left">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-inline">ログアウト</span>
+          <% end %>
+        </li>
+      -->
       <%# 管理者の場合のみ表示 %>
       <% if current_user.admin? %>
         <span>ーー管理者用</span>
@@ -62,7 +64,7 @@
       <%# <li class="list-group-item"> %>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to groups_path do %>
-          <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">団体一覧</span>
+          <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">グループ</span>
         <% end %>
       </li>
       
@@ -72,14 +74,16 @@
         <% end %>
       </li>
 
-      <li class="list-group-item text-center text-lg-left">
-        <%= link_to root_path do %>
-          <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
-        <% end %>
-      </li>
+      <!--
+        <li class="list-group-item text-center text-lg-left">
+          <%= link_to root_path do %>
+            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
+          <% end %>
+        </li>
+      -->
       
       <li class="list-group-item text-center text-lg-left">
-        <%= link_to "#" do %>
+        <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
           <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
         <% end %>
       </li>

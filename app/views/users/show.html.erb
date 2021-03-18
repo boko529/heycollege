@@ -34,27 +34,16 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-h"></i>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">                  
-                <%= link_to root_path do %>
-                  &nbsp;<i class="fas fa-question fa-2x"></i><span class="d-inline text-success"> ヘルプ&nbsp;</span>
-                <% end %>
-              </a>
-              <a class="dropdown-item" href="#">                
-                <%= link_to "#" do %>
-                  &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
-                <% end %>
-              </a>
-              <a class="dropdown-item" href="#">
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
-                <% end %>
-              </a>
-              <a class="dropdown-item" href="#">                
-                <%= link_to users_hide_path(@user), method: :patch do %>
-                  &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
-                <% end %>
-              </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+              <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
+                &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
+              <% end %>
+              <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
+                &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
+              <% end %>              
+              <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch do %>
+                &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
+              <% end %>
             </div>
           </div>
           <%# その他・設定ボタン (スマホ版)%>
@@ -73,14 +62,26 @@
                   <% end %>
               </li>
               <li class="list-group-item text-left">
-                <%= link_to "#" do %>
-                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">&nbsp;お問い合わせ</span>
+                <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
                 <% end %>
               </li>
               <li class="list-group-item text-left">
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;ログアウト</span>
               <% end %>
+              </li>
+              <%# 利用規約 %>
+              <li class="list-group-item text-left">
+                <%= link_to page_path('terms') do %>
+                  <span class="d-inline text-success">利用規約</span>
+                <% end %>
+              </li>
+              <%# プライバシーポリシー %>
+              <li class="list-group-item text-left">
+                <%= link_to page_path('privacypolicy') do %>
+                  <span class="d-inline text-success">プライバシーポリシー</span>
+                <% end %>
               </li>
               <%# 退会 %>
               <li class="list-group-item text-left">
@@ -135,12 +136,17 @@
           </div>
         <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
         <br>
-        
-        <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% if @user.instagram_name.present? %>
+          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% elsif @user == current_user  %>
+          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
+        <% end %>
         &nbsp;&nbsp;
-        <small><i class="fab fa-twitter-square fa-1x"></i>
-          <%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %>
-        </small>
+        <% if @user.twitter_name.present? %>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% elsif @user == current_user %>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
+        <% end %>
       </div>
 
       <!--
