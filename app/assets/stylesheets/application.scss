@@ -100,7 +100,6 @@ header{
     top: 65px;
     margin: 0 auto;
     .list-group-item:hover{
-      padding-left: 15px;
       a {
         color: #222;
       }
@@ -118,9 +117,10 @@ header{
         text-decoration: none;
         display: block;
         color: #777;
+        text-align: center
         span{
           font-size: 15px;
-          margin-left:2px;
+          margin-left:6px;
           display: flex;
         }
       }
@@ -164,11 +164,7 @@ nav{
         color: #000;
         background-color: #fff;
         border-bottom:2px solid rgb(40, 110, 19);
-        &:hover{
-        }
       }      
-    }
-    li.disabled{
     }
   }
 }
@@ -195,7 +191,7 @@ footer {
     .row {
       padding-top: 20px;
     }
-    .rank, .add, .book, .other {
+    .rank, .add, .book, .other, .contact-footer, .login-footer{
     display: flex;
     justify-content: center;
     align-items: center;
