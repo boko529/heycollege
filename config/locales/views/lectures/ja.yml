@@ -19,7 +19,8 @@ ja:
       family-name: "姓"
       first-name: "名前"
       correct-language-plese: "公式名称・受けた言語で書いてください。"
-      example: "例）日本語 → 山田　太郎、　英語 → Yamada Taro"
+      example: "例）日本語 → 山田 太郎、 英語 → Yamada Taro"
+      teacher_name: "先生名"
     index:
       class-list: "クラス一覧"
     edit:
