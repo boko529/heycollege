@@ -40,11 +40,6 @@
             <% end %>
           </li>
         -->
-        <li class="list-group-item text-center text-lg-left">
-          <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline"><%= t('.contact') %></span>
-          <% end %>
-        </li>
         <%# 管理者の場合のみ表示 %>
         <% if current_user.admin? %>
           <span>ーー管理者用</span>
