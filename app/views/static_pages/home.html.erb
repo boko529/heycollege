@@ -9,6 +9,11 @@
 <div class="slide_show">
   <div class="slide_content"><%= image_tag("slideshow/slide1.png", alt: "スライド1", class: "slide") %></div>
   <div class="slide_content"><%= image_tag("slideshow/slide2.png", alt: "スライド2", class: "slide") %></div>
+  <div class="slide_content">
+    <%= link_to "https://aputimes2019.wixsite.com/aputimes", target: :_blank, rel: "noopener noreferrer"  do %>
+     <%= image_tag("slideshow/slide3.png", alt: "スライド3", class: "slide") %>
+    <% end %>
+  </div>
 </div>
 
 <div class="ranking-index">
