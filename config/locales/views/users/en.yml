@@ -6,7 +6,7 @@ en:
       help: "Help"
       contactus: "Contact us"
       logout: "Log out"
-      leave: "Leave"
+      leave: "Delete account"
       college: "College"
       grade: "Grade"
       edit: "edit"
@@ -20,6 +20,9 @@ en:
       reviews_count: "Reviews"
       review: "Review"
       class: "Class"
+      delete_account_message: "If you click OK, you are no longer log in this account."
+      term: "Terms of service"
+      privacypolicy: "Privacy policy"
     followbutton:
       follow: "Follow"
       unfollow: "UnFollow"
