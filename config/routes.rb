@@ -41,8 +41,6 @@ Rails.application.routes.draw do
   end
 
   resources :user_group_relations, only: [:create, :destroy, :edit, :update]
-  # herokuに既存のユーザーにinitポイントを付与、一度限りのやつです
-  get 'admin/user/set_init_point', to: 'admin/users#set_init_point'
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
