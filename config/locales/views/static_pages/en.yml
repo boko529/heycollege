@@ -1,0 +1,10 @@
+en:
+  static_pages:
+    lecture:
+      place: "th"
+    teacher:
+      place: "th"
+    user:
+      place: "th"
+    home:
+      classreviewsite: "APU Class Reveiw site"

@@ -1,0 +1,29 @@
+ja:
+  devise:
+    registrations:
+      edit:
+        edit: "編集"
+        email: "メール"
+        waiting: "ただ今確認中"
+        leaveit: "(変える必要がない場合は空白のままで残してください)"
+        minichar: "最低文字数"
+        newpass: "新しいパスワード"
+        curpass: "今のパスワード"
+        curpassconfirm: (新しいパスワードにするためには現在のパスワードが必要です)
+        update: "更新"
+        cancel: "アカウントをキャンセル"
+        unha: "ご不満があれば"
+        sure: "本当によろしいですか"
+        back: "戻る"
+      new:
+        nickname: "ニックネーム"
+        name: "名前"
+        grade: "学年"
+        gender: "性別"
+        unspecified: "指定しない"
+        college: "学部"
+        mini: "文字以上"
+        mini-2: ""
+        newpass: "新規パスワード"
+        read: "利用規約を必ず読んだ上で登録してください"
+        agree: "利用規約に同意した上で登録する"

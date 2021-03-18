@@ -1,0 +1,12 @@
+ja:
+ reviews:
+  edit:
+    editreview: "レビューを編集"
+    update: "更新"
+  show:
+    class: "クラス"
+    teacher: "先生"
+    score: "スコア"
+    nodetail: "詳細がありません"
+    delete: "削除"
+    reallydelete: "本当に削除しますか？"

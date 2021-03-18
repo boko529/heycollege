@@ -5,7 +5,7 @@
   <% unless lecture.reviews.blank? %>
     <span>(<%= lecture.all_reviews_count %>)</span>
   <% else %>
-    <span>レビューはありません</span>
+    <span><%= t('.noreivew') %></span>
   <% end %>
 </li>
 
