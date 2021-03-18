@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_search
-  before_action :store_location
+  before_action :store_location, unless: :devise_controller? # デバイス関係のコントローラー以外のときにセッションを取る
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
