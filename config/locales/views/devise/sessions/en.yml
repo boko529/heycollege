@@ -1,0 +1,6 @@
+en:
+  devise:
+    sessions:
+      new:
+        curpass: "Current password"
+        login: "Log in"

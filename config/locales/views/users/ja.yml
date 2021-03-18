@@ -16,7 +16,7 @@ ja:
       point_score: "スコア"
       following: "フォロー"
       follower: "フォロワー"
-      add_twitter: "ツイッター追加"
+      add_account: "アカウントを追加する"
       reviews_count: "レビィー数"
       review: "レビュー"
       class: "クラス"
@@ -47,8 +47,8 @@ ja:
       msg: "メッセージ"
       change: "変更する"
       in100: "１００文字以内"
-      twi: "Twitter リンク"
-      insta: "Instagram リンク"
+      twi: "Twitter ユーザーネーム"
+      insta: "Instagram ユーザーネーム"
     follower:
       follower: "フォロワー"
     following:
@@ -57,5 +57,5 @@ ja:
       follower: "フォロワー"
       following: "フォロー"
     follow:
-      follower: "fフォロワー"
+      follower: "フォロワー"
       following: "フォロー"

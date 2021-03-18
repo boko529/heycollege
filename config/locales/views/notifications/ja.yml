@@ -1,0 +1,12 @@
+ja:
+  notifications:
+    index:
+      notifi: "お知らせ"
+      notilist: "通知リスト"
+    notification:
+      san: "さん"
+      ga: "が"
+      liked: "いいねしました"
+      startfollow: "をフォローしました"
+      yourreview: "あなたのレビューに"
+      ago: "前"

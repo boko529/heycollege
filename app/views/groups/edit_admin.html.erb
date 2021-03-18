@@ -1,6 +1,6 @@
 <% provide(:title, @group.name) %>
-<div class="col-md-8　offset-md-2 edit-admin-index">
-    <p>団体ページの編集権を許可するユーザーを1人選択してください。</p>
+<div class="col-md-8 offset-md-2 edit-admin-index">
+    <p><%= t('.chooseamember') %></p>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
       <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).admin == false %>
