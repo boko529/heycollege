@@ -50,20 +50,16 @@
             <%= render 'layouts/circle' %>
           <% end %>
         </div>
-      <% else %>
-        <%# ログインしていないときも幅を調整するため %>
-        <div class="col-1"></div>
-        <div class="col-1"></div>
       <% end %>
       <%# 言語切り替えボタン %>
       <div class="lang col-1">
         <% if session[:locale] == "en" || session[:locale].blank? %>
           <%= link_to "/application/change_language/ja", class: "btn btn-outline-secondary btn-sm" do %>
-          Ja
+          文
           <% end %>
         <% elsif session[:locale] == "ja" %>
           <%= link_to "/application/change_language/en", class: "btn btn-outline-secondary btn-sm" do %>
-          En
+          A
           <% end %>
       <% end %>
       </div>
