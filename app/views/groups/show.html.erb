@@ -11,7 +11,7 @@
         <% end %>
         <br>
         <% if @profile%>
-          <%= link_to t('.profiledit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+          <%= link_to t('.profileedit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
         <% end %>
         <br>
         <%= render 'join_form' %>  
