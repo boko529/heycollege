@@ -1,10 +1,10 @@
 <% provide(:title, @lecture.name) %>
-<% provide(:button_text,"レビューを投稿する") %>
+<% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
   <div class="lecture-header">
-    <%= link_to "》クラス一覧へ戻る", lectures_path %>
+    <%= link_to t('.return_to_class_list'), lectures_path %>
     <span class="creator_name">
-    作成者：
+      <%= t('.lecture_creater') %>：
       <%= link_to @lecture.user do %>
         <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@lecture.user) %>
       <% end %>
@@ -18,7 +18,7 @@
       </span>
       <%= @lecture.name %></p>
       <span class="teacher-name">
-      <p>担当教員：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
+      <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
       </span>
     </h3>
     
@@ -27,7 +27,7 @@
         <p>レビューはありません。</p>
       <% else %>
         <div id="star-lecture<%= @lecture.id %>"></div>
-        <h4>満足度： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
+        <h4><%= t('.ratings') %>： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
       <% end %>
     </div>
     <!--
@@ -40,7 +40,7 @@
     <%# 最も参考になっているレビュー関係 %>
     <div>
       <% if @helpful_review %>
-        <p><strong>最も参考になっているレビュー</strong></p>
+        <p><strong><%= t('.most-helpful-rev') %></strong></p>
         <div class="most_helpful_review">
           <span id="star-helpful-review"></span>
           <p><%= link_to display_name(@helpful_review.user), @helpful_review.user %></p>
@@ -61,12 +61,12 @@
     <%# 自分がレビューしたことあるかを確認 %>
     <% if @lecture.review?(current_user) %>
       <%# 自分が書いたレビューへのリンクを表示 %>
-      <%= link_to "あなたが書いたこのクラスのレビューを見る", lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
+      <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
     <% else %>
       <%# レビュー投稿欄 %>
       <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-          レビューを書く
+          <%= t('.review-write') %>
         </button>
       </p>
       <div class="collapse" id="collapseReview">
@@ -80,7 +80,7 @@
   <%# レビュー表示 %>
   <div class="col-md-10 lecture-reviews">
     <% if @reviews.any? %>
-      <p>レビュー数 (<%= @lecture.all_reviews_count %>)</p>
+      <p><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</p>
       <ol class="reviews">
         <%= render @reviews %>
       </ol>

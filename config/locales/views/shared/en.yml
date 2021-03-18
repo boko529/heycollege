@@ -1,0 +1,8 @@
+en:
+  shared:
+    error_messages:
+      formcontains: "The form contains"
+    status_group:
+      group: "Group"
+    status_user:
+      members: "Members"

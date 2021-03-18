@@ -5,18 +5,18 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name,'ニックネーム' %><br/>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.label :name,t('.nickname') %><br/>
+    <%= f.text_field :name, autofocus: true, autocomplete: t('.name') %>
   </div>
 
   <div class="field">
-    <%= f.label :grade,'学年' %><br/>
+    <%= f.label :grade,t('.grade') %><br/>
     <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
   </div>
 
   <div class="field">
-    <%= f.label :gender,'性別' %><br/>
-    <%= f.radio_button :gender, '', {:checked => true} %>指定なし
+    <%= f.label :gender,t('.gender') %><br/>
+    <%= f.radio_button :gender, '', {:checked => true} %><%= t('.unspecified') %>
     <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
       <%=  b.radio_button(class: "form-contorl") %>
       <%= b.label %>
@@ -24,8 +24,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :faculty,'学部' %><br/>
-    <%= f.radio_button :faculty, '', {:checked => true} %>指定なし
+    <%= f.label :faculty,t('.college') %><br/>
+    <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspecified') %>
     <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
       <%=  b.radio_button(class: "form-contorl") %>
       <%= b.label %>
@@ -40,20 +40,20 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
+    <em>(<%= t('.mini-2') %><%= @minimum_password_length %><%= t('.mini') %>)</em>
     <% end %><br/>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: t('.newpass') %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br/>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: t('.newpass') %>
   </div>
 
-  <p style="text-align:center"><%= link_to "こちらの利用規約に必ず同意した上で登録してください", page_path('terms') %></p>
+  <p style="text-align:center"><%= link_to t('.read'), page_path('terms') %></p>
 
   <div class="actions">
-    <%= f.submit "利用規約に同意した上で登録する" %>
+    <%= f.submit t('.agree') %>
   </div>
 <% end %>
 

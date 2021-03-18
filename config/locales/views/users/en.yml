@@ -1,0 +1,64 @@
+en:
+  users:
+    show:
+      mygroup: "My group"
+      msg: "message"
+      help: "Help"
+      contactus: "Contact us"
+      logout: "Log out"
+      leave: "Delete account"
+      college: "College"
+      grade: "Grade"
+      edit: "edit"
+      title_login: "MyPage"
+      faculty: "Faculty"
+      college_point: "CollegePoint"
+      point_score: "Score"
+      following: "Following"
+      follower: "follower"
+      add_account: "Add account"
+      reviews_count: "Reviews"
+      review: "Review"
+      class: "Class"
+      delete_account_message: "If you click OK, you are no longer log in this account."
+      term: "Terms of service"
+      privacypolicy: "Privacy policy"
+    followbutton:
+      follow: "Follow"
+      unfollow: "UnFollow"
+    lecture: 
+      teachername: "Teacher name"
+      reviews: "Reviews"
+      noreviews: "No reviews"
+    review: 
+      teachername: "Teacher name"
+    user:
+      userinformation: "User Info"
+      name: "Name"
+      unspe: "Unspecified"
+    edit:
+      userinfo: "User information"
+      editmypage: "Edit my page"
+      mypageedit: "My page edit"
+      newprofilepic: "Profile photo custom is coming soon!"
+      nick: "Nickname"
+      gen: "Gender"
+      grade: "Grade"
+      college: "College"
+      unspe: "unspecified"
+      username: "username"
+      msg: "massage"
+      change: "Change"
+      in100: "in 100 letters"
+      twi: "Twitter username"
+      insta: "Instagram username"
+    follower:
+      follower: "Follower"
+    following:
+      following: "Following"
+    unfollow:
+      follower: "follower"
+      following: "following"
+    follow:
+      follower: "follower"
+      following: "following"

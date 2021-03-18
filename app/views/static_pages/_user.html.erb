@@ -7,9 +7,9 @@
       <span class="rank ml-1 ml-sm-3">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:users_page] %>
-          <%= i + 20 * ( params[:users_page].to_i - 1 ) %>位
+          <%= i + 20 * ( params[:users_page].to_i - 1 ) %><%= t('.place')%>
         <% else %>
-          <%= i + 20 * params[:users_page].to_i %>位
+          <%= i + 20 * params[:users_page].to_i %><%= t('.place')%>
         <% end %>
       </span>
     </div>
@@ -22,7 +22,7 @@
     <%# ユーザー名 %>
     <div class="col-sm-7 col-3 p-0 p-sm-auto offset-1 offset-md-2">
       <div class="d-flex align-items-center h-100">
-      <%= link_to user.name, user %>
+      <%= link_to display_name(user), user %>
       </div>
     </div>
 

@@ -34,23 +34,22 @@
 
          <%# ログインしてない時 %>
       <% else %>
-        <div class="rank col">
+        <div class="rank col-4">
           <%= link_to root_path do %>
-            <i class="fas fa-home fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+            <i class="fas fa-medal fa-2x"></i>
           <% end %>
         </div>
-        <div class="login col">
+        <div class="login-footer col-4">
           <%= link_to new_user_session_path do %>
-            <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">ログイン</span>
+            <i class="fas fa-sign-in-alt fa-2x"></i>
           <% end %>
         </div>
-        <div class="others col">
+        <div class="contact-footer col-4">
           <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
+            <i class="fas fa-envelope fa-2x"></i>
           <% end %>
         </div>
       <% end %>
- 
     </div>
   </div>
 
@@ -80,9 +79,11 @@
           <%# <li>
             <a href="#">Home</a>
           </li>       %>
-          <li>
-              <a href="#">About</a>
-          </li>   
+          <!--
+            <li>
+                <a href="#">About</a>
+            </li>   
+          -->
           <%# <li>
             <a href="#">Blog</a>
           </li>    %>
@@ -92,10 +93,10 @@
             <% end %>
           </li>
           <li>
-            <%= link_to "利用規約", page_path('terms') %>
+            <%= link_to t('.term'), page_path('terms') %>
           </li>
           <li>
-            <%= link_to "プライバシーポリシー", page_path('privacypolicy') %>
+            <%= link_to t(".privacypolicy"), page_path('privacypolicy') %>
           </li>
         </ul>
       </div>

@@ -1,0 +1,12 @@
+en:
+  notifications:
+    index:
+      notifi: "Notifications"
+      notilist: "Notification list"
+    notification:
+      san: ""
+      ga: ""
+      liked: "your review"
+      startfollow: "starts following you"
+      yourreview: "liked "
+      ago: " ago"

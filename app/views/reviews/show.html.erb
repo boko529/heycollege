@@ -1,15 +1,17 @@
 <%# レビューに詳細が存在するときは詳細の冒頭をタイトルにして、ないときはレビューの番号をタイトルにしてる。三項演算子で書いてます(分からなかったら調べてね)。 %>
 <% provide(:title, @review.content.blank? ? "review#{@review.id}" : @review.content.truncate(8, omission: '・・・')) %>
 <div class="review-show">
-  <%= link_to "#{@lecture.name}に戻る", lecture_path(@lecture) %>
+  <%= link_to lecture_path(@lecture) do %>
+    》<%= @lecture.name %>
+  <% end %>
 
-  <span>クラス：<%= @lecture.name %></span>
-  <span>講師： Teacher</span>
-  <h4>スコア：<%= @review.score %></h4>
+  <span><%= t('.class') %>：<%= @lecture.name %></span>
+  <span><%= t('.teacher') %>：<%= @lecture.teacher.name %></span>
+  <h4><%= t('.score') %>：<%= @review.score %></h4>
   <% unless @review.content.blank? %>
     <p><%= safe_join(@review.content.split("\n"),tag(:br)) %></p>
   <% else %>
-    <p>このレビューに詳細はありません。</p>
+    <p><%= t('.nodetail') %></p>
   <% end %>
 
   <%# 役に立ったボタン %>
@@ -24,6 +26,6 @@
 
   <%# 自分のレビューのときのみ表示 %>
   <% if current_user?(@review.user) %>
-    <%= link_to "削除", lecture_review_path(@lecture,@review), method: :delete, data: { confirm: "本当に削除しますか？"} %>
+    <%= link_to t('.delete'), lecture_review_path(@lecture,@review), method: :delete, data: { confirm: t('.reallydelete')} %>
   <% end %>
 </div>

@@ -9,6 +9,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @deleted_user = users(:is_deleted_user)
   end
 
+  # フレンドリーフォワーディングのtest追加
+  test "valid flendly_fowarding" do
+    get edit_user_path(@user.id)
+    login_as(@user, scope: :user)
+    follow_redirect!
+    assert_redirected_to edit_user_path(@user)
+  end
+  
   test "invalid user should not edit valid user's name" do
     login_as(@other_user, scope: :user)
     get edit_user_path(@user.id)
@@ -95,6 +103,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert @user.active_for_authentication?
     patch users_hide_path(@user)
     assert_not @user.active_for_authentication? #何故かテストがFAILになる
+  end
+
+  test "valid show following" do
+    login_as(@user)
+    get users_following_path(@user)
+    assert_template "users/following"
+  end
+
+  test "valid show follower" do
+    login_as(@user)
+    get users_follower_path(@user)
+    assert_template "users/follower"
   end
 
   test "should not show is_deleted user" do

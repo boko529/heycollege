@@ -7,17 +7,17 @@
       </div>
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
-          <%= link_to "他ユーザーに編集権を許可", {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
+          <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
         <% end %>
         <br>
         <% if @profile%>
-          <%= link_to "プロフィール編集", {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+          <%= link_to t('.profileedit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
         <% end %>
         <br>
         <%= render 'join_form' %>  
       </span>
       <div class="frame profile">
-        <br>スコア：<%= @group.group_point.current_point.round(0) %>
+        <br><%= t('.score') %>：<%= @group.group_point.current_point.round(0) %>
       </div>
       <div class="float_clear"></div>
     </span>
@@ -39,29 +39,31 @@
       <% if @relation &&  @relation.admin %>
         <small>
           <% if @profile %>
-            プロフィール
+            <%= t('.profile') %>
             <br><%= @profile.content %>
           <% else %>
             <%# プロフィール作成欄 %>
-            <%= link_to "プロフィール作成", {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
+            <%= link_to t('.makenew'), {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
           <% end %>
         </small>
       <% end %>
       <br>
-      <% if @group.instagram_name.present? %>
-        <small>Instagram: <%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
-      <% elsif @relation &&  @relation.admin %>
-        <small>Instagram:<%= link_to "アカウント名を追加",edit_group_path(@group.id) %></small>
-      <% end %>
-      &nbsp;&nbsp;
-      <% if @group.twitter_name.present? %>
-        <small>Twitter:<%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
-      <% elsif @relation &&  @relation.admin %>
-        <small>Twitter:<%= link_to "アカウント名を追加",edit_group_path(@group.id) %></small>
-      <% end %>
+      <div class="sns">
+        <% if @group.instagram_name.present? %>
+          <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
+        <% end %>
+        &nbsp;&nbsp;
+        <% if @group.twitter_name.present? %>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %></small>
+        <% end %>
+      </div>
     </div>
     <div class="member-list">
-      <strong class="member">メンバー</strong>
+      <strong class="member"><%= t('.member') %></strong>
       <%= render 'shared/stats_user' %>
       <% @users.each do |user| %>
         <li class="list-group-item list-group-item-action member-list-box">
