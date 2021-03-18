@@ -41,7 +41,7 @@
               <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
                 &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
               <% end %>              
-              <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch do %>
+              <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
                 &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
               <% end %>
             </div>
@@ -73,7 +73,7 @@
               </li>
               <%# 退会 %>
               <li class="list-group-item text-left">
-                <%= link_to users_hide_path(@user), method: :patch do %>
+                <%= link_to users_hide_path(@user), method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
                   <span class="d-inline text-success">退会</span>
                 <% end %>
               </li>
