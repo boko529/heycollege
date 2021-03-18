@@ -1,4 +1,4 @@
-<% provide(:title, '新規講義作成') %>
+<% provide(:title, '新規zoom作成') %>
 <% provide(:button_text, '作成') %>
 <h1>ZOOM作成</h1>
 
@@ -9,6 +9,8 @@
   <%= f.text_field :title %>
   <h4>説明</h4>
   <%= f.text_area :description %>
+  <h4>招待URL</h4>
+  <%= f.text_field :join_url %>
   <p>
   <%= f.submit 'Create ZOOM', class: "btn btn-primary"%>
   </p>
