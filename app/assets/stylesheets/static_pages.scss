@@ -14,9 +14,18 @@
 }
 
 // スライドショーのscss
+// マージン消したから、その分コンテントを中央に持ってくるためのブロック
+.slide-container {
+  width: 100%;
+  display: flex;
+  justify-content: center
+}
 .slide_show{
-  width: 95%;
-  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  align-content: center;
+  margin-right: 0;
+  margin-left: 0;
   max-height: 200px; //読み込み時に縦に並ばないように
   .slick-prev:before, .slick-next:before{
     // color: #b0ee52;
