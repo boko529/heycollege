@@ -79,9 +79,11 @@
           <%# <li>
             <a href="#">Home</a>
           </li>       %>
-          <li>
-              <a href="#">About</a>
-          </li>   
+          <!--
+            <li>
+                <a href="#">About</a>
+            </li>   
+          -->
           <%# <li>
             <a href="#">Blog</a>
           </li>    %>
@@ -91,10 +93,10 @@
             <% end %>
           </li>
           <li>
-            <%= link_to "利用規約", page_path('terms') %>
+            <%= link_to t('.term'), page_path('terms') %>
           </li>
           <li>
-            <%= link_to "プライバシーポリシー", page_path('privacypolicy') %>
+            <%= link_to t(".privacypolicy"), page_path('privacypolicy') %>
           </li>
         </ul>
       </div>

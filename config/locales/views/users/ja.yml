@@ -20,6 +20,9 @@ ja:
       reviews_count: "レビィー数"
       review: "レビュー"
       class: "クラス"
+      delete_account_message: "退会すると再度ログインできなくなります。本当に退会しますか？"
+      term: "利用規約"
+      privacypolicy: "プライバシーポリシー"
     followbutton:
       follow: "フォロー"
       unfollow: "フォロー解除"

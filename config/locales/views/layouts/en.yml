@@ -13,3 +13,6 @@ en:
       signup: "Signup"
       signin: "Login"
       sig&log: "Login&Signup"
+    footer:
+      term: "Terms of service"
+      privacypolicy: "Privacy policy"
