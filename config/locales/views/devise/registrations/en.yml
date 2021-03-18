@@ -22,7 +22,7 @@ en:
         gender: "Gender"
         unspecified: "Unspecified"
         college: "College"
-        mini: ""
+        mini: "letters"
         mini-2: "more than"
         newpass: "New passwrod"
         read: "Make sure to read the terms of service and register"

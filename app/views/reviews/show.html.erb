@@ -1,7 +1,9 @@
 <%# レビューに詳細が存在するときは詳細の冒頭をタイトルにして、ないときはレビューの番号をタイトルにしてる。三項演算子で書いてます(分からなかったら調べてね)。 %>
 <% provide(:title, @review.content.blank? ? "review#{@review.id}" : @review.content.truncate(8, omission: '・・・')) %>
 <div class="review-show">
-  <%= link_to "#{@lecture.name}に戻る", lecture_path(@lecture) %>
+  <%= link_to lecture_path(@lecture) do %>
+    》<%= @lecture.name %>
+  <% end %>
 
   <span><%= t('.class') %>：<%= @lecture.name %></span>
   <span><%= t('.teacher') %>：<%= @lecture.teacher.name %></span>
