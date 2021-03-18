@@ -20,8 +20,8 @@ class StaticPagesController < ApplicationController
     end.reverse
     @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)
     
-    #ユーザーランキング処理
-    users = User.includes(:user_point_history).sort_by  do |user|
+    #ユーザーランキング処理(管理者、退会者は除く)
+    users = User.where(admin: false, is_deleted: false).includes(:user_point_history).sort_by  do |user|
       total_amount = 0
       if user.user_point_history.present?
         user.user_point_history.all.each do |user_point_history|
