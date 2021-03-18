@@ -1,0 +1,61 @@
+ja:
+  users:
+    show:
+      mygroup: "マイグループ"
+      msg: "メッセージ"
+      help: "ヘルプ"
+      contactus: "お問い合わせ"
+      logout: "ログアウト"
+      leave: "退会"
+      college: "学部"
+      grade: "学年"
+      edit: "編集"
+      title_login: "マイページ"
+      faculty: "Faculty"
+      college_point: "カレッジポイント"
+      point_score: "スコア"
+      following: "フォロー"
+      follower: "フォロワー"
+      add_twitter: "ツイッター追加"
+      reviews_count: "レビィー数"
+      review: "レビュー"
+      class: "クラス"
+    followbutton:
+      follow: "フォロー"
+      unfollow: "フォロー解除"
+    lecture: 
+      teachername: "先生名"
+      reviews: "レビュー数"
+      noreviews: "レビューなし"
+    review: 
+      teachername: "先生名"
+    user:
+      userinformation: "ユーザー情報"
+      name: "名前"
+      unspe: "指定なし"
+    edit:
+      userinfo: "ユーザー情報"
+      editmypage: "マイページを編集する"
+      mypageedit: "マイページ編集"
+      newprofilepic: "近日、プロフィール画像追加予定！"
+      nick: "ニックネーム"
+      gen: "性別"
+      grade: "学年"
+      college: "学部"
+      unspe: "指定なし"
+      username: "ユーザーネーム"
+      msg: "メッセージ"
+      change: "変更する"
+      in100: "１００文字以内"
+      twi: "Twitter リンク"
+      insta: "Instagram リンク"
+    follower:
+      follower: "フォロワー"
+    following:
+      following: "フォロー"
+    unfollow:
+      follower: "フォロワー"
+      following: "フォロー"
+    follow:
+      follower: "fフォロワー"
+      following: "フォロー"

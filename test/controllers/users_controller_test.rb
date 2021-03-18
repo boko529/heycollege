@@ -97,6 +97,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @user.active_for_authentication? #何故かテストがFAILになる
   end
 
+  test "valid show following" do
+    login_as(@user)
+    get users_following_path(@user)
+    assert_template "users/following"
+  end
+
+  test "valid show follower" do
+    login_as(@user)
+    get users_follower_path(@user)
+    assert_template "users/follower"
+  end
+
   test "should not show is_deleted user" do
     login_as(@user)
     get user_path(@deleted_user)
