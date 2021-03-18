@@ -1,0 +1,6 @@
+en:
+  devise:
+   mailer:
+    welcome: "Welcome to Hey College"
+    confirm: "Click below and check the email"
+    check: "Check"

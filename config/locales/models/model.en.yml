@@ -6,7 +6,7 @@ en:
       review: review
     attributes:
       lecture:
-        name: class_name
+        name: class name
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -25,7 +25,7 @@ en:
         password: パスワード
         password_confirmation: パスワード（確認用）
         remember_created_at: ログイン記憶時刻
-        remember_me: ログインを記憶する
+        remember_me: remember me
         reset_password_sent_at: パスワードリセット送信時刻
         reset_password_token: パスワードリセット用トークン
         sign_in_count: ログイン回数
@@ -33,7 +33,7 @@ en:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
       review:
-        content: 詳細
+        content: content
 
   enums:
     user:
