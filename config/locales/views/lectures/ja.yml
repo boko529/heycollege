@@ -11,3 +11,16 @@ ja:
       review-number: "評価数"
       return_to_class_list: "》クラス一覧へ戻る"
       lecture_creater: "作成者"
+      review-write: "レビューを書く"
+    new:
+      create-class: "クラス作成"
+    form:
+      official_name_plese: "公式名称でお願いします。"
+      family-name: "姓"
+      first-name: "名前"
+      correct-language-plese: "公式名称・受けた言語で書いてください。"
+      example: "例）日本語 → 山田　太郎、　英語 → Yamada Taro"
+    index:
+      class-list: "クラス一覧"
+    edit:
+      edit-class: "クラス編集"
