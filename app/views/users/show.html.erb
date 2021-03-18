@@ -71,6 +71,18 @@
                 <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;ログアウト</span>
               <% end %>
               </li>
+              <%# 利用規約 %>
+              <li class="list-group-item text-left">
+                <%= link_to page_path('terms') do %>
+                  <span class="d-inline text-success">利用規約</span>
+                <% end %>
+              </li>
+              <%# プライバシーポリシー %>
+              <li class="list-group-item text-left">
+                <%= link_to page_path('privacypolicy') do %>
+                  <span class="d-inline text-success">プライバシーポリシー</span>
+                <% end %>
+              </li>
               <%# 退会 %>
               <li class="list-group-item text-left">
                 <%= link_to users_hide_path(@user), method: :patch do %>
