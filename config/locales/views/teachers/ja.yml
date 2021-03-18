@@ -9,3 +9,7 @@ ja:
       most_helpful_reviews: 最も参考になっているレビュー
       no_reviews: レビューがありません
       number_of_reviews: レビュー数 
+    index:
+      teacherlist: "先生リスト"
+    lecture:
+      noreview: "レビューはありません"
