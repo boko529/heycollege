@@ -18,7 +18,7 @@ class LectureTest < ActiveSupport::TestCase
   end
 
   test "name should not be too long" do
-    @lecture.name = "a" * 21
+    @lecture.name = "a" * 51
     assert_not @lecture.valid?
   end
 

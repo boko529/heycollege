@@ -2,10 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-ul {
-    padding: 0px;
-}
-
+// ブックマークのCSSはここ
 .news_by{
   display: block;  
   background-color: rgb(176, 238, 82);
@@ -16,10 +13,19 @@ ul {
   color: black;
 }
 
-div.ranking-index{
-  h2{
-    margin: 30px 0;
+// スライドショーのscss
+.slide_show{
+  .slide_content{
+    .slide{
+      width: 100%;
+      max-height: 200px; //最大高さは指定してその範囲で画像の縦横比を保つ
+      object-fit: contain;
+      background-color: gray;
+    }
   }
+}
+
+div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
   >nav{
     a{
       text-align: center;
@@ -33,39 +39,102 @@ div.ranking-index{
       }
     }
   }
-  ul.rankings{
+  ul.rankings,ul.groups {
     list-style: none;
     margin: 0;
     padding: 0;
-    li.lecture, li.teacher{
+    color: rgb(39, 33, 33);
+
+     // 中身
+    div.lecture,div.teacher,div.user{
+      height: 85px;
       background-color: #eeeeee;
       border-radius: 4px;
-      margin: 5px 0;
       overflow: auto;
-      padding: 10px 0;
       border-bottom: 1px solid gray;
+      .row {
+        height: 100%;
+        border-bottom: none;
+      }
       .rank{
         font-weight: bold;
-        display: inline-block;
-        text-align: center;
-        width: 70px;
-        padding: 5px;
-        background-color: gold;
-        margin: 5px;
+        min-width: 50px;
         border-radius: 10px;
+        display: flex;
+        align-items: center;
       }
       .score{
-        background-color: springgreen;
         border-radius: 20%;
+        height: 29px;
+        width: 55px;
+        font-weight: bold;
+        color: rgb(39, 33, 33);
+        display: flex;
+        align-items: center;
+        text-align: left;
+        height: 100%;
+        a{
+          background-color: gold;
+          margin: 7%;
+          margin-left: 20%;
+        }
+      }
+      .class-name{
+        height: 100%;
         padding: 10px;
         font-weight: bold;
-        color: black;
-        margin-left: 10px;
+        color: rgb(39, 33, 33);
+        margin-left: 5%;
+        margin-right: 5%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .teacher-name, .teacher-teachername{
+        height: 100%;
+        width: 80%;
+        padding: 10px;
+        font-weight: bold;
+        color: rgb(39, 33, 33);
+        margin-left: 5%;
+        margin-right: 0;
+        display: flex;
+
+        align-items: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .web-reviewcount{
+        margin-left: 5px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .mobile-teacher {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      .mobile-class-and-teacher{
+        height: 100%;
+      }
+      .mobile-class-name, .mobile-teacher-name{
+        height: 40px;
+        display: flex;
+        align-items: center;
+      }
+      .review-count{
+        display: flex;
+        align-items: center;
       }
       a{
-        color: black;
-        padding-left: 5px;
-        padding-top: 5px;
+        display: inline-block;
+        color: rgb(39, 33, 33);
         font-weight: bold;
       }
     }

@@ -4,45 +4,47 @@
   <head>
     <title><%= yield(:title) %> | HeyCollege</title>
     <%= render 'layouts/head_base' %>
+
   </head>
 
   <body>
     <%= render 'layouts/header'%>
-    <div class="row">
+    <%= render 'layouts/modal_search_form' %>
+    <div class="container-fluid">
+      <div class="row">
 
-      <%# サイドバー %>
-      <div class="col-2 d-none d-md-block sidebar_col p-0">
-        <%= render 'layouts/sidebar'%>
-      </div>
+        <%# サイドバー %>
+        <div class="col-2 d-none d-md-block sidebar_col p-0">
+          <%= render 'layouts/sidebar'%>
+        </div>
 
-      <%#　メインコンテント %>
-      <div class="col main_content p-0">
-      
-        <%# ここから3行はフラッシュ表示 %>
-        <% flash.each do |message_type, message| %>
-          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-        <% end %>
-        <div class="container">
-          <%# 詳細検索欄、表示用のボタンはヘッダーでコメントアウト %>
-          <%# 詳細検索 %>
-          <%# <div class="collapse mx-auto" id="collapseSearchLecture"> %>
-            <%# <div class="card card-body"> %>
-              <%# render('layouts/search_form') %>
-            <%# </div> %>
-          <%# </div> %>
+        <div class="subsidebar-file">
+          <%= render 'layouts/subsidebar'%>
+        </div>
+       
+        <%#　メインコンテント %>
+        <div class="col-md-10 col_12 main_content">
+        
+          <%# ここから3行はフラッシュ表示 %>
+          <% flash.each do |message_type, message| %>
+            <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+          <% end %>
+          
           <div class="container">
-            <%# 他のページをここに代入 %>
-            <%= yield %>
+            <div class="yield_box">
+              <%# 他のページをここに代入 %>
+              <%= yield %>
+            </div>
           </div>
-        </div>
 
-        <%# フッターと開発者用のやつ卍 %>
-        <div>
-        <%# 次の行は開発用の表示 %>
-            <%= debug(params) if Rails.env.development? %>
-            <%= render 'layouts/footer'%>
+          <%# フッターと開発者用のやつ卍 %>
+          <div>
+          <%# 次の行は開発用の表示 %>
+              <%= debug(params) if Rails.env.development? %>
+              <%= render 'layouts/footer'%>
+          </div>
+          
         </div>
-
       </div>
     </div>
   </body>

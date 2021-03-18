@@ -1,48 +1,113 @@
 <footer class="footer">
-  <nav class="d-block d-md-none">
-    <%# スマホ用のフッター %>
-  </nav>
-  <nav class="d-none d-md-block">
-    <%# ウェブサイト用のフッター %>
-    
- <div class="container">
+  <%# スマホ用フッターボタン %>
+  <div class="footer_button container d-block d-sm-none fixed-bottom bg-white border-top">
+    <div class="row">
+    <% if user_signed_in? %>
+
+      <%# ランキング %>
+      <div class="rank col">
+      <%= link_to root_path do %>
+        <i class="fas fa-medal fa-2x"></i>
+      <% end %>
+      </div>
+
+      <%# 作る %>
+      <div class="add col">
+        <%= link_to new_lecture_path do %>
+          <i class="far fa-plus-square fa-2x"></i>
+        <% end %>
+      </div>
+
+      <%# ブックマーク %>
+      <div class="book col">
+        <%= link_to bookmarks_path do %>
+          <i class="far fa-bookmark fa-2x"></i>
+        <% end %>
+      </div>
+
+      <%# ユーザー %>
+      <div class="user col">
+          <%= link_to user_path(current_user) do %>
+            <i class="fas fa-user-circle fa-2x"></i>
+          <% end %>
+        </div>
+
+         <%# ログインしてない時 %>
+      <% else %>
+        <div class="rank col">
+          <%= link_to root_path do %>
+            <i class="fas fa-home fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+          <% end %>
+        </div>
+        <div class="login col">
+          <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">ログイン</span>
+          <% end %>
+        </div>
+        <div class="others col">
+          <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+            <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
+          <% end %>
+        </div>
+      <% end %>
+ 
+    </div>
+  </div>
+
+
+ <div class="container d-none d-sm-block">
    <div class="row text-center">
       <div class="footer_logos col-md-6 col-sm-6 col-xs-12">
         <%# ロゴ %>
         <ul class="list-inline">   
-          <li>
+          <%# <li>
               <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          </li> %>
+          <li>
+            <%= link_to "https://www.instagram.com/hey.college/", target: :_blank, rel: "noopener noreferrer" do  %>
+              <i class="fab fa-instagram fa-2x"></i>
+            <% end %>
           </li>
           <li>
-              <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-          </li>
-          <li>
-              <a href="#"><i class="fab fa-twitter-square fa-2x"></i></a> 
+            <%= link_to "https://twitter.com/Hey_College_", target: :_blank, rel: "noopener noreferrer" do  %>
+              <i class="fab fa-twitter-square fa-2x"></i>
+            <% end %>
           </li>     
         </ul>
       </div>
       <div class="footer_words col-md-6 col-sm-6 col-xs-12">
         <ul class="menu list-inline">       
-          <li>
+          <%# <li>
             <a href="#">Home</a>
-          </li>      
+          </li>       %>
           <li>
               <a href="#">About</a>
           </li>   
-          <li>
+          <%# <li>
             <a href="#">Blog</a>
-          </li>   
+          </li>    %>
           <li>
-            <a href="#">Contact</a>
+            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+             <span class="d-none d-lg-inline">Contact</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "利用規約", page_path('terms') %>
+          </li>
+          <li>
+            <%= link_to "プライバシーポリシー", page_path('privacypolicy') %>
           </li>
         </ul>
       </div>
     </div> 
   </div>
-</footer>
-<%# 著作権は気にするなそれワカチコワカチコ %>
-<div class="copyright">
+  
+  <div class="copyright　d-none d-sm-block ">
   <div class="container">
-     	<p>Copyright © 2021 All rights reserved</p>
+     	<p class="copyright">Copyright © 2021 All rights reserved</p>
   </div>
-</div>
+  </div>
+</footer>
+
+<%# 著作権は気にするなそれワカチコワカチコ %>
+

@@ -1,0 +1,29 @@
+<li id="review-<%= review.id %>" class = "review list-group-item" >
+    <span id="star-review<%= review.id %>"></span>
+
+  <p><%= link_to review.lecture.name, review.lecture %></p>
+  &emsp;担当教員：<%= link_to review.lecture.teacher.name, review.lecture.teacher %>
+  <p class="content">
+    <%= safe_join(review.content.split("\n"),tag(:br)) %>
+  </p>
+  <p class="timestamp">
+    <%= review.updated_at.strftime("%Y-%m-%d") %>
+  </p>
+
+  <%# 役に立ったボタン %>
+  <div id="helpfuls_buttons_<%= review.id %>">
+    <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
+  </div>
+</li>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-review<%= review.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= review.score %>,
+  });
+</script>

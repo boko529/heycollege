@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  current_point: 10
+  total_point: 10
+  group: group1
+
+two:
+  current_point: 10
+  total_point: 10
+  group: group2
+
+three:
+  current_point: 10
+  total_point: 10
+  group: group3
