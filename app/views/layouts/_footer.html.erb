@@ -45,7 +45,7 @@
           <% end %>
         </div>
         <div class="others col">
-          <%= link_to "#" do %>
+          <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
             <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
           <% end %>
         </div>
@@ -60,30 +60,42 @@
       <div class="footer_logos col-md-6 col-sm-6 col-xs-12">
         <%# ロゴ %>
         <ul class="list-inline">   
-          <li>
+          <%# <li>
               <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          </li> %>
+          <li>
+            <%= link_to "https://www.instagram.com/hey.college/", target: :_blank, rel: "noopener noreferrer" do  %>
+              <i class="fab fa-instagram fa-2x"></i>
+            <% end %>
           </li>
           <li>
-              <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
-          </li>
-          <li>
-              <a href="#"><i class="fab fa-twitter-square fa-2x"></i></a> 
+            <%= link_to "https://twitter.com/Hey_College_", target: :_blank, rel: "noopener noreferrer" do  %>
+              <i class="fab fa-twitter-square fa-2x"></i>
+            <% end %>
           </li>     
         </ul>
       </div>
       <div class="footer_words col-md-6 col-sm-6 col-xs-12">
         <ul class="menu list-inline">       
-          <li>
+          <%# <li>
             <a href="#">Home</a>
-          </li>      
+          </li>       %>
           <li>
               <a href="#">About</a>
           </li>   
-          <li>
+          <%# <li>
             <a href="#">Blog</a>
-          </li>   
+          </li>    %>
           <li>
-            <a href="#">Contact</a>
+            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+             <span class="d-none d-lg-inline">Contact</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "利用規約", page_path('terms') %>
+          </li>
+          <li>
+            <%= link_to "プライバシーポリシー", page_path('privacypolicy') %>
           </li>
         </ul>
       </div>

@@ -7,6 +7,7 @@
         <div class="classname">
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
+          <small id="lecture-name" class="form-text text-muted">公式名称でお願いします。</small>
         </div>
         <div class="name">
           <%= f.label :name %>
@@ -14,12 +15,13 @@
           <%# valueで既に名前があるときは初期値として代入 %>
           <div class="container">
             <div class="row">
-              <div class="col">
+              <div class="col pl-0">
                 <%= f.text_field :last_name, class: 'form-control' ,placeholder: "姓", value: @lecture.init_last_name %>
               </div>
-              <div class="col">
+              <div class="col pr-0">
                 <%= f.text_field :first_name, class: 'form-control', placeholder: "名", value: @lecture.init_first_name %>
               </div>
+                <small id="lectureteacher-name" class="form-text text-muted">公式名称・受けた言語で書いてください。<br>例）日本語→山田　太郎、　英語→Yamada Taro</small>
             </div>
           </div>
         </div>

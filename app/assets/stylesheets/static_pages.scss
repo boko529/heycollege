@@ -13,10 +13,19 @@
   color: black;
 }
 
-div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
-  h2{
-    margin: 30px 0;
+// スライドショーのscss
+.slide_show{
+  .slide_content{
+    .slide{
+      width: 100%;
+      max-height: 200px; //最大高さは指定してその範囲で画像の縦横比を保つ
+      object-fit: contain;
+      background-color: gray;
+    }
   }
+}
+
+div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
   >nav{
     a{
       text-align: center;
@@ -80,21 +89,30 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
         display: flex;
         justify-content: left;
         align-items: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .teacher-name, .teacher-teachername{
         height: 100%;
-        width: 100%;
+        width: 80%;
         padding: 10px;
         font-weight: bold;
         color: rgb(39, 33, 33);
         margin-left: 5%;
-        margin-right: 5%;
+        margin-right: 0;
         display: flex;
-        justify-content: left;
+
         align-items: center;
-        .web-reviewcount{
-          margin: 10px;
-        }
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .web-reviewcount{
+        margin-left: 5px;
+        height: 100%;
+        display: flex;
+        align-items: center;
       }
 
       .mobile-teacher {
