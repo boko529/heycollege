@@ -1,6 +1,6 @@
 <%# ページのタイトル %>
 <% if @user == current_user %>
-  <% provide(:title, 'マイページ編集') %>
+  <% provide(:title, t('.title_login') ) %>
 <% else %>
   <% provide(:title, @user.name) %>
 <% end %>
@@ -8,19 +8,17 @@
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <div class="frame">
-
         <div class="frame_icon">
           <div class="circle">
             <%= image_tag 'default_user.png', :size => '80x80' %>
           </div>
         </div>
-
         <%# マイページのときのみ表示 %>
         <% if @user == current_user %>
           <%# 編集 %>
           <% if @user == current_user %>
             <div class="edit-btn btn btn-primary">
-              <%= link_to '編集', edit_user_path(@user.id)%>
+              <%= link_to t('.edit'), edit_user_path(@user.id)%>
             </div>
           <% else %>
             <div class="follow-btn">
@@ -36,13 +34,13 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
               <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
-                &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
+                &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"><%= t('.contactus') %>&nbsp;</span>
               <% end %>
               <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
-                &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
+                &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"><%= t('.logout') %>&nbsp;</span>
               <% end %>              
               <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
-                &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
+                &nbsp;<span class="d-inline text-success"><%= t('.leave') %>&nbsp;</span>
               <% end %>
             </div>
           </div>
@@ -57,18 +55,13 @@
             </div>
             <ul class="other-bottomup-ul">
               <li class="list-group-item text-left">
-                  <%= link_to root_path do %>
-                    <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">&nbsp;ヘルプ</span>
-                  <% end %>
-              </li>
-              <li class="list-group-item text-left">
                 <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
+                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"><%= t('.contactus') %></span>
                 <% end %>
               </li>
               <li class="list-group-item text-left">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;ログアウト</span>
+                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;<%= t('.logout') %></span>
               <% end %>
               </li>
               <%# 利用規約 %>
@@ -86,7 +79,7 @@
               <%# 退会 %>
               <li class="list-group-item text-left">
                 <%= link_to users_hide_path(@user), method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
-                  <span class="d-inline text-success">退会</span>
+                  <span class="d-inline text-success"><%= t('.leave') %></span>
                 <% end %>
               </li>
               <li class="usershow-blank list-group-item text-left d-inlineblock">
@@ -109,7 +102,7 @@
         <span id="follow", id='following-count_<%= @user.id%>'>
           <%= link_to users_following_path(@user) do%>
             <span class=color-brack>
-              <%= @user.follower.count %>フォロー中
+              <%= @user.follower.count %><%= t('.following') %>
             </span>
           <% end %>
         </span>
@@ -117,7 +110,7 @@
         <span id='follower-count_<%= @user.id%>'>
           <%= link_to users_follower_path(@user) do%>
             <span class=color-brack>
-              <%= @user.followed.count %>フォロワー
+              <%= @user.followed.count %><%= t('.follower') %>
             </span>
           <% end %>
         </span>
@@ -129,12 +122,12 @@
           <!---
             <br>性別:
               <%= @user.gender_i18n  %> -->
-              学部：<%= @user.faculty_i18n %>
-            <br>学年：<%= @user.grade_i18n %>
-            <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
+              <%= t('.college') %>：<%= @user.faculty_i18n %>
+            <br><%= t('.grade') %>：<%= @user.grade_i18n %>
+            <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
             <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
           </div>
-        <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
+        <small><%= t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
         <br>
         <% if @user.instagram_name.present? %>
           <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
@@ -177,7 +170,7 @@
       <%# 所属団体 %>
       <% if @groups.any? %>
         <div class="group-join">
-          <h3>所属団体（<%= @groups.count %>）</h3>
+          <h3><%= t('.mygroup') %>（<%= @groups.count %>）</h3>
           <% @groups.each do |group| %>
             <p>・<%= link_to group.name, group %></p>
           <% end %>
@@ -186,8 +179,8 @@
 
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">レビュー (<%= @reviews.count %>)</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">クラス (<%= @lectures.count %>)</a>
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><%= t('.class') %> (<%= @lectures.count %>)</a>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">

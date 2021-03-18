@@ -1,4 +1,4 @@
-<% provide(:title, "APU講義レビューサイト") %>
+<% provide(:title, t('.classreviewsite')) %>
 <%# 運営からのメッセージがあったら表示する %>
 <% if @news.exists? %>
   <% @news.each do |news| %>
@@ -15,9 +15,9 @@
   <nav>
     <%# 講義ランキング先生ランキング切り替えタブ %>
     <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
-      <a class="col-4 nav-item nav-link active" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true">クラス</a>
-      <a class="col-4 nav-item nav-link" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false">先生</a>
-      <a class="col-4 nav-item nav-link" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false">ユーザー(月間)</a>
+      <a class="col-4 nav-item nav-link active" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><%= t('.class') %></a>
+      <a class="col-4 nav-item nav-link" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><%= t('.teacher') %></a>
+      <a class="col-4 nav-item nav-link" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false"><%= t('.user_point') %></a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">

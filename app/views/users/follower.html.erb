@@ -1,7 +1,7 @@
 <% provide(:title, 'フォロワー') %>
 <div class="col-lg-6 offset-lg-3">
     <div class="following-follower-index">
-        <h2>フォロワー</h2>
+        <h2><%= t('.follower') %></h2>
         <% @followers.each do |f_user| %>
         <ul class="following-follower">
             <div class="circle">

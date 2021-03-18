@@ -1,12 +1,12 @@
 <li class="list-group-item list-group-item-action">
   <span id="star-lecture<%= lecture.id %>"></span>
   <p><%= link_to lecture.name, lecture %></p>
-  &emsp;担当教員：
+  &emsp;<%= t('.teachername') %>：
   <span class="teacher_name"><%= link_to lecture.teacher.name, lecture.teacher %></span>
   <p><% unless lecture.reviews.blank? %>
-    <span>レビュー数(<%= lecture.all_reviews_count %>)</span>
+    <span><%= t('.reviews') %>(<%= lecture.all_reviews_count %>)</span>
   <% else %>
-    レビューはありません
+    <%= t('.noreviews') %>
   <% end %></p>
   
 </li>

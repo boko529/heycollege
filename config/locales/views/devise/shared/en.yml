@@ -1,0 +1,10 @@
+en:
+ devise:
+  shared:
+    links:
+      login: "Log in"
+      newregister: "New register"
+      forget: "Forget my password"
+      didnt: "Did't get confimation mail"
+      terms: "the Terms of service"
+      privacy: "Privacy policy"
