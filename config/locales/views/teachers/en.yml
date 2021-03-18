@@ -8,6 +8,7 @@ en:
       teaching-class: "Teaching class"
       most-helpful-reviews: "Most helpful reviews"
       null-review: "No reviews"
+      number-of-review: "Number of reviews"
     index:
       teacher-index: "Teacher index"
     lecture:
