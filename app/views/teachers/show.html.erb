@@ -1,7 +1,7 @@
 <% provide(:title, @teacher.name) %>
 <div class="teacher_show">
   <%= link_to t('.return_to_teachers_list'), teachers_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to t('.return_to_class_list') %>
+  <%= link_to t('.return_to_class_list'), lectures_path %>
   <%# プロフィール画像と作成者の名前 %>
   <span class="creator_name">
     <%= t('.author') %>：
