@@ -11,3 +11,17 @@ en:
       review-number: "Reviews"
       return_to_class_list: "》Return to ClassList"
       lecture_creater: "Page Maker"
+      review-write: "Write a review"
+    new:
+      create-class: "Create a class"
+    form:
+      official_name_plese: "Please use the official name."
+      family-name: "Family name"
+      first-name: "First name"
+      correct-language-plese: "Write your teacher's name by the language used in this class."
+      example: "ex）Japanese → 山田 太郎、 English → Yamada Taro"
+      teacher_name: "Teacher name"
+    index:
+      class-list: "Class list"
+    edit:
+      edit-class: "Edit Class"

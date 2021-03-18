@@ -1,15 +1,15 @@
 ja:
   teachers:
     show:
-      return_to_teachers_list: "先生一覧へ戻る"
-      return_to_class_list: クラス一覧へ戻る
-      author: 作成者
-      level_of_satisfaction: 満足度
-      classes_taken: 教えているクラス
-      most_helpful_reviews: 最も参考になっているレビュー
-      no_reviews: レビューがありません
-      number_of_reviews: レビュー数 
+      back-to-teacher-index: "》先生一覧へ戻る"
+      return-to-class-index: "》クラス一覧へ戻る"
+      teacher-creater: "作成者："
+      level-of-satisfaction: "満足度"
+      teaching-class: "教えているクラス"
+      most-helpful-reviews: "最も参考になっているレビュー"
+      null-review: "レビューがありません"
+      number-of-review: "レビュー"
     index:
-      teacherlist: "先生リスト"
+      teacher-index: "先生一覧"
     lecture:
-      noreview: "レビューはありません"
+      no-review: "レビューがありません"
