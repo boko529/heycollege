@@ -18,7 +18,7 @@ en:
       official_name_plese: "Please use the official name."
       family-name: "Family name"
       first-name: "First name"
-      correct-language-plese: "Please write in the official name and the language you received."
+      correct-language-plese: "Write official name and the language you received."
       example: "ex）Japanese → 山田 太郎、 English → Yamada Taro"
       teacher_name: "Teacher name"
     index:

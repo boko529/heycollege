@@ -18,7 +18,7 @@ ja:
       official_name_plese: "公式名称でお願いします。"
       family-name: "姓"
       first-name: "名前"
-      correct-language-plese: "公式名称・受けた言語で書いてください。"
+      correct-language-plese: "シラバス表記で記入してください"
       example: "例）日本語 → 山田 太郎、 英語 → Yamada Taro"
       teacher_name: "先生名"
     index:
