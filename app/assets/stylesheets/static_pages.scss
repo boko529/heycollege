@@ -16,6 +16,10 @@
 // スライドショーのscss
 .slide_show{
   max-height: 200px; //読み込み時に縦に並ばないように
+  .slick-prev:before, .slick-next:before{
+    // color: #b0ee52;
+    color: black;
+  }
   .slide_content{
     .slide{
       width: 100%;
