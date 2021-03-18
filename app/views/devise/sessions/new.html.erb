@@ -10,7 +10,7 @@
 
     <div class="field">
       <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+      <%= f.password_field :password, autocomplete: t('.curpass') %>
       
     </div>
 
@@ -22,7 +22,7 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in" %>
+      <%= f.submit t('.login') %>
     </div>
   <% end %>
 

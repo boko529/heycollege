@@ -47,8 +47,8 @@ en:
       msg: "massage"
       change: "Change"
       in100: "in 100 letters"
-      twi: "Twitter URL"
-      insta: "Instagram URL"
+      twi: "Twitter username"
+      insta: "Instagram username"
     follower:
       follower: "Follower"
     following:

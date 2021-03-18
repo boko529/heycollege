@@ -1,1 +1,10 @@
-en:
+ja:
+ devise:
+  shared:
+    links:
+      login: "ログイン"
+      newregister: "新規登録"
+      forget: "パスワードを忘れた場合"
+      didnt: "確認メールが届いていない"
+      terms: "利用規約"
+      privacy: "プライバシーポリシー"

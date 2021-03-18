@@ -1,1 +1,6 @@
-en:
+ja:
+  devise:
+    sessions:
+      new:
+        curpass: "現在のパスワード"
+        login: "ログイン"
