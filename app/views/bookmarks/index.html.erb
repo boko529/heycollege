@@ -1,10 +1,10 @@
 <%# ブックマークのCSSはstatic %>
 <% provide(:title, "Bookmark") %>
 <div class="ranking-index">
-  <h2>ブックマーク</h2>
+  <h2><%= t('.bookmark') %></h2>
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <h3>クラス</h3>
+      <h3><%= t('.class') %></h3>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
@@ -69,8 +69,8 @@
     <% else %>
     <div>
         <p>
-          ブックマークに登録したクラスはありません。<br>
-          <small>※クラス詳細ページからクラスをブックマークに追加できます</small>
+          <%= t('.nonexist') %><br>
+          <small><%= t('.abletoadd') %></small>
         </p>
     </div>
     <% end %>
