@@ -13,6 +13,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "valid flendly_fowarding" do
     get edit_user_path(@user.id)
     login_as(@user, scope: :user)
+    follow_redirect!
     assert_redirected_to edit_user_path(@user)
   end
   
