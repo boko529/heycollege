@@ -3,6 +3,7 @@ en:
     header:
       search_insidetext: "Look up by class or teacher name"
     sidebar:
+      group: "Group"
       ranking: "Ranking"
       create: "Add pages"
       book: "Bookmark"

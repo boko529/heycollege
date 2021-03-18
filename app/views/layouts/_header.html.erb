@@ -11,7 +11,7 @@
       <div class="logo col-5 col-sm-3 mx-md-0 ml-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-5 col-md-6 offset-md-1 offset-1 mx-auto d-none d-sm-block">
+      <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-sm-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
@@ -31,21 +31,21 @@
         <% end %>
       </div>
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-      <div class="search col-1 offset-2 d-sm-none d-block">
+      <div class="search col-1 offset-2 d-sm-none d-block p-0">
         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-search"></i>  
         </button>
       </div>
       
       <% if user_signed_in? %>
-        <%#　ユーザーアイコン　%>
+        <%# ユーザーアイコン %>
         <div class="user col-1 mx-2 d-none d-sm-block">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
-        <%#　お知らせアイコン　%>
-        <div class="bell col-1 offset-1 offset-sm-0">
+        <%# お知らせアイコン %>
+        <div class="bell col-1 offset-1 offset-sm-0 d-flex m-0 text-left">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
           <% end %>
@@ -56,7 +56,7 @@
         <div class="col-1"></div>
       <% end %>
       <%# 言語切り替えボタン %>
-      <div class="col-1">
+      <div class="lang col-1">
         <% if session[:locale] == "en" || session[:locale].blank? %>
           <%= link_to "/application/change_language/ja", class: "btn btn-outline-secondary btn-sm" do %>
           Ja

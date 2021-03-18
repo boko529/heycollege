@@ -3,6 +3,7 @@ ja:
     header:
       search_insidetext: "クラスまたは先生名で探す"
     sidebar:
+      group: "グループ"
       ranking: "ランキング"
       create: "ページを作る"
       book: "ブックマーク"
