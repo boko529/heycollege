@@ -16,7 +16,7 @@ ja:
       point_score: "スコア"
       following: "フォロー"
       follower: "フォロワー"
-      add_twitter: "ツイッター追加"
+      add_account: "アカウントを追加する"
       reviews_count: "レビィー数"
       review: "レビュー"
       class: "クラス"
@@ -57,5 +57,5 @@ ja:
       follower: "フォロワー"
       following: "フォロー"
     follow:
-      follower: "fフォロワー"
+      follower: "フォロワー"
       following: "フォロー"
