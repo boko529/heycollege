@@ -1,0 +1,27 @@
+en:
+  groups:
+    edit_admin:
+      chooseamember: "Choose a member to allow editing this group page"
+    edit:
+      groupedit: "Group edit"
+      changes: "Update"
+    join:
+      join: "Join"
+    unjoin:
+      leave: "Leave"
+    index:
+      group: "Group"
+      makenew: "Create an new group"
+      grouplist: "Group List"
+    new:
+      makenew: "Create a new group"
+      make: "Create"
+    show:
+      allowothers: "Allow other members to edit"
+      profileedit: "Profile edit"
+      score: "Score"
+      profile: "Profile"
+      makenew: "Set profile"
+      addaccount: "Add account"
+      member: "Members"
+
