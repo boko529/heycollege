@@ -1,5 +1,17 @@
-<p><%= t('.welcome') %> <%= @email %>!</p>
+<p>ようこそHeyCollegeへ <%= @email %>!</p>
 
-<p><%= t('.confirm') %></p>
+<p>登録ありがとうございます！</p>
 
-<p><%= link_to t('.check'), confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>以下のリンクからもう一度ログインし、メールアドレスの確認を行ってください。</p>
+
+<p><%= link_to "確認する", confirmation_url(@resource, confirmation_token: @token) %></p>
+
+---------------------------------
+
+<p>Welcome to Hey College <%= @email %>!</p>
+
+<p>Thank you for registering!</p>
+
+<p>Please log in again from the link below and confirm your email address.</p>
+
+<p><%= link_to "Check", confirmation_url(@resource, confirmation_token: @token) %></p>

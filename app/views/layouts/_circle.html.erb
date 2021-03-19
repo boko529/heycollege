@@ -1,10 +1,10 @@
 <%= link_to(notifications_path) do %>
   <%# 未読の通知が合った場合にオレンジ色の丸を表示 %>
   <% if unchecked_notifications.any? %>
-    <span class="fa-stack">
+    <div class="fa-stack">
       <i class="far fa-bell fa-2x" style="font-size: 1.5em"></i>
       <i class="fas fa-circle n-circle fa-2x"></i>
-    </span>
+    </div>
   <% else %>
     <i class="far fa-bell fa-2x", style="font-size: 1.5em;" ></i>
   <% end %>

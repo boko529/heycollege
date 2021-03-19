@@ -10,15 +10,18 @@
       <% end %>
     </span>
   </div>
+
+  <%# lectureshow中身 %>
   <div class="lecture-info">
+
     <h3>
     <p class="bookmark-mark">
+      <%= @lecture.name %>&nbsp;<%#　講義名とブックマークボタンの間に若干間開けてます。 %>
       <span id ="bookmark-<%= @lecture.id %>">
         <%= render 'bookmarks/bookmark', lecture: @lecture %>
-      </span>
-      <%= @lecture.name %></p>
+      </span></p>
       <span class="teacher-name">
-      <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
+        <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
       </span>
     </h3>
     
@@ -53,8 +56,6 @@
             <%= render partial: 'helpfuls/helpful', locals: { lecture: @helpful_review.lecture, review: @helpful_review } %>
           </div>
         </div>
-      <% else %>
-        <p>レビューがありません</p>
       <% end %>
     </div>
 
@@ -64,6 +65,9 @@
       <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
     <% else %>
       <%# レビュー投稿欄 %>
+<%
+=begin
+%>
       <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
           <%= t('.review-write') %>
@@ -73,6 +77,12 @@
         <div class="card card-body">
           <%= render 'reviews/form' %>
         </div>
+      </div>
+<%
+=end
+%>
+      <div class="card card-body">
+        <%= render 'reviews/form' %>
       </div>
     <% end %>
   </div>

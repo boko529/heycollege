@@ -10,3 +10,8 @@ en:
     nodetail: "No deatails"
     delete: "Delete"
     reallydelete: "Do you really want to delete?"
+  form:
+    example_1: "ex）This class is not so difficult."
+    example_2: "　　However, the amount of challenges is large. In addition, I attended each class without delay since attendance is 20% of grades."
+    example_3: "　　When I asked my teacher what he didn't know, he answered very politely. It was very good."
+    satisfaction: "Satisfaction(required)"

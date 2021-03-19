@@ -5,5 +5,5 @@ en:
       index:
         bookmark: "Bookmark"
         class: "Class"
-        nonexist: "Classes registerd in the bookmark do not exist."
-        abletoadd: "You can add classes to the bookmark in the class pages."
+        noclass: "There are no classes you registered."
+        howto: "You can add classes to the bookmark in the class pages."

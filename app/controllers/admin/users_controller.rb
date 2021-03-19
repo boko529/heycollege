@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :if_not_admin
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(30)
   end
   
   private
