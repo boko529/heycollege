@@ -91,10 +91,12 @@ header{
   width: 100%;
 }
 
-// コンテント
-.content {
-  position: relative;
-  top: 65px;
+// body直下のコンテント(reviewにも.contentがあるので)
+body{
+  >.content {
+    position: relative;
+    top: 65px;
+  }
 }
 
 // サイドバー
