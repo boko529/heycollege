@@ -21,7 +21,7 @@
     <%# 講義表示 %>
       <div class="col-md-8 teachers_class">
         <% if @teacher.lectures.any? %>
-          <h3><%= t('.teaching-class') %> (<%= @teacher.lectures.count %>)</h3>
+          <h3><%= t('.Classes taken by Professor') %> (<%= @teacher.lectures.count %>)</h3>
           <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
           <div class="list-group">
             <% @lectures.each do |lecture| %>

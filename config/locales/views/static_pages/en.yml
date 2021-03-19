@@ -8,6 +8,6 @@ en:
       place: "th"
     home:
       classreviewsite: "APU Class Reveiw site"
-      class: "Class"
-      teacher: "Teacher"
-      user_point: "User point"
+      class: "Class Ranking"
+      teacher: "Teacher Ranking"
+      user_point: "User Ranking"
