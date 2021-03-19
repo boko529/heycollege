@@ -13,10 +13,10 @@
   <div class="lecture-info">
     <h3>
     <p class="bookmark-mark">
+      <%= @lecture.name %>
       <span id ="bookmark-<%= @lecture.id %>">
         <%= render 'bookmarks/bookmark', lecture: @lecture %>
-      </span>
-      <%= @lecture.name %></p>
+      </span></p>
       <span class="teacher-name">
       <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
       </span>
