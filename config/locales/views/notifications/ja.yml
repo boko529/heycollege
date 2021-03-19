@@ -3,6 +3,7 @@ ja:
     index:
       notifi: "お知らせ"
       notilist: "通知リスト"
+      Nonotification: "通知はありません"
     notification:
       san: "さん"
       ga: "が"

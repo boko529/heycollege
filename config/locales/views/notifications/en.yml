@@ -3,6 +3,7 @@ en:
     index:
       notifi: "Notifications"
       notilist: "Notification list"
+      Nonotification: "no notification"
     notification:
       san: ""
       ga: ""
