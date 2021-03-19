@@ -37,14 +37,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user.id)
     patch user_path(@user.id), params: { user: { name:  "shouko"}}
     patch user_path(@user.id), params: { user: { gender:  "female"}}
-    patch user_path(@user.id), params: { user: { grade:  "M1"}}
+    patch user_path(@user.id), params: { user: { grade:  "B3"}}
     patch user_path(@user.id), params: { user: { faculty:  "APM"}}
     follow_redirect!
     assert_template 'users/show'
     @user.reload
     assert_equal 'shouko', @user.name
     assert_equal 'female', @user.gender
-    assert_equal 'M1', @user.grade
+    assert_equal 'B3', @user.grade
     assert_equal 'APM', @user.faculty
     assert_select "div.alert"
   end
@@ -65,7 +65,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "others gender faculty gender update" do
     login_as(@user, scope: :user)
     patch user_path(@other_user.id), params: { user: { gender:  "female" } }
-    patch user_path(@other_user.id), params: { user: { grade:  "M1" } }
+    patch user_path(@other_user.id), params: { user: { grade:  "B2" } }
     patch user_path(@other_user.id), params: { user: { faculty: "APM" } }
     follow_redirect!
     assert_template 'users/show'
@@ -78,7 +78,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "update gender faculty gender not log in" do
     patch user_path(@other_user.id), params: { user: { gender:  "female" } }
-    patch user_path(@other_user.id), params: { user: { grade:  "M1" } }
+    patch user_path(@other_user.id), params: { user: { grade:  "B2" } }
     patch user_path(@other_user.id), params: { user: { faculty: "APM" } }
     assert_template nil
   end
