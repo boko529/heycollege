@@ -1,6 +1,6 @@
 <% provide(:title, 'Sign up') %>
 <h2>Sign up</h2>
-
+<div class="container">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -50,7 +50,7 @@
     <%= f.password_field :password_confirmation, autocomplete: t('.newpass') %>
   </div>
 
-  <p><%= link_to t('.read'), page_path('terms') %></p>
+  <p style="text-align:center"><%= link_to t('.read'), page_path('terms') %></p>
 
   <div class="actions">
     <%= f.submit t('.agree') %>
@@ -58,3 +58,4 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
