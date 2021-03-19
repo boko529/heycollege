@@ -27,7 +27,7 @@
     
     <div class="scores">
       <% if @lecture.reviews.blank? %>
-        <p>レビューはありません。</p>
+        <p><%= t('.no-review') %></p>
       <% else %>
         <div id="star-lecture<%= @lecture.id %>"></div>
         <h4><%= t('.ratings') %>： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
@@ -37,8 +37,8 @@
     <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>-->
     <%# 自分の投稿のときのみ表示 %>
     <% if current_user?(@lecture.user) %>
-      <%= link_to "編集", edit_lecture_path %>
-      <%= link_to "削除", @lecture, method: :delete, data: { confirm: "削除すると、このクラスに関するすべてのレビューが削除されます。本当に削除しますか？"} %>
+      <%= link_to t('.edit'), edit_lecture_path %>
+      <%= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
     <% end %>
     <%# 最も参考になっているレビュー関係 %>
     <div>

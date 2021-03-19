@@ -29,9 +29,14 @@ en:
     lecture: 
       teachername: "Teacher name"
       reviews: "Reviews"
+      edit: "Edit"
+      delete: "Delete"
       noreviews: "No reviews"
+      delete-lecture-message: "If you delete this class, All reviews of this class are deleted. Do you really want to delete this?"
     review: 
       teachername: "Teacher name"
+      delete: "Delete"
+      reallydelete: "Do you really want to delete?"
     user:
       userinformation: "User Info"
       name: "Name"

@@ -8,6 +8,13 @@
   <% else %>
     <%= t('.noreviews') %>
   <% end %></p>
+  <%# マイページのときのみ表示 %>
+  <% if current_user?(lecture.user) %>
+    <p>
+      <%= link_to t('.edit'), edit_lecture_path %>
+      <%= link_to t('.delete'), lecture, method: :delete, data: { confirm: t('.delete-lecture-message')} %>
+    </p>
+  <% end %>
   
 </li>
 
