@@ -6,15 +6,16 @@
     <thead>
       <tr>
       <th scope="col">id</th>
-      <th scope="col">name</th>
-      <th scope="col">Grade</th>
-      <th scope="col">gender</th>
-      <th scope="col">faculty</th>
+      <th scope="col">名前</th>
+      <th scope="col">学年</th>
+      <th scope="col">性別</th>
+      <th scope="col">学科</th>
       <th scope="col">point</th>
       <th scope="col">class</th>
       <th scope="col">review</th>
       <th scope="col">group</th>
-      <th scope="col">is_deleted?</th>
+      <th scope="col">認証</th>
+      <th scope="col">退会</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
             <td><%= user.lectures.count %></td>
             <td><%= user.reviews.count %></td>
             <td><%= user.group.count %></td>
+            <td><%= !user.confirmed_at.blank? %></td>
             <td><%= user.is_deleted %></td>
           </tr>
         <% end %>
