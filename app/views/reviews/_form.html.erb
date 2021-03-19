@@ -2,15 +2,15 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group" id="score">
-    <%= f.label :score,'満足度(必須)' , class:'col-md-3 col-form-label' %>
+    <%= f.label :score, t('.satisfaction'), class:'col-md-3 col-form-label' %>
     <%= f.hidden_field :score, id: :review_score %>
   </div>
 
   <%= f.label :content %>
   <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
-  <small>例）この授業の難易度はそこまで高くないです。</small><br>
-  <small>　　しかし、課題の量が多いです。また、出席が２０％なので、毎回の授業に遅れずに参加しました。</small><br>
-  <small>　　先生に分からないとこを尋ねるととても丁寧に答えていただきました。とてもよかったです。</small><br>
+  <small><%= t('.example_1')%></small><br>
+  <small><%= t('.example_2')%></small><br>
+  <small><%= t('.example_3')%></small><br>
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
 
