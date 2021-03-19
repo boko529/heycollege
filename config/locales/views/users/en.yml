@@ -44,7 +44,7 @@ en:
       nick: "Nickname"
       gen: "Gender"
       grade: "Grade"
-      college: "College"
+      faculty: "Faculty"
       unspe: "unspecified"
       username: "username"
       msg: "massage"
