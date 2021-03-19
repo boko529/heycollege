@@ -11,7 +11,7 @@ ja:
       grade: "学年"
       edit: "編集"
       title_login: "マイページ"
-      faculty: "Faculty"
+      faculty: "学部"
       college_point: "カレッジポイント"
       point_score: "スコア"
       following: "フォロー"
@@ -29,9 +29,14 @@ ja:
     lecture: 
       teachername: "先生名"
       reviews: "レビュー数"
+      edit: "編集"
+      delete: "削除"
       noreviews: "レビューなし"
+      delete-lecture-message: "削除すると、このクラスに関するすべてのレビューが削除されます。本当に削除しますか？"
     review: 
       teachername: "先生名"
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"
     user:
       userinformation: "ユーザー情報"
       name: "名前"

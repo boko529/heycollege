@@ -10,6 +10,12 @@
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>
 
+   <%# マイページのときのみ表示 %>
+   <p>
+    <% if current_user?(review.user) %>
+      <%= link_to t('.delete'), lecture_review_path(review.lecture,review), method: :delete, data: { confirm: t('.reallydelete')} %>
+    <% end %>
+   </p>
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= review.id %>">
     <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
