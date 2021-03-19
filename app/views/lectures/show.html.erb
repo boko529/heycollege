@@ -13,7 +13,7 @@
   <div class="lecture-info">
     <h3>
     <p class="bookmark-mark">
-      <%= @lecture.name %>
+      <%= @lecture.name %>&nbsp;<%#　講義名とブックマークボタンの間に若干間開けてます。 %>
       <span id ="bookmark-<%= @lecture.id %>">
         <%= render 'bookmarks/bookmark', lecture: @lecture %>
       </span></p>
