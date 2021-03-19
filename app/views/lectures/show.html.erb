@@ -53,8 +53,6 @@
             <%= render partial: 'helpfuls/helpful', locals: { lecture: @helpful_review.lecture, review: @helpful_review } %>
           </div>
         </div>
-      <% else %>
-        <p>レビューがありません</p>
       <% end %>
     </div>
 
@@ -64,6 +62,9 @@
       <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
     <% else %>
       <%# レビュー投稿欄 %>
+<%
+=begin
+%>
       <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
           <%= t('.review-write') %>
@@ -73,6 +74,12 @@
         <div class="card card-body">
           <%= render 'reviews/form' %>
         </div>
+      </div>
+<%
+=end
+%>
+      <div class="card card-body">
+        <%= render 'reviews/form' %>
       </div>
     <% end %>
   </div>
