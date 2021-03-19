@@ -44,7 +44,7 @@ ja:
       nick: "ニックネーム"
       gen: "性別"
       grade: "学年"
-      college: "学部"
+      faculty: "学部"
       unspe: "指定なし"
       username: "ユーザーネーム"
       msg: "メッセージ"

@@ -2,5 +2,16 @@
   .field, .actions {
   display: table;
   margin: 10px auto;
+  }
 }
+.register-form-box{
+  display: table;
+  margin: 0 auto;
+  .form-content{
+    display: table;
+    margin: 0 auto;
+  }
+  .field{
+    display: table;
+  }
 }
