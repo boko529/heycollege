@@ -2,7 +2,7 @@ en:
   users:
     show:
       mygroup: "My group"
-      msg: "message"
+      msg: "bio"
       help: "Help"
       contactus: "Contact us"
       logout: "Log out"
@@ -23,9 +23,6 @@ en:
       delete_account_message: "If you click OK, you are no longer log in this account."
       term: "Terms of service"
       privacypolicy: "Privacy policy"
-    followbutton:
-      follow: "Follow"
-      unfollow: "UnFollow"
     lecture: 
       teachername: "Teacher name"
       reviews: "Reviews"
@@ -52,7 +49,7 @@ en:
       faculty: "Faculty"
       unspe: "unspecified"
       username: "username"
-      msg: "massage"
+      msg: "bio"
       change: "Change"
       in100: "in 100 letters"
       twi: "Twitter username"
@@ -67,3 +64,6 @@ en:
     follow:
       follower: "follower"
       following: "following"
+    follow-button:
+      follow: "Follow"
+      unfollow: "UnFollow"
