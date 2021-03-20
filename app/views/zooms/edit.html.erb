@@ -1,6 +1,6 @@
 <% provide(:title, '新規zoom作成') %>
 <% provide(:button_text, '作成') %>
-<h1>ZOOM作成</h1>
+<h1>ZOOM編集</h1>
 
 <%= render 'shared/error_messages', object: @zoom %>
 <div class="row justify-content-center">
@@ -16,7 +16,7 @@
   <h4>終了時刻</h4>
   <%= f.datetime_select :end_time, class: 'form-control' %>
   <p>
-  <%= f.submit '作成する', class: "btn btn-primary"%>
+  <%= f.submit '更新する', class: "btn btn-primary"%>
   </p>
 <% end %>
 </div>

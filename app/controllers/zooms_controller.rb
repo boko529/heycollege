@@ -1,4 +1,5 @@
 class ZoomsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit,:update,:show,:create,:new,:destoory, :numbercount]
   def create
     # APIを用いてzoom作成
     # @api_key = "66aoWxi3R1CCqYtfXXX3vA"
@@ -64,6 +65,20 @@ class ZoomsController < ApplicationController
     @zoom = Zoom.find(params[:id])
   end
   
+  def edit
+    @zoom = Zoom.find(params[:id])
+  end
+
+  def update
+    @zoom = Zoom.find(params[:id])
+    if @zoom.update(zoom_params)
+      redirect_to zoom_path(@zoom.id)
+      flash[:notice] = "zoom情報を更新しました"
+    else
+      render :edit
+    end
+  end
+
   def numbercount
     zoom = Zoom.find(params[:id])
     cnt = zoom.count + 1

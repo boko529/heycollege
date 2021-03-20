@@ -4,6 +4,6 @@ class Zoom < ApplicationRecord
   validates :description, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
-  VALID_JOINURL_REGEX = /\A^(http|https):\/\/*(us04web\.)?zoom\.us\/j(\/.*)?$\z/ix
+  VALID_JOINURL_REGEX = /\A^(http|https):\/\/*(us04web\.)?zoom\.us\/j\/(.*)?$\z/ix
   validates :join_url, presence: true,format: { with: VALID_JOINURL_REGEX }
 end

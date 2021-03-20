@@ -9,7 +9,8 @@
 <p>参加者数: <%= @zoom.count %><br>説明: <%= truncate(@zoom.description, length: 10)%><br>開始時刻: <%= @zoom.start_time.strftime("%m/%d %H:%M") %><br>終了時刻: <%= @zoom.end_time.strftime("%m/%d %H:%M") %></p>
 
 <% if @zoom.user_id == current_user.id %>
-  <%= link_to "Destroy", zoom_path(@zoom.id), method: :delete,class: "btn btn-danger"%>
+  <%= link_to "編集", edit_zoom_path(@zoom.id),class: "btn btn-success"%>
+  <%= link_to "削除", zoom_path(@zoom.id), method: :delete,class: "btn btn-danger"%>
 <% elsif @zoom.end_time - Time.now >= 0%>
   <%= link_to "このzoomに参加する", @zoom.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer" %>
 <% else %>

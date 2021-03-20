@@ -48,6 +48,6 @@ Rails.application.routes.draw do
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
   get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
   patch "/users/:id/hide" => "users#hide", as: 'users_hide' # 退会用
-  resources :zooms, only: [:index,:new,:create,:show,:destroy]
+  resources :zooms, only: [:index,:new,:edit,:update,:create,:show,:destroy]
   post 'zooms/:id/count', to: 'zooms#numbercount', as:'zoom_number_count'
 end
