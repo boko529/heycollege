@@ -1,14 +1,16 @@
 .lecture_show{
-  margin-top: 20px;
-  margin: 0 auto;
+  // ヘッダーから間隔
+  top: 10px;
+  position: relative;
   a{
     color: black;
     &:hover{
       background-color: lightgray;
     }
   }
+
   .bookmark-mark{
-    margin-bottom: -4rem;
+    // margin-bottom: -4rem;
   }
   p{
     margin: 0;
@@ -22,17 +24,14 @@
     justify-content: space-between;
   }
   .lecture-info{
-    width: 85%;
-    margin: 0 auto;
+    margin-top: 10px;
     margin-bottom: 2rem;
-    h3{
-      font-size: 50px;
-      font-weight: bold;
-      padding: 15px 0;
-    }
+    background-color: #eeeeee;
+    border-radius: 4px;
+    border-bottom: 1px solid gray;
     .teacher-name{
-      font-size: 20px;
-      margin-left: 20px;
+      // font-size: 20px;
+      // margin-left: 20px;
     }
     .scores{
       padding: 15px 0;
