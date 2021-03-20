@@ -11,30 +11,34 @@
     </span>
   </div>
 
+  <%# everything after lec show header %>
   <div class="lectureinfo-N-allreviews">
+
     <%# lectureshow中のコンテンツ %>
     <div class="lecture-info">
 
-      <div class="lectureshow-scores">
-        <% if @lecture.reviews.blank? %>
-          <p><%= t('.no-review') %></p>
-        <% else %>
-          <div class="lectureshow-starts" id="star-lecture<%= @lecture.id %>"></div>
-          <div class="lectureshow-rate"><%#= t('.ratings') %><span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></div>
-        <% end %>
-      </div>
+      <span class="lectureshow-book" id ="bookmark-<%= @lecture.id %>">
+        <%= render 'bookmarks/bookmark', lecture: @lecture %>
+      </span>
 
-      <div class="lecture-class-teacher-book">
-        <%# class name %>
-        <div class="lecture-bookmarkNclassname">
-          <%= @lecture.name %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
-          <span id ="bookmark-<%= @lecture.id %>">
-            <%= render 'bookmarks/bookmark', lecture: @lecture %>
-          </span>
+      <div class="lec-score-tea-class">
+        <div class="lectureshow-scores">
+          <% if @lecture.reviews.blank? %>
+            <p><%= t('.no-review') %></p>
+          <% else %>
+            <div class="lectureshow-starts" id="star-lecture<%= @lecture.id %>"></div>
+            <div class="lectureshow-rate"><%#= t('.ratings') %><span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></div>
+          <% end %>
         </div>
-        <%# teacher name %>
-        <div class="lectureshow-teacher-name">
-          <%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+        <div class="lecture-class-teacher">
+          <%# class name %>
+          <div class="lecture-classname">
+            <%= @lecture.name %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
+          </div>
+          <%# teacher name %>
+          <div class="lectureshow-teacher-name">
+            <%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+          </div>
         </div>
       </div>
 
@@ -84,7 +88,6 @@
           </div>
         <% end %>
       </div>
-
     </div>
 
     <%# レビュー表示 %>
