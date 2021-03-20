@@ -31,11 +31,13 @@
         <% end %>
       </div>
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-      <div class="search col-1 offset-2 d-sm-none d-block p-0">
-        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-          <i class="fas fa-search"></i>  
-        </button>
-      </div>
+      <!--
+        <div class="search col-1 offset-2 d-sm-none d-block p-0">
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-search"></i>  
+          </button>
+        </div>
+      -->
       
       <% if user_signed_in? %>
         <%# ユーザーアイコン %>
