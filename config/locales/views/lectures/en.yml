@@ -28,3 +28,6 @@ en:
       class-list: "Class list"
     edit:
       edit-class: "Edit Class"
+    review:
+      delete: "Delete"
+      reallydelete: "Do you really want to delete this?"

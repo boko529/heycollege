@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :show, :destroy, :edit, :update]
-  before_action :baria_user, only: [:edit, :update, :destroy]
-  def show
-    @lecture = Lecture.find(params[:lecture_id])
-    @review = Review.find(params[:id])
-  end
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :baria_user, only: [:destroy]
 
   def create
     @lecture = Lecture.find(params[:lecture_id])

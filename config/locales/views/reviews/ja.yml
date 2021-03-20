@@ -1,15 +1,5 @@
 ja:
  reviews:
-  edit:
-    editreview: "レビューを編集"
-    update: "更新"
-  show:
-    class: "クラス"
-    teacher: "先生"
-    score: "スコア"
-    nodetail: "詳細がありません"
-    delete: "削除"
-    reallydelete: "本当に削除しますか？"
   form:
     example_1: "例）この授業の難易度はそこまで高くないです。"
     example_2: "　　しかし、課題の量が多いです。また、出席が２０％なので、毎回の授業に遅れずに参加しました。"
