@@ -2,8 +2,8 @@ ja:
   lectures:
     show:
       post_review: "投稿"
-      to-class-list: "》クラス一覧へ"
-      class-teacher: "担当教員"
+      to-class-list: "》クラスリストへ"
+      class-teacher: "先生"
       no-review: "レビューはありません。"
       edit: "編集"
       delete: "削除"

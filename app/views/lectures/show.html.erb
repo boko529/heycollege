@@ -11,95 +11,91 @@
     </span>
   </div>
 
-  <%# lectureshow中のコンテンツ %>
-  <div class="lecture-info">
+  <div class="lectureinfo-N-allreviews">
+    <%# lectureshow中のコンテンツ %>
+    <div class="lecture-info">
 
-      <div class="bookmark-mark">
-        <%= @lecture.name %>&nbsp;<%#　講義名とブックマークボタンの間に若干間開けてます。 %>
-        <span id ="bookmark-<%= @lecture.id %>">
-          <%= render 'bookmarks/bookmark', lecture: @lecture %>
-        </span>
-      <div>
-
-      <div class="teacher-name">
-        <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
+      <div class="lectureshow-scores">
+        <% if @lecture.reviews.blank? %>
+          <p><%= t('.no-review') %></p>
+        <% else %>
+          <div class="lectureshow-starts" id="star-lecture<%= @lecture.id %>"></div>
+          <div class="lectureshow-rate"><%#= t('.ratings') %><span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></div>
+        <% end %>
       </div>
-    
-    <div class="scores">
-      <% if @lecture.reviews.blank? %>
-        <p><%= t('.no-review') %></p>
-      <% else %>
-        <div id="star-lecture<%= @lecture.id %>"></div>
-        <h4><%= t('.ratings') %>： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
-      <% end %>
-    </div>
 
-    エディットとデリート
-    <div class="editNdelete">
-      <%# 自分の投稿のときのみ表示 %>
-      <% if current_user?(@lecture.user) %>
-        <%= link_to t('.edit'), edit_lecture_path %>
-        <%= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
-      <% end %>
-    </div>
-
-
-    <%# 最も参考になっているレビュー関係 %>
-    <div>
-      <% if @helpful_review %>
-        <p><strong><%= t('.most-helpful-rev') %></strong></p>
-        <div class="most_helpful_review">
-          <span id="star-helpful-review"></span>
-          <p><%= link_to display_name(@helpful_review.user), @helpful_review.user %></p>
-          <p class="timestamp">
-            <%= @helpful_review.updated_at.strftime("%Y-%m-%d") %>
-          </p>
-          <p><%= @helpful_review.content %></p>
-          <%# 役に立ったボタン %>
-          <div id="helpfuls_buttons_<%= @helpful_review.id %>">
-            <%= render partial: 'helpfuls/helpful', locals: { lecture: @helpful_review.lecture, review: @helpful_review } %>
-          </div>
+      <div class="lecture-class-teacher-book">
+        <%# class name %>
+        <div class="lecture-bookmarkNclassname">
+          <%= @lecture.name %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
+          <span id ="bookmark-<%= @lecture.id %>">
+            <%= render 'bookmarks/bookmark', lecture: @lecture %>
+          </span>
         </div>
-      <% end %>
-    </div>
+        <%# teacher name %>
+        <div class="lectureshow-teacher-name">
+          <%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+        </div>
+      </div>
 
-    <%# 自分がレビューしたことあるかを確認 %>
-    <% if @lecture.review?(current_user) %>
-      <%# 自分が書いたレビューへのリンクを表示 %>
-      <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
-    <% else %>
-      <%# レビュー投稿欄 %>
-<%
-=begin
-%>
-      <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-          <%= t('.review-write') %>
-        </button>
-      </p>
-      <div class="collapse" id="collapseReview">
+      <%# 最も参考になっているレビュー関係 %>
+      <div class="lectureshow-helpfuls">
+        <% if @helpful_review %>
+          <p><strong><%= t('.most-helpful-rev') %></strong></p>
+          <div class="most_helpful_review">
+            <span id="star-helpful-review"></span>
+            <p><%= link_to display_name(@helpful_review.user), @helpful_review.user %></p>
+            <p class="timestamp">
+              <%= @helpful_review.updated_at.strftime("%Y-%m-%d") %>
+            </p>
+            <p><%= @helpful_review.content %></p>
+            <%# 役に立ったボタン %>
+            <div id="helpfuls_buttons_<%= @helpful_review.id %>">
+              <%= render partial: 'helpfuls/helpful', locals: { lecture: @helpful_review.lecture, review: @helpful_review } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%# 自分がレビューしたことあるかを確認 %>
+      <div>
+      <% if @lecture.review?(current_user) %>
+        <%# 自分が書いたレビューへのリンクを表示 %>
+        <div class="lecture-show-my-review">
+          <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
+        </div>
+      <% else %>
+        <%# レビュー投稿欄 %>
         <div class="card card-body">
           <%= render 'reviews/form' %>
         </div>
+      <% end %>
       </div>
-<%
-=end
-%>
-      <div class="card card-body">
-        <%= render 'reviews/form' %>
-      </div>
-    <% end %>
-  </div>
 
-  <%# レビュー表示 %>
-  <div class="col-md-10 lecture-reviews">
-    <% if @reviews.any? %>
-      <p><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</p>
-      <ol class="reviews">
-        <%= render @reviews %>
-      </ol>
-      <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
-    <% end %>
+      <%# エディットとデリート %>
+      <div class="lectureshow-editNdelete">
+        <%# 自分の投稿のときのみ表示 %>
+        <% if current_user?(@lecture.user) %>
+          <div class="lectureshow-edit">
+            <%= link_to t('.edit'), edit_lecture_path %>
+          </div>
+          <div class="lectureshow-delete">
+            <%= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <%# レビュー表示 %>
+    <div class="lectureshow-allreviews">
+      <% if @reviews.any? %>
+        <p><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</p>
+        <ol class="reviews">
+          <%= render @reviews %>
+        </ol>
+        <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
+      <% end %>
   </div>
 </div>
 
