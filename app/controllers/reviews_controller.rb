@@ -8,16 +8,16 @@ class ReviewsController < ApplicationController
     unless @lecture.review?(current_user)
       @review = current_user.reviews.new(review_params)
       if @review.save
-        flash[:success] = "レビューを投稿しました"
+        flash[:success] = t('.post')
         # 自分が作ったレビューをidで指定して表示
         redirect_to "/lectures/#{@lecture.id}/#review-#{@review.id}"
       else
-        flash[:danger] = "レビューの投稿に失敗しました"
+        flash[:danger] = t('.post-failed')
         redirect_back(fallback_location: root_path)
         # render 'lectures/show'
       end
     else
-      flash[:danger] = "一つのクラスにレビューは一度のみです"
+      flash[:danger] = t('.one-review')
       redirect_back(fallback_location: root_path)
     end
   end
@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
   def destroy
     @lecture = Lecture.find(params[:lecture_id])
     @review = Review.find(params[:id]).destroy
-    flash[:success] = "レビューを削除しました"
+    flash[:success] = t('.delete-review')
     redirect_to lecture_path(@lecture)
   end
 
