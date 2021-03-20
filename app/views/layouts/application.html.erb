@@ -8,11 +8,11 @@
   </head>
 
   <body>
-
     <header>
       <%= render 'layouts/header'%>
-      <%= render 'layouts/modal_search_form' %>
     </header>
+    <%# これはヘッダーのなかに入れると不具合が出る(positonが固定されている中に入れると不具合出る) %>
+    <%= render 'layouts/modal_search_form' %>
 
     <div class="container-fluid content">
       <div class="row">
