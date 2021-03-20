@@ -13,20 +13,20 @@
             <%= image_tag 'default_user.png', :size => '80x80' %>
           </div>
         </div>
+        <%# 編集 %>
+        <% if @user == current_user %>
+          <div class="edit-btn btn btn-primary">
+            <%= link_to t('.edit'), edit_user_path(@user.id)%>
+          </div>
+        <% else %>
+          <div class="follow-btn">
+            <span id='follow-button_<%= @user.id %>'>
+              <%= render 'users/follow-button', user: @user  %>
+            </span>
+        <% end %>
+
         <%# マイページのときのみ表示 %>
         <% if @user == current_user %>
-          <%# 編集 %>
-          <% if @user == current_user %>
-            <div class="edit-btn btn btn-primary">
-              <%= link_to t('.edit'), edit_user_path(@user.id)%>
-            </div>
-          <% else %>
-            <div class="follow-btn">
-              <span id='follow-button_<%= @user.id %>'>
-                <%= render 'users/follow-button', user: @user  %>
-              </span>
-          <% end %>
-
           <%# その他・設定ボタン (PC版)%>
           <div class="dropdown d-none d-md-block">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
