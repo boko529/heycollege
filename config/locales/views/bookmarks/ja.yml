@@ -1,7 +1,5 @@
 ja:
   bookmarks:
-      bookmark:
-        confirm: '本当にブックマークから削除しますか？'
       index:
         bookmark: "ブックマーク" 
         class: "クラス"
