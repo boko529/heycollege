@@ -29,12 +29,25 @@ class ZoomsController < ApplicationController
     @zoom.user_id = current_user.id
     # @zoom.host_url = parseURL["start_url"]
     # @zoom.join_url = parseURL["join_url"]
-    if @zoom.save
-      flash[:notice] = "zoomの部屋が作成されました"
-      redirect_to zoom_path(@zoom.id)
+    # if current_user.zoom.present?
+    #   flash[:danger] = "zoomの部屋を複数作ることはできません(過去に作ったzoomを削除してから再度zoomを作成してください)"
+    #   render new_zoom_path
+    # els
+    if @zoom.end_time - @zoom.start_time <= 0
+      flash[:danger] = "開始時刻と終了時刻がおかしいです。"
+      render new_zoom_path
+    elsif @zoom.start_time - Time.now < 0
+      flash[:danger] = "開始時刻が現在時刻を過ぎています"
+      render new_zoom_path
     else
-      render :new
+      if @zoom.save
+        flash[:notice] = "zoomの部屋が作成されました"
+        redirect_to zoom_path(@zoom.id)
+      else
+        render :new
+      end
     end
+
   end
 
   def new
@@ -104,7 +117,7 @@ class ZoomsController < ApplicationController
 
   private
   def zoom_params
-    params.require(:zoom).permit(:join_url, :user_id, :title, :description)
+    params.require(:zoom).permit(:join_url, :user_id, :title, :description, :start_time, :end_time)
     # params.require(:zoom).permit(:join_url,:host_url, :user_id, :title, :description)
   end
 end

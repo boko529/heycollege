@@ -1,17 +1,22 @@
 <% @zooms.each do |f| %>
-  <div class = "zoom_room">
-  <%= link_to zoom_path(f.id) do %>
-    <p><%= truncate(f.title, length: 10)%></p>
-  <% end %>
+  <% if f.end_time - Time.now >= 0 %>
+    <div class = "zoom_room">
+    <%= link_to zoom_path(f.id) do %>
+      <p><%= truncate(f.title, length: 10)%></p>
+    <% end %>
 
-  <%= link_to user_path(f.user.id) do %>
-    ホスト: <%= f.user.name %>
-  <% end %>
+    <%= link_to user_path(f.user.id) do %>
+      ホスト: <%= f.user.name %>
+    <% end %>
 
-  <p>参加者数: <%= f.count %><br/>説明: <%= truncate(f.description, length: 10)%></p>
-  <%= f.created_at.strftime("%m/%d %H:%M")%>
-    <%= link_to "このzoomに参加する", zoom_number_count_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer",remote: true %>
-  </div>
+    <p>参加者数: <%= f.count %><br>説明: <%= truncate(f.description, length: 10)%><br>開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
+    <% if Time.now - f.created_at <= 200 %>
+      <%= link_to "このzoomに参加する", zoom_number_count_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+    <% else %>
+      <%= link_to "このzoomに参加する", zoom_number_count_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %><br>
+    <% end %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= link_to "自分がホストとしてzoomを作る", new_zoom_path, class: "btn btn-success" %>

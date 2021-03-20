@@ -11,6 +11,10 @@
   <%= f.text_area :description %>
   <h4>招待URL</h4>
   <%= f.text_field :join_url %>
+  <h4>開始時刻</h4><small>現在時刻から数分後に設定すると良いです</small><br>
+  <%= f.datetime_select :start_time, class: 'form-control date-picker' %>
+  <h4>終了時刻</h4>
+  <%= f.datetime_select :end_time, class: 'form-control' %>
   <p>
   <%= f.submit 'Create ZOOM', class: "btn btn-primary"%>
   </p>

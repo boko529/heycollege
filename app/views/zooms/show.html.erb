@@ -6,10 +6,14 @@
 
 <p>説明: <%= @zoom.description %></p>
 
+<p>参加者数: <%= @zoom.count %><br>説明: <%= truncate(@zoom.description, length: 10)%><br>開始時刻: <%= @zoom.start_time.strftime("%m/%d %H:%M") %><br>終了時刻: <%= @zoom.end_time.strftime("%m/%d %H:%M") %></p>
+
 <% if @zoom.user_id == current_user.id %>
   <%= link_to "Destroy", zoom_path(@zoom.id), method: :delete,class: "btn btn-danger"%>
-<% else %>
+<% elsif @zoom.end_time - Time.now >= 0%>
   <%= link_to "このzoomに参加する", @zoom.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer" %>
+<% else %>
+  <p>このミーティングは終了しました</p>
 <% end %>
 
 <%= link_to "zoom一覧に戻る", zooms_path %>
