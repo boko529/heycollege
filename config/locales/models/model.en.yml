@@ -22,8 +22,8 @@ en:
         last_sign_in_at: 最終ログイン時刻
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
-        password: パスワード
-        password_confirmation: パスワード（確認用）
+        password: password
+        password_confirmation: password（confirmation）
         remember_created_at: ログイン記憶時刻
         remember_me: remember me
         reset_password_sent_at: パスワードリセット送信時刻

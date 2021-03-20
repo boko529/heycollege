@@ -23,9 +23,6 @@ ja:
       delete_account_message: "退会すると再度ログインできなくなります。本当に退会しますか？"
       term: "利用規約"
       privacypolicy: "プライバシーポリシー"
-    followbutton:
-      follow: "フォロー"
-      unfollow: "フォロー解除"
     lecture: 
       teachername: "先生名"
       reviews: "レビュー数"
@@ -67,3 +64,6 @@ ja:
     follow:
       follower: "フォロワー"
       following: "フォロー"
+    follow-button:
+      follow: "フォロー"
+      unfollow: "フォロー解除"
