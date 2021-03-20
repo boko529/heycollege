@@ -1,11 +1,10 @@
 // header
 header {
   position: fixed;
-  height: 65px;
+  height: 55px;
   background-color: rgb(239, 255, 234);
   width: 100%;
   z-index: 4;
-  height: 70px;
   a {
     color: rgb(90, 82, 82);
 
@@ -31,7 +30,7 @@ header {
   .mobile-search {
     font-size: 12px;
   }
-  .bell,　.user, .lang, .mobile-search{
+  .bell, .user, .lang, .mobile-search{
     text-align: right;
     display: flex;
     align-items: center;

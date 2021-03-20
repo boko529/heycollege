@@ -11,81 +11,83 @@
     </span>
   </div>
 
-  <%# lectureshow中身 %>
-  <div class="lecture-info">
+  <%# everything after lec show header %>
+  <div class="lectureinfo-N-allreviews">
 
-      <div class="bookmark-mark">
-        <%= @lecture.name %>&nbsp;<%#　講義名とブックマークボタンの間に若干間開けてます。 %>
-        <span id ="bookmark-<%= @lecture.id %>">
-          <%= render 'bookmarks/bookmark', lecture: @lecture %>
-        </span>
-      <div>
+    <%# lectureshow中のコンテンツ %>
+    <div class="lecture-info">
+      <span class="lectureshow-book" id ="bookmark-<%= @lecture.id %>">
+        <%= render 'bookmarks/bookmark', lecture: @lecture %>
+      </span>
 
-      <div class="teacher-name">
-        <p><%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %></p>
-      </div>
-    
-    <div class="scores">
-      <% if @lecture.reviews.blank? %>
-        <p><%= t('.no-review') %></p>
-      <% else %>
-        <div id="star-lecture<%= @lecture.id %>"></div>
-        <h4><%= t('.ratings') %>： <span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></h4>
-      <% end %>
-    </div>
-    <!--
-    <p><%= @lecture.updated_at.strftime("%Y-%m-%d %H:%M") %></p>-->
-    <%# 自分の投稿のときのみ表示 %>
-    <% if current_user?(@lecture.user) %>
-      <%= link_to t('.edit'), edit_lecture_path %>
-      <%= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
-    <% end %>
-    <%# 最も参考になっているレビュー関係 %>
-    <div>
-      <% if @helpful_review %>
-        <p><strong><%= t('.most-helpful-rev') %></strong></p>
-        <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
-      <% end %>
-    </div>
-
-    <%# 自分がレビューしたことあるかを確認 %>
-    <% if @lecture.review?(current_user) %>
-      <%# 自分が書いたレビューへのリンクを表示 %>
-      <%= link_to t('.show-own-review'), "#review-#{@lecture.my_review(current_user).id}" %>
-    <% else %>
-      <%# レビュー投稿欄 %>
-<%
-=begin
-%>
-      <p>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseReview" aria-expanded="false" aria-controls="collapseReview">
-          <%= t('.review-write') %>
-        </button>
-      </p>
-      <div class="collapse" id="collapseReview">
-        <div class="card card-body">
-          <%= render 'reviews/form' %>
+      <div class="lec-score-tea-class">
+        <div class="lectureshow-scores">
+          <% if @lecture.reviews.blank? %>
+            <p><%= t('.no-review') %></p>
+          <% else %>
+            <div class="lectureshow-starts" id="star-lecture<%= @lecture.id %>"></div>
+            <div class="lectureshow-rate"><%#= t('.ratings') %><span class="score"><%= @lecture.average_score %></span><span class="review-count">&nbsp;(<%= @lecture.all_reviews_count %>)</span></div>
+          <% end %>
+        </div>
+        <div class="lecture-class-teacher">
+          <%# class name %>
+          <div class="lecture-classname">
+            <%= @lecture.name %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
+          </div>
+          <%# teacher name %>
+          <div class="lectureshow-teacher-name">
+            <%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+          </div>
         </div>
       </div>
-<%
-=end
-%>
-      <div class="card card-body">
-        <%= render 'reviews/form' %>
-      </div>
-    <% end %>
-  </div>
 
-  <%# レビュー表示 %>
-  <div class="col-md-10 lecture-reviews">
-    <% if @reviews.any? %>
-      <p><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</p>
-      <ol class="reviews">
-        <% @reviews.each do |review| %>
-          <%= render partial: "lectures/review", locals: {review: review} %>
+      <%# 最も参考になっているレビュー関係 %>
+      <div  class="lectureshow-helpfuls">
+        <% if @helpful_review %>
+          <p><strong><%= t('.most-helpful-rev') %></strong></p>
+          <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
         <% end %>
-      </ol>
-    <% end %>
+      </div>
+
+      <%# 自分がレビューしたことあるかを確認 %>
+      <div>
+        <% if @lecture.review?(current_user) %>
+          <%# 自分が書いたレビューへのリンクを表示 %>
+          <div class="lecture-show-my-review">
+            <%= link_to t('.show-own-review'), "#review-#{@lecture.my_review(current_user).id}" %>
+          </div>
+        <% else %>
+          <%# レビュー投稿欄 %>
+          <div class="card card-body">
+            <%= render 'reviews/form' %>
+          </div>
+        <% end %>
+      </div>
+
+      <%# エディットとデリート %>
+      <div class="lectureshow-editNdelete">
+        <%# 自分の投稿のときのみ表示 %>
+        <% if current_user?(@lecture.user) %>
+          <div class="lectureshow-edit">
+            <%= link_to t('.edit'), edit_lecture_path %>
+          </div>
+          <div class="lectureshow-delete">
+            <%= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%# レビュー表示 %>
+    <div class="lectureshow-allreviews">
+      <% if @reviews.any? %>
+        <p><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</p>
+        <ol class="reviews">
+          <% @reviews.each do |review| %>
+            <%= render partial: "lectures/review", locals: {review: review} %>
+          <% end %>
+        </ol>
+      <% end %>
   </div>
 </div>
 
