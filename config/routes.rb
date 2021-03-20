@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
   root 'static_pages#home'
   resources :lectures do
-    resources :reviews, only: [:create, :show, :destroy] do
+    resources :reviews, only: [:create, :destroy] do
       resources :helpfuls, only: [:create]
     end
     resource :bookmarks, only: [:create,:destroy]

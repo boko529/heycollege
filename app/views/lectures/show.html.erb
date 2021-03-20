@@ -44,25 +44,14 @@
     <div>
       <% if @helpful_review %>
         <p><strong><%= t('.most-helpful-rev') %></strong></p>
-        <div class="most_helpful_review">
-          <span id="star-helpful-review"></span>
-          <p><%= link_to display_name(@helpful_review.user), @helpful_review.user %></p>
-          <p class="timestamp">
-            <%= @helpful_review.updated_at.strftime("%Y-%m-%d") %>
-          </p>
-          <p><%= @helpful_review.content %></p>
-          <%# 役に立ったボタン %>
-          <div id="helpfuls_buttons_<%= @helpful_review.id %>">
-            <%= render partial: 'helpfuls/helpful', locals: { lecture: @helpful_review.lecture, review: @helpful_review } %>
-          </div>
-        </div>
+        <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
       <% end %>
     </div>
 
     <%# 自分がレビューしたことあるかを確認 %>
     <% if @lecture.review?(current_user) %>
       <%# 自分が書いたレビューへのリンクを表示 %>
-      <%= link_to t('.show-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)) %>
+      <%= link_to t('.show-own-review'), "#review-#{@lecture.my_review(current_user).id}" %>
     <% else %>
       <%# レビュー投稿欄 %>
 <%
@@ -92,9 +81,10 @@
     <% if @reviews.any? %>
       <p><%= t('.review-number') %> (<%= @lecture.all_reviews_count %>)</p>
       <ol class="reviews">
-        <%= render @reviews %>
+        <% @reviews.each do |review| %>
+          <%= render partial: "lectures/review", locals: {review: review} %>
+        <% end %>
       </ol>
-      <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
     <% end %>
   </div>
 </div>
@@ -110,16 +100,4 @@
     readOnly: true,
     score: <%= @lecture.average_score %>,
   });
-
-  // 最も参考になるレビューの星表示
-  <% if @helpful_review %>
-    $('#star-helpful-review').raty({
-      size      : 36,
-      starOff   : '<%= asset_path('star-off.png') %>',
-      starOn    : '<%= asset_path('star-on.png') %>',
-      half      : false,
-      readOnly: true,
-      score: <%= @helpful_review.score %>,
-    });
-  <% end %>
 </script>

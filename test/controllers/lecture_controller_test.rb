@@ -52,8 +52,8 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal(0, @lecture.average_score)
     #詳細がなくても数には入れる
     assert_equal(4, @lecture.all_reviews_count)
-    #詳細があるレビューのみviewに表示(最も参考になるやつと詳細がないものは除く)
-    assert_select 'li.review', count: 2
+    #詳細があるレビューのみviewに表示(詳細がないものは除く)
+    assert_select 'li.review', count: 3
   end
 
   test "blank name lecture create" do

@@ -1,0 +1,10 @@
+en:
+  users:
+    update:
+      updated-user: "Updated my profile"
+    hide:
+      hide-message: "Thank you very much. We sincerely look forward to your next visit."
+    user_is_not_deleted_show:
+      user-hidden: "This account is deleted"
+    user_is_not_deleted_follow:
+      user-hidden: "This account is deleted"

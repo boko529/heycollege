@@ -23,7 +23,7 @@ class LecturesController < ApplicationController
     @lecture = Lecture.find(params[:id])
     # 参考になる順で表示 + 詳細が書かれているものに限定,一番参考になるものは上で特別に表示しているので下の一覧では表示しない(参考になるボタンに不具合が生じるから)
     reviews = @lecture.reviews.where.not(content: "").includes(:helpfuls).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.drop(1)
-    @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(7)
+    @reviews = Kaminari.paginate_array(reviews) # しばらくはページネーションなくて良さそう。ページネーションを追加する際はviewの自分のレビューへ飛ぶ際に場合分けで1ページ目のときはそのまま2ページ目以降は?page=params[:page]=2/~~みたいにする必要あり
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
     @review = current_user.reviews.new
@@ -41,7 +41,7 @@ class LecturesController < ApplicationController
     if @teacher = Teacher.find_by(name: @teacher_name)
       @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
       if @lecture.save
-        flash[:success] = "講義ページを作成しました"
+        flash[:success] = t('.create-class')
         redirect_to @lecture
       else
         render 'new'
@@ -51,7 +51,7 @@ class LecturesController < ApplicationController
       if @teacher.save
         @lecture = current_user.lectures.build(name: lecture_params[:name], teacher_id: @teacher.id)
         if @lecture.save
-          flash[:success] = "講義ページ&先生ページを作成しました"
+          flash[:success] = t('.create-class-teacher')
           redirect_to @lecture
         else
           render 'new'
@@ -71,7 +71,7 @@ class LecturesController < ApplicationController
     @lecture = Lecture.find(params[:id])
     if @teacher = Teacher.find_by(name: @teacher_name)
       if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
-        flash[:success] = "講義情報は更新されました！"
+        flash[:success] = t('.updated-class')
         redirect_to @lecture
       else
         render 'edit'
@@ -80,7 +80,7 @@ class LecturesController < ApplicationController
       @teacher = current_user.teachers.build(name: @teacher_name)
       if @teacher.save
         if @lecture.update(name: lecture_params[:name], teacher_id: @teacher.id)
-          flash[:success] = "講義情報は更新されました！&先生ページを作成しました!"
+          flash[:success] = t('.updated-class-teacher')
           redirect_to @lecture
         else
           render 'edit'
@@ -94,7 +94,7 @@ class LecturesController < ApplicationController
 
   def destroy
     Lecture.find(params[:id]).destroy
-    flash[:success] = "講義を削除しました"
+    flash[:success] = t('.deleted-class')
     redirect_to lectures_url
   end
 
