@@ -3,7 +3,7 @@
   top: 6px;
   position: relative;
   a{
-    color: black;
+    color: #272121;
     &:hover{
       background-color: lightgray;
     }
@@ -25,7 +25,9 @@
   .lectureinfo-N-allreviews {
     border-radius: 4px;
     border-bottom: 1px solid gray;
-    padding: 10px;
+    .lecture-info {
+            margin-top: 20px;
+    }
     .lec-score-tea-class{
       display: inline-block;
     }
