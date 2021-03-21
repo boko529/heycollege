@@ -11,9 +11,9 @@
   </span>
   <div class="teacher-info">
     <p class="teachershow-teachername">
-      <%= @teacher.name %>&nbsp; <%# レイアウトは任せるわ %>
+      <%= @teacher.name %>&nbsp; <%# レイアウトは任せるわ,以下3行が先生名を表示しつつクラスを作成するやつ %>
       <%= link_to new_lecture_path(teacher_id: @teacher.id) do %>
-        <i class="far fa-plus-square"></i>
+        <i class="far fa-plus-square"></i><%# ここにはさんだ内容がリンクになる %>
       <% end %>
     </p>
     <div class="scores">
