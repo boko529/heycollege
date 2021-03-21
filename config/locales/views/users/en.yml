@@ -9,7 +9,7 @@ en:
       leave: "Delete account"
       college: "College"
       grade: "Grade"
-      edit: "edit"
+      edit: ""
       title_login: "MyPage"
       faculty: "Faculty"
       college_point: "CollegePoint"
