@@ -13,3 +13,6 @@ ja:
       teacher-index: "先生一覧"
     lecture:
       no-review: "レビューがありません"
+    review:
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"

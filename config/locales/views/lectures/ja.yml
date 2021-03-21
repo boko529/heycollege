@@ -28,3 +28,6 @@ ja:
       class-list: "クラス一覧"
     edit:
       edit-class: "クラス編集"
+    review:
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"

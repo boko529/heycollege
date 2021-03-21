@@ -13,3 +13,6 @@ en:
       teacher-index: "Teacher index"
     lecture:
       no-review: "No reviews"
+    review:
+      delete: "Delete"
+      reallydelete: "Do you really want to delete this?"
