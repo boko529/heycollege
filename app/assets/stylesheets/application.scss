@@ -174,15 +174,9 @@ nav{
   }
 }
 
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
-  }
+// ユーザーアイコンを丸くするためのクラス
+.user-icon{
+  border-radius: 100%;
 }
 
 .users.follow {

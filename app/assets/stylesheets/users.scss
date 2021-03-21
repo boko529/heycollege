@@ -113,21 +113,6 @@ html, body {
     }
   } 
 
-.frame_icon{
-  float: left; /*左に回り込み*/
-  padding-right: 1rem;
-   /*丸アイコン*/
-  .circle {
-    width: 84px;
-    height: 84px;
-    overflow: hidden; /*画像が円から出た部分は隠す*/
-    background: #fff; /*背景色*/
-    float: left; /*左に回り込み*/
-    border: 2px solid #fff; /*枠線の幅、線種、色*/
-    border-radius: 50%; /*アイコン画像を円にする*/
-  }
-}
-
 .frame_profile{
   float: left; /*左に回り込み*/
   width: 100%;

@@ -6,8 +6,8 @@
     <%= form_with model: @user, local:true do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="field">
-        <%= image_tag 'default_user.png', :size => '80x80' %>
-        <small><%= t('.newprofilepic') %></small>
+        <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
+        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
       </div>
 
       <div class="field">

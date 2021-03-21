@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+  mount_uploader :image, ImageUploader # プロフィール画像用のcarrierwave
   # APUメアドのバリデーション削除
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

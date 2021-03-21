@@ -1,0 +1,6 @@
+<%# ユーザーの画像を表示するためのパーシャル(80×80) %>
+<% if user.image? %>
+  <%= image_tag user.image.thumb.url, alt: "user-icon", :size => '50x50', class: "user-icon" %>
+<% else %>
+  <%= image_tag 'default_user.png', alt: "user-icon", :size => '50x50', class: "user-icon" %>
+<% end %>
