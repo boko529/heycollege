@@ -64,11 +64,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-gem 'devise'
+gem "devise", git: "https://github.com/heartcombo/devise"
 gem 'devise-i18n'
-
-gem 'chart-js-rails', '~> 0.1.4'
-
+gem 'omniauth-google-oauth2' #google認証
 gem 'dotenv-rails'
-
 gem 'high_voltage'

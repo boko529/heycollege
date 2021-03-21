@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {
-    :confirmation => 'devises/confirmations',
-    :registrations => 'devises/registrations',
-    :sessions => 'devises/sessions',
-    :passwords => 'devises/passwords'
+    :confirmation => 'users/confirmations',
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+    :passwords => 'users/passwords',
+    :omniauth_callbacks => 'users/omniauth_callbacks'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update]

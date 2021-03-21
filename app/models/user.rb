@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :user_point_history, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :active_relations, class_name:  "UserGroupRelation",
   foreign_key: "user_id"
   has_many :group, through: :active_relations
@@ -79,5 +79,13 @@ class User < ApplicationRecord
   # 退会済みかどうか確認(退会済みならtrue)
   def active_for_authentication?
     super && (self.is_deleted == false)
+  end
+
+  # omniauthのコールバック時に呼ばれるメソッド
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 end
