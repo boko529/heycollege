@@ -1,0 +1,48 @@
+// header
+header {
+  position: fixed;
+  height: 55px;
+  background-color: rgb(239, 255, 234);
+  width: 100%;
+  z-index: 4;
+  a {
+    color: rgb(90, 82, 82);
+
+    &:hover {
+      color: black;
+    }
+  }
+  .header-container {
+    height: 100%;
+    .row {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    }
+  }
+  .form-inline {
+    justify-content: center;
+    display: block;
+  }
+  input .btn {
+    height: 40px;
+  }
+  .mobile-search {
+    font-size: 12px;
+  }
+  .bell, .user, .lang, .mobile-search{
+    text-align: right;
+    display: flex;
+    align-items: center;
+    color: #5a5252;
+    white-space: nowrap;
+    &:hover {
+      color: black;
+    }
+    .lang-change {
+      font-size: 11px;
+      height: 35px;
+      width: 38px;
+    }
+  }
+}
