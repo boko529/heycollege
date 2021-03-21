@@ -1,5 +1,7 @@
 class ZoomsController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:show,:create,:new,:destoory, :numbercount]
+  before_action :correct_user, only: [:edit, :update]
+
   def create
     # APIを用いてzoom作成
     # @api_key = "66aoWxi3R1CCqYtfXXX3vA"
@@ -134,5 +136,10 @@ class ZoomsController < ApplicationController
   def zoom_params
     params.require(:zoom).permit(:join_url, :user_id, :title, :description, :start_time, :end_time)
     # params.require(:zoom).permit(:join_url,:host_url, :user_id, :title, :description)
+  end
+
+  def correct_user
+    @zoom = Zoom.find(params[:id])
+    redirect_to zooms_path unless @zoom.user==current_user
   end
 end
