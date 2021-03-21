@@ -18,8 +18,9 @@
     <%# 編集 %>
     <% if @user == current_user %>
       <div class="usershow-editbutton">
-      <i class="fas fa-edit"></i>
-        <%= link_to t('.edit'), edit_user_path(@user.id)%>
+        <%= link_to edit_user_path(@user.id) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
       </div>
     <% else %>
       <div class="follow-btn">
