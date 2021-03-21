@@ -11,8 +11,7 @@
     </span>
   </div>
 
-  <%# everything after lec show header %>
-  <div class="lectureinfo-N-allreviews">
+
 
     <%# lectureshow中のコンテンツ %>
     <div class="lecture-info">
@@ -21,6 +20,7 @@
         <%= render 'bookmarks/bookmark', lecture: @lecture %>
       </span>
 
+      <%# score and teachername, classname block %>
       <div class="lec-score-tea-class">
         <div class="lectureshow-scores">
           <% if @lecture.reviews.blank? %>
@@ -100,7 +100,7 @@
         <%= paginate @reviews, theme: 'twitter-bootstrap-4' %>
       <% end %>
   </div>
-</div>
+
 
 <%# 星表示のためのjavascript %>
 <script>

@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
-
   <head>
     <title><%= yield(:title) %> | HeyCollege</title>
     <%= render 'layouts/head_base' %>
-
   </head>
-
   <body>
-
     <header>
       <%= render 'layouts/header'%>
       <%= render 'layouts/modal_search_form' %>
     </header>
-
     <div class="container-fluid content">
       <div class="row">
-
         <%# サイドバー %>
         <div class="col-2 d-none d-md-block sidebar_col p-0">
           <%= render 'layouts/sidebar'%>
         </div>
-
         <div class="subsidebar-file">
           <%= render 'layouts/subsidebar'%>
         </div>
-       
         <%# メインコンテント %>
         <div class="col-md-10 col-12 main_content px-sm-5 pt-sm-2">
-        
           <%# ここから3行はフラッシュ表示 %>
           <% flash.each do |message_type, message| %>
             <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
@@ -39,9 +30,9 @@
             </div>
           <%# フッターと開発者用のやつ卍 %>
           <div>
-          <%# 次の行は開発用の表示 %>
-              <%= debug(params) if Rails.env.development? %>
-              <%= render 'layouts/footer'%>
+            <%# 次の行は開発用の表示 %>
+            <%= debug(params) if Rails.env.development? %>
+            <%= render 'layouts/footer'%>
           </div>
         </div>
       </div>
