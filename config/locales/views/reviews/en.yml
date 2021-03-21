@@ -1,15 +1,5 @@
 en:
  reviews:
-  edit:
-    editreview: "Edit my review"
-    update: "Update"
-  show:
-    class: "Class"
-    teacher: "Teacher"
-    score: "Score"
-    nodetail: "No deatails"
-    delete: "Delete"
-    reallydelete: "Do you really want to delete?"
   form:
     example_1: "ex）This class is not so difficult."
     example_2: "　　However, the amount of challenges is large. In addition, I attended each class without delay since attendance is 20% of grades."

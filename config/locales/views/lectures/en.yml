@@ -2,18 +2,18 @@ en:
   lectures:
     show:
       post_review: "post review"
-      to-class-list: "》ClassList"
+      to-class-list: "》Class list"
       class-teacher: "Teacher"
       no-review: "No reviews"
       edit: "Edit"
       delete: "Delete"
       delete-message: "If you delete this class, All reviews of this class are deleted. Do you really want to delete this?"
-      most-helpful-rev: "Most helpful review"
+      most-helpful-rev: "Most liked review"
       ratings: "Rating"
       show-own-review: "Show my review about his class"
       review-number: "Reviews"
       return_to_class_list: "》Return to ClassList"
-      lecture_creater: "Page Maker"
+      lecture_creater: "Author"
       review-write: "Write a review"
     new:
       create-class: "Create a class"
@@ -28,3 +28,6 @@ en:
       class-list: "Class list"
     edit:
       edit-class: "Edit Class"
+    review:
+      delete: "Delete"
+      reallydelete: "Do you really want to delete this?"

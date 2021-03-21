@@ -27,7 +27,7 @@
         </div>
        
         <%# メインコンテント %>
-        <div class="col-md-10 col-12 main_content">
+        <div class="col-md-10 col-12 main_content px-sm-5 pt-sm-2">
         
           <%# ここから3行はフラッシュ表示 %>
           <% flash.each do |message_type, message| %>
@@ -43,7 +43,6 @@
               <%= debug(params) if Rails.env.development? %>
               <%= render 'layouts/footer'%>
           </div>
-          
         </div>
       </div>
     </div>

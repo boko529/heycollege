@@ -5,50 +5,74 @@
     <% if user_signed_in? %>
 
       <%# ランキング %>
-      <div class="rank col">
-      <%= link_to root_path do %>
-        <i class="fas fa-medal fa-2x"></i>
-      <% end %>
+      <div class="footer-rank col">
+        <div class="mobile-footer-logo">
+        <%= link_to root_path do %>
+          <i class="fas fa-medal fa-2x"></i>
+        <% end %>
+        </div>
+        <div class="mobile-footer-logo-let">Ranking</div>
       </div>
 
       <%# 作る %>
-      <div class="add col">
+      <div class="footer-add col">
+        <div class="mobile-footer-logo">
         <%= link_to new_lecture_path do %>
           <i class="far fa-plus-square fa-2x"></i>
         <% end %>
+        </div>
+        <div class="mobile-footer-logo-let">New page</div>
       </div>
 
       <%# ブックマーク %>
-      <div class="book col">
-        <%= link_to bookmarks_path do %>
-          <i class="far fa-bookmark fa-2x"></i>
-        <% end %>
+      <div class="footer-book col">
+        <div class="mobile-footer-logo">
+          <%= link_to bookmarks_path do %>
+            <i class="far fa-bookmark fa-2x"></i>
+          <% end %>
+        </div>
+        <div class="mobile-footer-logo-let">Bookmark</div>
       </div>
 
       <%# ユーザー %>
-      <div class="user col">
-          <%= link_to user_path(current_user) do %>
-            <i class="fas fa-user-circle fa-2x"></i>
-          <% end %>
+      <div class="footer-user col">
+        <div class="mobile-footer-logo">
+            <%= link_to user_path(current_user) do %>
+              <i class="fas fa-user-circle fa-2x"></i>
+            <% end %>
+        </div>
+        <div class="mobile-footer-logo-let">My page</div>
         </div>
 
          <%# ログインしてない時 %>
       <% else %>
-        <div class="rank col-4">
-          <%= link_to root_path do %>
-            <i class="fas fa-medal fa-2x"></i>
-          <% end %>
+        <div class="footer-rank col-4">
+          <div class="mobile-footer-logo">
+            <%= link_to root_path do %>
+              <i class="fas fa-medal fa-2x"></i>
+            <% end %>
+          </div>
+          <div class="mobile-footer-logo-let">Ranking</div>
         </div>
-        <div class="login-footer col-4">
-          <%= link_to new_user_session_path do %>
-            <i class="fas fa-sign-in-alt fa-2x"></i>
-          <% end %>
+
+        <div class="footer-login col-4">
+          <div class="mobile-footer-logo">
+            <%= link_to new_user_session_path do %>
+              <i class="fas fa-sign-in-alt fa-2x"></i>
+            <% end %>
+          </div>
+          <div class="mobile-footer-logo-let">Login</div>
         </div>
-        <div class="contact-footer col-4">
-          <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-            <i class="fas fa-envelope fa-2x"></i>
-          <% end %>
+
+        <div class="footer-contact col-4">
+          <div class="mobile-footer-logo">
+            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+              <i class="fas fa-envelope fa-2x"></i>
+            <% end %>
+          </div>
+          <div class="mobile-footer-logo-let">Contact</div>
         </div>
+
       <% end %>
     </div>
   </div>

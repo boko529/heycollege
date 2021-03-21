@@ -1,0 +1,10 @@
+en:
+  lectures:
+    create:
+      create-class: "Created a class"
+      create-class-teacher: "Class and teacher is created"
+    update:
+      updated-class: "Class information updated"
+      updated-class-teacher: Class information updated & Teacher is created"
+    destroy:
+      deleted-class: "Deleted class"
