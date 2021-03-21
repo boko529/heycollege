@@ -62,7 +62,7 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index, .
     color: rgb(54, 48, 48);
      // 中身
     div.lecture,div.teacher,div.user{
-      height: 85px;
+      height: 48px;
       background-color: #eeeeee;
       border-radius: 4px;
       overflow: auto;
@@ -89,6 +89,7 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index, .
           a{
             background-color: gold;
             padding: 6px;
+            border-radius: 4px;
           }
         }
         .class-name{
