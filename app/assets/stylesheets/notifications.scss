@@ -2,14 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.n-icon-circle {
+  font-size: 20px;
+}
+
 .n-circle{
   position: absolute;
   padding-left: 1rem;
   padding-top: 0rem;
   margin-top: 10px;
   margin-left: -20px;
-  color: #efa04c;
+  color: red;
   z-index: 3;
+  font-size: 24px;
 }
 
 .notifications-index{
