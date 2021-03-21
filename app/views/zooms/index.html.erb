@@ -1,5 +1,5 @@
 <% @zooms.each do |f| %>
-  <% if f.end_time - Time.now >= 0 %>
+  <% if f.end_time.present? && (f.end_time - Time.now) >= 0 %>
     <div class = "zoom_room">
     <%= link_to zoom_path(f.id) do %>
       <p><%= truncate(f.title, length: 10)%></p>

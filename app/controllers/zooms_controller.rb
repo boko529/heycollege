@@ -1,6 +1,6 @@
 class ZoomsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit,:update,:show,:create,:new,:destoory, :numbercount]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit,:update,:show,:create,:new,:destory, :numbercount]
+  before_action :correct_user, only: [:edit,:destroy, :update]
 
   def create
     # APIを用いてzoom作成
@@ -39,7 +39,7 @@ class ZoomsController < ApplicationController
     if @zoom.end_time - @zoom.start_time <= 0
       flash[:danger] = "開始時刻と終了時刻がおかしいです。"
       render new_zoom_path
-    elsif @zoom.start_time - Time.now < 0
+    elsif @zoom.start_time - Time.now < -60
       flash[:danger] = "開始時刻が現在時刻を過ぎています"
       render new_zoom_path
     else
@@ -74,8 +74,8 @@ class ZoomsController < ApplicationController
   def update
     @zoom = Zoom.find(params[:id])
     if @zoom.update(zoom_params)
-      redirect_to zoom_path(@zoom.id)
       flash[:notice] = "zoom情報を更新しました"
+      redirect_to zoom_path(@zoom.id)
     else
       render :edit
     end
@@ -100,6 +100,7 @@ class ZoomsController < ApplicationController
       flash[:notice]="zoomは削除されました"
       redirect_to zooms_path
     else
+      flash[:danger]="zoomは削除できませんでした"
       render :index
     end
   end
