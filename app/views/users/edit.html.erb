@@ -8,6 +8,10 @@
       <div class="field">
         <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
         <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+        <%= f.hidden_field :image_cache, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+        <label>
+          <%= f.check_box :remove_image %>画像を削除する
+        </label>
       </div>
 
       <div class="field">

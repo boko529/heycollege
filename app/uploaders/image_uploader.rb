@@ -3,6 +3,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
+  # サイズのバリデーション
+  def size_range
+    0..2.megabytes
+  end
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -21,8 +25,17 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # サムネイルを生成する設定
   version :thumb do
-    process :resize_to_limit => [80, 80]
+    process :resize_to_fill => [80, 80, gravity = ::Magick::CenterGravity]
   end
+
+  # 画像の反転を防ぐ
+  def auto
+    manipulate! do|image|
+      image.auto_orient
+    end
+  end
+
+  process :auto
 
   # jpg,jpeg,gif,pngしか受け付けない
   def extension_white_list
