@@ -6,7 +6,7 @@
     <% end %>
 
     <%= link_to user_path(f.user.id) do %>
-      ホスト: <%= f.user.name %>
+      ホスト: <%= display_name(f.user) %>
     <% end %>
 
     <p>参加者数: <%= f.count %><br>説明: <%= truncate(f.description, length: 10)%><br>開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
