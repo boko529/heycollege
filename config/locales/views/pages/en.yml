@@ -1,0 +1,13 @@
+en:
+  pages:
+    explain_confirmation:
+      sent: "Confirmation Email sent"
+      mail: "Please"
+      mailend: "the confirmation link to enable your account"
+      mailred: " click/ tap "
+      time: Confirmation Email will be sent in
+      timeend: ""
+      timered: " 5 minutes"
+      confirm: Please note that confirmation Email might be classified as
+      confirmend: ""
+      confirmred: " a spam"

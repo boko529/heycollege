@@ -2,5 +2,5 @@ en:
  devise:
   confirmations:
     new:
-      resend: "Resend confirmation mail"
-      instruction: "Resend confirmation instructions"
+      resend: "Resend confirmation email"
+      instruction: "Resend confirmation email"
