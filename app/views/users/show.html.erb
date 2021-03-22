@@ -28,7 +28,7 @@
         <%# マイページのときのみ表示 %>
         <% if @user == current_user %>
           <%# その他・設定ボタン (PC版)%>
-          <div class="dropdown d-none d-md-block">
+          <div class="dropdown d-none d-sm-block">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-h"></i>
             </button>
@@ -50,6 +50,7 @@
               <% end %>
             </div>
           </div>
+          <!--
           <%# その他・設定ボタン (スマホ版)%>
           <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
             <i class="fas fa-ellipsis-h"></i>
@@ -92,8 +93,8 @@
                 <span class="d-inline"></span>
               </li>
             </ul>
-          </div>
-        <% end %>
+          </div> -->
+        <% end %> 
       </div>
 
       <p>
@@ -211,6 +212,7 @@
   </div>
 </div>
 
+<!--
 <script>
 // 表示を消す
   function openBottomup() {
@@ -222,4 +224,4 @@
    document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
    document.body.style.overflow = 'scroll';
     }
-</script>
+</script>-->
