@@ -12,3 +12,4 @@ en:
       confirmend: ""
       confirmred: " a spam"
       didnot: Did not get the confirmation Email?
+      title: "Please check Email"

@@ -9,7 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true)
 
 #追加のユーザーをまとめて生成する
 30.times do |n|
@@ -19,7 +19,8 @@ User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", mes
   User.create!(name:  name,
   email: email,
   password: password,
-  confirmed_at: Time.now)
+  confirmed_at: Time.now,
+  agreement: true)
 end
 
 # ユーザーごとにポイントテーブルを作成
