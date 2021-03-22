@@ -16,7 +16,7 @@
             <li><%= t('.confirm') %><span style="color:red;"><%= t('.confirmred') %></span><%= t('.confirmend') %></li>
           </ul>
           <div style="justify-content:center;display:flex;">
-          <%= link_to "認証メールが届かない方はこちら", new_user_confirmation_path %> <%# 飛んだ先の文字がひどいwから直してほしー %>
+          <%= link_to t('.didnot'), new_user_confirmation_path %> <%# 飛んだ先の文字がひどいwから直してほしー %>
           </div>
         </div>
       </div>
