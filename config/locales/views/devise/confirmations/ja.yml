@@ -3,4 +3,4 @@ ja:
   confirmations:
     new:
       resend: "確認メールを再送信"
-      instruction: "確認の説明書きを再送信"
+      instruction: "確認のメールを再送信"
