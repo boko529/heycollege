@@ -20,10 +20,10 @@ class ReviewNotificationTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     #新着メッセージのオレンジ色の丸の確認
-    assert_select 'i.fas.fa-circle.n-circle.fa-2x', 1
+    assert_select 'i.fas.fa-circle.n-circle', 1
     # お知らせ一覧に移動、オレンジ色の丸が消えていることを確認
     get notifications_path
     assert_template "notifications/index"
-    assert_select 'i.fas.fa-circle.n-circle.fa-2x', 0
+    assert_select 'i.fas.fa-circle.n-circle', 0
   end
 end

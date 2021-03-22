@@ -33,6 +33,7 @@ class User < ApplicationRecord
   validates :message, length: { maximum: 100 }
   validates :twitter_name, length: { maximum: 30}
   validates :instagram_name, length: { maximum: 30}
+  validates_acceptance_of :agreement, allow_nil: false, on: :create # 登録時の利用規約とプライバシーポリシーのチェックボックス
 
   
   # ユーザーをフォローする

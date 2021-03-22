@@ -1,39 +1,45 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
-html, body {
-  height: 100%;
-  width: 100%;
+.frame_icon{
+  // float: left; /*左に回り込み*/
+  // padding-right: 1rem;
+   /*丸アイコン*/
+  .circle {
+    width: 84px;
+    height: 84px;
+  }
 }
 
-.frame{
+.frame_profile{
+  // float: left; /*左に回り込み*/
+  display: block;
   width: 100%;
-  padding: 0.5rem 0 0rem 0;
-  .dropdown{
-    float: right;
-    .btn-secondary{
-      border: 1.5px solid #000;/*枠線の幅、線種、色*/
-      background-color: #00000000;
-      color: black;
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.5;
-      position: relative;
-      padding: 0.2rem 1rem;
-      margin-right: 1rem;
-      margin-top: 0.5rem;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-transition: all 0.3s;
-      transition: all 0.3s;
-      text-align: center;
-      vertical-align: middle;
-      text-decoration: none;
-      border-radius: 0.5rem;
-    }
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.usershow-editbutton,
+.followbtn,
+.other-button,
+.dropdown {
+  position: relative;
+  top: -80px;
+  margin: 5px;
+  color: black!important;
+  a {
+    color: black !important;
+  }
+}
+
+.dropdown{
+  float: right;
+  .btn-secondary{
+    background-color: #00000000;
+    color: black;
+    position: relative;
+    padding: 0.2rem 1rem;
+    border-radius: 0.5rem;
   }
 }
 
@@ -41,26 +47,12 @@ html, body {
 
 
 // 設定開くボタン
-.other-button{
+.other-button, .usershow-editbutton{
   float: right;
   border: 1.5px solid #000;
   /*枠線の幅、線種、色*/
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
   padding: 0.2rem 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
   border-radius: 0.5rem;
 }
 // 下から上がってくる設定
@@ -113,55 +105,6 @@ html, body {
     }
   } 
 
-.frame_icon{
-  float: left; /*左に回り込み*/
-  padding-right: 1rem;
-   /*丸アイコン*/
-  .circle {
-    width: 84px;
-    height: 84px;
-    overflow: hidden; /*画像が円から出た部分は隠す*/
-    background: #fff; /*背景色*/
-    float: left; /*左に回り込み*/
-    border: 2px solid #fff; /*枠線の幅、線種、色*/
-    border-radius: 50%; /*アイコン画像を円にする*/
-  }
-}
-
-.frame_profile{
-  float: left; /*左に回り込み*/
-  width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.edit-btn{
-  float: right;
-  border: 1.5px solid #000; /*枠線の幅、線種、色*/
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  padding: 0.2rem 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-  border-radius: 0.5rem;
-  a{
-    color: #fff;
-    &:hover{
-      color: #fff;
-    }
-  }
-}
 
 .follow-btn{
   float: right;
@@ -183,18 +126,12 @@ html, body {
 
 }
 
-.user-name{
-  font-size:x-large ;
-}
-
-.color-brack{
-  color:rgb(90, 82, 82);
-}
 
 .sns{
-  margin-left: 0.5rem;
-  margin-top: -1.5rem;
+  // margin-left: 0.5rem;
+  // margin-top: -1.5rem;
 }
+
 
 .group-join{
   p{
@@ -206,6 +143,13 @@ html, body {
       color: black;
     }
   }
+}
+
+// ステータスにそれぞれ区分ごとに間を開ける
+.usershow-followe-follower,
+.frame.profile,
+.usershow-add-accounts {
+  margin-top: 7px;
 }
 
 
