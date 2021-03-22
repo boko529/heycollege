@@ -54,6 +54,8 @@ ja:
       in100: "１００文字以内"
       twi: "Twitter ユーザーネーム"
       insta: "Instagram ユーザーネーム"
+      twi_message: "例)Hey_College_"
+      insta_message: "例)hey.college"
     follower:
       follower: "フォロワー"
     following:
