@@ -6,7 +6,6 @@ class ZoomsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @zoom = zooms(:zoom1)
     @other_zoom = zooms(:zoom2)
-    # @other_zoom = zooms(:zoom2)
   end
   
   ##create
