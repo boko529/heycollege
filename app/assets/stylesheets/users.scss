@@ -19,33 +19,26 @@
   margin-right: 5%;
 }
 
-.usershow-editbutton, .followbtn, .other-button {
+.usershow-editbutton,
+.followbtn,
+.other-button,
+.dropdown {
   position: relative;
   top: -80px;
+  margin: 5px;
+  color: black!important;
+  a {
+    color: black !important;
+  }
 }
 
 .dropdown{
   float: right;
   .btn-secondary{
-    border: 1.5px solid #000;/*枠線の幅、線種、色*/
     background-color: #00000000;
     color: black;
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.5;
     position: relative;
     padding: 0.2rem 1rem;
-    margin-right: 1rem;
-    margin-top: 0.5rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
     border-radius: 0.5rem;
   }
 }
