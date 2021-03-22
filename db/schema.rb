@@ -183,7 +183,6 @@ ActiveRecord::Schema.define(version: 2021_03_21_132457) do
     t.boolean "is_deleted", default: false, null: false
     t.string "twitter_name"
     t.string "instagram_name"
-    t.string "image"
     t.string "provider"
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
