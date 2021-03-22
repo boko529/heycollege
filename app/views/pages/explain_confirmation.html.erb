@@ -1,0 +1,5 @@
+<% provide(:title, 'メールを確認してください') %> <%# Title %>
+<%# email認証前にメール見てね！ってページ %>
+<i class="far fa-envelope fa-8x d-block mx-auto"></i>
+<p class="text-center">認証メールを送信しました</p>
+<%= link_to "認証メールが届かない方はこちら", new_user_confirmation_path %> <%# 飛んだ先の文字がひどいwから直してほしー %>
