@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
     @lectures = @q.result.page(params[:page])
   end
 
-  # ログインページ以外のときはページのバスをセッションに保存する
+  # ログインページ,ハイボルテージ関係以外のときはページのバスをセッションに保存する
   def store_location
-    if request.path !=  new_user_session_path
+    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms')
       session[:previous_url] = request.fullpath 
     end
   end
