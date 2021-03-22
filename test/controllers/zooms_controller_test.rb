@@ -8,7 +8,7 @@ class ZoomsControllerTest < ActionDispatch::IntegrationTest
     @other_zoom = zooms(:zoom2)
   end
   
-  ##create
+  #create
   test "zoom create" do
     login_as(@user, scope: :user)
     assert_difference 'Zoom.count', 1 do
@@ -66,7 +66,7 @@ class ZoomsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'zooms/new'
   end
 
-  ##destroy
+  #destroy
   test "zoom destroy" do
     login_as(@user, scope: :user)
     assert_difference 'Zoom.count', -1 do
