@@ -54,10 +54,18 @@
       </div>
     </div>
 
-    <p style="text-align:center"><%= link_to t('.read'), page_path('terms') %></p>
+    <%# 利用規約とプライバシーポロシーに同意するチェックボタン %>
+    <%= f.check_box :agreement, :as => :boolean, checked:false %>
+    <% if session[:locale] == "en" || session[:locale].blank? %>
+      <%# 英語の時 %>
+      I agree to the <%= link_to "Terms of Service", page_path('terms') %> and <%= link_to "Privacy Policy", page_path('terms') %>
+    <% elsif session[:locale] == "ja" %>
+      <%# 日本語の時 %>
+      <%= link_to "利用規約", page_path('terms') %>と<%= link_to "プライバシーポリシー", page_path('terms') %>に同意する
+    <% end %>
 
     <div class="actions field mx-auto">
-      <%= f.submit t('.agree'), class: "btn btn-success" %>
+      <%= f.submit t('.submit'), class: "btn btn-success" %>
     </div>
     <%= render "devise/shared/links" %>
   </div>

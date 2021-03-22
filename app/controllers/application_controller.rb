@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:faculty,:grade,:gender])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:faculty,:grade,:gender, :agreement]) # agreementは利用規約とプラバシーポリシーへの同意
     end
     # 言語切り替えようコード
     def set_locale
