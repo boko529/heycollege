@@ -34,6 +34,8 @@ class LecturesController < ApplicationController
 
   def new
     @lecture = current_user.lectures.build
+    # teacher/showのボタンから遷移したときに先生をセット
+    @lecture.teacher = Teacher.find_by(id: params[:teacher_id]) if params[:teacher_id].present?
   end
   
   def create
