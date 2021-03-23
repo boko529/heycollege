@@ -78,7 +78,7 @@ class User < ApplicationRecord
     group.include?(group1)
   end
 
-  # 退会済みかどうか確認(退会済みならtrue)
+  # 退会済みかどうか確認(退会済みならfalse)
   def active_for_authentication?
     super && (self.is_deleted == false)
   end

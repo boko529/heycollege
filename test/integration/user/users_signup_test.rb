@@ -34,7 +34,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
           password_confirmation: "password",
           gender: "male",
           grade: "B1",
-          faculty:"APS" } }
+          faculty:"APS",
+          agreement: true } }
         end
         get root_path
         assert_select "div.alert"
@@ -52,7 +53,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password",
                                             gender: "male",
                                             grade: "B1",
-                                            faculty:"APS" } }
+                                            faculty:"APS",
+                                            agreement: true } }
         end
       end
       assert_template 'devise/mailer/confirmation_instructions'
@@ -72,7 +74,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                               password_confirmation: "password",
                                               gender: "male",
                                               grade: "B1",
-                                              faculty:"APS" } }
+                                              faculty:"APS",
+                                              agreement: true } }
           end
         end
       end

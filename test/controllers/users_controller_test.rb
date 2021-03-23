@@ -102,7 +102,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as(@user)
     assert @user.active_for_authentication?
     patch users_hide_path(@user)
-    assert_not @user.active_for_authentication? #何故かテストがFAILになる
+    assert_not @user.active_for_authentication? #退会してるのでfalse
   end
 
   test "valid show following" do

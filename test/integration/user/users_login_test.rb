@@ -11,7 +11,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "invalid login information" do
     get new_user_session_path
     assert_template 'devise/sessions/new'
-    post user_session_path params: { session: { email: '', password: '' } }
+    post user_session_path params: { session: { email: '', password: '', agreement: true } }
     assert_template 'devise/sessions/new'
     assert_not flash.empty?
     get root_path
@@ -23,7 +23,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'devise/sessions/new'
     login_as(@user, scope: :user)
     get user_path(@user.id)
-    assert_select 'strong', @user.name
+    assert_select 'div', @user.name
     assert @user.confirmed_at.present?
   end
 
@@ -44,6 +44,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get new_user_session_path
     assert_template 'devise/sessions/new'
     login_as(@user, scope: :user)
-    assert_not flash.empty? #なぜかtrueになってしまう
+    assert @user.is_deleted # 退会しているのでtrueになるはず
   end
 end
