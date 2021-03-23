@@ -107,6 +107,81 @@ nav{
   min-height: 35rem;
 }
 
+/* footer */
+footer {
+  margin-top: 0px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  .footer_button {
+    width: 100%;
+    height: 70px;
+    .row {
+      padding-top: 20px;
+      a{
+        color: #777;
+        &:hover{
+          color: #222;
+        }
+      }
+      // 設定開くボタン
+      .other-bottomup {
+        position: fixed;
+        z-index: 3;
+        background-color: #fff;
+        .list-group-item{
+          border-bottom: initial;
+          padding: 0.6rem 1.25rem;
+          color: #444;
+          .icon{
+            padding-right: 0.5rem;
+            padding-left: 0.1rem;
+          }
+        }
+        .under-line{
+          border-bottom: 1.5px solid #e0e0e0;
+        }
+        a{
+          color: #555;
+          &:hover{
+            color: #222;
+          }
+        }
+      }
+    }
+    .rank, .add, .book, .other, .contact-footer, .login-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a{
+      color: #555;
+      &:hover{
+        color: #222;
+      }
+    }
+    }
+  }
+  a{
+    .copyright{
+      display: block;
+      text-align: center;
+    }
+    color: #777;
+    &:hover{
+      color: #222;
+    }
+  }
+  .footer_logos, .footer_words {
+    text-align: center;
+    ul{
+    padding: 0 auto;
+      li{
+        display: inline;
+        text-align:center;
+        margin-left: 10px;
+      }       
+    }
+  }
+}
 
 // コピーライト
 .copyright {
