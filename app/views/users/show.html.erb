@@ -27,76 +27,78 @@
         </span>
     <% end %>
 
-        <%# マイページのときのみ表示 %>
-        <% if @user == current_user %>
-          <%# その他・設定ボタン (PC版)%>
-          <div class="dropdown d-none d-sm-block">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
-              <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
-                &nbsp;<span class="d-inline"><%= t('.contactus') %>&nbsp;</span>
-              <% end %>
-              <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
-                &nbsp;<span class="d-inline"><%= t('.logout') %>&nbsp;</span>
-              <% end %>
-              <%= link_to page_path('terms'), class: "dropdown-item" do %>
-                &nbsp;<span class="d-inline"><%= t('.term') %>&nbsp;</span>
-              <% end %>
-              <%= link_to page_path('privacypolicy'), class: "dropdown-item" do %>
-                &nbsp;<span class="d-inline"><%= t('.privacypolicy') %>&nbsp;</span>
-              <% end %>
-              <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: t('.delete_account_message') } do %>
-                &nbsp;<span class="d-inline"><%= t('.leave') %>&nbsp;</span>
-              <% end %>
-            </div>
-          </div>
-          <!--
-          <%# その他・設定ボタン (スマホ版)%>
-          <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
-          <%# その他ボトムアップスライド %>
-          <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
-            <div id="closeIcone" id="open" onclick="closeBottomup()">
-              <i class="fas fa-times"></i>
-            </div>
-            <ul class="other-bottomup-ul">
-              <li class="list-group-item text-left">
-                <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-                  <span class="d-inline"><%= t('.contactus') %></span>
-                <% end %>
-              </li>
-              <li class="list-group-item text-left">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <span class="d-inline">&nbsp;<%= t('.logout') %></span>
-              <% end %>
-              </li>
-              <%# 利用規約 %>
-              <li class="list-group-item text-left">
-                <%= link_to page_path('terms') do %>
-                  <span class="d-inline">利用規約</span>
-                <% end %>
-              </li>
-              <%# プライバシーポリシー %>
-              <li class="list-group-item text-left">
-                <%= link_to page_path('privacypolicy') do %>
-                  <span class="d-inline">プライバシーポリシー</span>
-                <% end %>
-              </li>
-              <%# 退会 %>
-              <li class="list-group-item text-left">
-                <%= link_to users_hide_path(@user), method: :patch, data: { confirm: t('.delete_account_message') } do %>
-                  <span class="d-inline"><%= t('.leave') %></span>
-                <% end %>
-              </li>
-              <li class="usershow-blank list-group-item text-left d-inlineblock">
-                <span class="d-inline"></span>
-              </li>
-            </ul>
-          </div> -->
-        <% end %> 
+    <%# マイページのときのみ表示 %>
+    <% if @user == current_user %>
+      <%# その他・設定ボタン (PC版)%>
+      <div class="dropdown d-none d-md-block">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-cog"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+          <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
+            &nbsp;<span class="d-inline"><%= t('.contactus') %>&nbsp;</span>
+          <% end %>
+          <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
+            &nbsp;<span class="d-inline"><%= t('.logout') %>&nbsp;</span>
+          <% end %>
+          <%= link_to page_path('terms'), class: "dropdown-item" do %>
+            &nbsp;<span class="d-inline"><%= t('.term') %>&nbsp;</span>
+          <% end %>
+          <%= link_to page_path('privacypolicy'), class: "dropdown-item" do %>
+            &nbsp;<span class="d-inline"><%= t('.privacypolicy') %>&nbsp;</span>
+          <% end %>
+          <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: t('.delete_account_message') } do %>
+            &nbsp;<span class="d-inline"><%= t('.leave') %>&nbsp;</span>
+          <% end %>
+        </div>
+      </div>
+
+      <%# その他・設定ボタン (スマホ版)%>
+      <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
+        <i class="fas fa-cog"></i>
+      </div>
+
+      <%# その他ボトムアップスライド %>
+      <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
+        <div id="closeIcone" id="open" onclick="closeBottomup()">
+          <i class="fas fa-times"></i>
+        </div>
+        <ul class="other-bottomup-ul">
+          <li class="list-group-item text-left">
+            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+              <span class="d-inline"><%= t('.contactus') %></span>
+            <% end %>
+          </li>
+          <li class="list-group-item text-left">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <span class="d-inline">&nbsp;<%= t('.logout') %></span>
+          <% end %>
+          </li>
+          <%# 利用規約 %>
+          <li class="list-group-item text-left">
+            <%= link_to page_path('terms') do %>
+              <span class="d-inline"><%= t('.term') %></span>
+            <% end %>
+          </li>
+          <%# プライバシーポリシー %>
+          <li class="list-group-item text-left">
+            <%= link_to page_path('privacypolicy') do %>
+              <span class="d-inline"><%= t('.privacypolicy') %></span>
+            <% end %>
+          </li>
+          <%# 退会 %>
+          <li class="list-group-item text-left">
+            <%= link_to users_hide_path(@user), method: :patch, data: { confirm: t('.delete_account_message') } do %>
+              <span class="d-inline"><%= t('.leave') %></span>
+            <% end %>
+          </li>
+          <li class="usershow-blank list-group-item text-left d-inlineblock">
+            <span class="d-inline"></span>
+          </li>
+        </ul>
+      </div>
+
+    <% end %>
   </div>
 
     
@@ -219,7 +221,6 @@
 
 </div>
 
-<!--
 <script>
 // 表示を消す
   function openBottomup() {
@@ -231,4 +232,4 @@
    document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
    document.body.style.overflow = 'scroll';
     }
-</script>-->
+</script>
