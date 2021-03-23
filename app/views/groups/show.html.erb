@@ -5,9 +5,7 @@
       <!--ここにヘッダー画像-->
     </div>
     <span class="frame">
-      <div class="circle">
-        <i class="fas fa-users fa-3x"></i>
-      </div>
+      <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
           <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>

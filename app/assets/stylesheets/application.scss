@@ -174,8 +174,8 @@ nav{
   }
 }
 
-// ユーザーアイコンを丸くするためのクラス
-.user-icon{
+// ユーザーアイコンやグループアイコンを丸くするためのクラス
+.user-icon, .group-icon{
   border-radius: 100%;
 }
 
