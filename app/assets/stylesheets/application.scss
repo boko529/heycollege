@@ -24,6 +24,7 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 
 body {
   background-color: #fff7ec !important;
+    font-size: 13px !important;
 }
  
 /* タイポグラフィー */
@@ -47,7 +48,6 @@ h2 {
   color: rgb(119, 119, 119);
 }
 p {
-  font-size: 1.1em;
   line-height: 1.7em;
 }
 

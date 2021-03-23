@@ -17,6 +17,8 @@ en:
       review-write: "Write a review"
     new:
       create-class: "Create a class"
+      title: "New Class"
+      create: "Create"
     form:
       official_name_plese: "Please use the official name."
       family-name: "Family name"
@@ -28,6 +30,8 @@ en:
       class-list: "Class list"
     edit:
       edit-class: "Edit Class"
+      title: "Edit"
+      change: "Update"
     review:
       delete: "Delete"
       reallydelete: "Do you really want to delete this?"

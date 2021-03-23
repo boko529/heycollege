@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
     @lectures = @q.result.page(params[:page])
   end
 
-  # ログインページ以外のときはページのバスをセッションに保存する
+  # ログインページ,ハイボルテージ関係以外のときはページのバスをセッションに保存する
   def store_location
-    if request.path !=  new_user_session_path
+    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms')
       session[:previous_url] = request.fullpath 
     end
   end
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:faculty,:grade,:gender])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:faculty,:grade,:gender, :agreement]) # agreementは利用規約とプラバシーポリシーへの同意
     end
     # 言語切り替えようコード
     def set_locale

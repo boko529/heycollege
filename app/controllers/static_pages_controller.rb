@@ -8,7 +8,8 @@ class StaticPagesController < ApplicationController
         0
       end
     end.reverse
-    @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
+    # @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
+    @lectures = lectures # 一時的にページネーション外してます.
 
     #先生ランキング処理
     teachers = Teacher.includes(lectures: :reviews).sort_by do |teacher|
@@ -18,10 +19,11 @@ class StaticPagesController < ApplicationController
         0
       end
     end.reverse
-    @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)
+    # @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)
+    @teachers = teachers # 一時的にページネーション外してます.
     
-    #ユーザーランキング処理(管理者、退会者は除く)
-    users = User.where(admin: false, is_deleted: false).includes(:user_point_history).sort_by  do |user|
+    #ユーザーランキング処理(管理者、退会者は除く,非承認者)
+    users = User.where(admin: false, is_deleted: false).where.not(confirmed_at: nil).includes(:user_point_history).sort_by  do |user|
       total_amount = 0
       if user.user_point_history.present?
         user.user_point_history.all.each do |user_point_history|

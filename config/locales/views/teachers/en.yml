@@ -1,8 +1,8 @@
 en:
   teachers:
     show:
-      back-to-teacher-index: "》Return to teacher list"
-      return-to-class-index: "》Return to class list"
+      back-to-teacher-index: "》Teacher list"
+      return-to-class-index: "》Class list"
       teacher-creater: "Creater："
       level-of-satisfaction: "Level of satisfaction"
       teaching-class: "Teaching class"
