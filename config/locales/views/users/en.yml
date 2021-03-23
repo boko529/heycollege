@@ -9,7 +9,7 @@ en:
       leave: "Delete account"
       college: "College"
       grade: "Grade"
-      edit: "edit"
+      edit: ""
       title_login: "MyPage"
       faculty: "Faculty"
       college_point: "CollegePoint"
@@ -54,6 +54,8 @@ en:
       in100: "in 100 letters"
       twi: "Twitter username"
       insta: "Instagram username"
+      twi_message: "ex)Hey_College_"
+      insta_message: "ex)hey.college"
     follower:
       follower: "Follower"
     following:

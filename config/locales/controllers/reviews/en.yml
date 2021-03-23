@@ -1,0 +1,8 @@
+en:
+  reviews:
+    create:
+      post: "Posted a review"
+      post-failed: "Posted a review failed"
+      one-review: "Up to one per class"
+    destroy:
+      delete-review: "Deleted review"

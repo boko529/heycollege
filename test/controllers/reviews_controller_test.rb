@@ -45,19 +45,6 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  test "review show" do
-    login_as(@user, scope: :user)
-    get lecture_review_path(@lecture.id, @review.id)
-    assert_template "reviews/show"
-    assert_not_equal(0, @review.score)
-  end
-
-  test "review show in not login" do
-    get lecture_review_path(@lecture.id, @review.id)
-    follow_redirect!
-    assert_template 'devise/sessions/new'
-  end
-
   test "review destroy" do
     login_as(@user, scope: :user)
     assert_difference 'Review.count', -1 do

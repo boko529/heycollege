@@ -71,4 +71,61 @@
       $('.slide_show').slick('goTo', $(this).index());
     });
   });
+// 講義のページネーション
+  <% if params[:lectures_page] %>
+      document.getElementById("nav-lecture-ranking").classList.add("active");
+      document.getElementById("nav-lecture-ranking").classList.add("show");
+      document.getElementById("nav-lecture-ranking-tab").classList.add("active");
+
+      document.getElementById("nav-teacher-lanking").classList.remove("active");
+      document.getElementById("nav-teacher-lanking").classList.remove("show");
+      document.getElementById("nav-teacher-lanking-tab").classList.remove("active");
+
+      document.getElementById("nav-user-lanking").classList.remove("active");
+      document.getElementById("nav-user-lanking").classList.remove("show");
+      document.getElementById("nav-user-lanking-tab").classList.remove("active");
+      
+      document.getElementById("nav-lecture-ranking-tab").attr('aria-selected', true);
+      document.getElementById("nav-teacher-lanking-tab").attr('aria-selected', false);
+      document.getElementById("nav-user-lanking-tab").attr('aria-selected', false);
+  <% end %>
+
+  // 先生のページネーション
+  <% if params[:teachers_page] %>
+      document.getElementById("nav-lecture-ranking").classList.remove("active");
+      document.getElementById("nav-lecture-ranking").classList.remove("show");
+      document.getElementById("nav-lecture-ranking-tab").classList.remove("active");
+
+      document.getElementById("nav-teacher-lanking").classList.add("active");
+      document.getElementById("nav-teacher-lanking").classList.add("show");
+      document.getElementById("nav-teacher-lanking-tab").classList.add("active");
+
+      document.getElementById("nav-user-lanking").classList.remove("active");
+      document.getElementById("nav-user-lanking").classList.remove("show");
+      document.getElementById("nav-user-lanking-tab").classList.remove("active");
+      
+      document.getElementById("nav-lecture-ranking-tab").attr('aria-selected', false);
+      document.getElementById("nav-teacher-lanking-tab").attr('aria-selected', true);
+      document.getElementById("nav-user-lanking-tab").attr('aria-selected', false);
+  <% end %>
+
+
+  // ユーザーのページネーション
+  <% if params[:users_page] %>
+      document.getElementById("nav-lecture-ranking").classList.remove("active");
+      document.getElementById("nav-lecture-ranking").classList.remove("show");
+      document.getElementById("nav-lecture-ranking-tab").classList.remove("active");
+
+      document.getElementById("nav-teacher-lanking").classList.remove("active");
+      document.getElementById("nav-teacher-lanking").classList.remove("show");
+      document.getElementById("nav-teacher-lanking-tab").classList.remove("active");
+
+      document.getElementById("nav-user-lanking").classList.add("active");
+      document.getElementById("nav-user-lanking").classList.add("show");
+      document.getElementById("nav-user-lanking-tab").classList.add("active");
+      
+      document.getElementById("nav-lecture-ranking-tab").attr('aria-selected', false);
+      document.getElementById("nav-teacher-lanking-tab").attr('aria-selected', false);
+      document.getElementById("nav-user-lanking-tab").attr('aria-selected', true);
+  <% end %>
 </script>

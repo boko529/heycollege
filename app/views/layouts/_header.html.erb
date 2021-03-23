@@ -1,6 +1,6 @@
 
-  <div class="container-fluid p-0 px-md-4"> 
-    <div class="row h-auto mt-2 p-sm-o p-0">
+  <div class="container-fluid header-container"> 
+    <div class="row">
       <%#　スマホ画面用ハンバーガーボタン　%>
       <div class="col-sm-1 d-md-none d-none d-sm-block col-sm-1 d-md-none">
         <button type="button" class="btn btn-success mx-2" onclick="openSubSide()">
@@ -8,7 +8,7 @@
         </button>
       </div>
       <%#　ヘイカレッジロゴ %>
-      <div class="logo col-5 col-sm-3 mx-md-0 ml-3">
+      <div class="logo col-5 col-sm-3 mx-md-0 ml-sm-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
       <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-sm-block">
@@ -30,12 +30,13 @@
           </div>
         <% end %>
       </div>
+      
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-        <div class="search col-1 offset-2 d-sm-none d-block p-0">
-          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-search"></i>  
-          </button>
+      <div class="search col-1 offset-3 d-sm-none d-block p-0">
+        <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
+          <i class="fas fa-search fa-2x"></i>  
         </div>
+      </div>
       
       <% if user_signed_in? %>
         <%# ユーザーアイコン %>
@@ -45,21 +46,22 @@
           <% end %>
         </div>
         <%# お知らせアイコン %>
-        <div class="bell col-1 offset-1 offset-sm-0 d-flex m-0 text-left">
+        <div class="bell col-1 offset-1 offset-sm-0 d-flex m-0 text-right">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
           <% end %>
         </div>
       <% end %>
       <%# 言語切り替えボタン %>
-      <div class="lang col-1">
+      <div class="lang col-1 text-right">
+        <div class="lang-change"></div>
         <% if session[:locale] == "en" || session[:locale].blank? %>
-          <%= link_to "/application/change_language/ja", class: "btn btn-outline-secondary btn-sm" do %>
-          文
+          <%= link_to "/application/change_language/ja" do %>
+          日本
           <% end %>
         <% elsif session[:locale] == "ja" %>
-          <%= link_to "/application/change_language/en", class: "btn btn-outline-secondary btn-sm" do %>
-          A
+          <%= link_to "/application/change_language/en" do %>
+          EN
           <% end %>
       <% end %>
       </div>

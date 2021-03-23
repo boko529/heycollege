@@ -1,7 +1,5 @@
 en:
   bookmarks:
-      bookmark:
-        confirm: 'Do you really want to remove it from your bookmarks?'
       index:
         bookmark: "Bookmark"
         class: "Class"

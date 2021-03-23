@@ -1,0 +1,10 @@
+ja:
+  users:
+    update:
+      updated-user: "プロフィールを変更しました"
+    hide:
+      hide-message: "ありがとうございました。またのご利用を心からお待ちしております。"
+    user_is_not_deleted_show:
+      user-hidden: "退会済みユーザーです"
+    user_is_not_deleted_follow:
+      user-hidden: "退会済みユーザーです"

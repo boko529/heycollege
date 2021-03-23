@@ -6,6 +6,7 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
     @lecture = lectures(:lecture_1)
     @noreview_lecture = lectures(:lecture_2)
+    @teacher = teachers(:teacher1)
   end
 
   # each文を使ったテストエラーがでちゃう。
@@ -52,8 +53,8 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal(0, @lecture.average_score)
     #詳細がなくても数には入れる
     assert_equal(4, @lecture.all_reviews_count)
-    #詳細があるレビューのみviewに表示(最も参考になるやつと詳細がないものは除く)
-    assert_select 'li.review', count: 2
+    #詳細があるレビューのみviewに表示(詳細がないものは除く)
+    assert_select 'li.review', count: 3
   end
 
   test "blank name lecture create" do
@@ -65,5 +66,12 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     assert_template 'lectures/new'
     # assert_select 'div#error_explanation'  エラーはでない
     # assert_select 'div.alert.alert-danger' エラーはでない
+  end
+
+  test "new lecture with teacher_id params" do
+    login_as(@user, scope: :user)
+    get new_lecture_path(teacher_id: @teacher.id)
+    assert_template "lectures/new"
+    assert_equal @teacher.name, @lecture.teacher.name # 上で定義したものからコントローラで定義したやつに上書きされてるはず
   end
 end

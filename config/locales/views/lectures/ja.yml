@@ -2,8 +2,8 @@ ja:
   lectures:
     show:
       post_review: "投稿"
-      to-class-list: "》クラス一覧へ"
-      class-teacher: "担当教員"
+      to-class-list: "》クラスリストへ"
+      class-teacher: "先生"
       no-review: "レビューはありません。"
       edit: "編集"
       delete: "削除"
@@ -17,6 +17,8 @@ ja:
       review-write: "レビューを書く"
     new:
       create-class: "クラス作成"
+      title: "新規クラス作成"
+      create: "作成"
     form:
       official_name_plese: "公式名称でお願いします。"
       family-name: "姓"
@@ -25,6 +27,11 @@ ja:
       example: "例）日本語 → 山田 太郎、 英語 → Yamada Taro"
       teacher_name: "先生名"
     index:
-      class-list: "クラス一覧"
+      class-list: "クラスリスト"
     edit:
       edit-class: "クラス編集"
+      title: "編集"
+      change: "編集"
+    review:
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"

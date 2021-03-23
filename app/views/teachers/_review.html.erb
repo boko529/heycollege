@@ -11,6 +11,12 @@
   <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>
+  <%# レビュー作成者のときのみ削除欄を表示 %>
+  <p>
+    <% if current_user?(review.user) %>
+      <%= link_to t('.delete'), lecture_review_path(review.lecture,review), method: :delete, data: { confirm: t('.reallydelete')} %>
+    <% end %>
+   </p>
 
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= review.id %>">
