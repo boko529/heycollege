@@ -14,8 +14,8 @@ en:
       faculty: "Faculty"
       college_point: "CollegePoint"
       point_score: "Score"
-      following: "Following"
-      follower: "follower"
+      following: " Following"
+      follower: " Follower"
       add_account: "Add account"
       reviews_count: "Reviews"
       review: "Review"
@@ -64,8 +64,8 @@ en:
       follower: "follower"
       following: "following"
     follow:
-      follower: "follower"
-      following: "following"
+      follower: " Follower"
+      following: " Following"
     follow-button:
       follow: "Follow"
       unfollow: "UnFollow"
