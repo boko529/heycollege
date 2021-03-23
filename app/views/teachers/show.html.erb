@@ -9,7 +9,7 @@
   <div class="creator_name">
     <%= t('.teacher-creater') %>
     <%= link_to @teacher.user do %>
-      <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@teacher.user) %>
+      <%= render partial: "shared/user_image/display_icon20", locals: {user: @teacher.user} %><%= display_name(@teacher.user) %>
     <% end %>
   </div>
   <div class="teacher-info">

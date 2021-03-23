@@ -24,8 +24,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :convert => 'jpg'
 
   # サムネイルを生成する設定
-  version :thumb do
+  version :thumb80 do
     process :resize_to_fill => [80, 80, gravity = ::Magick::CenterGravity]
+  end
+
+  version :thumb20 do
+    process :resize_to_fill => [20, 20, gravity = ::Magick::CenterGravity]
   end
 
   # 画像の反転を防ぐ
