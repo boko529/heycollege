@@ -9,8 +9,8 @@ footer {
     .row {
       padding-top: 5px;
       height: 100%;
+       height: 47px;
     }
-
     .footer-rank,
     .footer-add,
     .footer-book,
@@ -22,15 +22,36 @@ footer {
       align-items: center;
       display: flex;
       flex-direction: column;
-
       .mobile-footer-logo {
         font-size: 11px;
         color: #777;
       }
-
       .mobile-footer-logo-let {
         font-size: 9px;
       }
+    }
+  }
+
+
+  /* footer */
+  // 設定開くボタン
+  .other-bottomup {
+    position: fixed;
+    background-color: #fff;
+
+    .list-group-item {
+      border-bottom: initial;
+      padding: 0.6rem 1.25rem;
+      color: #444;
+
+      .icon {
+        padding-right: 0.5rem;
+        padding-left: 0.1rem;
+      }
+    }
+
+    .under-line {
+      border-bottom: 1.5px solid #e0e0e0;
     }
   }
 
