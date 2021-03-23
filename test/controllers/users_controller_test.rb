@@ -102,6 +102,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as(@user)
     assert @user.active_for_authentication?
     patch users_hide_path(@user)
+    follow_redirect!
     assert_not @user.active_for_authentication? #退会してるのでfalse
   end
 
