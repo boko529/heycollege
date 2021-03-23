@@ -70,3 +70,4 @@ gem 'dotenv-rails'
 gem 'high_voltage'
 gem 'carrierwave' # 画像投稿用
 gem 'rmagick'
+gem 'aws-sdk-s3', require: false # S3用
