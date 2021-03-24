@@ -10,4 +10,5 @@ class Group < ApplicationRecord
     has_one :group_profile, dependent: :destroy
     validates :twitter_name, length: { maximum: 30}
     validates :instagram_name, length: { maximum: 30}
+    validates :profile, length: { maximum: 1000 }
 end
