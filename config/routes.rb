@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index]
     resources :news, except: [:index, :show]
+    get 'lectures/auto_creates', to: 'lectures#index', as:'auto_create' # クラス自動作成
   end
   root 'static_pages#home'
   resources :lectures do
