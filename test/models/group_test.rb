@@ -31,10 +31,19 @@ class GroupTest < ActiveSupport::TestCase
   end
 
   # 画像投稿系のtest(参考サイト： https://qiita.com/kazasiki/items/da902eefbf76d1a7aa28)細かいバリデーションについてなどは省略します。
-  test 'upload image' do
+  test 'upload profile_image' do
     file_dir = Rails.root.join('test/fixtures/files/')
     File.open(file_dir.join('test_image.png')) do |image|
       @group.profile_image = image
+      @group.save!
+    end
+  end
+
+  # 画像投稿系のtest(参考サイト： https://qiita.com/kazasiki/items/da902eefbf76d1a7aa28)細かいバリデーションについてなどは省略します。
+  test 'upload header_image' do
+    file_dir = Rails.root.join('test/fixtures/files/')
+    File.open(file_dir.join('test_image.png')) do |image|
+      @group.header_image = image
       @group.save!
     end
   end

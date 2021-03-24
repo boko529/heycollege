@@ -1,4 +1,4 @@
 class GroupHeaderImageUploader < ImageUploader # クラスの継承
-  # 画像の上限を640x480にする
-  process :resize_to_limit => [600, 200]
+  # 画像を600×200で切り取る
+  process :resize_to_fill => [600, 200, gravity = ::Magick::CenterGravity]
 end

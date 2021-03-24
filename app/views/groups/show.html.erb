@@ -1,9 +1,12 @@
 <% provide(:title, @group.name) %>
 <div class="col-lg-8 offset-lg-2" id="box" >
   <div class="group-show" >
-    <div class="header_icon">
-      <!--ここにヘッダー画像-->
-    </div>
+    <%# 下5行はヘッダー画像に関する記述 %>
+    <% if @group.header_image? %>
+      <div><%= image_tag @group.header_image.url, alt: "group-header" %></div>
+    <% else %>
+      <div class="header_sample"></div>
+    <% end %>
     <span class="frame">
       <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
       <span class="float-right-btn">
