@@ -19,8 +19,8 @@
 }
 
 .usershow-editbutton,
-.follow-btn,
-.dropdown {
+.follow-btn
+{
   position: relative;
   float: right;
   border: 1.5px solid #000;
@@ -37,13 +37,22 @@
 }
 
 .dropdown{
+  margin-right: 25px;
+  margin-top: 5px;
   float: right;
-  .btn-secondary{
-    background-color: #00000000;
-    color: black;
-    position: relative;
-    padding: 0.2rem 1rem;
-    border-radius: 0.5rem;
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  top: -80px;
+  height: 23px;
+  width: 46px;
+  text-align: center;
+  align-items: center;
+  button{
+  position: relative;
+  top: -3px;
+  }
+  .dropdown-toggle::after {
+    display: none;
   }
 }
 
