@@ -18,42 +18,42 @@
   </div>
 </div>
 
-
+<%#以下はページネーションをクリックした際にパラメーターを付与して、そのパラメーターによって条件分岐してる%>
 <div class="ranking-index">
   <nav>
     <%# 講義ランキング先生ランキング切り替えタブ %>
     <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
-      <a class="col-4 nav-item nav-link active" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><%= t('.class') %></a>
-      <a class="col-4 nav-item nav-link" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><%= t('.teacher') %></a>
-      <a class="col-4 nav-item nav-link" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false"><%= t('.user_point') %></a>
+      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' || params[:active_tab] == nil %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><%= t('.class') %></a>
+      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-teacher-ranking' %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><%= t('.teacher') %></a>
+      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-user-ranking' %>" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false"><%= t('.user_point') %></a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
     <%# 講義ランキング表示 %>
-    <div class="tab-pane fade show active" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-lecture-ranking' || params[:active_tab] == nil %>" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
       <ul class="rankings">
         <% @lectures.each.with_index(1) do |lecture, i| %>
           <%= render partial: "static_pages/lecture", locals: {lecture: lecture, i: i} %>
         <% end %>
-        <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
+        <%= paginate @lectures, param_name: 'lectures_page', params: {param_name: 'lectures_page',active_tab: "nav-lecture-ranking"}, theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
     <%# 先生ランキング表示 %>
-    <div class="tab-pane fade" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-teacher-ranking' %>" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
       <ul class="rankings">
         <% @teachers.each.with_index(1) do |teacher, i| %>
           <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
         <% end %>
-        <%= paginate @teachers, param_name: 'teachers_page', theme: 'twitter-bootstrap-4' %>
+        <%= paginate @teachers, param_name: 'teachers_page', params: {param_name: 'teachers_page',active_tab: "nav-teacher-ranking"}, theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
     <%# ユーザーランキング表示 %>
-    <div class="tab-pane fade" id="nav-user-lanking" role="tabpanel" aria-labelledby="nav-user-lanking-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-user-ranking' %>" id="nav-user-lanking" role="tabpanel" aria-labelledby="nav-user-lanking-tab">
       <ul class="rankings">
         <% @users.each.with_index(1) do |user, i| %>
           <%= render partial: "static_pages/user", locals: {user: user, i: i} %>
         <% end %>
-        <%= paginate @users, param_name: 'users_page', theme: 'twitter-bootstrap-4' %>
+        <%= paginate @users, param_name: 'users_page', params: {param_name: 'users_page',active_tab: "nav-user-ranking"}, theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
   </div>
@@ -71,61 +71,4 @@
       $('.slide_show').slick('goTo', $(this).index());
     });
   });
-// 講義のページネーション
-  <% if params[:lectures_page] %>
-      document.getElementById("nav-lecture-ranking").classList.add("active");
-      document.getElementById("nav-lecture-ranking").classList.add("show");
-      document.getElementById("nav-lecture-ranking-tab").classList.add("active");
-
-      document.getElementById("nav-teacher-lanking").classList.remove("active");
-      document.getElementById("nav-teacher-lanking").classList.remove("show");
-      document.getElementById("nav-teacher-lanking-tab").classList.remove("active");
-
-      document.getElementById("nav-user-lanking").classList.remove("active");
-      document.getElementById("nav-user-lanking").classList.remove("show");
-      document.getElementById("nav-user-lanking-tab").classList.remove("active");
-      
-      document.getElementById("nav-lecture-ranking-tab").attr('aria-selected', true);
-      document.getElementById("nav-teacher-lanking-tab").attr('aria-selected', false);
-      document.getElementById("nav-user-lanking-tab").attr('aria-selected', false);
-  <% end %>
-
-  // 先生のページネーション
-  <% if params[:teachers_page] %>
-      document.getElementById("nav-lecture-ranking").classList.remove("active");
-      document.getElementById("nav-lecture-ranking").classList.remove("show");
-      document.getElementById("nav-lecture-ranking-tab").classList.remove("active");
-
-      document.getElementById("nav-teacher-lanking").classList.add("active");
-      document.getElementById("nav-teacher-lanking").classList.add("show");
-      document.getElementById("nav-teacher-lanking-tab").classList.add("active");
-
-      document.getElementById("nav-user-lanking").classList.remove("active");
-      document.getElementById("nav-user-lanking").classList.remove("show");
-      document.getElementById("nav-user-lanking-tab").classList.remove("active");
-      
-      document.getElementById("nav-lecture-ranking-tab").attr('aria-selected', false);
-      document.getElementById("nav-teacher-lanking-tab").attr('aria-selected', true);
-      document.getElementById("nav-user-lanking-tab").attr('aria-selected', false);
-  <% end %>
-
-
-  // ユーザーのページネーション
-  <% if params[:users_page] %>
-      document.getElementById("nav-lecture-ranking").classList.remove("active");
-      document.getElementById("nav-lecture-ranking").classList.remove("show");
-      document.getElementById("nav-lecture-ranking-tab").classList.remove("active");
-
-      document.getElementById("nav-teacher-lanking").classList.remove("active");
-      document.getElementById("nav-teacher-lanking").classList.remove("show");
-      document.getElementById("nav-teacher-lanking-tab").classList.remove("active");
-
-      document.getElementById("nav-user-lanking").classList.add("active");
-      document.getElementById("nav-user-lanking").classList.add("show");
-      document.getElementById("nav-user-lanking-tab").classList.add("active");
-      
-      document.getElementById("nav-lecture-ranking-tab").attr('aria-selected', false);
-      document.getElementById("nav-teacher-lanking-tab").attr('aria-selected', false);
-      document.getElementById("nav-user-lanking-tab").attr('aria-selected', true);
-  <% end %>
 </script>

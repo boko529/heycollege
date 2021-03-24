@@ -34,17 +34,117 @@
         <div class="mobile-footer-logo-let">Bookmark</div>
       </div>
 
-      <%# ユーザー %>
-      <div class="footer-user col">
-        <div class="mobile-footer-logo">
-            <%= link_to user_path(current_user) do %>
-              <i class="fas fa-user-circle fa-2x"></i>
-            <% end %>
+        <%# その他・設定ボタン %>
+        <div class="footer-other col" id="open" onclick="openBottomup()">
+          <div class="mobile-footer-logo">
+            <i class="fas fa-ellipsis-h fa-2x"></i>
+          </div>
+          <div class="mobile-footer-logo-let">Menu</div>
         </div>
-        <div class="mobile-footer-logo-let">My page</div>
+        <%# その他ボトムアップスライド %>
+        <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
+          <div id="closeIcone" id="open" onclick="closeBottomup()">
+            <i class="fas fa-times"></i>
+          </div>
+          <ul class="other-bottomup-ul">
+            <%# マイページ %>
+            <li class="list-group-item text-left">
+              <%= link_to user_path(current_user) do %>
+                <span class="icon">
+                  <i class="fas fa-user-circle fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.title_login') %></span>
+              <% end %>
+            </li>
+            <%# グループ %> 
+            <!--
+            <li class="list-group-item text-left">
+              <%= link_to groups_path do %>            
+                <span class="icon">
+                  <i class="fas fa-users fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.group') %></span>
+              <% end %>
+            </li>-->
+            <%# ランキング %>
+            <li class="list-group-item text-left">
+              <%= link_to root_path do %>           
+                <span class="icon">
+                  <i class="fas fa-medal fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.ranking') %></span>
+              <% end %>
+            </li>
+            <%# 新規クラス作成 %>
+            <li class="list-group-item text-left">
+              <%= link_to new_lecture_path do %>
+                <span class="icon">
+                  <i class="far fa-plus-square fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.create') %></span>
+              <% end %>
+            </li>
+            <%# ブックマーク %>
+            <li class="list-group-item text-left under-line">
+               <%= link_to bookmarks_path do %>           
+                <span class="icon">
+                  <i class="far fa-bookmark fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.book') %></span>
+              <% end %>
+            </li> 
+            <%# お問い合わせ %>                                              
+            <li class="list-group-item text-left under-line">
+              <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+                <span class="icon">
+                  <i class="fas fa-envelope fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.contact') %></span>
+              <% end %>
+            </li>
+            <%# サインアウト %>
+            <li class="list-group-item text-left under-line">
+              <%= link_to destroy_user_session_path, method: :delete do %>            
+                <span class="icon">
+                  <i class="fas fa-sign-out-alt fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.signout') %></span>
+              <% end %>
+            </li>
+            <%# 利用規約 %>
+            <li class="list-group-item text-left">
+              <%= link_to page_path('terms') do %>
+                <span class="icon">
+                  <i class="far fa-file-alt fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.term') %></span>
+              <% end %>
+            </li>
+            <%# プライバシーポリシー %>
+            <li class="list-group-item text-left under-line">
+              <%= link_to page_path('privacypolicy') do %>           
+                <span class="icon">
+                  <i class="fas fa-user-lock fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.privacypolicy') %></span>
+              <% end %>
+            </li>    
+            <%# アカウント削除 %>
+            <li class="list-group-item text-left under-line">
+              <%= link_to users_hide_path(current_user), method: :patch, data: { confirm: t('.delete_account_message') } do %>                
+                <span class="icon">
+                  <i class="fas fa-heart-broken fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.leave') %></span>
+              <% end %>
+            </li>
+            <li class="usershow-blank list-group-item text-left d-inlineblock">
+              <span class="d-inline"></span>
+            </li>
+          </ul>
         </div>
 
-         <%# ログインしてない時 %>
+      <%# ログインしてない時 %>
       <% else %>
         <div class="footer-rank col-4">
           <div class="mobile-footer-logo">
