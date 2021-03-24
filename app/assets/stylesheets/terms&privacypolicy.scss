@@ -1,0 +1,38 @@
+// Place all the styles related to the bookmarks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.terms-show, .privacypolicy-show{
+  margin: 10px;
+  h1{
+    color: #333;
+    font-size: 1.1rem;
+    padding: 0 0 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align:left;
+    border-bottom:solid 1px rgb(42, 133, 14);
+  }
+  p{
+    padding: 0;
+    padding-top: 0;
+  }
+  h2{
+    color: #555;
+    font-size: 1rem;
+    padding: 0 0 5px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align:left;
+    border-bottom:solid 1.5px rgb(42, 133, 14);
+  }
+  ol{
+    padding-left: 20px;
+    margin-bottom: 5px;
+    li{
+      margin-bottom: 10px;
+    }
+  }
+
+}

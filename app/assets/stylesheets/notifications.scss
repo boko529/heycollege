@@ -20,15 +20,25 @@
 .notifications-index{
   margin-bottom: 3rem;
   h2{
-    margin: 20px 0;
+    margin-bottom: 10px;
   }
   ul{
     list-style: none;
     padding: 0;
     margin: 0;
     li{
-      padding: 10px;
+      padding: 5px;
+      display: grid;
+      grid-template-columns: 40px 1fr;
     }
+    .circle {/*円の外枠の大きさを調節*/
+      width: 30px;
+      height: 30px;
+      img{/*円の中の画像の大きさを調節*/
+        width: 20px;
+        height: 20px;
+      }
+     } 
     hr{
       margin: 0;
     }
@@ -46,4 +56,7 @@
   // float: left; /*左に回り込み*/
   border: 2px solid #fff; /*枠線の幅、線種、色*/
   border-radius: 50%; /*アイコン画像を円にする*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
  } 

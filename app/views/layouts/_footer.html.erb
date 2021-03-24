@@ -34,12 +34,12 @@
         <div class="mobile-footer-logo-let">Bookmark</div>
       </div>
 
-      <%# ユーザー %>
-      <div class="footer-user col">
-        <div class="mobile-footer-logo">
-            <%= link_to user_path(current_user) do %>
-              <i class="fas fa-user-circle fa-2x"></i>
-            <% end %>
+        <%# その他・設定ボタン %>
+        <div class="footer-other col" id="open" onclick="openBottomup()">
+          <div class="mobile-footer-logo">
+            <i class="fas fa-ellipsis-h fa-2x"></i>
+          </div>
+          <div class="mobile-footer-logo-let">Menu</div>
         </div>
         <div class="mobile-footer-logo-let">My page</div>
         </div>
