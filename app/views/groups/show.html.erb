@@ -40,9 +40,11 @@
       <div class="sns">
         <%# プロフィール表示 %>
         <% if @group.profile.present? %>
-          <small><%= t('.profile') %></small>
-          <br>
-          <small><%= @group.profile %></small>
+          <small>
+            <%= t('.profile') %>
+            <br>
+            <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
+          </small>
         <% elsif @relation &&  @relation.admin %>
           <small><%= link_to t('.addprofile'), edit_group_path(@group.id) %></small>
         <% end %>
