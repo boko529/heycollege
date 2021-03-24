@@ -14,7 +14,7 @@
         <% end %>
         <br>
         <% if @profile%>
-          <%= link_to t('.profileedit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+          <%= link_to t('.profileedit'), edit_group_path(@group.id), class: 'btn btn-primary' %>
         <% end %>
         <br>
         <%= render 'join_form' %>  
@@ -43,10 +43,10 @@
         <small>
           <% if @profile %>
             <%= t('.profile') %>
-            <br><%= @profile.content %>
+            <br><%= @profile %>
           <% else %>
             <%# プロフィール作成欄 %>
-            <%= link_to t('.makenew'), {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
+            <%= link_to t('.makenew'), edit_group_path(@group.id), class: 'btn btn-primary' %>
           <% end %>
         </small>
       <% end %>
