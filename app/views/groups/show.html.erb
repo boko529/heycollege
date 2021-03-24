@@ -1,13 +1,14 @@
 <% provide(:title, @group.name) %>
 <div class="col-lg-8 offset-lg-2" id="box" >
   <div class="group-show" >
-    <div class="header_icon">
-      <!--ここにヘッダー画像-->
-    </div>
+    <%# 下5行はヘッダー画像に関する記述 %>
+    <% if @group.header_image? %>
+      <div><%= image_tag @group.header_image.url, alt: "group-header" %></div>
+    <% else %>
+      <div class="header_sample"></div>
+    <% end %>
     <span class="frame">
-      <div class="circle">
-        <i class="fas fa-users fa-3x"></i>
-      </div>
+      <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
           <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
@@ -64,7 +65,7 @@
       <%= render 'shared/stats_user' %>
       <% @users.each do |user| %>
         <li class="list-group-item list-group-item-action member-list-box">
-          <%= link_to display_name(user), user %>
+          <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to display_name(user), user %>
         </li>
       <% end %>
       <div class="page-box">
