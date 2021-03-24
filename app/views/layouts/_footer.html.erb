@@ -2,7 +2,7 @@
   <%# スマホ用フッターボタン %>
   <div class="footer_button container d-block d-sm-none fixed-bottom bg-white border-top">
     <div class="row">
-      <% if user_signed_in? %>
+    <% if user_signed_in? %>
 
       <%# ランキング %>
       <div class="footer-rank col">
@@ -32,7 +32,7 @@
           <% end %>
         </div>
         <div class="mobile-footer-logo-let">Bookmark</div>
-      </div>   
+      </div>
 
         <%# その他・設定ボタン %>
         <div class="footer-other col" id="open" onclick="openBottomup()">
@@ -232,20 +232,6 @@
      	<p class="copyright">Copyright © 2021 All rights reserved</p>
   </div>
   </div>
-
-  <script>
-  // 表示を消す
-    function openBottomup() {
-    document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
-    document.body.style.overflow = 'hidden';
-    }
-  // 表示する
-  function closeBottomup() {
-    document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
-    document.body.style.overflow = 'scroll';
-      }
-  </script>
-
 </footer>
 
 <%# 著作権は気にするなそれワカチコワカチコ %>

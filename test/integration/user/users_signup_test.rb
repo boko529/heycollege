@@ -34,7 +34,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
           password_confirmation: "password",
           gender: "male",
           grade: "B1",
-          faculty:"APS" } }
+          faculty:"APS",
+          agreement: 1 } }
         end
         get root_path
         assert_select "div.alert"
@@ -52,7 +53,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password",
                                             gender: "male",
                                             grade: "B1",
-                                            faculty:"APS" } }
+                                            faculty:"APS",
+                                            agreement: 1 } }
         end
       end
       assert_template 'devise/mailer/confirmation_instructions'
@@ -72,7 +74,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                               password_confirmation: "password",
                                               gender: "male",
                                               grade: "B1",
-                                              faculty:"APS" } }
+                                              faculty:"APS",
+                                              agreement: 1 } }
           end
         end
       end
@@ -86,5 +89,24 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       login_as(user, scope: :user)
       get user_path(user.id)
       assert_template 'users/show'
+    end
+
+    test "利用規約に同意していない" do
+      get new_user_registration_path
+      assert_no_difference 'User.count' do
+        #ユーザーポイントが作成されていないことを確認
+        assert_no_difference 'UserPoint.count' do
+          post user_registration_path, params: { user: { name:  "test",
+                                            email: "user@valld.com",
+                                            password: "foobar",
+                                            password_confirmation: "foobar",
+                                            gender: "male",
+                                            grade: "B1",
+                                            faculty:"APS",
+                                            agreement: 0 } }
+        end
+      end
+      assert_template 'devise/registrations/new'
+      assert_select "div#error_explanation"
     end
 end
