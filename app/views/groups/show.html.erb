@@ -11,9 +11,7 @@
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
           <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
-        <% end %>
-        <br>
-        <% if @profile%>
+          <br>
           <%= link_to t('.profileedit'), edit_group_path(@group.id), class: 'btn btn-primary' %>
         <% end %>
         <br>
@@ -38,20 +36,16 @@
       </span>
     </div>-->
     <div>
-      <%# プロフィール表示 %>
-      <% if @relation &&  @relation.admin %>
-        <small>
-          <% if @profile %>
-            <%= t('.profile') %>
-            <br><%= @profile %>
-          <% else %>
-            <%# プロフィール作成欄 %>
-            <%= link_to t('.makenew'), edit_group_path(@group.id), class: 'btn btn-primary' %>
-          <% end %>
-        </small>
-      <% end %>
-      <br>
       <div class="sns">
+        <%# プロフィール表示 %>
+        <% if @group.profile.present? %>
+          <small><%= t('.profile') %></small>
+          <br>
+          <small><%= @group.profile %></small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><%= link_to t('.addprofile'), edit_group_path(@group.id) %></small>
+        <% end %>
+        <br>
         <% if @group.instagram_name.present? %>
           <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
         <% elsif @relation &&  @relation.admin %>

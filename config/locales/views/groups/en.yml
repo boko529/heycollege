@@ -18,10 +18,11 @@ en:
       make: "Create"
     show:
       allowothers: "Allow other members to edit"
-      profileedit: "Profile edit"
+      profileedit: "Group edit"
       score: "Score"
       profile: "Profile"
       makenew: "Set profile"
       addaccount: "Add account"
       member: "Members"
+      addprofile: "Add profile"
 
