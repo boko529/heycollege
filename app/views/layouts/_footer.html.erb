@@ -235,4 +235,15 @@
 </footer>
 
 <%# 著作権は気にするなそれワカチコワカチコ %>
-
+<script>
+// 表示を消す
+  function openBottomup() {
+   document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
+   document.body.style.overflow = 'hidden';
+  }
+// 表示する
+ function closeBottomup() {
+   document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
+   document.body.style.overflow = 'scroll';
+    }
+</script>
