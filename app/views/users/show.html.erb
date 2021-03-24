@@ -10,9 +10,7 @@
 
     <%# pics %>
     <div class="frame_icon">
-      <div class="circle">
-        <%= image_tag 'default_user.png', :size => '80x80' %>
-      </div>
+      <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
     </div>
 
     <%# 編集 %>
@@ -32,9 +30,9 @@
     <%# マイページのときのみ表示 %>
     <% if @user == current_user %>
       <%# その他・設定ボタン (PC版)%>
-      <div class="dropdown d-none d-md-block">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-cog"></i>
+      <div class="dropdown d-none d-sm-block">
+        <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
           <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
@@ -54,53 +52,7 @@
           <% end %>
         </div>
       </div>
-
-      <%# その他・設定ボタン (スマホ版)%>
-      <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
-        <i class="fas fa-cog"></i>
-      </div>
-
-      <%# その他ボトムアップスライド %>
-      <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
-        <div id="closeIcone" id="open" onclick="closeBottomup()">
-          <i class="fas fa-times"></i>
-        </div>
-        <ul class="other-bottomup-ul">
-          <li class="list-group-item text-left">
-            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-              <span class="d-inline"><%= t('.contactus') %></span>
-            <% end %>
-          </li>
-          <li class="list-group-item text-left">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <span class="d-inline">&nbsp;<%= t('.logout') %></span>
-          <% end %>
-          </li>
-          <%# 利用規約 %>
-          <li class="list-group-item text-left">
-            <%= link_to page_path('terms') do %>
-              <span class="d-inline"><%= t('.term') %></span>
-            <% end %>
-          </li>
-          <%# プライバシーポリシー %>
-          <li class="list-group-item text-left">
-            <%= link_to page_path('privacypolicy') do %>
-              <span class="d-inline"><%= t('.privacypolicy') %></span>
-            <% end %>
-          </li>
-          <%# 退会 %>
-          <li class="list-group-item text-left">
-            <%= link_to users_hide_path(@user), method: :patch, data: { confirm: t('.delete_account_message') } do %>
-              <span class="d-inline"><%= t('.leave') %></span>
-            <% end %>
-          </li>
-          <li class="usershow-blank list-group-item text-left d-inlineblock">
-            <span class="d-inline"></span>
-          </li>
-        </ul>
-      </div>
-
-    <% end %>
+    <% end %> 
   </div>
 
     
@@ -157,41 +109,16 @@
           <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
         <% end %>
        </div> 
-       
-
-
-      <!--
-      <p>
-        <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
-      </p>
-      
-      <div class="collapse mx-auto" id="collapsemyreview">
-        <div class="card card-body">
-          <h2>過去のレビュー</h2>
-          <table class="table">
-            <tr>
-              <th>クラス名</th>
-              <th>スコア</th>
-              <th>レビュータイトル</th>
-            </tr>
-            <% @reviews.each do |review| %>
-            <tr>
-              <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
-              <td><%= review.score %></td>
-              <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>-->
 
       <%# 所属団体 %>
       <% if @groups.any? %>
         <div class="group-join">
           <%= t('.mygroup') %>（<%= @groups.count %>
-          <% @groups.each do |group| %>
-            <p>・<%= link_to group.name, group %></p>
-          <% end %>
+          <ul>
+            <% @groups.each do |group| %>
+              <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 

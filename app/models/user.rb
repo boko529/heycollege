@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
+  mount_uploader :image, UserImageUploader # プロフィール画像用のcarrierwave
   # APUメアドのバリデーション削除
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -77,7 +78,7 @@ class User < ApplicationRecord
     group.include?(group1)
   end
 
-  # 退会済みかどうか確認(退会済みならtrue)
+  # 退会済みかどうか確認(退会済みならfalse)
   def active_for_authentication?
     super && (self.is_deleted == false)
   end

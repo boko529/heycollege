@@ -73,7 +73,7 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:name, :instagram_name, :twitter_name)
+      params.require(:group).permit(:name, :instagram_name, :twitter_name, :profile_image, :profile_image_cache, :remove_profile_image, :header_image, :header_image_cache, :remove_header_image)
     end
 
     def admin_group

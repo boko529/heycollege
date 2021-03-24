@@ -1,15 +1,6 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.frame_icon{
-  // float: left; /*左に回り込み*/
-  // padding-right: 1rem;
-   /*丸アイコン*/
-  .circle {
-    width: 84px;
-    height: 84px;
-  }
-}
 .frame_profile{
   // float: left; /*左に回り込み*/
   display: block;
@@ -17,14 +8,12 @@
   margin-left: 5%;
   margin-right: 5%;
 }
-
+// ボタンのポジション
 .usershow-editbutton,
-.follow-btn,
-.dropdown {
+.follow-btn{
   position: relative;
   float: right;
   border: 1.5px solid #000;
-  transition: all 0.3s;
   border-radius: 0.5rem;
   width: 46px;
   text-align: center;
@@ -35,18 +24,34 @@
     color: black !important;
   }
 }
-
 .dropdown{
+  margin-right: 25px;
+  margin-top: 5px;
   float: right;
-  .btn-secondary{
-    background-color: #00000000;
-    color: black;
-    position: relative;
-    padding: 0.2rem 1rem;
-    border-radius: 0.5rem;
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  top: -80px;
+  height: 23px;
+  width: 46px;
+  text-align: center;
+  align-items: center;
+  button{
+  position: relative;
+  top: -3px;
+  outline: none!important;
+  }
+  button {
+  height: 23px;
+  width: 46px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  }
+  .dropdown-toggle::after {
+    display: none;
   }
 }
-
 .group-join{
   p{
     margin: 0.3rem;
