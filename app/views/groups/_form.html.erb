@@ -2,6 +2,13 @@
   <%= render 'shared/error_messages', object: f.object %>
   
   <%= f.label :name %>
+
+  <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %> <%# 80*80のプロフィール画像表示 %>
+  <%= f.file_field :profile_image, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+  <%= f.hidden_field :profile_image_cache, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+  <label>
+    <%= f.check_box :remove_profile_image %>画像を削除する
+  </label>
   <%= f.text_field :name, class: 'form-control' %>
   <%= f.label :instagramのユーザー名%>
   <%= f.text_field :instagram_name, class: 'form-control' %>

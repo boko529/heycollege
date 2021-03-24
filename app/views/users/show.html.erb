@@ -187,9 +187,11 @@
       <% if @groups.any? %>
         <div class="group-join">
           <%= t('.mygroup') %>（<%= @groups.count %>
-          <% @groups.each do |group| %>
-            <p>・<%= link_to group.name, group %></p>
-          <% end %>
+          <ul>
+            <% @groups.each do |group| %>
+              <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
 
