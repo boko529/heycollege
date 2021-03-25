@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include UserStiable
+  include User::Stiable
   # Point関係のメソッドはuser/point.rbに記載
   include User::Point
   # Include default devise modules. Others available are:
@@ -81,29 +81,5 @@ class User < ApplicationRecord
   # 退会済みかどうか確認(退会済みならtrue)
   def active_for_authentication?
     super && (self.is_deleted == false)
-  end
-end
-
-module UserStiable
-  extend ActiveSupport::Concern
-
-  module ClassMethods
-    def find_sti_class(university_id)
-      case university_id
-        when 1
-          ApuUser
-        else
-          self
-      end
-    end
-
-    def sti_name
-      case self.to_s
-        when 'ApuUser'
-          1
-        else
-          0
-      end
-    end
   end
 end

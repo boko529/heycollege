@@ -9,6 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 University.create(name: "APU")
+University.create(name: "OPU")
 
 User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, university_id: 1)
 
@@ -22,7 +23,7 @@ User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", mes
   password: password,
   confirmed_at: Time.now,
   agreement: true,
-  university_id: 1)
+  university_id: 2)
 end
 
 # ユーザーごとにポイントテーブルを作成
