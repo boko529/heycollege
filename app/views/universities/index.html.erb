@@ -1,0 +1,15 @@
+<h2>大学一覧ページ</h2>
+<div>
+  <table>
+    <tr>
+      <td>大学ID</td>
+      <td>大学名</td>
+    </tr>
+    <% @univs.each do |f| %>
+      <tr>
+        <td><%= f.id %></td>
+        <td><%= f.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

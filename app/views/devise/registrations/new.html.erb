@@ -27,7 +27,7 @@
       <div class="field">
         <%= f.label :faculty,t('.faculty') %><br/>
         <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspecified') %>
-        <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
+        <%= f.collection_radio_buttons :faculty, ApuUser.faculties_i18n, :first, :last do |b|  %>
           <%=  b.radio_button(class: "form-contorl") %>
           <%= b.label %>
         <% end %> 

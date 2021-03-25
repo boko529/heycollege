@@ -1,11 +1,12 @@
 class User < ApplicationRecord
+  include UserStiable
   # Point関係のメソッドはuser/point.rbに記載
   include User::Point
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum grade: { B1: 1, B2: 2, B3: 3, B4: 4}, _prefix: :true
   enum gender: { male: 1,  female: 2 }, _prefix: :true
-  enum faculty: { APS: 1, APM: 2}, _prefix: :true
+  
   #開発の都合でユーザー破壊されたらデータも破壊、後々改善する必要あり
   has_many :lectures, dependent: :destroy
   has_many :reviews
@@ -80,5 +81,29 @@ class User < ApplicationRecord
   # 退会済みかどうか確認(退会済みならtrue)
   def active_for_authentication?
     super && (self.is_deleted == false)
+  end
+end
+
+module UserStiable
+  extend ActiveSupport::Concern
+
+  module ClassMethods
+    def find_sti_class(university_id)
+      case university_id
+        when 1
+          ApuUser
+        else
+          self
+      end
+    end
+
+    def sti_name
+      case self.to_s
+        when 'ApuUser'
+          1
+        else
+          0
+      end
+    end
   end
 end

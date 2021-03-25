@@ -49,4 +49,5 @@ Rails.application.routes.draw do
   # 言語切り替え用rooting
   get "/application/change_language/:language" => "application#change_language"
   patch "/users/:id/hide" => "users#hide", as: 'users_hide' # 退会用
+  resources :universities
 end
