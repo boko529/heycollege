@@ -1,0 +1,2 @@
+class AutoCreate < ApplicationRecord
+end

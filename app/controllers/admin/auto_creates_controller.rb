@@ -1,8 +1,11 @@
-class Admin::LecturesController < ApplicationController
+class Admin::AutoCreatesController < ApplicationController
   before_action :authenticate_user!
   before_action :if_not_admin
+  
+  def new
+  end
 
-  def index
+  def create
   end
   
   private
