@@ -65,4 +65,42 @@ class GroupsEditTest < ActionDispatch::IntegrationTest
     assert_template nil
     assert_not_equal @group2.name, name
   end
+
+  test "profile edit" do
+    login_as(@user2, scope: :user)
+    get edit_group_path(@group1)
+    assert_template 'groups/edit'
+    profile  = "逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ！"
+    patch group_path(@group1), params: { group: { profile: profile } }
+    assert_not flash.empty?
+    assert_redirected_to @group1
+    @group1.reload
+    assert_equal profile,  @group1.profile
+  end
+
+  test "non-admin user can not edit profile" do
+    login_as(@user1, scope: :user)
+    get edit_group_path(@group1)
+    follow_redirect!
+    assert_template 'groups/show'
+    profile  = "怪我したらもう乗らんで済みます！痛いですけど、エヴァに乗るよりはマシですから我慢してください！パァン！"
+    patch group_path(@group1), params: { group: { profile: profile } }
+    follow_redirect!
+    assert_template 'groups/show'
+    @group1.reload
+    assert_not_equal profile,  @group1.profile
+  end
+
+  test "even admin user for a group can not edit other profile" do
+    login_as(@user2, scope: :user)
+    get edit_group_path(@group2)
+    follow_redirect!
+    assert_template 'groups/show'
+    profile  = "ユイぃ！ユイぃ！ユイぃ！ユイぃ！ユイぃ！どこだぁ！ユイぃ！ユイぃい！！！"
+    patch group_path(@group2), params: { group: { profile: profile } }
+    follow_redirect!
+    assert_template 'groups/show'
+    @group1.reload
+    assert_not_equal profile,  @group2.profile
+  end
 end

@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @users = @group.users
     @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
-    @profile = @group.group_profile
     @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
     if @group.twitter_name.present? && @group.instagram_name.present?
       @twitter = "https://twitter.com/"+@group.twitter_name
@@ -73,7 +72,7 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:name, :instagram_name, :twitter_name, :profile_image, :profile_image_cache, :remove_profile_image, :header_image, :header_image_cache, :remove_header_image)
+      params.require(:group).permit(:name, :instagram_name, :twitter_name, :profile, :profile_image, :profile_image_cache, :remove_profile_image, :header_image, :header_image_cache, :remove_header_image)
     end
 
     def admin_group
