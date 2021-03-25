@@ -16,3 +16,10 @@ ja:
     footer:
       term: "利用規約"
       privacypolicy: "プライバシーポリシー"
+    subsidebar:
+      rank: "ランキング"
+      make: "ページを作る"
+      book: "ブックマーク"
+      contact: お問い合わせ
+      log: ログイン&新規登録
+      

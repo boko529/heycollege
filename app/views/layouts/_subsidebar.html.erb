@@ -5,7 +5,7 @@
     <% if user_signed_in? %>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to root_path do %>
-          <i class="fas fa-medal fa-2x"></i><span >ランキング</span>
+          <i class="fas fa-medal fa-2x"></i><span><%= t('.rank') %></span>
         <% end %>
       </li>
     <!--
@@ -17,17 +17,17 @@
     -->
       <li class="list-group-item text-center text-lg-left">
         <%= link_to new_lecture_path do %>
-          <i class="far fa-plus-square fa-2x"></i><span >ページ作成</span>
+          <i class="far fa-plus-square fa-2x"></i><span><%= t('.make') %></span>
         <% end %>
       </li>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to bookmarks_path do %>
-          <i class="far fa-bookmark fa-2x"></i><span >ブックマーク</span>
+          <i class="far fa-bookmark fa-2x"></i><span><%= t('.book') %></span>
         <% end %>
       </li>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-          <i class="fas fa-envelope fa-2x"></i><span >お問い合わせ</span>
+          <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>
         <% end %>
       </li>
       <!--
@@ -60,7 +60,7 @@
     <% else %>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to root_path do %>
-          <i class="fas fa-home fa-2x"></i><span >ランキング</span>
+          <i class="fas fa-home fa-2x"></i><span><%= t('.rank') %></span>
         <% end %>
       </li>
       <%# <li class="list-group-item"> %>
@@ -73,7 +73,7 @@
       -->
       <li class="list-group-item text-center text-lg-left">
         <%= link_to new_user_session_path do %>
-          <i class="fas fa-sign-in-alt fa-2x"></i><span >ログイン&新規登録</span>
+          <i class="fas fa-sign-in-alt fa-2x"></i><span><%= t('.log') %></span>
         <% end %>
       </li>
 
@@ -87,7 +87,7 @@
       
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-          <i class="fas fa-envelope fa-2x"></i><span >お問い合わせ</span>
+          <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>
         <% end %>
       </li>
     <% end %>
