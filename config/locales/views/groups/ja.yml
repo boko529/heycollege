@@ -18,9 +18,10 @@ ja:
       make: "作る"
     show:
       allowothers: "共同ホストを増やす"
-      profileedit: "プロフィール編集"
+      profileedit: "グループ編集"
       score: "スコア"
-      profile: "プロファイル"
-      makenew: "プロファイルを設定する"
+      profile: "プロフィール"
+      makenew: "プロフィールを設定する"
       addaccount: "アカウントを追加"
       member: "メンバー"
+      addprofile: "プロフィールを追加"

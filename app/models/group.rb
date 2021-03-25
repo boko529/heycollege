@@ -12,4 +12,5 @@ class Group < ApplicationRecord
     mount_uploader :header_image, GroupHeaderImageUploader
     validates :twitter_name, length: { maximum: 30}
     validates :instagram_name, length: { maximum: 30}
+    validates :profile, length: { maximum: 1000 }
 end
