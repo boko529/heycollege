@@ -35,8 +35,8 @@
       </div>
 
         <%# その他・設定ボタン %>
-        <div class="footer-other col" id="open" onclick="openBottomup()">
-          <div class="mobile-footer-logo">
+        <div class="footer-other col" id="open" onclick="openBottomup()" >
+          <div class="footer-menu">
             <i class="fas fa-ellipsis-h fa-2x"></i>
           </div>
           <div class="mobile-footer-logo-let">Menu</div>
@@ -227,23 +227,27 @@
     </div> 
   </div>
   
-  <div class="copyright　d-none d-sm-block ">
+  <div class="copyright d-none d-sm-block ">
   <div class="container">
      	<p class="copyright">Copyright © 2021 All rights reserved</p>
   </div>
   </div>
 </footer>
 
-<%# 著作権は気にするなそれワカチコワカチコ %>
 <script>
-// 表示を消す
-  function openBottomup() {
-   document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
-   document.body.style.overflow = 'hidden';
-  }
-// 表示する
+// // 表示
+//   function openBottomup() {
+//    document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
+//    document.body.style.overflow = 'hidden';
+//   }
+// 消す
  function closeBottomup() {
    document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
    document.body.style.overflow = 'scroll';
-    }
+  }
+// メニュー開閉
+  function openBottomup() {
+    var open = document.querySelector(".other-bottomup");
+    open.classList.toggle("other-bottomup-transition-active");
+  }
 </script>
