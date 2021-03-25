@@ -9,18 +9,11 @@
     display: grid;
     grid-template-columns: 40px 1fr 100px;
     border-bottom: 1px solid gray;
-    .circle {/*円の外枠の大きさを調節*/
-      margin: 0.1rem 0;
-      width: 35px;
-      height: 35px;
-      color: #222;
-      img{/*円の中の画像の大きさを調節*/
-        width: 25px;
-        height: 25px;
-      }
-    }
     #item1{
+      margin: 0.5rem 0;
       grid-column: 1/2;
+      text-align: center;
+      color: #222;
     }
     #item2{
       grid-column: 2/3;

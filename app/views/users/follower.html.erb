@@ -5,7 +5,7 @@
         <% @followers.each do |f_user| %>
         <ul class="following-follower">
             <%= link_to f_user do %>
-                <div class="circle" id="item1">
+                <div id="item1">
                 <%= render partial: "shared/user_image/display_icon20", locals: {user: f_user} %>
                 </div>
             <% end %>
