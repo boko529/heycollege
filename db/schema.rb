@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2021_03_24_114458) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "instagram_name"
     t.string "twitter_name"
-    t.text "profile"
     t.string "profile_image"
     t.string "header_image"
+    t.text "profile"
   end
 
   create_table "helpfuls", force: :cascade do |t|
