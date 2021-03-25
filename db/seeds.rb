@@ -12,7 +12,7 @@
 User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true)
 
 #追加のユーザーをまとめて生成する
-30.times do |n|
+150.times do |n|
   name  = Faker::Name.name
   email = "user-#{n+1}@apu.ac.jp"
   password = "foobar"
