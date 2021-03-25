@@ -3,11 +3,8 @@ class AutoCreate < ApplicationRecord
   validates :name, presence: true
 
   def self.import_APU(file)
-    # CSV_HEADER = {
-    #   "lecture_j" => 'lecture_name',
-    #   "teacher_j" => 'teacher_name'
-    # }
     # CSV.foreach(file.path, encoding: 'Shift_JIS:UTF-8', headers: true).with_index(2) do |row, row_number|
+    # 文字コードの関係でAPUのCSVは文字コードをANSIに一度変換しないといけない
     CSV.foreach(file.path, encoding: 'cp932:UTF-8', headers: true).with_index(2) do |row, row_number|
       @teacher_name = row["先生"]
       @lecture_name = row["講義"]
