@@ -1,16 +1,6 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.frame_icon{
-  // float: left; /*左に回り込み*/
-  // padding-right: 1rem;
-   /*丸アイコン*/
-  .circle {
-    width: 84px;
-    height: 84px;
-  }
-}
-
 .frame_profile{
   // float: left; /*左に回り込み*/
   display: block;
@@ -18,12 +8,15 @@
   margin-left: 5%;
   margin-right: 5%;
 }
-
+// ボタンのポジション
 .usershow-editbutton,
-.followbtn,
-.other-button,
-.dropdown {
+.follow-btn{
   position: relative;
+  float: right;
+  border: 1.5px solid #000;
+  border-radius: 0.5rem;
+  width: 46px;
+  text-align: center;
   top: -80px;
   margin: 5px;
   color: black!important;
@@ -31,108 +24,34 @@
     color: black !important;
   }
 }
-
 .dropdown{
-  float: right;
-  .btn-secondary{
-    background-color: #00000000;
-    color: black;
-    position: relative;
-    padding: 0.2rem 1rem;
-    border-radius: 0.5rem;
-  }
-}
-
-
-
-
-// 設定開くボタン
-.other-button, .usershow-editbutton{
+  margin-right: 25px;
+  margin-top: 5px;
   float: right;
   border: 1.5px solid #000;
-  /*枠線の幅、線種、色*/
-  padding: 0.2rem 1rem;
-  transition: all 0.3s;
   border-radius: 0.5rem;
-}
-// 下から上がってくる設定
-.other-bottomup {
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  z-index: 3;
-  top: 10px;
-}
-// アニメーション前
-.other-bottomup-transition {
-  opacity:0;
-  bottom: -100%;
-  top: 100%;
-  height: 0;
-  transition: 0.3s;
-  visibility: hidden;
-}
-
-// アニメーション後
-.other-bottomup-transition-active {
-  opacity: 1;
-  bottom: 0;
-  top: 0;
-  height: 100%;
-  transition: 0.3s;
-  visibility: visible
-}
-  // 閉じるボタン
-  #closeIcone {
-    text-align: right;
-    font-size: 35px;
-    padding-right: 40px;
-    background-color: #fff;
-  }
-  ul.other-bottomup-ul {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    position:absolute;
-    width:100%;
-    li {
-      display: block;
-    }
-    .usershow-blank {
-      height: 100%;
-    }
-  } 
-
-
-.follow-btn{
-  float: right;
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  padding: 0.2rem 1rem;
-  margin-right: 0.3rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  top: -80px;
+  height: 23px;
+  width: 46px;
   text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-
+  align-items: center;
+  button{
+  position: relative;
+  top: -3px;
+  outline: none!important;
+  }
+  button {
+  height: 23px;
+  width: 46px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  }
+  .dropdown-toggle::after {
+    display: none;
+  }
 }
-
-
-.sns{
-  // margin-left: 0.5rem;
-  // margin-top: -1.5rem;
-}
-
-
 .group-join{
   p{
     margin: 0.3rem;

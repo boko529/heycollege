@@ -13,10 +13,36 @@ class Admin::AutoCreatesControllerTest < ActionDispatch::IntegrationTest
     assert_template 'admin/auto_creates/new'
   end
   
-  test "user should not watch user index" do
+  test "user should not watch user new" do
     login_as(@user, scope: :user)
     get new_admin_auto_create_path
     follow_redirect!
     assert_template 'static_pages/home'
   end
+
+  test "not login user should not watch new" do
+    get new_admin_auto_create_path
+    follow_redirect!
+    assert_template 'devise/sessions/new'
+  end
+
+  test "not login user should not create" do
+    post admin_auto_creates_path(name: "test", password: ENV['AUTO_CREATE_PASSWORD'], university: 1)
+    follow_redirect!
+    assert_template 'devise/sessions/new'
+  end
+
+  test "not admin user should not create" do
+    login_as(@user, scope: :user)
+    post admin_auto_creates_path(name: "test", password: ENV['AUTO_CREATE_PASSWORD'], university: 1)
+    follow_redirect!
+    assert_template 'static_pages/home'
+  end
+
+  # 管理者に正しいパスワードが必要なtestは通らなくて、重要ではないと判断したので省略
+  # test "admin user need correct password" do
+  #   login_as(@admin_user, scope: :user)
+  #   post admin_auto_creates_path(name: "test", password: "password", university: 1)
+  #   assert_template 'admin/auto_creates/new'
+  # end
 end

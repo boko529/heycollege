@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :message)
+    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :message, :image, :image_cache, :remove_image)
   end
 
   # 退会しているかを確認(user/show用)

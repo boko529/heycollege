@@ -1,17 +1,19 @@
 <% provide(:title, @group.name) %>
-<div class="col-lg-8 offset-lg-2">
-  <div class="group-index">
+<div class="col-lg-8 offset-lg-2" id="box" >
+  <div class="group-show" >
+    <%# 下5行はヘッダー画像に関する記述 %>
+    <% if @group.header_image? %>
+      <div><%= image_tag @group.header_image.url, alt: "group-header" %></div>
+    <% else %>
+      <div class="header_sample"></div>
+    <% end %>
     <span class="frame">
-      <div class="circle">
-        <i class="fas fa-users fa-3x"></i>
-      </div>
+      <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
           <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
-        <% end %>
-        <br>
-        <% if @profile%>
-          <%= link_to t('.profileedit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+          <br>
+          <%= link_to t('.profileedit'), edit_group_path(@group.id), class: 'btn btn-primary' %>
         <% end %>
         <br>
         <%= render 'join_form' %>  
@@ -35,20 +37,18 @@
       </span>
     </div>-->
     <div>
-      <%# プロフィール表示 %>
-      <% if @relation &&  @relation.admin %>
-        <small>
-          <% if @profile %>
-            <%= t('.profile') %>
-            <br><%= @profile.content %>
-          <% else %>
-            <%# プロフィール作成欄 %>
-            <%= link_to t('.makenew'), {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
-          <% end %>
-        </small>
-      <% end %>
-      <br>
       <div class="sns">
+        <%# プロフィール表示 %>
+        <% if @group.profile.present? %>
+          <small>
+            <%= t('.profile') %>
+            <br>
+            <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
+          </small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><%= link_to t('.addprofile'), edit_group_path(@group.id) %></small>
+        <% end %>
+        <br>
         <% if @group.instagram_name.present? %>
           <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
         <% elsif @relation &&  @relation.admin %>
@@ -67,7 +67,7 @@
       <%= render 'shared/stats_user' %>
       <% @users.each do |user| %>
         <li class="list-group-item list-group-item-action member-list-box">
-          <%= link_to display_name(user), user %>
+          <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to display_name(user), user %>
         </li>
       <% end %>
       <div class="page-box">

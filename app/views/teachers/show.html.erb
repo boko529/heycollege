@@ -1,15 +1,12 @@
 <% provide(:title, @teacher.name) %>
 <div class="teacher_show">
-<div>
-  <%= link_to t('.back-to-teacher-index'), teachers_path %>&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= link_to t('.return-to-class-index'), lectures_path %>
-
-</div>
+    <%# link_to t('.back-to-teacher-index'), teachers_path %><%# &nbsp;&nbsp;&nbsp;&nbsp;%> 
+    <%# link_to t('.return-to-class-index'), lectures_path %>
   <%# プロフィール画像と作成者の名前 %>
   <div class="creator_name">
     <%= t('.teacher-creater') %>
     <%= link_to @teacher.user do %>
-      <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@teacher.user) %>
+      <%= render partial: "shared/user_image/display_icon20", locals: {user: @teacher.user} %><%= display_name(@teacher.user) %>
     <% end %>
   </div>
   <div class="teacher-info">

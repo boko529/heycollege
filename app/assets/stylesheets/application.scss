@@ -64,6 +64,22 @@ body{
   }
 }
 
+// ユーザーアイコンやグループアイコンを丸くするためのクラス(groupはユーザーと区別してまんまるじゃなくて少し丸みがある四角でも良いかも。)
+.user-icon, .group-icon{
+  border-radius: 100%;
+}
+
+// fontawesomeを80×80にする
+.font-awesome-80{
+  width: 80px !important;
+  height: 80px;
+}
+
+// fontawesomeを20×20にする
+.font-awesome-20{
+  width: 20px !important;
+  height: 20px;
+}
 
 
 // ページネーションカスタマイズ
@@ -105,12 +121,6 @@ nav{
 
 .yield_box{
   min-height: 35rem;
-}
-
-
-// コピーライト
-.copyright {
-  text-align:center;
 }
 
 // デバック表示(開発環境)の整形
@@ -171,17 +181,6 @@ nav{
   }
   strong {
     display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
   }
 }
 
