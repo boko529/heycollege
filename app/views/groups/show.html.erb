@@ -12,10 +12,8 @@
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
           <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
-        <% end %>
-        <br>
-        <% if @profile%>
-          <%= link_to t('.profileedit'), {controller: 'group_profiles', action: 'edit', id: @profile.id}, class: 'btn btn-primary' %>
+          <br>
+          <%= link_to t('.profileedit'), edit_group_path(@group.id), class: 'btn btn-primary' %>
         <% end %>
         <br>
         <%= render 'join_form' %>  
@@ -39,20 +37,18 @@
       </span>
     </div>-->
     <div>
-      <%# プロフィール表示 %>
-      <% if @relation &&  @relation.admin %>
-        <small>
-          <% if @profile %>
-            <%= t('.profile') %>
-            <br><%= @profile.content %>
-          <% else %>
-            <%# プロフィール作成欄 %>
-            <%= link_to t('.makenew'), {controller: 'group_profiles', action: 'new', id: @group.id}, class: 'btn btn-primary' %>
-          <% end %>
-        </small>
-      <% end %>
-      <br>
       <div class="sns">
+        <%# プロフィール表示 %>
+        <% if @group.profile.present? %>
+          <small>
+            <%= t('.profile') %>
+            <br>
+            <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
+          </small>
+        <% elsif @relation &&  @relation.admin %>
+          <small><%= link_to t('.addprofile'), edit_group_path(@group.id) %></small>
+        <% end %>
+        <br>
         <% if @group.instagram_name.present? %>
           <small><i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %></small>
         <% elsif @relation &&  @relation.admin %>
