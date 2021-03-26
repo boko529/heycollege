@@ -33,15 +33,15 @@ User.all.each do |user|
   user.user_point_history.create(point_type: 1, amount: 10, user_point_id: user_p.id)
 end
 
-Teacher.create!(name: "森 直樹", user_id: 1)
-Teacher.create!(name: "藤岡 真由美", user_id: 2)
+Teacher.create!(name_ja: "森 直樹", user_id: 1)
+Teacher.create!(name_ja: "藤岡 真由美", user_id: 2)
 
 users = User.order(:created_at).take(5)
 10.times do |n|
   subject_name = Faker::Science.element
   next_name = "#{n+1}"
   name = subject_name + next_name
-  users.each { |user| user.lectures.create!(name: user.id.to_s + name, teacher_id: 1)}
+  users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name, teacher_id: 1)}
 end
 
 5.times do |n|

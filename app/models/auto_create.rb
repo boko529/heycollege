@@ -10,12 +10,12 @@ class AutoCreate < ApplicationRecord
         @teacher_name = row["先生"]
         @lecture_name = row["講義"].sub(/^\w+\)/, "") # 講義名の冒頭の"Online)"や"Hyblid)"などの")"手前を削除(正規表現で指定)
         if @lecture_name
-          if teacher = Teacher.find_by(name: @teacher_name)
-            Lecture.create!(name: @lecture_name, user_id: 1, teacher_id: teacher.id) # 失敗した際にエラーが出るようにする必要あり、最後にセーブ持っていってトランザクションまとめるのもあり。
+          if teacher = Teacher.find_by(name_ja: @teacher_name)
+            Lecture.create!(name_ja: @lecture_name, user_id: 1, teacher_id: teacher.id) # 失敗した際にエラーが出るようにする必要あり、最後にセーブ持っていってトランザクションまとめるのもあり。
           else
-            teacher = Teacher.new(name: @teacher_name, user_id: 1)
+            teacher = Teacher.new(name_ja: @teacher_name, user_id: 1)
             teacher.save! # if文を用いたほうが良い？
-            Lecture.create!(name: @lecture_name, user_id: 1, teacher_id: teacher.id)
+            Lecture.create!(name_ja: @lecture_name, user_id: 1, teacher_id: teacher.id)
           end
         end
       rescue

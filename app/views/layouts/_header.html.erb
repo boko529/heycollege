@@ -55,11 +55,11 @@
       <%# 言語切り替えボタン %>
       <div class="lang col-1 text-right">
         <div class="lang-change"></div>
-        <% if session[:locale] == "en" || session[:locale].blank? %>
+        <% if session[:locale] == "en" %>
           <%= link_to "/application/change_language/ja" do %>
           日本
           <% end %>
-        <% elsif session[:locale] == "ja" %>
+        <% elsif session[:locale] == "ja" || session[:locale].blank? %>
           <%= link_to "/application/change_language/en" do %>
           EN
           <% end %>
