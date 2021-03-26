@@ -9,8 +9,7 @@
   margin-right: 5%;
 }
 // ボタンのポジション
-.usershow-editbutton,
-.follow-btn{
+.usershow-editbutton{
   position: relative;
   float: right;
   border: 1.5px solid #000;
@@ -76,15 +75,6 @@
   padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
 }
 
-.following-follower-index{
-  .following-follower{
-    border-bottom: 1px solid gray;
-    height: 3.5rem;
-    .follow-btn{
-      float: right;
-    }
-  }
-}
 
 .user_show{
   nav{
