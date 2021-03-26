@@ -6,7 +6,10 @@ ja:
       review: 評価
     attributes:
       lecture:
-        name: "講義名"
+        name_ja: "クラス名"
+        name_en: "LectureName"
+        field: "分野"
+        lecture_lang: "言語"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -55,6 +58,17 @@ ja:
       faculty:
         APS: "APS"
         APM: "APM"
+    lecture:
+      field:
+        APS: "APS"
+        APM: "APM"
+        Liberal: "一般教養"
+        Language: "言語"
+      language:
+        Ja: "日本語"
+        En: "英語"
+        Es: "エスパニョール"
+        EJ: "日本語＆英語"
     user_point_history:
       point_type:
         init: "初期ポイント"

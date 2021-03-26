@@ -8,7 +8,10 @@ class Lecture < ApplicationRecord
   validates :name_en, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}, unless: :name_ja?
   validates :user_id, presence: true
   validates :teacher_id, presence: true
+  validates :field, presence: true
   attr_accessor :score
+  enum lecture_lang: { Ja: 1, En: 2, Es: 3, EJ: 4}, _prefix: :true # Language以外のときはvalidationつけたほうがいいかも。
+  enum field: { APS: 1, APM: 2, APSAPM: 3, Liberal: 4, Language: 5}, _prefix: :true
 
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
   def average_score

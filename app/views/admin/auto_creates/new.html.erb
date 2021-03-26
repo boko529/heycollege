@@ -19,8 +19,8 @@
             <%= f.select :university, {'アジア太平洋大学': 1, '大阪府立大学': 2}, { include_blank: '選択してください'}, { class: 'form-control'} %>
           </div>
           <div class="field">
-            <%= f.label :keyword,"確認(誤って追加することを防ぐために「本当に追加」と記入してください。)" %><br/>
-            <%= f.text_field :keyword, class: 'form-control', placeholder: "本当に追加" %>
+            <%= f.label :password,"パスワード" %><br/>
+            <%= f.password_field :password, class: 'form-control' %>
           </div>
           <div class="filed mx-auto">
             <%= f.submit "インポート", class: "btn btn-success d-block mx-auto", data: { confirm: "ファイルをもとにクラスが作成されます。本当によろしいですか？"} %>

@@ -27,22 +27,22 @@ class Admin::AutoCreatesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "not login user should not create" do
-    post admin_auto_creates_path(name: "test", keyword: "本当に追加", university: 1)
+    post admin_auto_creates_path(name: "test", password: ENV['AUTO_CREATE_PASSWORD'], university: 1)
     follow_redirect!
     assert_template 'devise/sessions/new'
   end
 
   test "not admin user should not create" do
     login_as(@user, scope: :user)
-    post admin_auto_creates_path(name: "test", keyword: "本当に追加", university: 1)
+    post admin_auto_creates_path(name: "test", password: ENV['AUTO_CREATE_PASSWORD'], university: 1)
     follow_redirect!
     assert_template 'static_pages/home'
   end
 
   # # キーワードが正しくない時のtestが通らない
-  # test "admin user need correct keyword" do
+  # test "admin user need correct password" do
   #   login_as(@admin_user, scope: :user)
-  #   post admin_auto_creates_path(name: "test", keyword: " ", university: 1)
+  #   post admin_auto_creates_path(name: "test", password: ENV['AUTO_CREATE_PASSWORD'], university: 1)
   #   follow_redirect!
   #   assert_template 'admin/auto_creates/new'
   # end

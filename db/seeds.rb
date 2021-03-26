@@ -43,7 +43,9 @@ users = User.order(:created_at).take(5)
   next_name = "#{n+1}"
   name_ja = subject_name_ja + next_name
   name_en = subject_name_en + next_name
-  users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1)}
+  field = "APS"
+  language = "Ja"
+  users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1, field: field, lecture_lang: language)}
 end
 
 5.times do |n|
