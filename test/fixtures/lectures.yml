@@ -1,29 +1,34 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 lecture_1:
-  name: "行動経済学入門"
+  name_ja: "行動経済学入門"
+  name_en: "行動経済学入門"
   user: user1
   teacher: teacher1
 
 
 lecture_2:
-  name: "数値解析"
+  name_ja: "数値解析"
+  name_en: "数値解析"
   user: user2
   teacher: teacher2
 
 <% 50.times do |n| %>
 lecture_<%= n+3 %>:
-  name:  lecture + <%= n+3 %>
+  name_ja:  lecture + <%= n+3 %>
+  name_en:  lecture + <%= n+3 %>
   user: user1
   teacher: teacher1
 <% end %>
 
 lecture_53:
-  name: "人工知能"
+  name_ja: "人工知能"
+  name_en: "人工知能"
   user: user1
   teacher: teacher3
 
 lecture_54:
-  name: "人工無能"
+  name_ja: "人工無能"
+  name_en: "人工無能"
   user: user1
   teacher: teacher4

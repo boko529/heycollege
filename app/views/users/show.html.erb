@@ -124,7 +124,6 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><%= t('.class') %> (<%= @lectures.count %>)</a>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
@@ -134,14 +133,6 @@
               <%= render partial: "users/review", locals: {review: review} %>
             <% end %>
             <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
-          </ol>
-        </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <ol class="lectures">
-            <% @lectures.each do |lecture| %>
-              <%= render partial: "users/lecture", locals: {lecture: lecture} %>
-            <% end %>
-            <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
           </ol>
         </div>
       </div>

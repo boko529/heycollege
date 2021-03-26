@@ -1,0 +1,51 @@
+<% provide(:title, 'クラス自動作成') %>
+<div class="container">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <h2><i class="fas fa-robot fa-2x"></i>クラス自動作成</h2>
+      <p class="text-center">＊整形されたcsvを使用してください</p>
+      <%= form_with model: [:admin, @auto_create], local:true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-content">
+          <div class="field">
+            <%= f.file_field :file, accept: '.csv' %>
+          </div>
+          <div class="field">
+            <%= f.label :name,"ログ" %><br/>
+            <%= f.text_field :name, class: 'form-control', placeholder: "ログメッセージ" %>
+          </div>
+          <div class="field">
+            <%= f.label :university,"大学" %><br/>
+            <%= f.select :university, {'アジア太平洋大学': 1, '大阪府立大学': 2}, { include_blank: '選択してください'}, { class: 'form-control'} %>
+          </div>
+          <div class="field">
+            <%= f.label :keyword,"確認(誤って追加することを防ぐために「本当に追加」と記入してください。)" %><br/>
+            <%= f.text_field :keyword, class: 'form-control', placeholder: "本当に追加" %>
+          </div>
+          <div class="filed mx-auto">
+            <%= f.submit "インポート", class: "btn btn-success d-block mx-auto", data: { confirm: "ファイルをもとにクラスが作成されます。本当によろしいですか？"} %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ログメッセージ</th>
+              <th scope="col">作成日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @auto_creates.each do |auto_create| %>
+              <tr>
+                <th scope="row"><%= auto_create.name %></th>
+                <th scope="row"><%= auto_create.created_at %></th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

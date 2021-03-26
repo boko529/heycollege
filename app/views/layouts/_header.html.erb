@@ -15,7 +15,7 @@
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: t('.search_insidetext') %>
+            <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: t('.search_insidetext') %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append justify-content-right">
               <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
@@ -55,15 +55,15 @@
       <%# 言語切り替えボタン %>
       <div class="lang col-1 text-right">
         <div class="lang-change"></div>
-        <% if session[:locale] == "en" || session[:locale].blank? %>
-          <%= link_to "/application/change_language/ja" do %>
-          日本
-          <% end %>
-        <% elsif session[:locale] == "ja" %>
+        <% if session[:locale] == "ja" || session[:locale].blank? %>
           <%= link_to "/application/change_language/en" do %>
-          EN
+            EN
           <% end %>
-      <% end %>
+        <% elsif session[:locale] == "en" %>
+          <%= link_to "/application/change_language/ja" do %>
+            日本
+          <% end %>
+         <% end %>
       </div>
     </div>
   </div>

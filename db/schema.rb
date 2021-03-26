@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_065837) do
+ActiveRecord::Schema.define(version: 2021_03_26_054101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auto_creates", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -65,12 +71,13 @@ ActiveRecord::Schema.define(version: 2021_03_24_065837) do
   end
 
   create_table "lectures", force: :cascade do |t|
-    t.text "name"
+    t.text "name_ja"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
-    t.index ["name"], name: "index_lectures_on_name"
+    t.string "name_en"
+    t.index ["name_ja"], name: "index_lectures_on_name_ja"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
@@ -118,10 +125,11 @@ ActiveRecord::Schema.define(version: 2021_03_24_065837) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.string "name"
+    t.string "name_ja"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name_en"
     t.index ["user_id", "created_at"], name: "index_teachers_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end

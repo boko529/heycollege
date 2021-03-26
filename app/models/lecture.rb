@@ -3,7 +3,9 @@ class Lecture < ApplicationRecord
   belongs_to :teacher
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  validates :name, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}
+  # name_jaかname_enのどちらかは必須(両方あってもいいよ)
+  validates :name_ja, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}, unless: :name_en?
+  validates :name_en, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}, unless: :name_ja?
   validates :user_id, presence: true
   validates :teacher_id, presence: true
   attr_accessor :score
@@ -22,18 +24,18 @@ class Lecture < ApplicationRecord
     end
   end
 
-  #editのときはフォームに初期値をnewのときは空白にする 
-  def init_first_name
-    if self.teacher.present?
-      return self.teacher.name.split(" ")[1]
-    end
-  end
+  # #editのときはフォームに初期値をnewのときは空白にする 
+  # def init_first_name
+  #   if self.teacher.present?
+  #     return self.teacher.name.split(" ")[1]
+  #   end
+  # end
 
-  def init_last_name
-    if self.teacher.present?
-      return self.teacher.name.split(" ")[0]
-    end
-  end
+  # def init_last_name
+  #   if self.teacher.present?
+  #     return self.teacher.name.split(" ")[0]
+  #   end
+  # end
   
   #詳細が省略されているものも含む。レビュー数表示用
   def all_reviews_count

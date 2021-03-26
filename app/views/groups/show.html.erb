@@ -68,7 +68,7 @@
       <%= render 'shared/stats_user' %>
       <% @users.each do |user| %>
         <li class="list-group-item list-group-item-action member-list-box">
-          <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to display_name(user), user %>
+          <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user %>
         </li>
       <% end %>
       <div class="page-box">
