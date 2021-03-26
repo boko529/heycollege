@@ -5,7 +5,7 @@ class LectureTest < ActiveSupport::TestCase
     @user = users(:user1)
     @teacher = teachers(:teacher1)
     @teacher2 = teachers(:teacher2)
-    @lecture = @user.lectures.build(name:  "日本大学史", user_id: @user.id, teacher_id: @teacher.id)
+    @lecture = @user.lectures.build(name_ja:  "日本大学史", user_id: @user.id, teacher_id: @teacher.id)
   end
   
   test "should be valid" do
@@ -13,12 +13,12 @@ class LectureTest < ActiveSupport::TestCase
   end
 
   test "lecture name should be present" do
-    @lecture.name = nil
+    @lecture.name_ja = nil
     assert_not @lecture.valid?
   end
 
   test "name should not be too long" do
-    @lecture.name = "a" * 51
+    @lecture.name_ja = "a" * 51
     assert_not @lecture.valid?
   end
 
