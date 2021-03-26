@@ -109,6 +109,9 @@ nav{
         }
       }
     }
+    li.page-item.disabled{
+      display: none !important;
+    }
     li.active{
       a.page-link{
         color: #000;

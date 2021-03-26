@@ -7,6 +7,7 @@ footer {
   .footer_button {
     width: 100%;
     .row {
+      z-index: 4;
       padding-top: 5px;
       height: 100%;
        height: 47px;
@@ -17,15 +18,17 @@ footer {
     .footer-user,
     .footer-contact,
     .footer-login,
-    .footer-other {
+    .footer-other,
+    .footer-menu {
       justify-content: center;
       align-items: center;
       display: flex;
       flex-direction: column;
-      .mobile-footer-logo {
-        font-size: 11px;
-        color: #777;
-      }
+      font-size: 11px;
+      color: #777;
+      a {
+          color: #777;
+        }
       .mobile-footer-logo-let {
         font-size: 9px;
       }
@@ -49,16 +52,6 @@ footer {
       border-bottom: 1.5px solid #e0e0e0;
     }
   }
-  a {
-    .copyright {
-      display: block;
-      text-align: center;
-    }
-    color: #777;
-    &:hover {
-      color: #222;
-    }
-  }
   .footer_logos,
   .footer_words {
     text-align: center;
@@ -77,15 +70,10 @@ footer {
 // 下から上がってくる設定
 .other-bottomup {
   display: block;
-  height: 100%;
   width: 100%;
   position: absolute;
   left: 0;
-  z-index: 3;
-  top: 10px;
-}
-// アニメーション前
-.other-bottomup-transition {
+  z-index: -1;
   opacity: 0;
   bottom: -100%;
   top: 100%;
@@ -123,3 +111,13 @@ ul.other-bottomup-ul {
   }
 }
 
+  a {
+    .copyright {
+      display: block;
+      text-align: center;
+    }
+    color: #777;
+    &:hover {
+      color: #222;
+    }
+  }

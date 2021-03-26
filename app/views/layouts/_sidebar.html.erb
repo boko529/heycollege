@@ -8,13 +8,11 @@
             <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline"><%= t('.ranking') %></span>
           <% end %>
         </li>
-      <!--
         <li class="list-group-item text-center">
           <%= link_to groups_path do %>
             <i class="fas fa-users fa-2x"></i><span class="d-none d-lg-inline"><%= t('.group') %></span>
           <% end %>
         </li>
-      -->
         <li class="list-group-item text-center">
           <%= link_to new_lecture_path do %>
             <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-inline"><%= t('.create') %></span>
@@ -30,7 +28,6 @@
             <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline"><%= t('.contact') %></span>
           <% end %>
         </li>
-        <!--
           <li class="list-group-item text-center">
             <%= link_to root_path do %>
               <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
@@ -41,7 +38,6 @@
               <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-inline">ログアウト</span>
             <% end %>
           </li>
-        -->
         <%# 管理者の場合のみ表示 %>
         <% if current_user.admin? %>
           <span>ーー管理者用</span>
