@@ -14,7 +14,7 @@ ja:
       makenew: "新しくグループを作る"
       grouplist: "グループリスト"
     new:
-      makenew: "新しいグループを作る"
+      makenew: "新しいグループ"
       make: "作る"
     show:
       allowothers: "共同ホストを増やす"

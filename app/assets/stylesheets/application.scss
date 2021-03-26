@@ -68,6 +68,10 @@ body{
 .user-icon, .group-icon{
   border-radius: 100%;
 }
+.group-icon {
+  position: absolute;
+  top: 70px;
+}
 
 // fontawesomeを80×80にする
 .font-awesome-80{

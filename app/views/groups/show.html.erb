@@ -1,5 +1,5 @@
 <% provide(:title, @group.name) %>
-<div class="col-lg-8 offset-lg-2" id="box" >
+<div id="box" >
   <div class="group-show" >
     <%# 下5行はヘッダー画像に関する記述 %>
     <% if @group.header_image? %>
@@ -11,6 +11,7 @@
       <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
       <span class="float-right-btn">
         <% if @relation &&  @relation.admin %>
+<%# ドロップボタン%>
           <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
           <br>
           <%= link_to t('.profileedit'), edit_group_path(@group.id), class: 'btn btn-primary' %>
@@ -40,7 +41,7 @@
       <div class="sns">
         <%# プロフィール表示 %>
         <% if @group.profile.present? %>
-          <small>
+          <small class="group-bio">
             <%= t('.profile') %>
             <br>
             <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
