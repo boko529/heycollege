@@ -14,7 +14,7 @@ en:
       signin: "Login"
       sig&log: "Login&Signup"
     footer:
-      title_login: "MyPage"
+      title_login: "My Page"
       group: Group
       ranking: Ranking
       create: Make a new page
@@ -24,6 +24,7 @@ en:
       term: "Terms of service"
       privacypolicy: "Privacy policy"
       leave: Leave
+      lang: 日本語に変更
     subsidebar:
       rank: "Ranking"
       make: "Make a page"
