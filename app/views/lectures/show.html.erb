@@ -1,4 +1,4 @@
-<% provide(:title, @lecture.name) %>
+<% provide(:title, l_display_name(@lecture)) %>
 <% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
   <div class="lecture-header">
@@ -6,7 +6,7 @@
     <span class="creator_name">
       <%= t('.lecture_creater') %>：
       <%= link_to @lecture.user do %>
-        <%= render partial: "shared/user_image/display_icon20", locals: {user: @lecture.user} %><%= display_name(@lecture.user) %>
+        <%= render partial: "shared/user_image/display_icon20", locals: {user: @lecture.user} %><%= u_display_name(@lecture.user) %>
       <% end %>
     </span>
   </div>
@@ -32,11 +32,11 @@
         <div class="lecture-class-teacher">
           <%# class name %>
           <div class="lecture-classname">
-            <%= @lecture.name %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
+            <%= l_display_name(@lecture) %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
           </div>
           <%# teacher name %>
           <div class="lectureshow-teacher-name">
-            <%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+            <%= t('.class-teacher') %>：<%= link_to t_display_name(@lecture.teacher), @lecture.teacher %>
           </div>
         </div>
       </div>

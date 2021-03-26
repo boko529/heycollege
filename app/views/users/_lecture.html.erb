@@ -1,8 +1,8 @@
 <li class="list-group-item list-group-item-action">
   <span id="star-lecture<%= lecture.id %>"></span>
-  <p><%= link_to lecture.name, lecture %></p>
+  <p><%= link_to l_display_name(lecture), lecture %></p>
   &emsp;<%= t('.teachername') %>：
-  <span class="teacher_name"><%= link_to lecture.teacher.name, lecture.teacher %></span>
+  <span class="teacher_name"><%= link_to t_display_name(lecture.teacher), lecture.teacher %></span>
   <p><% unless lecture.reviews.blank? %>
     <span><%= t('.reviews') %>(<%= lecture.all_reviews_count %>)</span>
   <% else %>

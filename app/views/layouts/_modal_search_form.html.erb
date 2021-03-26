@@ -5,7 +5,7 @@
       <div class="modal-header text-center">
         <%= search_form_for @q, class: "form-inline mobile-search-form", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control" ,placeholder: 'クラス名か先生名で検索' %>
+            <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラス名か先生名で検索' %>
             <%# 検索ボタン %>
             <div class="input-group-append">
               <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>

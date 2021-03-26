@@ -15,14 +15,14 @@
       </div>
 
       <%# 作る %>
-      <div class="footer-add col">
-        <div class="mobile-footer-logo">
-        <%= link_to new_lecture_path do %>
-          <i class="far fa-plus-square fa-2x"></i>
-        <% end %>
-        </div>
-        <div class="mobile-footer-logo-let">New page</div>
-      </div>
+      <%# <div class="footer-add col"> %>
+        <%# <div class="mobile-footer-logo"> %>
+          <%#= link_to new_lecture_path do %>
+            <%# <i class="far fa-plus-square fa-2x"></i> %>
+          <%# end %>
+        <%# </div> %>
+        <%# <div class="mobile-footer-logo-let">New page</div> %>
+      <%# </div> %>
 
       <%# ブックマーク %>
       <div class="footer-book col">
@@ -74,15 +74,19 @@
                 <span class="d-inline"><%= t('.ranking') %></span>
               <% end %>
             </li>
+            
             <%# 新規クラス作成 %>
-            <li class="list-group-item text-left">
-              <%= link_to new_lecture_path do %>
-                <span class="icon">
-                  <i class="far fa-plus-square fa-lg"></i>
-                </span>
-                <span class="d-inline"><%= t('.create') %></span>
-              <% end %>
-            </li>
+            <%# <li class="list-group-item text-left"> %>
+              <%#= link_to new_lecture_path do %>
+                <%# <span class="icon"> %>
+                  <%# <i class="far fa-plus-square fa-lg"></i> %>
+                <%# </span> %>
+                <%# <span class="d-inline"> %>
+                 <%#= t('.create') %>
+                <%# </span> %>
+              <%# end %>
+            <%# </li> %>
+
             <%# ブックマーク %>
             <li class="list-group-item text-left under-line">
                <%= link_to bookmarks_path do %>           

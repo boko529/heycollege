@@ -8,15 +8,6 @@ class Lecture < ApplicationRecord
   validates :teacher_id, presence: true
   attr_accessor :score
 
-  # 言語に合わせて表示するカラムを指定
-  def name
-    if session[:locale] == "en" # セッションが英語
-      self.name_en.present? self.name_en : self.name_ja # 英語名があったら英語名なかったら日本語名で表示
-    elsif session[:locale] == "ja" || session[:locale].blank? # セッションが日本語
-      self.name_ja.present? self.name_ja : self.name_en # 日本語名があったら日本語名なかったら英語名で表示
-    end
-  end
-
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
   def average_score
     if self.reviews.blank?

@@ -22,7 +22,7 @@
     <%# クラス名 ウェブ%>
     <div class="col-2 col-lg-4 d-none d-sm-block">
       <span class="class-name p-0">
-        <%= link_to lecture.name, lecture %>
+        <%= link_to l_display_name(lecture), lecture %>
       </span>
     </div>
 
@@ -30,7 +30,7 @@
     <div class="col-sm-6 col-4 d-none d-sm-flex">
       <%# 先生名前 %>
       <span class="teacher-name">
-        <%= link_to lecture.teacher.name, lecture.teacher %>
+        <%= link_to t_display_name(lecture.teacher), lecture.teacher %>
       </span>
       <%# レビュー数 %>
       <div class="web-reviewcount">
@@ -43,10 +43,10 @@
     <%# 二段構成 %>
      <div class="d-inlineblock ">
         <span class="lecture-mobile-class-name d-inlineblock">
-            <%= link_to lecture.name, lecture %>
+            <%= link_to l_display_name(lecture), lecture %>
           </span>
         <span class="lecture-mobile-teacher-name d-inlineblock">
-            <%= link_to lecture.teacher.name, lecture.teacher %>
+            <%= link_to t_display_name(lecture.teacher), lecture.teacher %>
         </span>
      </div>
     </div>
