@@ -9,25 +9,29 @@ class Admin::AutoCreatesController < ApplicationController
   end
 
   def create
-    case auto_create_params[:university]
-    when "1" then
-      AutoCreate.import_APU(auto_create_params[:file])
-      auto_create = AutoCreate.new(name: auto_create_params[:name])
-      if auto_create.save
-        flash[:success] = "ログの作成に成功しました"
+    # トランザクションを使用することで処理の途中でエラーが出た場合は処理をロールバックする
+    ActiveRecord::Base.transaction do
+      case auto_create_params[:university]
+      when "1" then
+        auto_create = AutoCreate.new(name: auto_create_params[:name])
+        if auto_create.valid?
+          AutoCreate.import_APU(auto_create_params[:file])
+          auto_create.save!
+          flash[:success] = "自動作成に成功しました"
+          redirect_to new_admin_auto_create_path
+        else
+          flash[:danger] = "ログの作成に失敗しました"
+          redirect_to new_admin_auto_create_path
+        end
+      when "2" then
+        flash[:danger] = "大阪府立大学はまだ対応していません"
         redirect_to new_admin_auto_create_path
       else
-        flash[:danger] = "ログの作成に失敗しました"
+        flash[:danger] = "大学を指定してください"
         redirect_to new_admin_auto_create_path
       end
-    when "2" then
-      flash[:danger] = "大阪府立大学はまだ対応していません"
-      redirect_to new_admin_auto_create_path
-    else
-      flash[:danger] = "大学を指定してください"
-      redirect_to new_admin_auto_create_path
     end
-  end
+    end
   
   private
   def if_not_admin
