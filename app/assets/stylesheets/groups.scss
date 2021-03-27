@@ -22,7 +22,12 @@
 .group-show{
   // header and img, buttons
   .group-headers {
-    height: 9.8rem;
+    .groupshow-headerimg{
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
     .btn-join-leave, .group-settings {
       float:right;
       margin-right: 1rem;
