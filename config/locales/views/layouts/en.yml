@@ -16,3 +16,9 @@ en:
     footer:
       term: "Terms of service"
       privacypolicy: "Privacy policy"
+    subsidebar:
+      rank: "Ranking"
+      make: "Make a page"
+      book: "Bookmark"
+      contact: Contact us
+      log: Login&Signup

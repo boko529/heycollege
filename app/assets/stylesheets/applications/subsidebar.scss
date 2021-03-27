@@ -1,13 +1,15 @@
 .sub-sidebar {
   left:-100%;
-  top:65px;
+  top:47px;
   position: fixed;
+  opacity: 0;
   width:200px;
   height: 100%;
   z-index:999;
   background-color: gray;
   border: 1px solid black;
   transition: 0.1s;
+  visibility: hidden;
   ul {
     margin:5px;
     li {
@@ -22,4 +24,11 @@
       height: 100%;
     }
   }
+}
+// アニメーション後
+.sub-sidebar-transition-active {
+  opacity: 1;
+  left: 0;
+  transition: 0.1s;
+  visibility: visible
 }
