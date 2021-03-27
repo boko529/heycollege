@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_27_044451) do
+ActiveRecord::Schema.define(version: 2021_03_26_140454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,16 +79,10 @@ ActiveRecord::Schema.define(version: 2021_03_27_044451) do
     t.string "name_en"
     t.integer "lecture_lang"
     t.integer "field"
-    t.integer "lecture_term"
-    t.integer "day_of_week"
-    t.integer "period"
-    t.index ["day_of_week"], name: "index_lectures_on_day_of_week"
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
-    t.index ["lecture_term"], name: "index_lectures_on_lecture_term"
     t.index ["name_en"], name: "index_lectures_on_name_en"
     t.index ["name_ja"], name: "index_lectures_on_name_ja"
-    t.index ["period"], name: "index_lectures_on_period"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"

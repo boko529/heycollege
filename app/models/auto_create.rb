@@ -57,56 +57,56 @@ class AutoCreate < ApplicationRecord
           end
         end
 
-        # 期間によって場合分けをして機関と曜日と時限を指定
-        case row["期間"]
-        when "Semester" then
-          lecture_term = "First"
-        when "1Q" then
-          lecture_term = "Q1"
-        when "2Q" then
-          lecture_term = "Q2"
-        when "Session1" then
-          lecture_term = "session1"
-        end
+        # # 期間によって場合分けをして機関と曜日と時限を指定
+        # case row["期間"]
+        # when "Semester" then
+        #   lecture_term = "First"
+        # when "1Q" then
+        #   lecture_term = "Q1"
+        # when "2Q" then
+        #   lecture_term = "Q2"
+        # when "Session1" then
+        #   lecture_term = "session1"
+        # end
 
-        # 曜日を指定
-        if row["曜日"].include?("月")
-          day_of_week = "Mon"
-        elsif row["曜日"].include?("火")
-          day_of_week = "Tue"
-        elsif row["曜日"].include?("水")
-          day_of_week = "Wed"
-        elsif row["曜日"].include?("木")
-          day_of_week = "Thu"
-        elsif row["曜日"].include?("金")
-          day_of_week = "Fri"
-        else
-          day_of_week = "Other"
-        end
+        # # 曜日を指定
+        # if row["曜日"].include?("月")
+        #   day_of_week = "Mon"
+        # elsif row["曜日"].include?("火")
+        #   day_of_week = "Tue"
+        # elsif row["曜日"].include?("水")
+        #   day_of_week = "Wed"
+        # elsif row["曜日"].include?("木")
+        #   day_of_week = "Thu"
+        # elsif row["曜日"].include?("金")
+        #   day_of_week = "Fri"
+        # else
+        #   day_of_week = "Other"
+        # end
 
-        # 時間を指定
-        if row["時限"].include?("1")
-          period = "first"
-        elsif row["時限"].include?("2")
-          period = "second"
-        elsif row["時限"].include?("3")
-          period = "third"
-        elsif row["時限"].include?("4")
-          period = "fourth"
-        elsif row["時限"].include?("5")
-          period = "fifth"
-        elsif row["時限"].include?("6")
-          period = "sixth"
-        else
-          period = "none"
-        end
+        # # 時間を指定
+        # if row["時限"].include?("1")
+        #   period = "first"
+        # elsif row["時限"].include?("2")
+        #   period = "second"
+        # elsif row["時限"].include?("3")
+        #   period = "third"
+        # elsif row["時限"].include?("4")
+        #   period = "fourth"
+        # elsif row["時限"].include?("5")
+        #   period = "fifth"
+        # elsif row["時限"].include?("6")
+        #   period = "sixth"
+        # else
+        #   period = "none"
+        # end
 
         # 以上をもとに作成開始
         if teacher = Teacher.find_by(name_ja: teacher_name_ja) || teacher = Teacher.find_by(name_en: teacher_name_en)
-          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field, lecture_term: lecture_term, day_of_week: day_of_week, period: period)
+          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
         else
           teacher = Teacher.create!(name_ja: teacher_name_ja, name_en: teacher_name_en, user_id: 1)
-          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field, lecture_term: lecture_term, day_of_week: day_of_week, period: period)
+          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
         end
       rescue
         # エラーが出た際に何行目でエラーが出たかを表示する

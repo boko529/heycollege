@@ -24,21 +24,16 @@
               <%= f.radio_button :field_eq, 4 %>Liberal arts
               <%= f.radio_button :field_eq, 5 %>Language
             </div>
-            <%# 期間選択 %>
-            <div>
-              <%= f.label :lecture_term %>
-              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
-              <%= f.radio_button :field_eq, 1 %>Semester
-              <%= f.radio_button :field_eq, 3 %>Q1
-              <%= f.radio_button :field_eq, 4 %>Q2
-              <%= f.radio_button :field_eq, 7 %>session1
-            </div>
+
             <%# 言語選択 %>
             <div>
               <%# ここはもっとスリムに書けるけどとりあえずこれで %>
               <%= f.label :lecture_lang %>
               <%= f.select :lecture_lang, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
             </div>
+            <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+              検索
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -67,21 +62,15 @@
               <%= f.radio_button :field_eq, 4 %>Liberal arts
               <%= f.radio_button :field_eq, 5 %>Language
             </div>
-            <%# 期間選択 %>
-            <div>
-              <%= f.label :lecture_term %>
-              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
-              <%= f.radio_button :field_eq, 1 %>Semester
-              <%= f.radio_button :field_eq, 3 %>Q1
-              <%= f.radio_button :field_eq, 4 %>Q2
-              <%= f.radio_button :field_eq, 7 %>session1
-            </div>
             <%# 言語選択 %>
             <div>
               <%# ここはもっとスリムに書けるけどとりあえずこれで %>
               <%= f.label :lecture_lang %>
               <%= f.select :lecture_lang, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
             </div>
+            <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+              検索
+            <% end %>
           <% end %>
         </div>
       </div>
