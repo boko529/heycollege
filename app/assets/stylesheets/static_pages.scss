@@ -16,9 +16,10 @@
 // スライドショーのscss
 // マージン消したから、その分スライドショーを中央に持ってくるためのブロック
 .slide-container {
-  width: 100%;
+  width: 93%;
   display: flex;
-  justify-content: center
+  justify-content: center;
+  margin: 0 auto;
 }
 .slide_show{
   width: 90%;

@@ -31,7 +31,7 @@
       </div>
       
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-      <div class="search col-1 offset-3 d-sm-none d-block p-0">
+      <div class="search col-1 offset-4 d-sm-none d-block p-0">
         <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-search fa-2x"></i>  
         </div>
@@ -51,6 +51,9 @@
           <% end %>
         </div>
       <% end %>
+
+      <% unless user_signed_in? %>
+
       <%# 言語切り替えボタン %>
       <div class="lang col-1 text-right">
         <div class="lang-change"></div>
@@ -64,5 +67,7 @@
           <% end %>
          <% end %>
       </div>
+
+      <% end %>
     </div>
   </div>
