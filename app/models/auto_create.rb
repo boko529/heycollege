@@ -23,18 +23,37 @@ class AutoCreate < ApplicationRecord
           field = "Liberal"
         when "Language" then
           field = "Language"
+        else
+          field = "APS"
         end
         case row["言語"]
         when "J" then
-          language = "Ja"
+          language = "ja"
         when "E" then
-          language = "En"
+          language = "en"
         when "Es" then
-          language = "Es"
+          language = "es"
         when "E/J" then
-          language = "EJ"
+          language = "ej"
         else
-          # 分野が言語ということなので分野名と統一して代入考える？
+          # ここまで来るということは分野は言語なので講義名から判断
+          if lecture_name_ja.include?("日本語")
+            language = "ja"
+          elsif lecture_name_ja.include?("英語")
+            language = "en"
+          elsif lecture_name_ja.include?("スペイン語")
+            language = "es"
+          elsif lecture_name_ja.include?("韓国語")
+            language = "ko"
+          elsif lecture_name_ja.include?("中国語")
+            language = "zh"
+          elsif lecture_name_ja.include?("マレーシア語・インドネシア語")
+            language = "ms"
+          elsif lecture_name_ja.include?("タイ語")
+            language = "th"
+          elsif lecture_name_ja.include?("ベトナム語")
+            language = "vi"
+          end
         end
         if teacher = Teacher.find_by(name_ja: teacher_name_ja) || teacher = Teacher.find_by(name_en: teacher_name_en)
           Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)

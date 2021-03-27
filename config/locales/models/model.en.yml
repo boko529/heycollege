@@ -60,10 +60,15 @@ en:
         Liberal: "一般教養"
         Language: "言語"
       language:
-        Ja: "Japanese"
-        En: "English"
-        Es: "Espanyol"
-        EJ: "Ja & En"
+        ja: "Japanese"
+        en: "English"
+        es: "Spanish"
+        ko: "Korean"
+        zh: "Chinese"
+        ms: "Malay/Indonesian"
+        th: "Thai"
+        vi: "Vietnamese"
+        ej: "Japanese/English"
     user_point_history:
       point_type:
         init: "Initial point"

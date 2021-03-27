@@ -44,7 +44,7 @@ users = User.order(:created_at).take(5)
   name_ja = subject_name_ja + next_name
   name_en = subject_name_en + next_name
   field = "APS"
-  language = "Ja"
+  language = "en"
   users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1, field: field, lecture_lang: language)}
 end
 

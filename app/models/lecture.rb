@@ -9,8 +9,9 @@ class Lecture < ApplicationRecord
   validates :user_id, presence: true
   validates :teacher_id, presence: true
   validates :field, presence: true
+  validates :lecture_lang: true
   attr_accessor :score
-  enum lecture_lang: { Ja: 1, En: 2, Es: 3, EJ: 4}, _prefix: :true # Language以外のときはvalidationつけたほうがいいかも。
+  enum lecture_lang: { ja: 1, en: 2, es: 3, ko: 4, zh: 5, ms: 6, th: 7, vi: 8, ej: 9}, _prefix: :true # es=>スペイン語, ko=>韓国語, zh=>中国語, ms=>マレーシア語＋インドネシア語, th=>タイ語, vi=>ベトナム語, ej=>日本語英語兼用
   enum field: { APS: 1, APM: 2, APSAPM: 3, Liberal: 4, Language: 5}, _prefix: :true
 
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
