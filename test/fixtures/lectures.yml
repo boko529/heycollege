@@ -3,6 +3,8 @@
 lecture_1:
   name_ja: "行動経済学入門"
   name_en: "行動経済学入門"
+  lecture_lang: "ja"
+  field: "APS"
   user: user1
   teacher: teacher1
 
@@ -10,6 +12,8 @@ lecture_1:
 lecture_2:
   name_ja: "数値解析"
   name_en: "数値解析"
+  lecture_lang: "ja"
+  field: "APS"
   user: user2
   teacher: teacher2
 
@@ -17,6 +21,8 @@ lecture_2:
 lecture_<%= n+3 %>:
   name_ja:  lecture + <%= n+3 %>
   name_en:  lecture + <%= n+3 %>
+  lecture_lang: "ja"
+  field: "APS"
   user: user1
   teacher: teacher1
 <% end %>
@@ -24,11 +30,15 @@ lecture_<%= n+3 %>:
 lecture_53:
   name_ja: "人工知能"
   name_en: "人工知能"
+  lecture_lang: "ja"
+  field: "APS"
   user: user1
   teacher: teacher3
 
 lecture_54:
   name_ja: "人工無能"
   name_en: "人工無能"
+  lecture_lang: "ja"
+  field: "APS"
   user: user1
   teacher: teacher4

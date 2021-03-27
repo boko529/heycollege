@@ -3,9 +3,11 @@ class Lecture < ApplicationRecord
   belongs_to :teacher
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  # name_jaかname_enのどちらかは必須(両方あってもいいよ)
-  validates :name_ja, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}, unless: :name_en?
-  validates :name_en, presence: true, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}, unless: :name_ja?
+  # name_jaかname_enのどちらかは必須(両方あってもいいよ),文字数は50字まで。分けて書かない方法もあるだろうけど。。
+  validates :name_ja, presence: true, unless: :name_en?
+  validates :name_ja, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}
+  validates :name_en, presence: true, unless: :name_ja?
+  validates :name_en, length: { maximum: 50 }, uniqueness: {scope: :teacher_id}
   validates :user_id, presence: true
   validates :teacher_id, presence: true
   validates :field, presence: true

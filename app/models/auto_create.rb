@@ -103,7 +103,9 @@ class AutoCreate < ApplicationRecord
 
         # 以上をもとに作成開始
         if teacher = Teacher.find_by(name_ja: teacher_name_ja) || teacher = Teacher.find_by(name_en: teacher_name_en)
-          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
+          unless Lecture.find_by(name_ja: lecture_name_ja, teacher_id: teacher.id) && Lecture.find_by(name_en: lecture_name_en, teacher_id: teacher.id) # 先生と日本語名がおなじか先生と英語名が同じの時以外
+            Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
+          end
         else
           teacher = Teacher.create!(name_ja: teacher_name_ja, name_en: teacher_name_en, user_id: 1)
           Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
