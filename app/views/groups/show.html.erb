@@ -7,7 +7,7 @@
       <% if @group.header_image? %>
         <div><%= image_tag @group.header_image.url, alt: "group-header" %></div>
       <% else %>
-        <div class="header_sample"></div>
+        <%= image_tag("default_header.png", alt: "ヘッダー画像") %>
       <% end %>
         <%# profile pic %>
       <div class="group-img">
