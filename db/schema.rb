@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_114458) do
+ActiveRecord::Schema.define(version: 2021_03_24_065837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2021_03_24_114458) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "instagram_name"
     t.string "twitter_name"
-    t.text "profile"
     t.string "profile_image"
     t.string "header_image"
+    t.text "profile"
   end
 
   create_table "helpfuls", force: :cascade do |t|

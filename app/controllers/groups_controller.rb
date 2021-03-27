@@ -46,7 +46,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      flash[:success] = "団体情報は更新されました！"
+      flash[:success] = "団体情報が更新されました！"
       redirect_to @group
     else
       render 'edit'
