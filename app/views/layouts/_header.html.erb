@@ -18,11 +18,10 @@
             <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: t('.search_insidetext') %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append justify-content-right">
-              <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
-              <%# <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
-                条件
-              </button> %>
-              <%# f.submit ("検索") , class: 'btn btn-outline-success'%>
+              <%# 条件検索用のモーダルスイッチ %>
+              <div class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-filter"></i>
+              </div>
               <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
                 <i class="fas fa-search"></i>
               <% end %>

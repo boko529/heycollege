@@ -1,19 +1,89 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <%= search_form_for @q, class: "form-inline mobile-search-form", url: lectures_path do |f| %>
-          <div class="input-group justify-content-center">
-            <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラス名か先生名で検索' %>
-            <%# 検索ボタン %>
-            <div class="input-group-append">
-              <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
-                <i class="fas fa-search"></i>
-              <% end %>
-            </div> 
-          </div>
-        <% end %>
+    <%# パソコン用(720px以上) %>
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content d-sm-block d-none">
+        <div class="modal-header text-center">
+          <%= search_form_for @q, class: "mobile-search-form", url: lectures_path do |f| %>
+            <div class="input-group justify-content-center">
+              <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
+              <%# 検索ボタン %>
+              <div class="input-group-append">
+                <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+              </div> 
+            </div>
+            <%# 分野選択 %>
+            <div>
+              <%= f.label :field %>
+              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
+              <%= f.radio_button :field_eq, 1 %>APS
+              <%= f.radio_button :field_eq, 2 %>APM
+              <%= f.radio_button :field_eq, 3 %>APS & APM
+              <%= f.radio_button :field_eq, 4 %>Liberal arts
+              <%= f.radio_button :field_eq, 5 %>Language
+            </div>
+            <%# 期間選択 %>
+            <div>
+              <%= f.label :lecture_term %>
+              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
+              <%= f.radio_button :field_eq, 1 %>Semester
+              <%= f.radio_button :field_eq, 3 %>Q1
+              <%= f.radio_button :field_eq, 4 %>Q2
+              <%= f.radio_button :field_eq, 7 %>session1
+            </div>
+            <%# 言語選択 %>
+            <div>
+              <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+              <%= f.label :lecture_lang %>
+              <%= f.select :lecture_lang, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%# スマホ用(720px以下用) %>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content d-sm-none">
+        <div class="modal-header text-center">
+          <%= search_form_for @q, class: "pc-search-form", url: lectures_path do |f| %>
+            <div class="input-group justify-content-center">
+              <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
+              <%# 検索ボタン %>
+              <div class="input-group-append">
+                <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+              </div> 
+            </div>
+            <%# 分野選択 %>
+            <div>
+              <%= f.label :field %>
+              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
+              <%= f.radio_button :field_eq, 1 %>APS
+              <%= f.radio_button :field_eq, 2 %>APM
+              <%= f.radio_button :field_eq, 3 %>APS & APM
+              <%= f.radio_button :field_eq, 4 %>Liberal arts
+              <%= f.radio_button :field_eq, 5 %>Language
+            </div>
+            <%# 期間選択 %>
+            <div>
+              <%= f.label :lecture_term %>
+              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
+              <%= f.radio_button :field_eq, 1 %>Semester
+              <%= f.radio_button :field_eq, 3 %>Q1
+              <%= f.radio_button :field_eq, 4 %>Q2
+              <%= f.radio_button :field_eq, 7 %>session1
+            </div>
+            <%# 言語選択 %>
+            <div>
+              <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+              <%= f.label :lecture_lang %>
+              <%= f.select :lecture_lang, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
