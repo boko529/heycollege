@@ -57,12 +57,12 @@
     
   <%# ユーザーネーム %>
   <div class="usershow-username">
-    <%= @user.name %>
+    <%= u_display_name(@user) %>
   </div>
 
   <%# フォロー %>
-<!--
   <div class="usershow-belowheader">
+    <!--
     <div class="usershow-followe-follower">
       <span id="follow", id='following-count_<%= @user.id%>'>
         <%= link_to users_following_path(@user) do%>
@@ -80,20 +80,19 @@
         <% end %>
       </span>
     </div>
--->
+    -->
     <%# ステータス %>
     <div class="sns">
       <div class="frame profile">
         <!---
           <br>性別:
             <%= @user.gender_i18n  %> -->
-            <%# t('.college') %><%= @user.faculty_i18n %>/
+            <%# t('.college') %><%= @user.faculty_i18n %>
             <%# t('.grade') %><%= @user.grade_i18n %>
             <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
-          <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
-        </div>
+        <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
+      </div>
       <small><%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
-      <br>
     </div>
 
     <%# add sns accounts %>
