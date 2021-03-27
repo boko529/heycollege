@@ -9,7 +9,6 @@ class StaticPagesController < ApplicationController
     #   end
     # end.reverse  ids.map{ |id| Article.find(id) }
     
-    Lecture.all.map{ |lecture| REDIS.zadd "lectures/rank", lecture.average_score, lecture.id } # これを別のコントローラーに書いて手動で更新できるようにする.
     lecture_ids = REDIS.zrevrangebyscore "lectures/rank", "+inf", "-inf"
     lectures = lecture_ids.map{ |id| Lecture.find(id) }
     @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
@@ -23,7 +22,6 @@ class StaticPagesController < ApplicationController
     #   end
     # end.reverse
 
-    Teacher.all.map{ |teacher| REDIS.zadd "teachers/rank", teacher.average_score, teacher.id } # これを別のコントローラーに書いて手動で更新できるようにする.
     teacher_ids = REDIS.zrevrangebyscore "teachers/rank", "+inf", "-inf"
     teachers = teacher_ids.map{ |id| Teacher.find(id) }
     @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)

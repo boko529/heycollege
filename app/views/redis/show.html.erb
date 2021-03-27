@@ -1,3 +1,6 @@
 <%# このファイルはサンプル用です.すぐに消します. %>
 <% provide(:title, t('.title')) %> 
 <%= REDIS.get('mykey') %>
+
+<li class="list-group-item list-group-item-action member-list-box">
+<%= link_to "ランキング更新", {controller: 'redis', action: 'ranking_update'}, method: :patch %></li>
