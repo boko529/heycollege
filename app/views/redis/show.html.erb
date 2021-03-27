@@ -1,6 +1,5 @@
-<%# このファイルはサンプル用です.すぐに消します. %>
-<% provide(:title, t('.title')) %> 
-<%= REDIS.get('mykey') %>
-
-<li class="list-group-item list-group-item-action member-list-box">
-<%= link_to "ランキング更新", {controller: 'redis', action: 'ranking_update'}, method: :patch %></li>
+<%# 管理者用 %>
+<% provide(:title, 'ランキング更新') %> 
+<p>管理者用のページです.</p>
+<p>下の「ランキング更新」を押すと、ホームの講義、先生、ユーザー（月間）のランキングが更新されます.</p>
+<%= link_to "ランキング更新", {controller: 'redis', action: 'ranking_update'}, method: :patch, class: 'btn btn-primary' %>
