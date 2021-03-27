@@ -8,20 +8,24 @@ class StaticPagesController < ApplicationController
     #     0
     #   end
     # end.reverse  ids.map{ |id| Article.find(id) }
-
-    Lecture.all.map{ |lecture| REDIS.zadd "lectures/rank", lecture.average_score, lecture.id }
-    ids = REDIS.zrevrangebyscore "lectures/rank", "+inf", "-inf"
-    lectures = ids.map{ |id| Lecture.find(id) }
+    
+    Lecture.all.map{ |lecture| REDIS.zadd "lectures/rank", lecture.average_score, lecture.id } # これを別のコントローラーに書いて手動で更新できるようにする.
+    lecture_ids = REDIS.zrevrangebyscore "lectures/rank", "+inf", "-inf"
+    lectures = lecture_ids.map{ |id| Lecture.find(id) }
     @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
 
     #先生ランキング処理
-    teachers = Teacher.includes(lectures: :reviews).sort_by do |teacher|
-      if teacher.lectures.present?
-        teacher.average_score
-      else
-        0
-      end
-    end.reverse
+    # teachers = Teacher.includes(lectures: :reviews).sort_by do |teacher|
+    #   if teacher.lectures.present?
+    #     teacher.average_score
+    #   else
+    #     0
+    #   end
+    # end.reverse
+
+    Teacher.all.map{ |teacher| REDIS.zadd "teachers/rank", teacher.average_score, teacher.id } # これを別のコントローラーに書いて手動で更新できるようにする.
+    teacher_ids = REDIS.zrevrangebyscore "teachers/rank", "+inf", "-inf"
+    teachers = teacher_ids.map{ |id| Teacher.find(id) }
     @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)
     
     #ユーザーランキング処理(管理者、退会者は除く,非承認者)
