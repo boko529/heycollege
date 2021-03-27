@@ -58,9 +58,9 @@ p {
 
 // body直下のコンテント(reviewにも.contentがあるので)
 body{
-  >.content {
+  .content {
     position: relative;
-    top: 65px;
+    top: 48px;
   }
 }
 
@@ -69,8 +69,8 @@ body{
   border-radius: 100%;
 }
 .group-icon {
-  position: absolute;
-  top: 70px;
+  // position: absolute;
+  // top: 70px;
 }
 
 // fontawesomeを80×80にする
