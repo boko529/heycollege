@@ -13,17 +13,14 @@
 
 // profile pic
 .group-img {
-  position:absolute;
+  position:relative;
   display: inline-block;
-  border: 2px solid #fff7ec;
-  border-radius: 50%;
-  top: 4rem;
+  bottom:2rem;
   left: 1rem;
-  background-color: white;
 }
 // design group show
 .group-show{
-  // belew header
+  // header and img, buttons
   .group-headers {
     height: 9.8rem;
     .btn-join-leave, .group-settings {
@@ -69,9 +66,9 @@
   .group-name {
     margin-left: 2rem;
   }
+  // below header
   .group-info {
     margin: 0.5rem;
-
   }
 
   .follow{

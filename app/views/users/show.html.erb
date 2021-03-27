@@ -8,7 +8,7 @@
 
   <div class="frame">
 
-    <%# pics %>
+    <%# pic %>
     <div class="frame_icon">
       <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
     </div>
@@ -61,79 +61,82 @@
   </div>
 
   <%# フォロー %>
-  <div class="usershow-followe-follower">
-    <span id="follow", id='following-count_<%= @user.id%>'>
-      <%= link_to users_following_path(@user) do%>
-        <span class=color-brack>
-          <%= @user.follower.count %><%= t('.following') %>
-        </span>
-      <% end %>
-    </span>
-    &nbsp;&nbsp;&nbsp;
-    <span id='follower-count_<%= @user.id%>'>
-      <%= link_to users_follower_path(@user) do%>
-        <span class=color-brack>
-          <%= @user.followed.count %><%= t('.follower') %>
-        </span>
-      <% end %>
-    </span>
-  </div>
-
-
-      <%# ステータス %>
-      <div class="sns">
-        <div class="frame profile">
-          <!---
-            <br>性別:
-              <%= @user.gender_i18n  %> -->
-              <%= t('.college') %>：<%= @user.faculty_i18n %>
-            <br><%= t('.grade') %>：<%= @user.grade_i18n %>
+<!--
+  <div class="usershow-belowheader">
+    <div class="usershow-followe-follower">
+      <span id="follow", id='following-count_<%= @user.id%>'>
+        <%= link_to users_following_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.follower.count %><%= t('.following') %>
+          </span>
+        <% end %>
+      </span>
+      &nbsp;&nbsp;&nbsp;
+      <span id='follower-count_<%= @user.id%>'>
+        <%= link_to users_follower_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.followed.count %><%= t('.follower') %>
+          </span>
+        <% end %>
+      </span>
+    </div>
+-->
+    <%# ステータス %>
+    <div class="sns">
+      <div class="frame profile">
+        <!---
+          <br>性別:
+            <%= @user.gender_i18n  %> -->
+            <%# t('.college') %><%= @user.faculty_i18n %>/
+            <%# t('.grade') %><%= @user.grade_i18n %>
             <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
-            <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
-          </div>
-        <small><%= t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
-        <br>
-       </div>      
-
-       <div class="usershow-add-accounts">
-        <% if @user.instagram_name.present? %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
-        <% elsif @user == current_user  %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
-        <% end %>
-        &nbsp;&nbsp;
-        <% if @user.twitter_name.present? %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
-        <% elsif @user == current_user %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
-        <% end %>
-       </div> 
-
-      <%# 所属団体 %>
-      <% if @groups.any? %>
-        <div class="group-join">
-          <%= t('.mygroup') %>（<%= @groups.count %>
-          <ul>
-            <% @groups.each do |group| %>
-              <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
-            <% end %>
-          </ul>
+          <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
         </div>
-      <% end %>
+      <small><%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
+      <br>
+    </div>
 
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <ol class="reviews">
-            <% @reviews.each do |review| %>
-              <%= render partial: "users/review", locals: {review: review} %>
-            <% end %>
-            <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
-          </ol>
-        </div>
+    <%# add sns accounts %>
+    <div class="usershow-add-accounts">
+    <% if @user.instagram_name.present? %>
+      <small><i class="fab fa-instagram fa-2x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+    <% elsif @user == current_user  %>
+      <small><i class="fab fa-instagram fa-2x"></i> <%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
+    <% end %>
+    &nbsp;&nbsp;
+    <% if @user.twitter_name.present? %>
+      <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+    <% elsif @user == current_user %>
+      <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
+    <% end %>
+    </div> 
+
+    <%# 所属団体 %>
+    <% if @groups.any? %>
+      <div class="group-join">
+        <%# t('.mygroup') %><%# @groups.count %>
+        <ul class="group-you-in">
+          <% @groups.each do |group| %>
+            <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+          <% end %>
+        </ul>
       </div>
+    <% end %>
+
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <ol class="reviews">
+          <% @reviews.each do |review| %>
+            <%= render partial: "users/review", locals: {review: review} %>
+          <% end %>
+          <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
+        </ol>
+      </div>
+    </div>
+  </div>
 </div>

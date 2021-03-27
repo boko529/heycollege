@@ -57,8 +57,8 @@ p {
 }
 
 // body直下のコンテント(reviewにも.contentがあるので)
-body{
-  .content {
+body {
+  >.content {
     position: relative;
     top: 48px;
   }
@@ -69,14 +69,15 @@ body{
   border-radius: 100%;
 }
 .group-icon {
-  // position: absolute;
-  // top: 70px;
+border: 2px solid #fff7ec;
+border-radius: 50%;
+background-color: white;
 }
 
 // fontawesomeを80×80にする
 .font-awesome-80{
-  width: 80px !important;
-  height: 80px;
+  width: 70px !important;
+  height: 70px;
 }
 
 // fontawesomeを20×20にする
@@ -84,7 +85,6 @@ body{
   width: 20px !important;
   height: 20px;
 }
-
 
 // ページネーションカスタマイズ
 nav{
