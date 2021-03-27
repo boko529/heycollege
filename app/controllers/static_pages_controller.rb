@@ -1,13 +1,17 @@
 class StaticPagesController < ApplicationController
   def home
     #講義ランキング処理
-    lectures = Lecture.includes(:reviews).sort_by do |lecture|
-      if lecture.reviews.present?
-        lecture.average_score
-      else
-        0
-      end
-    end.reverse
+    # lectures = Lecture.includes(:reviews).sort_by do |lecture|
+    #   if lecture.reviews.present?
+    #     lecture.average_score
+    #   else
+    #     0
+    #   end
+    # end.reverse  ids.map{ |id| Article.find(id) }
+
+    Lecture.all.map{ |lecture| REDIS.zadd "lectures/rank", lecture.average_score, lecture.id }
+    ids = REDIS.zrevrangebyscore "lectures/rank", "+inf", "-inf"
+    lectures = ids.map{ |id| Lecture.find(id) }
     @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
 
     #先生ランキング処理
