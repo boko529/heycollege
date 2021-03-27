@@ -22,12 +22,18 @@
               <%# profile pic %>
             <div class="group-img">
               <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
+              <%# group name %>
+              <div class="group-name">
+                <%= @group.name %>
+              </div>
             </div>
             <%# leave %>
             <%= render 'join_form' %>
             <%# group settings %>
-            <div class="group-settings" onclick="openGroupSet()">
-              <i class="fas fa-users-cog fa-2x"></i>
+            <div class="group-setting-outer">
+              <div class="group-settings" onclick="openGroupSet()">
+                <i class="fas fa-users-cog fa-2x"></i>
+              </div>
             </div>
 
             <%# ドロップボタン%>
@@ -45,12 +51,7 @@
               </ul>
             </div>
           </div>
-
-          <%# group name %>
-          <div class="group-name">
-            <%= @group.name %>
-          </div>
-
+          
           <%# コンテント %>
           <div class="group-info">
             <div>
