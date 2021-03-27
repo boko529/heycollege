@@ -9,8 +9,7 @@ class StaticPagesController < ApplicationController
     #   end
     # end.reverse  ids.map{ |id| Article.find(id) }
     
-    lecture_ids = REDIS.zrevrangebyscore "lectures/rank", "+inf", "-inf"
-    lectures = lecture_ids.map{ |id| Lecture.find(id) }
+    lectures = REDIS.zrevrangebyscore( "lectures/rank", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
     @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
 
     #先生ランキング処理
@@ -22,22 +21,23 @@ class StaticPagesController < ApplicationController
     #   end
     # end.reverse
 
-    teacher_ids = REDIS.zrevrangebyscore "teachers/rank", "+inf", "-inf"
-    teachers = teacher_ids.map{ |id| Teacher.find(id) }
+    teachers = REDIS.zrevrangebyscore( "teachers/rank", "+inf", "-inf" ).map{ |id| Teacher.find(id) }
     @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)
     
     #ユーザーランキング処理(管理者、退会者は除く,非承認者)
-    users = User.where(admin: false, is_deleted: false).where.not(confirmed_at: nil).includes(:user_point_history).sort_by  do |user|
-      total_amount = 0
-      if user.user_point_history.present?
-        user.user_point_history.all.each do |user_point_history|
-          if user_point_history.created_at.month == Time.now.month
-            total_amount += user_point_history.amount
-          end
-        end
-      end
-      total_amount
-    end.reverse
+    # users = User.where(admin: false, is_deleted: false).where.not(confirmed_at: nil).includes(:user_point_history).sort_by  do |user|
+    #   total_amount = 0
+    #   if user.user_point_history.present?
+    #     user.user_point_history.all.each do |user_point_history|
+    #       if user_point_history.created_at.month == Time.now.month
+    #         total_amount += user_point_history.amount
+    #       end
+    #     end
+    #   end
+    #   total_amount
+    # end.reverse
+
+    users = REDIS.zrevrangebyscore( "users/rank/#{Time.now.month.to_s}", "+inf", "-inf" ).map{ |id| User.find(id) }
     @users = Kaminari.paginate_array(users).page(params[:users_page]).per(20)
 
     #最新のニュースを表示
