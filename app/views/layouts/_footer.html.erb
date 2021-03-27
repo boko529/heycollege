@@ -14,6 +14,26 @@
         <div class="mobile-footer-logo-let">Ranking</div>
       </div>
 
+      <%# グループ %>
+      <div class="footer-rank col">
+        <div class="mobile-footer-logo">
+        <%= link_to groups_path do %>     
+          <i class="fas fa-users fa-2x"></i>
+        <% end %>
+        </div>
+        <div class="mobile-footer-logo-let">Group</div>
+      </div>
+
+      <%# ユーザー %>
+      <div class="footer-rank col">
+        <div class="mobile-footer-logo">
+          <%= link_to user_path(current_user) do %>
+          <i class="fas fa-user-circle fa-2x"></i>
+        <% end %>
+        </div>
+        <div class="mobile-footer-logo-let">My page</div>
+      </div>
+
       <%# 作る %>
       <%# <div class="footer-add col"> %>
         <%# <div class="mobile-footer-logo"> %>
@@ -25,14 +45,14 @@
       <%# </div> %>
 
       <%# ブックマーク %>
-      <div class="footer-book col">
-        <div class="mobile-footer-logo">
-          <%= link_to bookmarks_path do %>
-            <i class="far fa-bookmark fa-2x"></i>
-          <% end %>
-        </div>
+      <%# <div class="footer-book col">
+        <div class="mobile-footer-logo"> %>
+          <%# link_to bookmarks_path do %>
+            <%# <i class="far fa-bookmark fa-2x"></i> %>
+          <%# end %>
+        <%# </div>
         <div class="mobile-footer-logo-let">Bookmark</div>
-      </div>
+      </div> %>
 
         <%# その他・設定ボタン %>
         <div class="footer-other col" id="open" onclick="openBottomup()" >
@@ -95,7 +115,23 @@
                 </span>
                 <span class="d-inline"><%= t('.book') %></span>
               <% end %>
-            </li> 
+            </li>
+            <%# 言語切り替え %>
+            <li class="list-group-item text-left under-line">
+              <% if session[:locale] == "ja" || session[:locale].blank? %>
+                <%= link_to "/application/change_language/en" do %>
+              <i class="fas fa-language fa-lg"></i>
+              </span>
+              <span class="d-inline"><%= t('.lang') %></span>
+                <% end %>
+              <% elsif session[:locale] == "en" %>
+                <%= link_to "/application/change_language/ja" do %>
+              <i class="fas fa-language fa-lg"></i>
+              </span>
+              <span class="d-inline"><%= t('.lang') %></span>
+                <% end %>
+              <% end %>
+            </li>
             <%# お問い合わせ %>                                              
             <li class="list-group-item text-left under-line">
               <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>

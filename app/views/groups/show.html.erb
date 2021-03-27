@@ -1,31 +1,50 @@
 <% provide(:title, @group.name) %>
-<div class="col-lg-8 offset-lg-2" id="box" >
+<div id="box" >
+  <%# グループショー全体 %>
   <div class="group-show" >
-    <%# 下5行はヘッダー画像に関する記述 %>
-    <% if @group.header_image? %>
-      <div><%= image_tag @group.header_image.url, alt: "group-header" %></div>
-    <% else %>
-      <div class="header_sample"></div>
-    <% end %>
-    <span class="frame">
-      <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
-      <span class="float-right-btn">
-        <% if @relation &&  @relation.admin %>
-          <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: 'btn btn-primary' %>
-          <br>
-          <%= link_to t('.profileedit'), edit_group_path(@group.id), class: 'btn btn-primary' %>
-        <% end %>
-        <br>
-        <%= render 'join_form' %>  
-      </span>
-      <div class="frame profile">
-        <br><%= t('.score') %>：<%= @group.group_point.current_point.round(0) %>
+    <div class="group-headers">
+      <%# 下5行はヘッダー画像に関する記述 %>
+      <% if @group.header_image? %>
+        <div><%= image_tag @group.header_image.url, alt: "group-header" %></div>
+      <% else %>
+        <%= image_tag("default_header.png", alt: "ヘッダー画像") %>
+      <% end %>
+        <%# profile pic %>
+      <div class="group-img">
+        <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
       </div>
-      <div class="float_clear"></div>
-    </span>
-    <div class="group-name">
-      <strong><%= @group.name %></strong>
+      <%# leave %>
+      <%= render 'join_form' %>
+      <%# group settings %>
+      <div class="group-settings" onclick="openGroupSet()">
+        <i class="fas fa-users-cog fa-2x"></i>
+      </div>
+
+      <%# ドロップボタン%>
+      <div class="group-setting-drop" >
+        <ul>
+          <% if @relation &&  @relation.admin %>
+          <li>  
+            <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: '' %>
+          </li>
+          <hr>
+          <li>
+          <%= link_to t('.profileedit'), edit_group_path(@group.id), class: '' %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+
     </div>
+
+    <%# group name %>
+    <div class="group-name">
+      <%= @group.name %>
+    </div>
+
+    <%# コンテント %>
+    <div class="group-info">
+      <div><%= t('.score') %>：<%= @group.group_point.current_point.round(0) %></div>
     <!--
     <div class="follow">
       <span class=color-brack>
@@ -40,9 +59,8 @@
       <div class="sns">
         <%# プロフィール表示 %>
         <% if @group.profile.present? %>
-          <small>
-            <%= t('.profile') %>
-            <br>
+          <small class="group-bio">
+            <%# t('.profile') %>
             <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
           </small>
         <% elsif @relation &&  @relation.admin %>
@@ -63,7 +81,6 @@
       </div>
     </div>
     <div class="member-list">
-      <strong class="member"><%= t('.member') %></strong>
       <%= render 'shared/stats_user' %>
       <% @users.each do |user| %>
         <li class="list-group-item list-group-item-action member-list-box">
@@ -74,6 +91,15 @@
         <%= paginate @users, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
       </div>
     </div>
+    </div>
   </div>
 </div>
+
+<script>
+// ドロップ開閉
+  function openGroupSet() {
+    var open = document.querySelector(".group-setting-drop");
+    open.classList.toggle("group-setting-drop-on");
+  }
+</script>
 

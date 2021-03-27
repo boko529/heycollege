@@ -24,8 +24,6 @@
     starOn : '<%= asset_path('star-on.png') %>',
     <% unless @review.score == nil %>
       score: <%= @review.score %>,
-    <% else %>
-      score: 3,
     <% end %>
     scoreName: 'review[score]',
     half: false,
