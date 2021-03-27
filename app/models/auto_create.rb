@@ -7,8 +7,13 @@ class AutoCreate < ApplicationRecord
     # 文字コードの関係でAPUのCSVは文字コードをANSIに一度変換しないといけない
     CSV.foreach(file.path, encoding: 'cp932:UTF-8', headers: true).with_index(2) do |row, row_number|
       begin
-        teacher_name_ja = row["先生"]
-        teacher_name_en = row["Teacher"]
+        # 名前が英語だったら小文字にして半角スペースで分割、その後各々を1文字目だけ大きくして一つに結合(半角スペースを利用)
+        teacher_name_ja = row["先生"].downcase.split.map do |a|
+          a.capitalize
+        end.join(' ')
+        teacher_name_en = row["Teacher"].downcase.split.map do |a|
+          a.capitalize
+        end.join(' ')
         lecture_name_ja = row["講義"].sub(/^\w+\)/, "") # 講義名の冒頭の"Online)"や"Hyblid)"などの")"手前を削除(正規表現で指定)
         lecture_name_en = row["Lecture"].sub(/^\w+\)/, "") # 講義名の冒頭の"Online)"や"Hyblid)"などの")"手前を削除(正規表現で指定)
         # "分野を指定"
