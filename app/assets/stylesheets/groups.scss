@@ -21,7 +21,7 @@
 // design group show
 .group-show{
   // header and img, buttons
-  .group-headers {
+  .group-headers{
     .groupshow-headerimg{
       width: 100%;
       img {
@@ -47,11 +47,10 @@
     }
     // material
     .group-setting-drop{
-      display: block;
+      display: none;
       background-color: white;
       position: absolute;
-      top: 10rem;
-      left:8rem;
+      right:0rem;
       width: 12rem;
       border: 1px solid black;
       padding: 0.5rem;
@@ -61,12 +60,16 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        a {
+          color: #333;
+        }
       }
     }
     // when its open by js
     .group-setting-drop-on {
       opacity: 1;
       visibility: visible;
+      display: block;
     }
   }
   .group-name {
@@ -158,4 +161,14 @@ ul.groups{
   margin-left: 0.7rem;
 }
 
-
+// --------------------------------
+// about form.html
+  // header and img, buttons
+  .groupshow-edit {
+    .groupshow-headerimg {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
