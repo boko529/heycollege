@@ -81,8 +81,12 @@
 // place post btn on the right top
 .review-form-post {
   float: right;
-  input {
+  input.btn-primary {
     background-color: gray;
     border-color: gray
+  }
+  input.btn-primary-clicked{
+    background-color:blue;
+    border-color: blue;
   }
 }

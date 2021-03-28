@@ -33,11 +33,13 @@
     half: false,
   });
 
-  // var star = document.querySelector('img')
-  // var btn = document.querySelector('input')
-  // star.addEventListener('click',function(){
-  // btn.style.background-color='blue';
-  // });
+  // var star1 = document.querySelector('#score img'); これ下の二行と同じ意味
+  var starparent = document.querySelector('#score');
+  var star1 = starparent.querySelector('div:nth-child(4) img');
+  var btn = document.querySelector('.btn-primary');
+  star1.addEventListener('click',function(){
+    btn.style.backgroundColor = 'blue';
+  });
   </script>
 
 <% end %>
