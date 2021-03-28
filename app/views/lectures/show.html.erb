@@ -1,12 +1,12 @@
-<% provide(:title, @lecture.name) %>
+<% provide(:title, l_display_name(@lecture)) %>
 <% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
   <div class="lecture-header">
-    <%= link_to t('.return_to_class_list'), lectures_path %>
+    <%# link_to t('.return_to_class_list'), lectures_path %>
     <span class="creator_name">
       <%= t('.lecture_creater') %>：
       <%= link_to @lecture.user do %>
-        <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(@lecture.user) %>
+        <%= render partial: "shared/user_image/display_icon20", locals: {user: @lecture.user} %><%= u_display_name(@lecture.user) %>
       <% end %>
     </span>
   </div>
@@ -32,11 +32,11 @@
         <div class="lecture-class-teacher">
           <%# class name %>
           <div class="lecture-classname">
-            <%= @lecture.name %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
+            <%= l_display_name(@lecture) %>&nbsp;<%# 講義名とブックマークボタンの間に若干間開けてます。 %>
           </div>
           <%# teacher name %>
           <div class="lectureshow-teacher-name">
-            <%= t('.class-teacher') %>：<%= link_to @lecture.teacher.name, @lecture.teacher %>
+            <%= t('.class-teacher') %>：<%= link_to t_display_name(@lecture.teacher), @lecture.teacher %>
           </div>
         </div>
       </div>
@@ -45,7 +45,9 @@
       <div  class="lectureshow-helpfuls">
         <% if @helpful_review %>
           <p><strong><%= t('.most-helpful-rev') %></strong></p>
-          <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
+          <div class="most_helpful_review">
+            <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
+          </div>
         <% end %>
       </div>
 
@@ -64,19 +66,20 @@
         <% end %>
       </div>
 
+      <%# いらないのでコメントアウト %>
       <%# エディットとデリート %>
-      <div class="lectureshow-editNdelete">
+      <%# <div class="lectureshow-editNdelete"> %>
         <%# 自分の投稿のときのみ表示 %>
-        <% if current_user?(@lecture.user) %>
-          <div class="lectureshow-edit">
-            <%= link_to t('.edit'), edit_lecture_path %>
-          </div>
-          <div class="lectureshow-delete">
-            <%= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+        <%# if current_user?(@lecture.user) %>
+          <%# <div class="lectureshow-edit"> %>
+            <%#= link_to t('.edit'), edit_lecture_path %>
+          <%# </div> %>
+          <%# <div class="lectureshow-delete"> %>
+            <%#= link_to t('.delete'), @lecture, method: :delete, data: { confirm: t('.delete-message')} %>
+          <%# </div> %>
+        <%# end %>
+      <%# </div> %>
+    <%# </div> %>
 
     <%# レビュー表示 %>
     <div class="lectureshow-allreviews">

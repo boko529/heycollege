@@ -2,60 +2,89 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.group-index{
-  .frame{
-    /*丸アイコン*/
-    .circle {
-      width: 84px;
-      height: 84px;
-      overflow: hidden; /*画像が円から出た部分は隠す*/
-      background: #fff; /*背景色*/
-      float: left; /*左に回り込み*/
-      border: 2px solid #fff; /*枠線の幅、線種、色*/
-      border-radius: 50%; /*アイコン画像を円にする*/
-      /* 以下3行はfontawesomeを中央配置するため */
+// group/show,editで使う(縦横比を1:3になるようにしてほしい)
+
+// group header
+.header_sample{
+  width: 100%;
+  height: 100px;
+  background-color: rgb(127, 255, 212);
+ }
+
+// profile pic
+.group-img {
+  position:relative;
+  display: inline-block;
+  bottom:1rem;
+  left: 1rem;
+}
+// design group show
+.group-show{
+  // header and img, buttons
+  .group-headers {
+    .groupshow-headerimg{
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    // ボタンを縦並びにして、上に持ってく
+    .btn-join-leave, .group-setting-outer {
+      float:right;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    // group-setting dropdown button
+    .group-settings {
+      width: 5rem;
+      height: 2.4rem;
+      background-color: #6c757d;
+      border-radius: 0.3rem;
+      color:white;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
-    .float-right-btn{
-      float: right;
-      .btn-primary{
-        float: right;
-        margin-top: 0rem;
-        margin-bottom: 0.1rem;
-      }
-      .btn-secondary{
-        float: right;
-        margin-top: 0rem;
-        margin-bottom: 0.1rem;
+    // material
+    .group-setting-drop{
+      display: block;
+      background-color: white;
+      position: absolute;
+      top: 10rem;
+      left:8rem;
+      width: 12rem;
+      border: 1px solid black;
+      padding: 0.5rem;
+      visibility: hidden;
+      opacity: 0;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
     }
-    .frame-profile{
-      float: left;
+    // when its open by js
+    .group-setting-drop-on {
+      opacity: 1;
+      visibility: visible;
     }
   }
-  .group-name{
-    font-size:x-large ;
-    clear: both;
+  .group-name {
+    margin-left: 1rem;
   }
+  // below header
+  .group-info {
+    margin: 1rem;
+  }
+
   .follow{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   }
-  .float-right-btn{
-    float: right;
-  }
-  .member-list{
-    margin-top: 1rem;
-    .member{
-      font-size: larger;
-    }
-  }
+
   .member-list-box{
-    width: 60%;
+    width: 100%;
     margin-top: 0.2rem;
-    margin-left: 1rem;
     a{
       color: black;
     }
@@ -63,25 +92,6 @@
   .page-box{
     margin-top: 0.2rem;
     margin-left: 1rem;
-  }
-  .sns{
-    a{
-      color: black;
-    }
-  }
-}
-
-.group_profiles-btn{
-  .btn-primary{
-    float: left;
-    margin-top: 1rem;
-    margin-bottom: 0;
-
-  }
-  .btn-danger{
-    float: left;
-    margin-left: 0.5rem;
-    margin-top: 1rem;
   }
 }
 
@@ -97,10 +107,8 @@
     }
   }
 }
-
 div.groups-index {
-  width: 80%;
-  margin-left: 10%;
+  width: 100%;
   }
   p.new{
     width: auto;
@@ -112,34 +120,42 @@ div.groups-index {
       color: #fff;
     }
   }
-  ul.groups{
-     // 中身
-    div.group{
-      width: 90%;
-      background-color: #eeeeee;
-      border-radius: 4px;
-      border-bottom: 1px solid gray;
-      padding: 1rem 0.4rem;
-      margin-left: 5%;
+ul.groups{
+    // 中身
+  div.group{
+    width: 90%;
+    background-color: #eeeeee;
+    border-radius: 4px;
+    border-bottom: 1px solid gray;
+    padding: 1rem 0.4rem;
+    margin-left: 5%;
 
-      .class-name{
-        height: 100%;
-        padding: 10px;
-        font-weight: bold;
-        color: rgb(39, 33, 33);
-        margin-left: 5%;
-        margin-right: 5%;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-      }
-      a{
-        display: inline-block;
-        color: #333;
-        font-weight: bold;
-      }
+    .class-name{
+      height: 100%;
+      padding: 10px;
+      font-weight: bold;
+      color: rgb(39, 33, 33);
+      margin-left: 5%;
+      margin-right: 5%;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+    }
+    a{
+      display: inline-block;
+      color: #333;
+      font-weight: bold;
     }
   }
+}
+.group-show .member-list-box {
+  padding: 0.5rem;
+}
 
+// --------------------------------
+// about groups index
+.groups-index-groupimg{
+  margin-left: 0.7rem;
+}
 
 

@@ -30,15 +30,15 @@ class TeachersController < ApplicationController
     end
     
     private
-      def teacher_params
-        params.require(:teacher).permit(:first_name, :last_name)
-      end
+      # def teacher_params
+      #   params.require(:teacher).permit(:first_name, :last_name)
+      # end
 
-      def name_set
-        if teacher_params[:last_name] && teacher_params[:first_name]
-          @name = teacher_params[:last_name] + " " + teacher_params[:first_name]
-        else
-          @name = ""
-        end
-      end
+      # def name_set
+      #   if teacher_params[:last_name] && teacher_params[:first_name]
+      #     @name = teacher_params[:last_name] + " " + teacher_params[:first_name]
+      #   else
+      #     @name = ""
+      #   end
+      # end
 end

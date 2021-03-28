@@ -1,2 +1,0 @@
-module GroupProfilesHelper
-end

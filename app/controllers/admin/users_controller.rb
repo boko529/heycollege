@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :if_not_admin
   def index
-    @users = User.all.page(params[:page]).per(30)
+    @users = User.includes([:user_point]).page(params[:page]).per(30)
   end
   
   private

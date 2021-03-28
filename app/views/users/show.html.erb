@@ -8,11 +8,9 @@
 
   <div class="frame">
 
-    <%# pics %>
+    <%# pic %>
     <div class="frame_icon">
-      <div class="circle">
-        <%= image_tag 'default_user.png', :size => '80x80' %>
-      </div>
+      <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
     </div>
 
     <%# 編集 %>
@@ -23,7 +21,6 @@
         <% end %>
       </div>
     <% else %>
-      <div class="follow-btn">
         <span id='follow-button_<%= @user.id %>'>
           <%= render 'users/follow-button', user: @user  %>
         </span>
@@ -32,9 +29,9 @@
     <%# マイページのときのみ表示 %>
     <% if @user == current_user %>
       <%# その他・設定ボタン (PC版)%>
-      <div class="dropdown d-none d-md-block">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-cog"></i>
+      <div class="dropdown d-none d-sm-block">
+        <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
           <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
@@ -54,184 +51,91 @@
           <% end %>
         </div>
       </div>
-
-      <%# その他・設定ボタン (スマホ版)%>
-      <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
-        <i class="fas fa-cog"></i>
-      </div>
-
-      <%# その他ボトムアップスライド %>
-      <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
-        <div id="closeIcone" id="open" onclick="closeBottomup()">
-          <i class="fas fa-times"></i>
-        </div>
-        <ul class="other-bottomup-ul">
-          <li class="list-group-item text-left">
-            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-              <span class="d-inline"><%= t('.contactus') %></span>
-            <% end %>
-          </li>
-          <li class="list-group-item text-left">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <span class="d-inline">&nbsp;<%= t('.logout') %></span>
-          <% end %>
-          </li>
-          <%# 利用規約 %>
-          <li class="list-group-item text-left">
-            <%= link_to page_path('terms') do %>
-              <span class="d-inline"><%= t('.term') %></span>
-            <% end %>
-          </li>
-          <%# プライバシーポリシー %>
-          <li class="list-group-item text-left">
-            <%= link_to page_path('privacypolicy') do %>
-              <span class="d-inline"><%= t('.privacypolicy') %></span>
-            <% end %>
-          </li>
-          <%# 退会 %>
-          <li class="list-group-item text-left">
-            <%= link_to users_hide_path(@user), method: :patch, data: { confirm: t('.delete_account_message') } do %>
-              <span class="d-inline"><%= t('.leave') %></span>
-            <% end %>
-          </li>
-          <li class="usershow-blank list-group-item text-left d-inlineblock">
-            <span class="d-inline"></span>
-          </li>
-        </ul>
-      </div>
-
-    <% end %>
+    <% end %> 
   </div>
 
     
   <%# ユーザーネーム %>
   <div class="usershow-username">
-    <%= @user.name %>
+    <%= u_display_name(@user) %>
   </div>
 
   <%# フォロー %>
-  <div class="usershow-followe-follower">
-    <span id="follow", id='following-count_<%= @user.id%>'>
-      <%= link_to users_following_path(@user) do%>
-        <span class=color-brack>
-          <%= @user.follower.count %><%= t('.following') %>
-        </span>
-      <% end %>
-    </span>
-    &nbsp;&nbsp;&nbsp;
-    <span id='follower-count_<%= @user.id%>'>
-      <%= link_to users_follower_path(@user) do%>
-        <span class=color-brack>
-          <%= @user.followed.count %><%= t('.follower') %>
-        </span>
-      <% end %>
-    </span>
-  </div>
-
-
-      <%# ステータス %>
-      <div class="sns">
-        <div class="frame profile">
-          <!---
-            <br>性別:
-              <%= @user.gender_i18n  %> -->
-              <%= t('.college') %>：<%= @user.faculty_i18n %>
-            <br><%= t('.grade') %>：<%= @user.grade_i18n %>
+  <div class="usershow-belowheader">
+    <!--
+    <div class="usershow-followe-follower">
+      <span id="follow", id='following-count_<%= @user.id%>'>
+        <%= link_to users_following_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.follower.count %><%= t('.following') %>
+          </span>
+        <% end %>
+      </span>
+      &nbsp;&nbsp;&nbsp;
+      <span id='follower-count_<%= @user.id%>'>
+        <%= link_to users_follower_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.followed.count %><%= t('.follower') %>
+          </span>
+        <% end %>
+      </span>
+    </div>
+    -->
+    <%# ステータス %>
+    <div class="sns">
+      <div class="frame profile">
+        <!---
+          <br>性別:
+            <%= @user.gender_i18n  %> -->
+            <%# t('.college') %><%= @user.faculty_i18n %>
+            <%# t('.grade') %><%= @user.grade_i18n %>
             <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
-            <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
-          </div>
-        <small><%= t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
-        <br>
-       </div>      
-
-       <div class="usershow-add-accounts">
-        <% if @user.instagram_name.present? %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
-        <% elsif @user == current_user  %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
-        <% end %>
-        &nbsp;&nbsp;
-        <% if @user.twitter_name.present? %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
-        <% elsif @user == current_user %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
-        <% end %>
-       </div> 
-       
-
-
-      <!--
-      <p>
-        <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
-      </p>
-      
-      <div class="collapse mx-auto" id="collapsemyreview">
-        <div class="card card-body">
-          <h2>過去のレビュー</h2>
-          <table class="table">
-            <tr>
-              <th>クラス名</th>
-              <th>スコア</th>
-              <th>レビュータイトル</th>
-            </tr>
-            <% @reviews.each do |review| %>
-            <tr>
-              <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
-              <td><%= review.score %></td>
-              <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
-            </tr>
-            <% end %>
-          </table>
-        </div>
-      </div>-->
-
-      <%# 所属団体 %>
-      <% if @groups.any? %>
-        <div class="group-join">
-          <%= t('.mygroup') %>（<%= @groups.count %>
-          <% @groups.each do |group| %>
-            <p>・<%= link_to group.name, group %></p>
-          <% end %>
-        </div>
-      <% end %>
-
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><%= t('.class') %> (<%= @lectures.count %>)</a>
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <ol class="reviews">
-            <% @reviews.each do |review| %>
-              <%= render partial: "users/review", locals: {review: review} %>
-            <% end %>
-            <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
-          </ol>
-        </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <ol class="lectures">
-            <% @lectures.each do |lecture| %>
-              <%= render partial: "users/lecture", locals: {lecture: lecture} %>
-            <% end %>
-            <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
-          </ol>
-        </div>
+        <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
       </div>
+      <small><%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
+    </div>
 
+    <%# add sns accounts %>
+    <div class="usershow-add-accounts">
+    <% if @user.instagram_name.present? %>
+      <small><i class="fab fa-instagram fa-2x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+    <% elsif @user == current_user  %>
+      <small><i class="fab fa-instagram fa-2x"></i> <%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
+    <% end %>
+    &nbsp;&nbsp;
+    <% if @user.twitter_name.present? %>
+      <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+    <% elsif @user == current_user %>
+      <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
+    <% end %>
+    </div> 
 
+    <%# 所属団体 %>
+    <% if @groups.any? %>
+      <div class="group-join">
+        <%# t('.mygroup') %><%# @groups.count %>
+        <ul class="group-you-in">
+          <% @groups.each do |group| %>
+            <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <ol class="reviews">
+          <% @reviews.each do |review| %>
+            <%= render partial: "users/review", locals: {review: review} %>
+          <% end %>
+          <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
+        </ol>
+      </div>
+    </div>
+  </div>
 </div>
-
-<script>
-// 表示を消す
-  function openBottomup() {
-   document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
-   document.body.style.overflow = 'hidden';
-  }
-// 表示する
- function closeBottomup() {
-   document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
-   document.body.style.overflow = 'scroll';
-    }
-</script>

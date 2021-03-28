@@ -51,20 +51,45 @@ p {
   line-height: 1.7em;
 }
 
-
+// スマホのときのサーチフォーム関連
 .mobile-search-form{
   width: 100%;
 }
 
+// スマホ以外のときのサーチフォーム
+.pc-search-form{
+  width: 100%;
+}
+
 // body直下のコンテント(reviewにも.contentがあるので)
-body{
+body {
   >.content {
     position: relative;
-    top: 65px;
+    top: 48px;
   }
 }
 
+// ユーザーアイコンやグループアイコンを丸くするためのクラス(groupはユーザーと区別してまんまるじゃなくて少し丸みがある四角でも良いかも。)
+.user-icon, .group-icon{
+  border-radius: 100%;
+}
+.group-icon {
+border: 2px solid #fff7ec;
+border-radius: 50%;
+background-color: white;
+}
 
+// fontawesomeを80×80にする
+.font-awesome-80{
+  width: 70px !important;
+  height: 70px;
+}
+
+// fontawesomeを20×20にする
+.font-awesome-20{
+  width: 20px !important;
+  height: 20px;
+}
 
 // ページネーションカスタマイズ
 nav{
@@ -105,17 +130,9 @@ nav{
     }
   }
 }
-
 .yield_box{
   min-height: 35rem;
 }
-
-
-// コピーライト
-.copyright {
-  text-align:center;
-}
-
 // デバック表示(開発環境)の整形
 .debug_dump {
   clear: both;
@@ -174,17 +191,6 @@ nav{
   }
   strong {
     display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
   }
 }
 

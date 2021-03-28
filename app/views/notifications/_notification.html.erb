@@ -3,9 +3,7 @@
 <li>
   <strong>
     <%= link_to user_path(visitor) do %>
-      <div class="circle">
-        <%= image_tag 'default_user.png', :size => '50x50' %>
-      </div>
+      <%= render partial: "shared/user_image/display_icon20", locals: {user: visitor} %>
     <% end %>
   </strong>      
   <div>
