@@ -17,17 +17,17 @@ class TeachersController < ApplicationController
     def show
       @teacher = Teacher.find(params[:id])
       # redisなしでソート
-      # lectures = @teacher.lectures.includes(:reviews).sort_by do |lecture|  #先生の講義を評価が高い順に
-      #   if lecture.reviews.present?
-      #     lecture.average_score
-      #   else
-      #     0
-      #   end
-      # end.reverse
+      lectures = @teacher.lectures.includes(:reviews).sort_by do |lecture|  #先生の講義を評価が高い順に
+        if lecture.reviews.present?
+          lecture.average_score
+        else
+          0
+        end
+      end.reverse
 
       # redisでlecture取得→lecture.teacher == @teacherのものだけ取得.
-      all_lectures = REDIS.zrevrangebyscore( "rank/lectures", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
-      lectures = all_lectures.map{ |all_lecture| all_lecture  if all_lecture.teacher == @teacher }
+      # all_lectures = REDIS.zrevrangebyscore( "rank/lectures", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
+      # lectures = all_lectures.map{ |all_lecture| all_lecture  if all_lecture.teacher == @teacher }
       @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(5)
       
       @all_reviews = @teacher.teacher_reviews  #先生に関するレビューを参考になっている順で獲得
