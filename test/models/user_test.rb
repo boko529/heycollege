@@ -47,7 +47,7 @@ class UserTest < ActiveSupport::TestCase
   test "associated lectures should be destroyed" do
     @user1.skip_confirmation!
     @user1.save
-    @user1.lectures.create!(name_ja:  "日本大学史", teacher_id: @teacher.id)
+    @user1.lectures.create!(name_ja:  "日本大学史", field: "APM", lecture_lang: "en", teacher_id: @teacher.id)
     assert_difference 'Lecture.count', -1 do
       @user1.destroy
     end

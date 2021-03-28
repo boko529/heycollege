@@ -2,19 +2,23 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group" id="score">
-    <%= f.label :score, t('.satisfaction'), class:'col-md-3 col-form-label' %>
+    <%= f.label :score, t('.satisfaction'), class:'' %>
+    <br>
     <%= f.hidden_field :score, id: :review_score %>
   </div>
+  <div class="review-form-post">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  </div>    
+
 
   <%= f.label :content %>
   <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
   <small><%= t('.example_1')%></small><br>
-  <small><%= t('.example_2')%></small><br>
-  <small><%= t('.example_3')%></small><br>
+
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
 
   <!-- 評価javascript -->
   <script>
@@ -27,6 +31,12 @@
     <% end %>
     scoreName: 'review[score]',
     half: false,
+  });
+
+  var star = document.querySelector('img')
+  var btn = document.querySelector('input')
+  star.addEventListener('click',function(){
+  btn.style.background='blue';
   });
   </script>
 
