@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GroupProfilesControllerTest < ActionDispatch::IntegrationTest
+class Admin::GroupsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

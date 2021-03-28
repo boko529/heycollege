@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @users = @group.users
     @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
-    @profile = @group.group_profile
     @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
     if @group.twitter_name.present? && @group.instagram_name.present?
       @twitter = "https://twitter.com/"+@group.twitter_name
@@ -23,22 +22,23 @@ class GroupsController < ApplicationController
     end
   end
 
-  def new
-    @group = Group.new
-  end
+  # 管理者にしか作れなくした
+  # def new
+  #   @group = Group.new
+  # end
 
-  def create
-    @group = Group.new(name: group_params[:name])
-    if @group.save
-      # ポイントテーブル作成+初期ポイント付与
-      @group.initial_point
-      UserGroupRelation.create(user_id: current_user.id, group_id: @group.id, admin: true)
-      flash[:success] = "団体ページ作成しました"
-      redirect_to @group
-    else
-      render 'new'
-    end
-  end
+  # def create
+  #   @group = Group.new(name: group_params[:name])
+  #   if @group.save
+  #     # ポイントテーブル作成+初期ポイント付与
+  #     @group.initial_point
+  #     UserGroupRelation.create(user_id: current_user.id, group_id: @group.id, admin: true)
+  #     flash[:success] = "団体ページ作成しました"
+  #     redirect_to @group
+  #   else
+  #     render 'new'
+  #   end
+  # end
 
   def edit
     @group = Group.find(params[:id])
@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      flash[:success] = "団体情報は更新されました！"
+      # flash[:success] = "団体情報が更新されました！"
       redirect_to @group
     else
       render 'edit'
@@ -73,7 +73,7 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:name, :instagram_name, :twitter_name)
+      params.require(:group).permit(:name, :instagram_name, :twitter_name, :profile, :profile_image, :profile_image_cache, :remove_profile_image, :header_image, :header_image_cache, :remove_header_image)
     end
 
     def admin_group

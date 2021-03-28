@@ -1,59 +1,68 @@
 <% provide(:title, t('.mypageedit')) %>
 <div class="row">
-  <div class="col-md-8 offset-md-2 user-info-form">
+  <div class="col-md-8 offset-md-2">
     <h2><%= t('.userinfo') %></h2><br>
-
     <%= form_with model: @user, local:true do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <div class="field">
-        <%= image_tag 'default_user.png', :size => '80x80' %>
-        <small><%= t('.newprofilepic') %></small>
-      </div>
+      <div class="user-info-form">
+          <div class="field">
+            <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
+            <br>
+            <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+            <%= f.hidden_field :image_cache, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+            <br>
+            <label>
+              <%= f.check_box :remove_image %>画像を削除する
+            </label>
+          </div>
+          <br>
+        <div class="form-content">
+          <div class="field">
+            <%= f.label :name,t('.nick') %><br>
+            <%= f.text_field :name, autofocus:true, id:"inputName" %>
+          </div>
+          <!--
+          <div class="field">
+            <%= f.label :gender,t('.gen'), class:"title"  %><br>
+            <%= f.radio_button :gender, '', {:checked => true} %><%= t('.unspe') %>
+            <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
+              <%=  b.radio_button(class: "form-contorl") %>
+              <%= b.label %>
+            <% end %>
+          </div>-->
 
-      <div class="field">
-        <%= f.label :name,t('.nick') %><br/>
-        <%= f.text_field :name, autofocus:true, id:"inputName" %>
-      </div>
+          <div class="field">
+            <%= f.label :grade,t('.grade'), class:"title" %><br>
+            <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
+          </div>
 
-      <div class="field">
-        <%= f.label :gender,t('.gen') %><br/>
-        <%= f.radio_button :gender, '', {:checked => true} %><%= t('.unspe') %>
-        <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
-          <%=  b.radio_button(class: "form-contorl") %>
-          <%= b.label %>
-        <% end %>
-      </div>
+          <div class="field">
+            <%= f.label :faculty,t('.faculty'), class:"title" %><br>
+            <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspe') %>
+            <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
+              <%=  b.radio_button(class: "form-contorl") %>
+              <%= b.label %>
+            <% end %> 
+          </div>
 
-      <div class="field">
-        <%= f.label :grade,t('.grade') %><br/>
-        <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
-      </div>
+          <div class="field">
+            <%= f.label :twitter_name,t('.twi'), class:"title"  %><br>
+            <%= f.text_field :twitter_name, placeholder: t('.twi_message') %>
+          </div>
 
-      <div class="field">
-        <%= f.label :faculty,t('.faculty') %><br/>
-        <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspe') %>
-        <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
-          <%=  b.radio_button(class: "form-contorl") %>
-          <%= b.label %>
-        <% end %> 
-      </div>
+          <div class="field">
+            <%= f.label :instagram_name,t('.insta'), class:"title"  %><br>
+            <%= f.text_field :instagram_name, placeholder: t('.insta_message') %>
+          </div>
 
-      <div class="field">
-        <%= f.label :twitter_name,t('.twi') %><br/>
-        <%= f.text_field :twitter_name, placeholder: t('.twi_message') %>
-      </div>
+          <div class="field">
+            <%= f.label :message,t('.msg'), class:"title"  %><br>
+            <%= f.text_area :message, placeholder: t('.in100') %>
+          </div>
 
-      <div class="field">
-        <%= f.label :instagram_name,t('.insta') %><br/>
-        <%= f.text_field :instagram_name, placeholder: t('.insta_message') %>
+          <%= f.submit t('.change') %>
+        </div>
       </div>
-
-      <div class="field">
-        <%= f.label :message,t('.msg') %><br/>
-        <%= f.text_area :message, placeholder: t('.in100') %>
-      </div>
-
-      <%= f.submit t('.change') %>
     <% end %>
   </div>
 </div>

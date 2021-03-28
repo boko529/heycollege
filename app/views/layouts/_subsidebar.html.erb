@@ -5,40 +5,42 @@
     <% if user_signed_in? %>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to root_path do %>
-          <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+          <i class="fas fa-medal fa-2x"></i><span><%= t('.rank') %></span>
         <% end %>
       </li>
-    <!--
       <li class="list-group-item text-center text-lg-left">
         <%= link_to groups_path do %>
-          <i class="fas fa-users fa-2x"></i><span class="d-none d-lg-inline">グループ</span>
+          <i class="fas fa-users fa-2x"></i><span >グループ</span>
         <% end %>
       </li>
-    -->
-      <li class="list-group-item text-center text-lg-left">
-        <%= link_to new_lecture_path do %>
-          <i class="far fa-plus-square fa-2x"></i><span class="d-none d-lg-inline">ページ作成</span>
-        <% end %>
-      </li>
+      <%# 手動作成はいらないと思うのでコメントアウト %>
+        <%# <li class="list-group-item text-center text-lg-left"> %>
+          <%#= link_to new_lecture_path do %>
+            <%# <i class="far fa-plus-square fa-2x"></i> %>
+            <%# <span class="d-none d-lg-inline"> %>
+              <%#= t('.make') %>
+            <%# </span> %>
+          <%# end %>
+        <%# </li> %>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to bookmarks_path do %>
-          <i class="far fa-bookmark fa-2x"></i><span class="d-none d-lg-inline">ブックマーク</span>
+          <i class="far fa-bookmark fa-2x"></i><span><%= t('.book') %></span>
         <% end %>
       </li>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-          <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
+          <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>
         <% end %>
       </li>
       <!--
         <li class="list-group-item text-center text-lg-left">
           <%= link_to root_path do %>
-            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
+            <i class="fas fa-question fa-2x"></i><span >ヘルプ</span>
           <% end %>
         </li>
         <li class="list-group-item text-center text-lg-left">
           <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-none d-lg-inline">ログアウト</span>
+            <i class="fas fa-sign-out-alt fa-2x"></i><span >ログアウト</span>
           <% end %>
         </li>
       -->
@@ -47,12 +49,22 @@
         <span>ーー管理者用</span>
         <li class="list-group-item text-center text-lg-left">
           <%= link_to new_admin_news_path do %>
-            <i class="fas fa-bullhorn fa-2x"></i><span class="d-none d-lg-inline">アナウンス作成</span>
+            <i class="fas fa-bullhorn fa-2x"></i><span >アナウンス作成</span>
           <% end %>
         </li>
         <li class="list-group-item text-center text-lg-left">
           <%= link_to admin_users_path do %>
-            <i class="fas fa-users-cog fa-2x"></i><span class="d-none d-lg-inline">ユーザーリスト</span>
+            <i class="fas fa-users-cog fa-2x"></i><span >ユーザーリスト</span>
+          <% end %>
+        </li>
+        <li class="list-group-item text-center">
+          <%= link_to '/redis' do %>
+            <i class="fas fa-users-cog fa-2x"></i><span class="d-none d-lg-inline">Redis(ランキング更新)</span>
+           <% end %>
+        </li>
+        <li class="list-group-item text-center text-lg-left">
+          <%= link_to new_admin_auto_create_path do %>
+            <i class="fas fa-robot fa-2x"></i><span>クラス自動作成</span>
           <% end %>
         </li>
       <% end %>
@@ -60,34 +72,34 @@
     <% else %>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to root_path do %>
-          <i class="fas fa-home fa-2x"></i><span class="d-none d-lg-inline">ランキング</span>
+          <i class="fas fa-home fa-2x"></i><span><%= t('.rank') %></span>
         <% end %>
       </li>
       <%# <li class="list-group-item"> %>
       <!--
       <li class="list-group-item text-center text-lg-left">
         <%= link_to groups_path do %>
-          <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline">グループ</span>
+          <i class="fas fa-medal fa-2x"></i><span >グループ</span>
         <% end %>
       </li>
       -->
       <li class="list-group-item text-center text-lg-left">
         <%= link_to new_user_session_path do %>
-          <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline">ログイン&新規登録</span>
+          <i class="fas fa-sign-in-alt fa-2x"></i><span><%= t('.log') %></span>
         <% end %>
       </li>
 
       <!--
         <li class="list-group-item text-center text-lg-left">
           <%= link_to root_path do %>
-            <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline">ヘルプ</span>
+            <i class="fas fa-question fa-2x"></i><span >ヘルプ</span>
           <% end %>
         </li>
       -->
       
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-          <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline">お問い合わせ</span>
+          <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>
         <% end %>
       </li>
     <% end %>
@@ -97,14 +109,9 @@
   </ul>
 </div>
 <script>
-  // ワカチコ製最強開閉ボタン（ボタンはheader,html.erbの最初あたりに記載）
+    //  はんばーぐ開閉
   function openSubSide() {
-    var leftSpace = document.querySelector('.sub-sidebar');
-    if (leftSpace.style.left == '-100%') {
-      leftSpace.style.left="0"
-    }
-    else {
-      leftSpace.style.left="-100%"
-    }
+    var open = document.querySelector(".sub-sidebar");
+    open.classList.toggle("sub-sidebar-transition-active");
   }
 </script>

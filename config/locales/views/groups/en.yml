@@ -11,17 +11,18 @@ en:
       leave: "Leave"
     index:
       group: "Group"
-      makenew: "Create an new group"
+      makenew: "Make a new group"
       grouplist: "Group List"
     new:
-      makenew: "Create a new group"
+      makenew: "New group"
       make: "Create"
     show:
       allowothers: "Allow other members to edit"
-      profileedit: "Profile edit"
+      profileedit: "Group edit"
       score: "Score"
       profile: "Profile"
       makenew: "Set profile"
       addaccount: "Add account"
       member: "Members"
+      addprofile: "Add profile"
 

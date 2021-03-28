@@ -2,64 +2,125 @@
 footer {
   margin-top: 0px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-
   .footer_button {
     width: 100%;
-    height: 45px;
-
     .row {
+      z-index: 4;
       padding-top: 5px;
       height: 100%;
+      height: 47px;
     }
-
     .footer-rank,
     .footer-add,
     .footer-book,
     .footer-user,
     .footer-contact,
-    .footer-login {
+    .footer-login,
+    .footer-other,
+    .footer-menu {
       justify-content: center;
       align-items: center;
       display: flex;
       flex-direction: column;
-
-      .mobile-footer-logo {
-        font-size: 11px;
-        color: #9ed57c;
-      }
-
+      font-size: 11px;
+      color: #777;
+      a {
+          color: #777;
+        }
       .mobile-footer-logo-let {
         font-size: 9px;
       }
     }
   }
-
-  a {
-    .copyright {
-      display: block;
-      text-align: center;
+  /* footer */
+  // 設定開くボタン
+  .other-bottomup {
+    position: fixed;
+    background-color: #fff;
+    .list-group-item {
+      border-bottom: initial;
+      padding: 0.6rem 1.25rem;
+      color: #444;
+      .icon {
+        padding-right: 0.5rem;
+        padding-left: 0.1rem;
+      }
     }
-
-    color: #777;
-
-    &:hover {
-      color: #222;
+    .under-line {
+      border-bottom: 1.5px solid #e0e0e0;
     }
   }
-
-  .footer_logos,
-  .footer_words {
-    text-align: center;
-
-    ul {
-      padding: 0 auto;
-
-      li {
-        display: inline;
-        text-align: center;
-        margin-left: 10px;
+}
+// 下から上がってくる設定
+.other-bottomup {
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  bottom: -100%;
+  top: 100%;
+  height: 0;
+  transition: 0.1s;
+  visibility: hidden;
+}
+// アニメーション後
+.other-bottomup-transition-active {
+  opacity: 1;
+  bottom: 0;
+  top: 48px;
+  height: 100%;
+  transition: 0.1s;
+  visibility: visible
+}
+// 閉じるボタン
+#closeIcone {
+  text-align: right;
+  font-size: 35px;
+  padding-right: 40px;
+  background-color: #fff;
+}
+ul.other-bottomup-ul {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  li {
+    display: block;
+  }
+  .usershow-blank {
+    height: 100%;
+  }
+}
+// -------------------------------
+// when it pc size
+.footer_logos,
+.footer_words {
+  text-align: center;
+  ul {
+    padding: 0 auto;
+    li {
+      display: inline;
+      text-align: center;
+      margin-left: 10px;
+      a {
+        color: #777;
+        &:hover {
+        color: #222;
+        }
       }
+    }
+  }
+}
+div.copyright {
+  display: block;
+  text-align: center;
+  p {
+    color: #777;
+    &:hover {
+      color: #222;
     }
   }
 }

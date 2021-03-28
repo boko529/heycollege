@@ -4,7 +4,7 @@
   margin: 10px auto;
   }
 }
-.register-form-box{
+.register-form-box, .user-info-form{
   display: table;
   margin: 0 auto;
   .form-content{
@@ -13,5 +13,17 @@
   }
   .field{
     display: table;
+  }
+}
+
+.user-info-form{
+  display: table;
+  margin: 0 auto;
+  label{
+    margin-bottom: 0;
+  }
+  .title{
+    margin-top: 0.5rem;
+    margin-bottom: 0.1rem;
   }
 }
