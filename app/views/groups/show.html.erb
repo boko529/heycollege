@@ -34,10 +34,8 @@
               <div class="group-settings" onclick="openGroupSet()">
                 <i class="fas fa-users-cog fa-2x"></i>
               </div>
-            </div>
-
-            <%# ドロップボタン%>
-            <div class="group-setting-drop" >
+              <%# ドロップダウン %>
+              <div class="group-setting-drop" >
               <ul>
                 <% if @relation &&  @relation.admin %>
                 <li>  
@@ -49,6 +47,7 @@
                 </li>
                 <% end %>
               </ul>
+            </div>
             </div>
           </div>
           
