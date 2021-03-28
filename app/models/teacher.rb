@@ -2,7 +2,8 @@ class Teacher < ApplicationRecord
   belongs_to :user
   has_many   :lectures, dependent: :destroy
   validates :user_id, presence: true
-  validates :name,    presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :name_ja,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_en?
+  validates :name_en,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_ja?
 
   def average_score
     if self.lectures.blank?
@@ -25,18 +26,18 @@ class Teacher < ApplicationRecord
     end
   end
 
-  #editのときはフォームに初期値をnewのときは空白にする 
-  def init_first_name
-    if self.name.present?
-      return self.name.split(" ")[1]
-    end
-  end
+  # #editのときはフォームに初期値をnewのときは空白にする 
+  # def init_first_name
+  #   if self.name.present?
+  #     return self.name.split(" ")[1]
+  #   end
+  # end
 
-  def init_last_name
-    if self.name.present?
-      return self.name.split(" ")[0]
-    end
-  end
+  # def init_last_name
+  #   if self.name.present?
+  #     return self.name.split(" ")[0]
+  #   end
+  # end
 
   # 先生に関係するレビューを参考になっている順で獲得(内容があるもの限定、空白表示してもしょうがないかなと思って)
   def teacher_reviews

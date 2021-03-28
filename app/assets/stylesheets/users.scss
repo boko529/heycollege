@@ -1,12 +1,15 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.frame_profile{
-  // float: left; /*左に回り込み*/
-  display: block;
-  width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
+
+.user_show {
+  padding: 1rem;
+}
+.usershow-username {
+  margin-left: 1rem;
+}
+.usershow-belowheader{
+  margin: 0.5rem;
 }
 // ボタンのポジション
 .usershow-editbutton{
@@ -52,6 +55,11 @@
   }
 }
 .group-join{
+  ul.group-you-in{
+      list-style: none;
+        margin: 0;
+        padding: 0;
+  }
   p{
     margin: 0.3rem;
     margin: 0;
@@ -62,20 +70,15 @@
     }
   }
 }
-
 // ステータスにそれぞれ区分ごとに間を開ける
 .usershow-followe-follower,
 .frame.profile,
 .usershow-add-accounts {
   margin-top: 7px;
 }
-
-
 .reviews, .lectures{
   padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
 }
-
-
 .user_show{
   nav{
     a{
@@ -96,7 +99,6 @@
     }
   }
 }
-
 .list-group-item{
   a{
     color: #000;

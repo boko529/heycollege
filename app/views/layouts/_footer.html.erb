@@ -14,25 +14,45 @@
         <div class="mobile-footer-logo-let">Ranking</div>
       </div>
 
-      <%# 作る %>
-      <div class="footer-add col">
+      <%# グループ %>
+      <div class="footer-rank col">
         <div class="mobile-footer-logo">
-        <%= link_to new_lecture_path do %>
-          <i class="far fa-plus-square fa-2x"></i>
+        <%= link_to groups_path do %>     
+          <i class="fas fa-users fa-2x"></i>
         <% end %>
         </div>
-        <div class="mobile-footer-logo-let">New page</div>
+        <div class="mobile-footer-logo-let">Group</div>
       </div>
 
-      <%# ブックマーク %>
-      <div class="footer-book col">
+      <%# ユーザー %>
+      <div class="footer-rank col">
         <div class="mobile-footer-logo">
-          <%= link_to bookmarks_path do %>
-            <i class="far fa-bookmark fa-2x"></i>
-          <% end %>
+          <%= link_to user_path(current_user) do %>
+          <i class="fas fa-user-circle fa-2x"></i>
+        <% end %>
         </div>
-        <div class="mobile-footer-logo-let">Bookmark</div>
+        <div class="mobile-footer-logo-let">My page</div>
       </div>
+
+      <%# 作る %>
+      <%# <div class="footer-add col"> %>
+        <%# <div class="mobile-footer-logo"> %>
+          <%#= link_to new_lecture_path do %>
+            <%# <i class="far fa-plus-square fa-2x"></i> %>
+          <%# end %>
+        <%# </div> %>
+        <%# <div class="mobile-footer-logo-let">New page</div> %>
+      <%# </div> %>
+
+      <%# ブックマーク %>
+      <%# <div class="footer-book col">
+        <div class="mobile-footer-logo"> %>
+          <%# link_to bookmarks_path do %>
+            <%# <i class="far fa-bookmark fa-2x"></i> %>
+          <%# end %>
+        <%# </div>
+        <div class="mobile-footer-logo-let">Bookmark</div>
+      </div> %>
 
         <%# その他・設定ボタン %>
         <div class="footer-other col" id="open" onclick="openBottomup()" >
@@ -74,15 +94,19 @@
                 <span class="d-inline"><%= t('.ranking') %></span>
               <% end %>
             </li>
+            
             <%# 新規クラス作成 %>
-            <li class="list-group-item text-left">
-              <%= link_to new_lecture_path do %>
-                <span class="icon">
-                  <i class="far fa-plus-square fa-lg"></i>
-                </span>
-                <span class="d-inline"><%= t('.create') %></span>
-              <% end %>
-            </li>
+            <%# <li class="list-group-item text-left"> %>
+              <%#= link_to new_lecture_path do %>
+                <%# <span class="icon"> %>
+                  <%# <i class="far fa-plus-square fa-lg"></i> %>
+                <%# </span> %>
+                <%# <span class="d-inline"> %>
+                 <%#= t('.create') %>
+                <%# </span> %>
+              <%# end %>
+            <%# </li> %>
+
             <%# ブックマーク %>
             <li class="list-group-item text-left under-line">
                <%= link_to bookmarks_path do %>           
@@ -91,7 +115,23 @@
                 </span>
                 <span class="d-inline"><%= t('.book') %></span>
               <% end %>
-            </li> 
+            </li>
+            <%# 言語切り替え %>
+            <li class="list-group-item text-left under-line">
+              <% if session[:locale] == "ja" || session[:locale].blank? %>
+                <%= link_to "/application/change_language/en" do %>
+              <i class="fas fa-language fa-lg"></i>
+              </span>
+              <span class="d-inline"><%= t('.lang') %></span>
+                <% end %>
+              <% elsif session[:locale] == "en" %>
+                <%= link_to "/application/change_language/ja" do %>
+              <i class="fas fa-language fa-lg"></i>
+              </span>
+              <span class="d-inline"><%= t('.lang') %></span>
+                <% end %>
+              <% end %>
+            </li>
             <%# お問い合わせ %>                                              
             <li class="list-group-item text-left under-line">
               <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
@@ -176,12 +216,12 @@
     </div>
   </div>
 
-
- <div class="container d-none d-sm-block">
+  <%# if pc size header%>
+  <div class="container d-none d-sm-block">
    <div class="row text-center">
-      <div class="footer_logos col-md-6 col-sm-6 col-xs-12">
+      <div class="footer_logos col-sm-6">
         <%# ロゴ %>
-        <ul class="list-inline">   
+        <ul class="list-inline">
           <%# <li>
               <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
           </li> %>
@@ -227,9 +267,7 @@
   </div>
   
   <div class="copyright d-none d-sm-block ">
-  <div class="container">
-     	<p class="copyright">Copyright © 2021 All rights reserved</p>
-  </div>
+    <p class="copyright">Copyright © 2021 All rights reserved</p>
   </div>
 </footer>
 

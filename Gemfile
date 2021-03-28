@@ -48,6 +48,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'faker'
+  gem 'bullet' # n+1問題を検出
 end
 
 group :test do
@@ -71,3 +72,4 @@ gem 'high_voltage'
 gem 'carrierwave' # 画像投稿用
 gem 'rmagick'
 gem 'aws-sdk-s3', require: false # S3用
+gem 'roo' # csvファイル関係

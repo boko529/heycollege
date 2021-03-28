@@ -4,7 +4,7 @@ class TeacherTest < ActiveSupport::TestCase
   
   def setup
     @user1 = users(:user1)
-    @teacher = @user1.teachers.build(name: "ExampleTeacher")
+    @teacher = @user1.teachers.build(name_en: "ExampleTeacher")
   end
 
   test "should be valid" do
@@ -17,18 +17,18 @@ class TeacherTest < ActiveSupport::TestCase
   end
 
   test "name should be present" do
-    @teacher.name = "   "
+    @teacher.name_en = "   "
     assert_not @teacher.valid?
   end
 
   test "name should be at most 50 characters" do
-    @teacher.name = "a" * 51
+    @teacher.name_en = "a" * 51
     assert_not @teacher.valid?
   end
 
   test "associated teachers should be destroyed" do
     @user1.save
-    @user1.teachers.create!(name: "ExampleTeacher2")
+    @user1.teachers.create!(name_en: "ExampleTeacher2")
     assert_difference 'Teacher.count', -2 do  # fixtureにuser1に紐づいたteacherを1人追加しているので2人消去される.
       @user1.destroy
     end
