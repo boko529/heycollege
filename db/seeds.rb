@@ -55,6 +55,8 @@ end
   content = Faker::Lorem.sentence(word_count: 10)
   lecture_id = 50 - n
   users.each{ |user| user.reviews.create!(content: content, lecture_id: lecture_id, score: 3) }
+  # ブックマークも作成
+  Bookmark.create!(user_id: 1, lecture_id: lecture_id)
 end
 
 # adminユーザーへの参考になると通知
