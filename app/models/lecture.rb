@@ -28,7 +28,7 @@ class Lecture < ApplicationRecord
       return 0 # 返り値を数字にしたいので「不明」を0に変えました.
     else
       sum = 0
-      self.reviews.includes(:lecture).each do |review|
+      self.reviews.each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count

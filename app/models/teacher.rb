@@ -43,7 +43,7 @@ class Teacher < ApplicationRecord
   def teacher_reviews
     all_reviews = []
     self.lectures.includes(:reviews).each do |lecture|
-      all_reviews.push(lecture.reviews.where.not(content: "").includes(:helpfuls))
+      all_reviews.push(lecture.reviews.where.not(content: "").includes(:helpfuls, :user))
     end
     all_reviews = all_reviews.flatten!  #これで配列の中に複数の配列が入っている状態を展開して一つの配列にしている。いきなり配列うまく行かなかった。
     unless all_reviews.blank?
