@@ -34,11 +34,27 @@
   });
 
   // var star1 = document.querySelector('#score img'); これ下の二行と同じ意味
-  var starparent = document.querySelector('#score');
-  var star1 = starparent.querySelector('div:nth-child(4) img');
-  var btn = document.querySelector('.btn-primary');
+  let starparent = document.querySelector('#score');
+  let btn = document.querySelector('.btn-primary');
+  let star1 = starparent.querySelector('img:nth-child(4)'); //4~8
   star1.addEventListener('click',function(){
-    btn.style.backgroundColor = 'blue';
+    btn.style.backgroundColor = '#8bd09b';
+  });
+  let star2 = starparent.querySelector('img:nth-child(5)'); //4~8
+  star2.addEventListener('click',function(){
+    btn.style.backgroundColor = '#8bd09b';
+  });
+  let star3 = starparent.querySelector('img:nth-child(6)'); //4~8
+  star3.addEventListener('click',function(){
+    btn.style.backgroundColor = '#8bd09b';
+  });
+  let star4 = starparent.querySelector('img:nth-child(7)'); //4~8
+  star4.addEventListener('click',function(){
+    btn.style.backgroundColor = '#8bd09b';
+  });
+  let star5 = starparent.querySelector('img:nth-child(8)'); //4~8
+  star5.addEventListener('click',function(){
+    btn.style.backgroundColor = '#8bd09b';
   });
   </script>
 
