@@ -6,6 +6,15 @@ class Admin::AutoCreatesController < ApplicationController
   def new
     @auto_creates = AutoCreate.all
     @auto_create = AutoCreate.new
+    # 3/28のレビュー移行のためだけのやつ(new.html.erbにも外灯あり)
+    @reviews = Review.all
+    respond_to do |format|
+      format.html
+      format.csv do |csv|
+        send_reviews_csv(@reviews)
+      end
+    end
+
   end
 
   def create
@@ -31,7 +40,22 @@ class Admin::AutoCreatesController < ApplicationController
         redirect_to new_admin_auto_create_path
       end
     end
+  end
+
+  # 3/28の移行用
+  def send_reviews_csv(reviews)
+    bom = "\uFEFF"
+    csv_data = CSV.generate(bom) do |csv|
+      header = %w(review_id content past_lecture_id lecture_name teacher_name)
+      csv << header
+
+      reviews.each do |review|
+        values = [review.id,review.content,review.lecture_id,review.lecture.name_ja,review.lecture.teacher.name_ja]
+        csv << values
+      end
     end
+    send_data(csv_data, filename: "レビュー引き継ぎ.csv")
+  end
   
   private
   def if_not_admin
