@@ -10,7 +10,7 @@ class LectureIndexTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     assert_select 'form#lecture_search'
-    get lectures_path, params: { q: { name_cont:  "行動経済学"}}
+    get lectures_path, params: { q: { name_ja_cont:  "行動経済学"}}
     assert_template 'lectures/index'
     assert_select 'a[href=?]', lecture_path(@lecture)
     assert_select 'div.lecture', count: 1
@@ -20,7 +20,7 @@ class LectureIndexTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     assert_select 'form#lecture_search'
-    get lectures_path, params: { q: { teacher_name_cont:  "橋本 虎太郎"}}
+    get lectures_path, params: { q: { teacher_name_ja_cont:  "橋本 虎太郎"}}
     assert_template 'lectures/index'
     assert_select 'a[href=?]', lecture_path(@lecture2)
     assert_select 'div.lecture', count: 1
@@ -30,7 +30,7 @@ class LectureIndexTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/home'
     assert_select 'form#lecture_search'
-    get lectures_path, params: { q: { name_cont:  ""}}
+    get lectures_path, params: { q: { name_ja_cont:  ""}}
     assert_template 'lectures/index'
     assert_select 'div.lecture', count: 20
   end

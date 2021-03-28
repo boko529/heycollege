@@ -9,6 +9,6 @@ class TeacherIndexTest < ActionDispatch::IntegrationTest
     get teachers_path
     assert_template 'teachers/index'
     assert_select 'ul.pagination'
-    assert_select 'a[href=?]', teacher_path(@teacher), text: @teacher.name
+    assert_select 'a[href=?]', teacher_path(@teacher), text: @teacher.name_ja
   end
 end

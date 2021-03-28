@@ -1,4 +1,4 @@
-<%# ユーザーの画像を表示するためのパーシャル(80×80) %>
+<%# ユーザーの画像を表示するためのパーシャル(20×20) %>
 <% if user.image? %>
   <%= image_tag user.image.thumb20.url, alt: "user-icon", class: "user-icon" %>
 <% else %>

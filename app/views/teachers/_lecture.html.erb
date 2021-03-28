@@ -1,7 +1,7 @@
 <li class="list-group-item list-group-item-action">
   <span id="star-lecture<%= lecture.id %>"></span>
   <span class="score"><%= lecture.average_score %></span>
-  <%= link_to lecture.name, lecture %>
+  <%= link_to l_display_name(lecture), lecture %>
   <% unless lecture.reviews.blank? %>
     <span>(<%= lecture.all_reviews_count %>)</span>
   <% else %>

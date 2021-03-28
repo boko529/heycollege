@@ -49,15 +49,15 @@ module User::Point
     self.point_get(amount: 100.0, point_type: 1)
   end
 
-  # 参考になるを押された際に講義作成者へのメソッド
-  def helpfuled_lecture_point
-    self.point_get(amount: 1.0, point_type: 2)
-  end
+  # # 参考になるを押された際に講義作成者へのメソッド
+  # def helpfuled_lecture_point
+  #   self.point_get(amount: 1.0, point_type: 2)
+  # end
 
-  # 参考になるを押された際に先生作成者へのメソッド
-  def helpfuled_teacher_point
-    self.point_get(amount: 1.0, point_type: 3)
-  end
+  # # 参考になるを押された際に先生作成者へのメソッド
+  # def helpfuled_teacher_point
+  #   self.point_get(amount: 1.0, point_type: 3)
+  # end
 
   # 参考になるを押された際レビュー書き手の団体へのポイント付与
   def group_helpfuled_point
@@ -69,23 +69,23 @@ module User::Point
     end
   end
   
-  # 参考になるを押された際の講義作成者の団体へのポイント付与
-  def group_helpfuled_lecture_point
-    unless self.group.blank?
-      amount = (1.0 / self.group.count).floor(1)
-      self.group.each do |group|
-        group.point_get(amount: amount, point_type: 2)
-      end
-    end
-  end
+  # # 参考になるを押された際の講義作成者の団体へのポイント付与
+  # def group_helpfuled_lecture_point
+  #   unless self.group.blank?
+  #     amount = (1.0 / self.group.count).floor(1)
+  #     self.group.each do |group|
+  #       group.point_get(amount: amount, point_type: 2)
+  #     end
+  #   end
+  # end
 
-  # 参考になるを押された際の先生作成者の団体へのポイント付与
-  def group_helpfuled_teacher_point
-    unless self.group.blank?
-      amount = (1.0 / self.group.count).floor(1)
-      self.group.each do |group|
-        group.point_get(amount: amount, point_type: 3)
-      end
-    end
-  end
+  # # 参考になるを押された際の先生作成者の団体へのポイント付与
+  # def group_helpfuled_teacher_point
+  #   unless self.group.blank?
+  #     amount = (1.0 / self.group.count).floor(1)
+  #     self.group.each do |group|
+  #       group.point_get(amount: amount, point_type: 3)
+  #     end
+  #   end
+  # end
 end

@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index]
     resources :news, except: [:index, :show]
+    resources :auto_creates, only: [:new, :create]
   end
   root 'static_pages#home'
-  resources :lectures do
+  resources :lectures, only: [:show, :index] do
     resources :reviews, only: [:create, :destroy] do
       resources :helpfuls, only: [:create]
     end
