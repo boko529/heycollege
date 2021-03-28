@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 2021_03_26_140454) do
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
     t.string "name_en"
-    t.integer "lecture_lang"
-    t.integer "field"
+    t.integer "lecture_lang", default: 1
+    t.integer "field", default: 1
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
     t.index ["name_en"], name: "index_lectures_on_name_en"
