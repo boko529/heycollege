@@ -15,18 +15,24 @@
 .group-img {
   position:relative;
   display: inline-block;
-  bottom:2rem;
+  bottom:1rem;
   left: 1rem;
 }
 // design group show
 .group-show{
   // header and img, buttons
   .group-headers {
-    height: 9.8rem;
-    .btn-join-leave, .group-settings {
+    .groupshow-headerimg{
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+    // ボタンを縦並びにして、上に持ってく
+    .btn-join-leave, .group-setting-outer {
       float:right;
-      margin-right: 1rem;
-      margin-top: 1rem;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
     }
     // group-setting dropdown button
     .group-settings {
@@ -64,11 +70,11 @@
     }
   }
   .group-name {
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
   // below header
   .group-info {
-    margin: 0.5rem;
+    margin: 1rem;
   }
 
   .follow{
@@ -146,5 +152,10 @@ ul.groups{
   padding: 0.5rem;
 }
 
+// --------------------------------
+// about groups index
+.groups-index-groupimg{
+  margin-left: 0.7rem;
+}
 
 

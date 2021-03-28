@@ -45,7 +45,9 @@
       <div  class="lectureshow-helpfuls">
         <% if @helpful_review %>
           <p><strong><%= t('.most-helpful-rev') %></strong></p>
-          <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
+          <div class="most_helpful_review">
+            <%= render partial: "lectures/review", locals: {review: @helpful_review} %>
+          </div>
         <% end %>
       </div>
 
