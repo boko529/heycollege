@@ -60,6 +60,7 @@ en:
         Liberal: "一般教養"
         Language: "言語"
       language:
+        none: "Unknown"
         ja: "Japanese"
         en: "English"
         es: "Spanish"

@@ -19,12 +19,12 @@ class LectureTest < ActiveSupport::TestCase
   end
 
   test "name_ja should not be too long" do
-    @lecture.name_ja = "a" * 51
+    @lecture.name_ja = "a" * 71
     assert_not @lecture.valid?
   end
 
   test "name_en should not be too long" do
-    @lecture.name_en = "a" * 51
+    @lecture.name_en = "a" * 71
     assert_not @lecture.valid?
   end
 
