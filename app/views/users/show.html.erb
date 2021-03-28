@@ -33,20 +33,42 @@
         <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-ellipsis-h"></i>
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en", class: "dropdown-item" do %>
+              <i class="fas fa-language fa-lg"></i>
+              &nbsp;
+              <span class="d-inline"><%= t('.lang') %></span>
+            <% end %>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja", class: "dropdown-item" do %>
+              <i class="fas fa-language fa-lg"></i>
+              &nbsp;
+              <span class="d-inline"><%= t('.lang') %></span>
+            <% end %>
+          <% end %>      
           <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
-            &nbsp;<span class="d-inline"><%= t('.contactus') %>&nbsp;</span>
+            <i class="fas fa-envelope fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.contactus') %>&nbsp;</span>
           <% end %>
           <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
-            &nbsp;<span class="d-inline"><%= t('.logout') %>&nbsp;</span>
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.logout') %>&nbsp;</span>
           <% end %>
           <%= link_to page_path('terms'), class: "dropdown-item" do %>
-            &nbsp;<span class="d-inline"><%= t('.term') %>&nbsp;</span>
+            <i class="far fa-file-alt fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.term') %>&nbsp;</span>
           <% end %>
           <%= link_to page_path('privacypolicy'), class: "dropdown-item" do %>
-            &nbsp;<span class="d-inline"><%= t('.privacypolicy') %>&nbsp;</span>
+            <i class="fas fa-user-lock fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.privacypolicy') %>&nbsp;</span>
           <% end %>
           <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: t('.delete_account_message') } do %>
+            <i class="fas fa-heart-broken fa-lg"></i>
             &nbsp;<span class="d-inline"><%= t('.leave') %>&nbsp;</span>
           <% end %>
         </div>
