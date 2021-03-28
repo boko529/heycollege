@@ -26,7 +26,12 @@ class TeachersController < ApplicationController
       end.reverse
 
       # redisでlecture取得→lecture.teacher == @teacherのものだけ取得.
-      # all_lectures = REDIS.zrevrangebyscore( "rank/lectures", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
+      all_lectures = REDIS.zrevrangebyscore( "rank/lectures", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
+      all_lectures.each do |lecture|
+        if lecture.teacher == @teacher
+          lectures.push(lecture)
+        end
+      end
       # lectures = all_lectures.map{ |all_lecture| all_lecture  if all_lecture.teacher == @teacher }
       @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(5)
       
