@@ -22,22 +22,23 @@ class GroupsController < ApplicationController
     end
   end
 
-  def new
-    @group = Group.new
-  end
+  # 管理者にしか作れなくした
+  # def new
+  #   @group = Group.new
+  # end
 
-  def create
-    @group = Group.new(name: group_params[:name])
-    if @group.save
-      # ポイントテーブル作成+初期ポイント付与
-      @group.initial_point
-      UserGroupRelation.create(user_id: current_user.id, group_id: @group.id, admin: true)
-      flash[:success] = "団体ページ作成しました"
-      redirect_to @group
-    else
-      render 'new'
-    end
-  end
+  # def create
+  #   @group = Group.new(name: group_params[:name])
+  #   if @group.save
+  #     # ポイントテーブル作成+初期ポイント付与
+  #     @group.initial_point
+  #     UserGroupRelation.create(user_id: current_user.id, group_id: @group.id, admin: true)
+  #     flash[:success] = "団体ページ作成しました"
+  #     redirect_to @group
+  #   else
+  #     render 'new'
+  #   end
+  # end
 
   def edit
     @group = Group.find(params[:id])

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     resources :news, except: [:index, :show]
     resources :auto_creates, only: [:new, :create]
+    resource :groups, only: [:new, :create]
   end
   root 'static_pages#home'
   resources :lectures, only: [:show, :index] do
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
-  resources :groups do
+  resources :groups, except: [:new, :create] do
     member do
       get :users
     end
