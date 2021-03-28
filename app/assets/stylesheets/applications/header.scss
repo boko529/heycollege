@@ -4,7 +4,7 @@ header {
   height: 48px;
   background-color: rgb(239, 255, 234);
   width: 100%;
-  z-index: 4;
+  z-index: 100000;
   a {
     color: rgb(90, 82, 82);
 
@@ -38,11 +38,6 @@ header {
     white-space: nowrap;
     &:hover {
       color: black;
-    }
-    .lang-change {
-      font-size: 11px;
-      height: 35px;
-      width: 38px;
     }
   }
 }
