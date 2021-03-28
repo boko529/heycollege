@@ -11,7 +11,7 @@
       <div class="logo col-5 col-sm-3 mx-md-0 ml-sm-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-sm-block">
+      <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
@@ -20,7 +20,7 @@
             <div class="input-group-append justify-content-right">
               <%# 条件検索用のモーダルスイッチ %>
               <div class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-                <i class="fas fa-filter"></i>
+                <i class="fas fa-search-plus"></i><br>
               </div>
               <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
                 <i class="fas fa-search"></i>
@@ -31,7 +31,7 @@
       </div>
       
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-      <div class="search col-1 offset-4 d-sm-none d-block p-0">
+      <div class="search col-1 offset-3 d-md-none d-block p-0">
         <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-search fa-2x"></i>  
         </div>
@@ -50,24 +50,33 @@
             <%= render 'layouts/circle' %>
           <% end %>
         </div>
+        <%# 言語切り替えボタン %>
+        <div class="lang col-1 text-right d-none d-sm-block">
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en" do %>
+              EN
+            <% end %>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja" do %>
+              日本
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
 
       <% unless user_signed_in? %>
-
-      <%# 言語切り替えボタン %>
-      <div class="lang col-1 text-right">
-        <div class="lang-change"></div>
-        <% if session[:locale] == "ja" || session[:locale].blank? %>
-          <%= link_to "/application/change_language/en" do %>
-            EN
+        <%# 言語切り替えボタン %>
+        <div class="lang col-1 text-right">
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en" do %>
+              EN
+            <% end %>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja" do %>
+              日本
+            <% end %>
           <% end %>
-        <% elsif session[:locale] == "en" %>
-          <%= link_to "/application/change_language/ja" do %>
-            日本
-          <% end %>
-         <% end %>
-      </div>
-
+        </div>
       <% end %>
     </div>
   </div>

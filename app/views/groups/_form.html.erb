@@ -1,7 +1,7 @@
 <%= form_with(model: @group, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
-  <div>
+  <div class="groupshow-edit">
     <%# ヘッダー系 %>
     <% if @group.header_image? %>
       <div class="groupshow-headerimg">
