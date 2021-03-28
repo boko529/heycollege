@@ -40,6 +40,9 @@
   width: 46px;
   text-align: center;
   align-items: center;
+  .dropdown-menu{
+    z-index: 100; //ヘッダーよりは下に来るように
+  }
   button{
   position: relative;
   top: -3px;
