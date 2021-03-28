@@ -7,7 +7,7 @@ class Teacher < ApplicationRecord
 
   def average_score
     if self.lectures.blank?
-      return "不明"
+      return 0 # 数字を返り値にしたいので「不明」から0に変更しました.
     else
       sum = 0
       count = 0  # lecture.average_scoreが"不明"のものはcountしたくないのでself.lectures.countは使用しない.

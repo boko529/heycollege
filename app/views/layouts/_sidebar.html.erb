@@ -53,6 +53,11 @@
             <% end %>
           </li>
           <li class="list-group-item text-center">
+            <%= link_to '/redis' do %>
+              <i class="fas fa-users-cog fa-2x"></i><span class="d-none d-lg-inline">Redis(ランキング更新)</span>
+            <% end %>
+          </li>
+          <li class="list-group-item text-center">
             <%= link_to new_admin_auto_create_path do %>
               <i class="fas fa-robot fa-2x"></i><span class="d-none d-lg-inline">クラス自動作成</span>
             <% end %>
