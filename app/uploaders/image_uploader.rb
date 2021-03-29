@@ -3,6 +3,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
+  # サイズのバリデーション
+  def size_range
+    0..2.megabytes
+  end
+  # Choose what kind of storage to use for this uploader:
+  
+  # storage :file
+  # storage :fog
+
   # 環境に応じて保存先を変更(本番のみaws)
   if Rails.env.development?
     storage :file
@@ -11,14 +20,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   else
     storage :fog
   end
-
-  # サイズのバリデーション
-  def size_range
-    0..2.megabytes
-  end
-  # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
