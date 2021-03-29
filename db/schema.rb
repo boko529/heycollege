@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_140454) do
+ActiveRecord::Schema.define(version: 2021_03_29_053305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_03_26_140454) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "instagram_name"
     t.string "twitter_name"
-    t.string "profile_image"
-    t.string "header_image"
     t.text "profile"
+    t.json "header_image"
+    t.json "profile_image"
   end
 
   create_table "helpfuls", force: :cascade do |t|
@@ -191,7 +191,7 @@ ActiveRecord::Schema.define(version: 2021_03_26_140454) do
     t.boolean "is_deleted", default: false, null: false
     t.string "twitter_name"
     t.string "instagram_name"
-    t.string "image"
+    t.json "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
