@@ -3,6 +3,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
+  # 環境に応じて保存先を変更(本番のみaws)
+  if Rails.env.development?
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
+
   # サイズのバリデーション
   def size_range
     0..2.megabytes

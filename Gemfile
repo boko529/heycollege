@@ -71,7 +71,7 @@ gem 'dotenv-rails'
 gem 'high_voltage'
 gem 'carrierwave' # 画像投稿用
 gem 'rmagick'
-gem 'aws-sdk-s3', require: false # S3用
+gem 'fog-aws' # s3に画像保存用
 gem 'redis'
 gem 'redis-rails'
 gem 'roo' # csvファイル関係
