@@ -166,7 +166,8 @@ nav{
   }
 }
 .yield_box{
-  min-height: 35rem;
+  // コレが足りないとサイドバーとかがおかしくなる
+  min-height: 45rem;
 }
 // デバック表示(開発環境)の整形
 .debug_dump {
