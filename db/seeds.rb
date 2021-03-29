@@ -9,7 +9,7 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Opu::User)
 
 #追加のユーザーをまとめて生成する
 30.times do |n|
@@ -20,7 +20,8 @@ User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", mes
   email: email,
   password: password,
   confirmed_at: Time.now,
-  agreement: true)
+  agreement: true,
+  type: Apu::User)
 end
 
 # ユーザーごとにポイントテーブルを作成

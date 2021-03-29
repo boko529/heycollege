@@ -5,7 +5,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum grade: { B1: 1, B2: 2, B3: 3, B4: 4}, _prefix: :true
   enum gender: { male: 1,  female: 2 }, _prefix: :true
-  enum faculty: { APS: 1, APM: 2}, _prefix: :true
   #開発の都合でユーザー破壊されたらデータも破壊、後々改善する必要あり
   has_many :lectures, dependent: :destroy
   has_many :reviews
@@ -26,10 +25,6 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
   mount_uploader :image, UserImageUploader # プロフィール画像用のcarrierwave
-  # APUメアドのバリデーション削除
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 20}
   validates :message, length: { maximum: 100 }
   validates :twitter_name, length: { maximum: 30}
