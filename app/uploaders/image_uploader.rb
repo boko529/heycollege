@@ -31,7 +31,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #process :resize_to_limit => [640, 480]
 
   # 保存形式をJPGにする
-  process :convert => 'jpg'
+  process :convert => 'png'
 
   # サムネイルを生成する設定(継承先で記入)
   # version :thumb80 do
@@ -58,7 +58,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
   def filename
-    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
   end
 
   # ファイル名を日付にするとタイミングのせいでサムネイル名がずれる
