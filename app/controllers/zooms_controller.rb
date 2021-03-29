@@ -36,8 +36,11 @@ class ZoomsController < ApplicationController
     #   flash[:danger] = "zoomの部屋を複数作ることはできません(過去に作ったzoomを削除してから再度zoomを作成してください)"
     #   render new_zoom_path
     # els
-    if @zoom.end_time - @zoom.start_time <= 0
-      flash[:danger] = "開始時刻と終了時刻がおかしいです。"
+    if @zoom.end_time.nil? || @zoom.start_time.nil?
+      flash[:danger] = "開始時刻、終了時刻が正しく入力されていません"
+      render new_zoom_path
+    elsif @zoom.end_time - @zoom.start_time <= 0
+      flash[:danger] = "開始時刻、終了時刻が正しく入力されていません"
       render new_zoom_path
     elsif @zoom.start_time - Time.now < -60
       flash[:danger] = "開始時刻が現在時刻を過ぎています"
