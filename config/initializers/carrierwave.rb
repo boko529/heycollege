@@ -20,3 +20,5 @@ CarrierWave.configure do |config|
     config.enable_processing = false if Rails.env.test?
   end
 end
+
+CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
