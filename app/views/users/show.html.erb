@@ -20,10 +20,12 @@
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-    <% else %>
-        <span id='follow-button_<%= @user.id %>'>
-          <%= render 'users/follow-button', user: @user  %>
-        </span>
+    <%# フォローは現時点でいらないのでコメントアウトしてます %>
+    <%# else %>
+      <%# コメントアウトの仕方が汚いけどこれしかなかった。。 %>
+        <%# <span id='follow-button_ %> <%#= @user.id %> <%# '> %>
+          <%#= render 'users/follow-button', user: @user  %>
+        <%# </span> %>
     <% end %>
 
     <%# マイページのときのみ表示 %>

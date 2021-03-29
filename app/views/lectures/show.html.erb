@@ -1,15 +1,17 @@
 <% provide(:title, l_display_name(@lecture)) %>
 <% provide(:button_text, t('.post_review')) %>
 <div class="lecture_show">
-  <div class="lecture-header">
+
+  <%# 自動作成になって不要になったのでコメントアウトしてました。 %>
+  <%# <div class="lecture-header"> %>
     <%# link_to t('.return_to_class_list'), lectures_path %>
-    <span class="creator_name">
-      <%= t('.lecture_creater') %>：
-      <%= link_to @lecture.user do %>
-        <%= render partial: "shared/user_image/display_icon20", locals: {user: @lecture.user} %><%= u_display_name(@lecture.user) %>
-      <% end %>
-    </span>
-  </div>
+    <%# <span class="creator_name"> %>
+      <%#= t('.lecture_creater') %>：
+      <%#= link_to @lecture.user do %>
+        <%#= render partial: "shared/user_image/display_icon20", locals: {user: @lecture.user} %><%#= u_display_name(@lecture.user) %>
+      <%# end %>
+    <%# </span> %>
+  <%# </div> %>
 
   <%# everything after lec show header %>
   <div class="lectureinfo-N-allreviews">

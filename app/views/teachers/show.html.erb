@@ -2,25 +2,28 @@
 <div class="teacher_show">
     <%# link_to t('.back-to-teacher-index'), teachers_path %><%# &nbsp;&nbsp;&nbsp;&nbsp;%> 
     <%# link_to t('.return-to-class-index'), lectures_path %>
-  <%# プロフィール画像と作成者の名前 %>
-  <div class="creator_name">
-    <%= t('.teacher-creater') %>
-    <%= link_to @teacher.user do %>
-      <%= render partial: "shared/user_image/display_icon20", locals: {user: @teacher.user} %><%= u_display_name(@teacher.user) %>
-    <% end %>
-  </div>
-  <div class="teacher-info">
-    <p class="teachershow-teachername" style="text-decoration:none">
-      <%= t_display_name(@teacher) %>&nbsp; <%# レイアウトは任せるわ,以下3行が先生名を表示しつつクラスを作成するやつ %>
-      <%# 手動作成いらないのでコメントアウト %>
-      <%#= link_to new_lecture_path(teacher_id: @teacher.id) do %>
-        <%# <i class="far fa-plus-square"></i> %>
+
+    <%# オートで作ったので作成者もいらないのでコメントアウト %>
+    <%# プロフィール画像と作成者の名前 %>
+    <%# <div class="creator_name"> %>
+      <%#= t('.teacher-creater') %>
+      <%#= link_to @teacher.user do %>
+        <%#= render partial: "shared/user_image/display_icon20", locals: {user: @teacher.user} %><%#= u_display_name(@teacher.user) %>
       <%# end %>
-    </p>
-    <div class="scores">
-    <span id="star-teacher<%= @teacher.id %>"></span>
-    <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span>
-      
+    <%# </div> %>
+
+    <div class="teacher-info">
+      <p class="teachershow-teachername" style="text-decoration:none">
+        <%= t_display_name(@teacher) %>&nbsp; <%# レイアウトは任せるわ,以下3行が先生名を表示しつつクラスを作成するやつ %>
+        <%# 手動作成いらないのでコメントアウト %>
+        <%#= link_to new_lecture_path(teacher_id: @teacher.id) do %>
+          <%# <i class="far fa-plus-square"></i> %>
+        <%# end %>
+      </p>
+      <div class="scores">
+      <span id="star-teacher<%= @teacher.id %>"></span>
+      <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span>
+        
     </div>
     <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
