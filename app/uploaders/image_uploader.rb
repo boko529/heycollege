@@ -8,8 +8,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     0..2.megabytes
   end
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  
+  # storage :file
   # storage :fog
+
+  # 環境に応じて保存先を変更(本番のみaws)
+  if Rails.env.development?
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -21,7 +31,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #process :resize_to_limit => [640, 480]
 
   # 保存形式をJPGにする
-  process :convert => 'jpg'
+  process :convert => 'png'
 
   # サムネイルを生成する設定(継承先で記入)
   # version :thumb80 do
@@ -48,7 +58,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
   def filename
-    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+    super.chomp(File.extname(super)) + '.png' if original_filename.present?
   end
 
   # ファイル名を日付にするとタイミングのせいでサムネイル名がずれる

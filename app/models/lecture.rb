@@ -25,10 +25,10 @@ class Lecture < ApplicationRecord
   # self.は省略できるけどこっちの方が可読性高い気がするから残しときます
   def average_score
     if self.reviews.blank?
-      return "不明"
+      return "不明" 
     else
       sum = 0
-      self.reviews.includes(:lecture).each do |review|
+      self.reviews.each do |review|
         sum = sum + review.score
       end
       average_score = sum / self.reviews.count
