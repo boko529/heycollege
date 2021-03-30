@@ -12,7 +12,7 @@ class Admin::GroupsController < ApplicationController
       if @group.save
         # ポイントテーブル作成+初期ポイント付与
         @group.initial_point
-        UserGroupRelation.create(user_id: host.id, group_id: @group.id, admin: true)
+        UserGroupRelation.create(user_id: host.id, group_id: @group.id, admin: true, confirmation: true)
         flash[:success] = "団体ページ作成しました"
         redirect_to @group
       else

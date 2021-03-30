@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
-  before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin,:edit_confirmation, :confirm]
-  before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin,:edit_confirmation, :confirm]
+  before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
+  before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
     @groups = Group.all
