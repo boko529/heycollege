@@ -13,6 +13,8 @@
           <span class="groups-index-groupimg">
             <%= render partial: "shared/group_image/display_icon20", locals: {group: group} %>
           </span>
+          <%# グループのプロフィールを部分的に表示する。truncateが省略のメソッドで...含めて()のなかの数字の文字数になるように省略する %>
+          <%= group.profile.truncate(30) %>
         </span>
       </div>
     <% end %>
