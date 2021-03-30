@@ -7,6 +7,7 @@ class RedisController < ApplicationController
   end
 
   def ranking_update
+    REDIS.flushall
     Lecture.all.map{ |lecture| REDIS.zadd "rank/lectures", lecture.average_score, lecture.id  unless lecture.average_score == "不明" }
     Teacher.all.map{ |teacher| REDIS.zadd "rank/teachers", teacher.average_score, teacher.id  unless teacher.average_score == "不明" }
     #ユーザーランキング処理(管理者、退会者は除く,非承認者)
