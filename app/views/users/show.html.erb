@@ -81,7 +81,7 @@
     
   <%# ユーザーネーム %>
   <div class="usershow-username">
-    <%= u_display_name(@user) %>
+    <strong><%= u_display_name(@user) %></strong>
   </div>
 
   <%# フォロー %>
@@ -116,7 +116,7 @@
             <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
         <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
       </div>
-      <small><%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
+      <%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %>
     </div>
 
     <%# add sns accounts %>
