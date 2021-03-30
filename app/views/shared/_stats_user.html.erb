@@ -2,7 +2,14 @@
 <div class="stats">
   <%# <a href="<%= users_group_path(@group) %>
     <span id="users" class="stat">
-      <%= t('.members') %>：<%= @group.users.count %>
+      <%= t('.members') %>：
+      <% count = 0 %>
+      <% @group.users.each do |user| %>
+        <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).confirmation == true %>
+          <% count += 1 %>
+        <% end %>
+      <% end %>
+      <%= count %>
     </span>
   </a>
 </div>
