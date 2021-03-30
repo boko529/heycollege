@@ -8,6 +8,8 @@ class Zoom < ApplicationRecord
   validates :join_url, presence: true,format: { with: VALID_JOINURL_REGEX }
   validate :start_end_check
   validate :start_check
+  has_many :users, through: :user_zooms
+  has_many :user_zooms
 
   def start_end_check
     errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time

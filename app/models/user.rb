@@ -25,7 +25,8 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
-  has_many :zooms,dependent: :destroy
+  has_many :user_zooms
+  has_many :zooms, dependent: :destroy, through: :user_zooms
 
   # APUメアドのバリデーション削除
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
@@ -81,5 +82,13 @@ class User < ApplicationRecord
   # 退会済みかどうか確認(退会済みならtrue)
   def active_for_authentication?
     super && (self.is_deleted == false)
+  end
+
+  def join_zoom(zoom1)
+    zooms << zoom1
+  end
+
+  def belongs_zoom?(zoom1)
+    zooms.include?(zoom1)
   end
 end

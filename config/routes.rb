@@ -49,5 +49,6 @@ Rails.application.routes.draw do
   get 'users/follower/:user_id', to: 'users#follower', as:'users_follower'
   patch "/users/:id/hide" => "users#hide", as: 'users_hide' # 退会用
   resources :zooms, only: [:index,:new,:edit,:update,:create,:show,:destroy]
-  post 'zooms/:id/count', to: 'zooms#numbercount', as:'zoom_number_count'
+  # zoom参加者管理のパス(userとzoomの中間テーブル)
+  post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
 end

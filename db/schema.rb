@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_074123) do
+ActiveRecord::Schema.define(version: 2021_03_30_012832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,16 @@ ActiveRecord::Schema.define(version: 2021_03_18_074123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_user_points_on_user_id"
+  end
+
+  create_table "user_zooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "zoom_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "zoom_id"], name: "index_user_zooms_on_user_id_and_zoom_id", unique: true
+    t.index ["user_id"], name: "index_user_zooms_on_user_id"
+    t.index ["zoom_id"], name: "index_user_zooms_on_zoom_id"
   end
 
   create_table "users", force: :cascade do |t|

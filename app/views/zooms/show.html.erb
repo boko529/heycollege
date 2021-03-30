@@ -18,8 +18,14 @@
 <% if @zoom.user_id == current_user.id %>
   <%= link_to "編集", edit_zoom_path(@zoom.id),class: "btn btn-success"%>
   <%= link_to "削除", zoom_path(@zoom.id), method: :delete,class: "btn btn-danger"%>
-<% elsif @zoom.end_time - Time.now >= 0%>
-  <%= link_to "このzoomに参加する", @zoom.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer" %>
+<% elsif @zoom.end_time - Time.now >= 0%> 
+  <% if current_user.belongs_zoom?(@zoom) %>
+  <!-- すでにzoomへの参加リンクを押している場合そのままzoomの招待リンクに飛ばす -->
+    <%= link_to "このzoomに参加する", @zoom.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+  <% else %>
+  <!-- すでにzoomへの参加リンクを押していない場合user_zooms_pathを通す -->
+    <%= link_to "このzoomに参加する", user_zooms_path(@zoom.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+  <% end %>
 <% else %>
   <p>このミーティングは終了しました</p>
 <% end %>

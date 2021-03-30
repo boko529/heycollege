@@ -86,14 +86,26 @@ class ZoomsController < ApplicationController
 
   def numbercount
     zoom = Zoom.find(params[:id])
-    cnt = zoom.count + 1
-    if zoom.update(count: cnt)
-      redirect_to zoom.join_url
-    else
+    if current_user.belongs_zoom?(zoom)
+      #すでにzoomへの参加リンクを押している場合
       @zoom = Zoom.new
       @user=current_user
       @zooms = Zoom.all
+      flash[:danger] = "もうすでにzoomに参加しています"
       render :index
+    else
+      #まだzoomへの参加リンクを押している場合
+      current_user.join_zoom(zoom)
+      cnt = zoom.count + 1
+      if zoom.update(count: cnt)
+        redirect_to zoom.join_url
+      else
+        @zoom = Zoom.new
+        @user=current_user
+        @zooms = Zoom.all
+        flash[:danger] = "zoomに参加できませんでした。"
+        render :index
+      end
     end
   end
 

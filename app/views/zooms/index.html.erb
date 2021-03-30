@@ -15,10 +15,12 @@
     -->
     開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>
     終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
-    <% if Time.now - f.created_at <= 200 %>
-      <%= link_to "このzoomに参加する", zoom_number_count_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+    <% if current_user.belongs_zoom?(f) %>
+    <!-- すでにzoomへの参加リンクを押している場合そのままzoomの招待リンクに飛ばす -->
+      <%= link_to "このzoomに参加する", f.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
     <% else %>
-      <%= link_to "このzoomに参加する", zoom_number_count_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %><br>
+    <!-- すでにzoomへの参加リンクを押していない場合user_zooms_pathを通す -->
+      <%= link_to "このzoomに参加する", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
     <% end %>
     </div>
   <% end %>
