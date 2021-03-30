@@ -29,30 +29,31 @@
             </div>
             <%# leave & join%>
             <%= render 'join_form' %>
+
             <%# group settings %>
-            <div class="group-setting-outer">
+            <% if @relation &&  @relation.admin %>
+              <div class="group-setting-outer">
               <div class="group-settings" onclick="openGroupSet()">
                 <i class="fas fa-users-cog fa-2x"></i>
               </div>
               <%# ドロップダウン %>
-              <div class="group-setting-drop" >
-              <ul>
-                <% if @relation &&  @relation.admin %>
-                <li>  
-                  <%= link_to t('.confirmation'), {controller: 'groups', action: 'edit_confirmation', id: @group.id}, class: '' %>
-                </li>
-                <hr>
-                <li>  
-                  <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: '' %>
-                </li>
-                <hr>
-                <li>
-                <%= link_to t('.profileedit'), edit_group_path(@group.id), class: '' %>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-            </div>
+                <div class="group-setting-drop" >
+                  <ul>
+                    <li>  
+                      <%= link_to t('.confirmation'), {controller: 'groups', action: 'edit_confirmation', id: @group.id}, class: '' %>
+                    </li>
+                    <hr>
+                    <li>  
+                      <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: '' %>
+                    </li>
+                    <hr>
+                    <li>
+                      <%= link_to t('.profileedit'), edit_group_path(@group.id), class: '' %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
           </div>
           
           <%# コンテント %>
