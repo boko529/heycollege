@@ -24,7 +24,7 @@
               <%= render partial: "shared/group_image/display_icon80", locals: {group: @group} %>
               <%# group name %>
               <div class="group-name">
-                <%= @group.name %>
+                <strong><%= @group.name %></strong>
               </div>
             </div>
             <%# leave & join%>
@@ -75,14 +75,14 @@
               <div class="sns">
                 <%# プロフィール表示 %>
                 <% if @group.profile.present? %>
-                  <small class="group-bio">
+                  <span class="group-bio">
                     <%# t('.profile') %>
                     <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
-                  </small>
+                  </span>
                 <% elsif @relation &&  @relation.admin %>
-                  <small>
+                  <span>
                     <%= link_to t('.addprofile'), edit_group_path(@group.id) %>
-                  </small>
+                  </span>
                 <% end %>
                 <br>
                 <% if @group.instagram_name.present? %>
