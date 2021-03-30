@@ -25,3 +25,6 @@ ja:
       addaccount: "アカウントを追加"
       member: "メンバー"
       addprofile: "プロフィールを追加"
+      confirmation: "新規メンバーを承認"
+    edit_confirmation:
+      chooseamember: "参加を承認するメンバーを選んでください。"
