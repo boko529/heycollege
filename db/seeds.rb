@@ -67,16 +67,11 @@ Notification.create(visitor_id: 2, visited_id: 1, action: "follow")
 
 News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
-# サンプルグループを2つ作成
-group1 = Group.create(name: "白鷺祭", profile: "毎年11月に中百舌鳥キャンパスで行われる大学祭を実行しています。一緒に思い出を作りましょう！")
-group2 = Group.create(name: "APUテニスサークル", profile: "APU公式テニスサークルです。大学から自転車で10分のグラウンドで毎週月水に活動してます！\n初心者大歓迎です。新歓来てね👍")
+group = Group.create(name: "白鷺祭")
 users = User.all
-
-UserGroupRelation.create(user_id: 1, group_id: 1, admin: true)
-UserGroupRelation.create(user_id: 1, group_id: 2, admin: true)
-
+UserGroupRelation.create(user_id: 1, group_id: 1, admin: true, confirmation: true)
 members = users[3..11]
-members.each { |user| user.join(group1) && user.join(group2) }
+members.each { |user| user.join(group) }
 
 # 団体ごとにポイントテーブルを作成
 Group.all.each do |group|
