@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get "users" => redirect("users/sign_up")
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update]
+  namespace :apu do
+    get 'users/:id', to: 'users#show', as: 'user'
+    get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
+  end
   namespace :admin do
     resources :users, only: [:index]
     resources :news, except: [:index, :show]
@@ -38,9 +42,9 @@ Rails.application.routes.draw do
       get :group
     end
   end
-
+  
   resources :user_group_relations, only: [:create, :destroy, :edit, :update]
-
+  
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as:'users_following'

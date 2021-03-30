@@ -1,2 +1,0 @@
-module Apu::UsersHelper
-end

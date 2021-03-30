@@ -1,2 +1,0 @@
-module Opu::UsersHelper
-end
