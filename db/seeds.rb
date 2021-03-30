@@ -9,10 +9,10 @@
 # #メインのサンプルユーザー
 # User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
 
-User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Opu::User)
+User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Apu::User)
 
 #追加のユーザーをまとめて生成する
-30.times do |n|
+15.times do |n|
   name  = Faker::Name.name
   email = "user-#{n+1}@apu.ac.jp"
   password = "foobar"
