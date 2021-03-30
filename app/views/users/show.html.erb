@@ -81,7 +81,7 @@
     
   <%# ユーザーネーム %>
   <div class="usershow-username">
-    <%= u_display_name(@user) %>
+    <strong><%= u_display_name(@user) %></strong>
   </div>
 
   <%# フォロー %>
@@ -116,7 +116,7 @@
             <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
         <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
       </div>
-      <small><%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
+      <%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %>
     </div>
 
     <%# add sns accounts %>
@@ -140,7 +140,9 @@
         <%# t('.mygroup') %><%# @groups.count %>
         <ul class="group-you-in">
           <% @groups.each do |group| %>
-            <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+            <% if UserGroupRelation.find_by(user_id: @user.id, group_id: group.id).confirmation == true %>
+              <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+            <% end %>
           <% end %>
         </ul>
       </div>

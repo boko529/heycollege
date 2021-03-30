@@ -71,8 +71,12 @@ News.create(title: "<お知らせ>ベータ版につきまして", message: "ベ
 group1 = Group.create(name: "白鷺祭", profile: "毎年11月に中百舌鳥キャンパスで行われる大学祭を実行しています。一緒に思い出を作りましょう！")
 group2 = Group.create(name: "APUテニスサークル", profile: "APU公式テニスサークルです。大学から自転車で10分のグラウンドで毎週月水に活動してます！\n初心者大歓迎です。新歓来てね👍")
 users = User.all
+<<<<<<< HEAD
 UserGroupRelation.create(user_id: 1, group_id: 1, admin: true)
 UserGroupRelation.create(user_id: 1, group_id: 2, admin: true)
+=======
+UserGroupRelation.create(user_id: 1, group_id: 1, admin: true, confirmation: true)
+>>>>>>> be14953199d554d4ede69b7a5f57c0dc20a39a7f
 members = users[3..11]
 members.each { |user| user.join(group1) && user.join(group2) }
 

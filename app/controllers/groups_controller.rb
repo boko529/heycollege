@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :edit_admin, :update_admin]
-  before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin]
+  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
+  before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
+  before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
     @groups = Group.all
@@ -70,6 +71,22 @@ class GroupsController < ApplicationController
     end
   end
 
+  def edit_confirmation
+    @group = Group.find(params[:id])
+    @users = @group.users
+  end
+
+  def confirm
+    @group = Group.find(params[:id])
+    @user = User.find_by(id: params[:user_id])
+    if relation = UserGroupRelation.find_by(user_id: @user.id, group_id: @group.id)
+      relation.confirmation = true
+      relation.save
+      flash[:success] = "#{@user.name}さんの参加を承認しました。"
+      redirect_to @group
+    end
+  end
+
 
   private
     def group_params
@@ -80,6 +97,15 @@ class GroupsController < ApplicationController
       group = Group.find(params[:id])
       if user_group_relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
         redirect_to(group) unless user_group_relation.admin?
+      else
+        redirect_to(group)
+      end
+    end
+
+    def barrier_confirm
+      group = Group.find(params[:id])
+      if user_group_relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
+        redirect_to(group) unless user_group_relation.confirmation == true
       else
         redirect_to(group)
       end

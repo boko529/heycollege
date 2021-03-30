@@ -25,4 +25,7 @@ en:
       addaccount: "Add account"
       member: "Members"
       addprofile: "Add profile"
+      confirmation: "Confirm new members"
+    edit_confirmation:
+      chooseamember: "Choose a member to allow joining this group"
 
