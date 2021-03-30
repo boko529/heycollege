@@ -2,21 +2,47 @@
 <% provide(:button_text, '作成') %>
 <h1>ZOOM編集</h1>
 
-<%= render 'shared/error_messages', object: @zoom %>
-<div class="row justify-content-center">
-  <%= form_for(@zoom) do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>説明</h4>
-  <%= f.text_area :description %>
-  <h4>招待URL</h4>
-  <%= f.text_field :join_url %>
-  <h4>開始時刻</h4><small>現在時刻から数分後に設定すると良いです</small><br>
-  <%= f.datetime_select :start_time, class: 'form-control date-picker' %>
-  <h4>終了時刻</h4>
-  <%= f.datetime_select :end_time, class: 'form-control' %>
-  <p>
-  <%= f.submit '更新する', class: "btn btn-primary"%>
-  </p>
+<%= form_with(model: @zoom, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @zoom %>
+    <div class="container">
+      <div class="row">
+        <div class="col d-sm-block d-none"></div>
+        <div class="col-xs-8">
+          <div>
+            <%= f.label :title %>
+            <span>ex) 1回生向けのオススメ授業</span>
+            <%= f.text_field :title, :placeholder => "zoomで話す内容を一言で！", class: 'form-control' %>
+          </div>
+          <!--
+          <div>
+            <%= f.label :description %>
+            <%= f.text_area :description, :placeholder => "", class: 'form-control' %>
+          </div>
+          -->
+          <div>
+            <%= f.label :join_url %>
+            <span>ex) https://us04web.zoom.us...</span>
+            <%= f.text_field :join_url, class: 'form-control', :placeholder => "招待リンクをコピーしてください" %>
+          </div>
+          <div>
+            <%= f.label :start_time %>
+            <br>
+            <span><small>現在時刻から数分後に設定すると良いです</small></span>
+            <br>
+            <%= f.datetime_field :start_time, class: 'form-control' %>
+          </div>
+          <div>
+            <%= f.label :end_time %>
+            <br>
+            <%= f.datetime_field :end_time, class: 'form-control' %>
+          </div>
+          <div>
+            <p>
+              <%= f.submit '更新する', class: "btn btn-primary"%>
+            </p>
+          </div>
+        </div>
+      <div class="col d-sm-block d-none"></div>
+      </div>
+    </div>
 <% end %>
-</div>
