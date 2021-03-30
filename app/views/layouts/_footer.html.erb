@@ -272,15 +272,14 @@
 </footer>
 
 <script>
-// 消す
- function closeBottomup() {
-   document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
-   var close = document.body.style.overflow = 'scroll';
+  function closeBottomup() {
+    document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
+    document.body.style.overflow = 'scroll';
   }
 // メニュー開閉
   function openBottomup() {
     var open = document.querySelector(".other-bottomup");
     open.classList.toggle("other-bottomup-transition-active");
-    var open = document.body.style.overflow = 'hidden';
+    document.body.classList.toggle('classname')
   }
 </script>
