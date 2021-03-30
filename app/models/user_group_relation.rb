@@ -3,5 +3,4 @@ class UserGroupRelation < ApplicationRecord
   belongs_to :group, class_name: "Group"
   validates :user_id, presence: true
   validates :group_id, presence: true
-  validates :confimation, presence: true
 end
