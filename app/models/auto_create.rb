@@ -109,13 +109,13 @@ class AutoCreate < ApplicationRecord
         # end
 
         # 以上をもとに作成開始
-        if teacher = Teacher.find_by(name_ja: teacher_name_ja) || teacher = Teacher.find_by(name_en: teacher_name_en)
-          unless Lecture.find_by(name_ja: lecture_name_ja, teacher_id: teacher.id) || Lecture.find_by(name_en: lecture_name_en, teacher_id: teacher.id) # 先生と日本語名がおなじか先生と英語名が同じの時以外
-            Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
+        if teacher = Teacher.find_by(name_ja: teacher_name_ja, university_id: 1) || teacher = Teacher.find_by(name_en: teacher_name_en, university_id: 1)
+          unless Lecture.find_by(name_ja: lecture_name_ja, teacher_id: teacher.id, university_id: 1) || Lecture.find_by(name_en: lecture_name_en, teacher_id: teacher.id, university_id: 1) # APU内で先生と日本語名がおなじか先生と英語名が同じの時以外
+            Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field, university_id: 1)
           end
         else
-          teacher = Teacher.create!(name_ja: teacher_name_ja, name_en: teacher_name_en, user_id: 1)
-          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field)
+          teacher = Teacher.create!(name_ja: teacher_name_ja, name_en: teacher_name_en, user_id: 1, university_id: 1)
+          Lecture.create!(name_ja: lecture_name_ja, name_en: lecture_name_en, user_id: 1, teacher_id: teacher.id, lecture_lang: language, field: field, university_id: 1)
         end
       rescue
         # エラーが出た際に何行目でエラーが出たかを表示する

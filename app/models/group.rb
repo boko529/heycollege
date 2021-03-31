@@ -1,7 +1,7 @@
 class Group < ApplicationRecord
     # Point関係のメソッドはgroup/point.rbに記載
     include Group::Point
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: {scope: :university_id } # 大学内で同じ名前は一つまで
     has_many :passive_relations, class_name: "UserGroupRelation",
                                  foreign_key: "group_id"
     has_many :users, through: :passive_relations
