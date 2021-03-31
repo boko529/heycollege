@@ -1,0 +1,13 @@
+ja:
+  static_pages:
+    lecture:
+      place: "位"
+    teacher:
+      place: "位"
+    user:
+      place: "位"
+    home:
+      classreviewsite: "APUクラスレビューサイト"
+      class: "クラス"
+      teacher: "先生"
+      user_point: "ユーザー"

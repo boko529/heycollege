@@ -3,7 +3,7 @@ class User < ApplicationRecord
   include User::Point
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  enum grade: { B1: 1, B2: 2, B3: 3, B4: 4, M1: 5, M2: 6, D1: 7, D2: 8,D3: 9}, _prefix: :true
+  enum grade: { B1: 1, B2: 2, B3: 3, B4: 4}, _prefix: :true
   enum gender: { male: 1,  female: 2 }, _prefix: :true
   enum faculty: { APS: 1, APM: 2}, _prefix: :true
   #開発の都合でユーザー破壊されたらデータも破壊、後々改善する必要あり
@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower
   has_many :user_zooms
   has_many :zooms, dependent: :destroy, through: :user_zooms
+  mount_uploader :image, UserImageUploader # プロフィール画像用のcarrierwave
 
   # APUメアドのバリデーション削除
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@apu.ac.jp\z/i
@@ -36,6 +37,7 @@ class User < ApplicationRecord
   validates :message, length: { maximum: 100 }
   validates :twitter_name, length: { maximum: 30}
   validates :instagram_name, length: { maximum: 30}
+  validates_acceptance_of :agreement, allow_nil: false, on: :create # 登録時の利用規約とプライバシーポリシーのチェックボックス
 
   
   # ユーザーをフォローする
@@ -79,7 +81,7 @@ class User < ApplicationRecord
     group.include?(group1)
   end
 
-  # 退会済みかどうか確認(退会済みならtrue)
+  # 退会済みかどうか確認(退会済みならfalse)
   def active_for_authentication?
     super && (self.is_deleted == false)
   end

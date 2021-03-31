@@ -2,19 +2,23 @@
   <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group" id="score">
-    <%= f.label :score,'満足度(必須)' , class:'col-md-3 col-form-label' %>
+    <%= f.label :score, t('.satisfaction'), class:'' %>
+    <br>
     <%= f.hidden_field :score, id: :review_score %>
   </div>
+  <div class="review-form-post">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  </div>    
+
 
   <%= f.label :content %>
-  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' ,placeholder: '例）この授業の難易度はそこまで高くないです。しかし、課題の量が多いです。また、出席が２０％なので、毎回の授業に遅れずに参加しました。先生に分からないとこを尋ねるととても丁寧に答えていただきました。とてもよかったです。'%>
-  <small>※表現には十分に注意して投稿してください。</small><br>
-  <small>　誹謗中傷等の不適切な投稿でユーザーと第三者に生じる紛争等について、当社は一切責任を負いません。</small><br>
-  <small>　詳しくは<%=link_to "「利用規約」", page_path('terms')%>をご覧ください。</small><br>
+  <%= f.text_area :content, size: "20x10", maxlength: "600", class: 'form-control' %>
+  <small><%= t('.example_1')%></small><br>
+
 
   <%= f.hidden_field :lecture_id, value: @lecture.id %>
 
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
 
   <!-- 評価javascript -->
   <script>
@@ -24,11 +28,33 @@
     starOn : '<%= asset_path('star-on.png') %>',
     <% unless @review.score == nil %>
       score: <%= @review.score %>,
-    <% else %>
-      score: 3,
     <% end %>
     scoreName: 'review[score]',
     half: false,
+  });
+
+  // var star1 = document.querySelector('#score img'); これ下の二行と同じ意味
+  let starparent = document.querySelector('#score');
+  let btn = document.querySelector('.btn-primary');
+  let star1 = starparent.querySelector('img:nth-child(4)'); //4~8
+  star1.addEventListener('click',function(){
+    btn.style.backgroundColor = 'rgb(71 177 96)';
+  });
+  let star2 = starparent.querySelector('img:nth-child(5)'); //4~8
+  star2.addEventListener('click',function(){
+    btn.style.backgroundColor = 'rgb(71 177 96)';
+  });
+  let star3 = starparent.querySelector('img:nth-child(6)'); //4~8
+  star3.addEventListener('click',function(){
+    btn.style.backgroundColor = 'rgb(71 177 96)';
+  });
+  let star4 = starparent.querySelector('img:nth-child(7)'); //4~8
+  star4.addEventListener('click',function(){
+    btn.style.backgroundColor = 'rgb(71 177 96)';
+  });
+  let star5 = starparent.querySelector('img:nth-child(8)'); //4~8
+  star5.addEventListener('click',function(){
+    btn.style.backgroundColor = 'rgb(71 177 96)';
   });
   </script>
 

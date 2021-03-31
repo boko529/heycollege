@@ -1,0 +1,18 @@
+en:
+  teachers:
+    show:
+      back-to-teacher-index: "》Teacher list"
+      return-to-class-index: "》Class list"
+      teacher-creater: "Creater："
+      level-of-satisfaction: "Level of satisfaction"
+      teaching-class: "Teaching class"
+      most-helpful-reviews: "Most helpful reviews"
+      null-review: "No reviews"
+      number-of-review: "Reviews"
+    index:
+      teacher-index: "Teacher List"
+    lecture:
+      no-review: "No reviews"
+    review:
+      delete: "Delete"
+      reallydelete: "Do you really want to delete this?"

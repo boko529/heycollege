@@ -1,226 +1,167 @@
 <%# ページのタイトル %>
 <% if @user == current_user %>
-  <% provide(:title, 'マイページ編集') %>
+  <% provide(:title, t('.title_login') ) %>
 <% else %>
   <% provide(:title, @user.name) %>
 <% end %>
 <div class="user_show">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <div class="frame">
 
-        <div class="frame_icon">
-          <div class="circle">
-            <%= image_tag 'default_user.png', :size => '80x80' %>
-          </div>
-        </div>
+  <div class="frame">
 
-        <%# マイページのときのみ表示 %>
-        <% if @user == current_user %>
-          <%# 編集 %>
-          <% if @user == current_user %>
-            <div class="edit-btn btn btn-primary">
-              <%= link_to '編集', edit_user_path(@user.id)%>
-            </div>
-          <% else %>
-            <div class="follow-btn">
-              <span id='follow-button_<%= @user.id %>'>
-                <%= render 'users/follow-button', user: @user  %>
-              </span>
-          <% end %>
+    <%# pic %>
+    <div class="frame_icon">
+      <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
+    </div>
 
-          <%# その他・設定ボタン (PC版)%>
-          <div class="dropdown d-none d-md-block">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-ellipsis-h"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">            
-              <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
-                &nbsp;<i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success"> お問い合わせ&nbsp;</span>
-              <% end %>
-              <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
-                &nbsp;<i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success"> ログアウト&nbsp;</span>
-              <% end %>              
-              <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
-                &nbsp;<span class="d-inline text-success">退会&nbsp;</span>
-              <% end %>
-            </div>
-          </div>
-          <%# その他・設定ボタン (スマホ版)%>
-          <div class="other-button d-block d-md-none" id="open" onclick="openBottomup()">
-            <i class="fas fa-ellipsis-h"></i>
-          </div>
-          <%# その他ボトムアップスライド %>
-          <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
-            <div id="closeIcone" id="open" onclick="closeBottomup()">
-              <i class="fas fa-times"></i>
-            </div>
-            <ul class="other-bottomup-ul">
-              <li class="list-group-item text-left">
-                  <%= link_to root_path do %>
-                    <i class="fas fa-question fa-2x"></i><span class="d-inline text-success">&nbsp;ヘルプ</span>
-                  <% end %>
-              </li>
-              <li class="list-group-item text-left">
-                <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
-                  <i class="fas fa-envelope fa-2x"></i><span class="d-inline text-success">お問い合わせ</span>
-                <% end %>
-              </li>
-              <li class="list-group-item text-left">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-2x"></i><span class="d-inline text-success">&nbsp;ログアウト</span>
-              <% end %>
-              </li>
-              <%# 利用規約 %>
-              <li class="list-group-item text-left">
-                <%= link_to page_path('terms') do %>
-                  <span class="d-inline text-success">利用規約</span>
-                <% end %>
-              </li>
-              <%# プライバシーポリシー %>
-              <li class="list-group-item text-left">
-                <%= link_to page_path('privacypolicy') do %>
-                  <span class="d-inline text-success">プライバシーポリシー</span>
-                <% end %>
-              </li>
-              <%# 退会 %>
-              <li class="list-group-item text-left">
-                <%= link_to users_hide_path(@user), method: :patch, data: { confirm: "退会すると再度ログインできなくなります。本当に退会しますか？"} do %>
-                  <span class="d-inline text-success">退会</span>
-                <% end %>
-              </li>
-              <li class="usershow-blank list-group-item text-left d-inlineblock">
-                <span class="d-inline"></span>
-              </li>
-            </ul>
-          </div>
+    <%# 編集 %>
+    <% if @user == current_user %>
+      <div class="usershow-editbutton">
+        <%= link_to edit_user_path(@user.id) do %>
+          <i class="fas fa-edit"></i>
         <% end %>
       </div>
+    <%# フォローは現時点でいらないのでコメントアウトしてます %>
+    <%# else %>
+      <%# コメントアウトの仕方が汚いけどこれしかなかった。。 %>
+        <%# <span id='follow-button_ %> <%#= @user.id %> <%# '> %>
+          <%#= render 'users/follow-button', user: @user  %>
+        <%# </span> %>
+    <% end %>
 
-      <p>
-        <%# ユーザーネーム %>
-        <span class="user-name">
-          <strong><%= @user.name %></strong>
-        </span>
-
-        <%# フォロー %>
-        <br>
-        <div>
-        <span id="follow", id='following-count_<%= @user.id%>'>
-          <%= link_to users_following_path(@user) do%>
-            <span class=color-brack>
-              <%= @user.follower.count %>フォロー中
-            </span>
-          <% end %>
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span id='follower-count_<%= @user.id%>'>
-          <%= link_to users_follower_path(@user) do%>
-            <span class=color-brack>
-              <%= @user.followed.count %>フォロワー
-            </span>
-          <% end %>
-        </span>
-        </div>
-      </p>
-      <%# ステータス %>
-      <div class="sns">
-        <div class="frame profile">
-          <!---
-            <br>性別:
-              <%= @user.gender_i18n  %> -->
-              学部：<%= @user.faculty_i18n %>
-            <br>学年：<%= @user.grade_i18n %>
-            <br>カレッジポイント：<%= @user.user_point.current_point.round(0) %>
-            <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
-          </div>
-        <small>メッセージ<br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %></small>
-        <br>
-        <% if @user.instagram_name.present? %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
-        <% elsif @user == current_user  %>
-          <small><i class="fab fa-instagram fa-1x"></i> <%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
-        <% end %>
-        &nbsp;&nbsp;
-        <% if @user.twitter_name.present? %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
-        <% elsif @user == current_user %>
-          <small><i class="fab fa-twitter-square fa-1x"></i><%= link_to "アカウント名を追加",edit_user_path(@user.id) %></small>
-        <% end %>
-      </div>
-
-      <!--
-      <p>
-        <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapsemyreview" aria-expanded="false" aria-controls="ccollapsemyreview">過去のレビュー</button>
-      </p>
-      
-      <div class="collapse mx-auto" id="collapsemyreview">
-        <div class="card card-body">
-          <h2>過去のレビュー</h2>
-          <table class="table">
-            <tr>
-              <th>クラス名</th>
-              <th>スコア</th>
-              <th>レビュータイトル</th>
-            </tr>
-            <% @reviews.each do |review| %>
-            <tr>
-              <td><%= link_to review.lecture.name, lecture_path(review.lecture.id) %></td>
-              <td><%= review.score %></td>
-              <td><%= link_to review.content.truncate(10, omission: '・・・'), lecture_review_path(review.lecture.id,review.id) %></td>
-            </tr>
+    <%# マイページのときのみ表示 %>
+    <% if @user == current_user %>
+      <%# その他・設定ボタン (PC版)%>
+      <div class="dropdown d-none d-sm-block">
+        <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en", class: "dropdown-item" do %>
+              <i class="fas fa-language fa-lg"></i>
+              &nbsp;
+              <span class="d-inline"><%= t('.lang') %></span>
             <% end %>
-          </table>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja", class: "dropdown-item" do %>
+              <i class="fas fa-language fa-lg"></i>
+              &nbsp;
+              <span class="d-inline"><%= t('.lang') %></span>
+            <% end %>
+          <% end %>      
+          <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
+            <i class="fas fa-envelope fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.contactus') %>&nbsp;</span>
+          <% end %>
+          <%= link_to destroy_user_session_path, class: "dropdown-item", method: :delete do %>
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.logout') %>&nbsp;</span>
+          <% end %>
+          <%= link_to page_path('terms'), class: "dropdown-item" do %>
+            <i class="far fa-file-alt fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.term') %>&nbsp;</span>
+          <% end %>
+          <%= link_to page_path('privacypolicy'), class: "dropdown-item" do %>
+            <i class="fas fa-user-lock fa-lg"></i>
+            &nbsp;
+            <span class="d-inline"><%= t('.privacypolicy') %>&nbsp;</span>
+          <% end %>
+          <%= link_to users_hide_path(@user), class: "dropdown-item", method: :patch, data: { confirm: t('.delete_account_message') } do %>
+            <i class="fas fa-heart-broken fa-lg"></i>
+            &nbsp;<span class="d-inline"><%= t('.leave') %>&nbsp;</span>
+          <% end %>
         </div>
-      </div>-->
+      </div>
+    <% end %> 
+  </div>
 
-      <%# 所属団体 %>
-      <% if @groups.any? %>
-        <div class="group-join">
-          <h3>所属団体（<%= @groups.count %>）</h3>
+    
+  <%# ユーザーネーム %>
+  <div class="usershow-username">
+    <strong><%= u_display_name(@user) %></strong>
+  </div>
+
+  <%# フォロー %>
+  <div class="usershow-belowheader">
+    <!--
+    <div class="usershow-followe-follower">
+      <span id="follow", id='following-count_<%= @user.id%>'>
+        <%= link_to users_following_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.follower.count %><%= t('.following') %>
+          </span>
+        <% end %>
+      </span>
+      &nbsp;&nbsp;&nbsp;
+      <span id='follower-count_<%= @user.id%>'>
+        <%= link_to users_follower_path(@user) do%>
+          <span class=color-brack>
+            <%= @user.followed.count %><%= t('.follower') %>
+          </span>
+        <% end %>
+      </span>
+    </div>
+    -->
+    <%# ステータス %>
+    <div class="sns">
+      <div class="frame profile">
+        <!---
+          <br>性別:
+            <%= @user.gender_i18n  %> -->
+            <%# t('.college') %><%= @user.faculty_i18n %>
+            <%# t('.grade') %><%= @user.grade_i18n %>
+            <br><%= t('.college_point') %>：<%= @user.user_point.current_point.round(0) %>
+        <!--<br>スコア：<%= @user.user_point.total_point.round(0) %>-->
+      </div>
+      <%# t('.msg') %><br><%= safe_join(@user.message.split("\n"),tag(:br)) if @user.message %>
+    </div>
+
+    <%# add sns accounts %>
+    <div class="usershow-add-accounts">
+    <% if @user.instagram_name.present? %>
+      <small><i class="fab fa-instagram fa-2x"></i> <%= link_to @user.instagram_name,@instagram, target: :_blank, rel: "noopener noreferrer" %></small>
+    <% elsif @user == current_user  %>
+      <small><i class="fab fa-instagram fa-2x"></i> <%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
+    <% end %>
+    &nbsp;&nbsp;
+    <% if @user.twitter_name.present? %>
+      <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to @user.twitter_name,@twitter, target: :_blank, rel: "noopener noreferrer" %></small>
+    <% elsif @user == current_user %>
+      <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
+    <% end %>
+    </div> 
+
+    <%# 所属団体 %>
+    <% if @groups.any? %>
+      <div class="group-join">
+        <%# t('.mygroup') %><%# @groups.count %>
+        <ul class="group-you-in">
           <% @groups.each do |group| %>
-            <p>・<%= link_to group.name, group %></p>
+            <% if UserGroupRelation.find_by(user_id: @user.id, group_id: group.id).confirmation == true %>
+              <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
+            <% end %>
           <% end %>
-        </div>
-      <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">レビュー (<%= @reviews.count %>)</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">クラス (<%= @lectures.count %>)</a>
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <ol class="reviews">
-            <% @reviews.each do |review| %>
-              <%= render partial: "users/review", locals: {review: review} %>
-            <% end %>
-            <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
-          </ol>
-        </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <ol class="lectures">
-            <% @lectures.each do |lecture| %>
-              <%= render partial: "users/lecture", locals: {lecture: lecture} %>
-            <% end %>
-            <%= paginate @lectures, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
-          </ol>
-        </div>
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <ol class="reviews">
+          <% @reviews.each do |review| %>
+            <%= render partial: "users/review", locals: {review: review} %>
+          <% end %>
+          <%= paginate @reviews, param_name: 'reviews_page', theme: 'twitter-bootstrap-4' %>
+        </ol>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-// 表示を消す
-  function openBottomup() {
-   document.querySelector('.other-bottomup').classList.add('other-bottomup-transition-active');
-   document.body.style.overflow = 'hidden';
-  }
-// 表示する
- function closeBottomup() {
-   document.querySelector('.other-bottomup').classList.remove('other-bottomup-transition-active');
-   document.body.style.overflow = 'scroll';
-    }
-</script>

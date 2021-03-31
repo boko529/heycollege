@@ -2,51 +2,48 @@
   <div class="row">
 
     <%# 順位 %>
-    <div class="col-1 d-flex p-0 pl-sm-">
-      <span class="rank ml-1 ml-sm-3 p-0">
+    <div class="col-1 d-flex">
+      <span class="rank">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
         <% if params[:teachers_page] %>
-          <%= i + 20 * ( params[:teachers_page].to_i - 1 ) %>位
+          <%= i + 20 * ( params[:teachers_page].to_i - 1 ) %><%= t('.place')%>
         <% else %>
-          <%= i + 20 * params[:teachers_page].to_i %>位
+          <%= i + 20 * params[:teachers_page].to_i %><%= t('.place')%>
         <% end %>
       </span>
     </div>
 
     <%# スコア %>
-    <div class="col-2 col-lg-1 px-0 d-flex">
-      <span class="score p-sx-4">
+    <div class="col-2 col-sm-1 d-flex">
+      <span class="score">
         <a><%= teacher.average_score %></a>
       </span>
     </div>
 
     <%# ウェブ %>
-    <div class="col-sm-7 p-0 p-sm-auto d-none d-sm-flex">
-
+    <div class="col-sm-7 d-none d-sm-flex">
       <%# 先生名 %>
       <span class="teacher-teachername">
-        <%= link_to teacher.name, teacher %>
+        <%= link_to t_display_name(teacher), teacher %>
       </span>
-
       <%# レビュー数 %>
-        <span　class="web-reviewcount m-5" style="margin:10px;">
-          <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
-        </span>
+      <span class="web-reviewcount">
+        <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+      </span>
     </div>
 
     <%# スマホ版 %>
-    <div class="col-9 d-inline d-sm-none p-0 m-0">
+    <div class="col-6 d-inline d-sm-none">
       <%# 先生 %>
-      <div class="mobile-teacher">
-        <span class="mobile-teacher-name d-inlineblock" style="min-width:100px;">
-          <%= link_to teacher.name, teacher %>
-        </span>
-         <%# レビュー数 %>
-        <span　class="web-reviewcount m-5" style="margin:10px;">
-          <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+      <div class="teacher-mobile-teacher">
+        <span class="mobile-teacher-name d-inlineblock">
+          <%= link_to t_display_name(teacher), teacher %>
         </span>
       </div>
     </div>
-
+    <%# レビュー数 %>
+    <div class="col-1 teacher-mobile-review-count d-sm-none">
+      <i class="far fa-comment-dots"></i><%= teacher.review_comment_count %>
+    </div>
   </div>
 </div>

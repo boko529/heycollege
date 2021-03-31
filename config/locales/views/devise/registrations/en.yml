@@ -1,0 +1,29 @@
+en:
+  devise:
+    registrations:
+      edit:
+        edit: "Edit"
+        email: "Email"
+        waiting: "Currently waiting confirmation for"
+        leaveit: "(leave blank if you don't want to change it)"
+        minichar: "characters minimum"
+        newpass: "new-password"
+        curpass: "current-password"
+        curpassconfirm: (we need your current password to confirm your changes)
+        update: "Update"
+        cancel: "cancel my account"
+        unha: "Unhappy?"
+        sure: "Are you sure?"
+        back: "Back"
+      new:
+        nickname: "Nickname"
+        name: "name"
+        grade: "Grade"
+        gender: "Gender"
+        unspecified: "Unspecified"
+        faculty: "Faculty"
+        mini: "letters"
+        mini-2: "more than"
+        newpass: "New passwrod"
+        read: "The terms of service"
+        submit: "Register"

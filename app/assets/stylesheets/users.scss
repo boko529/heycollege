@@ -2,201 +2,71 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-html, body {
-  height: 100%;
-  width: 100%;
-}
-
-.frame{
-  width: 100%;
-  padding: 0.5rem 0 0rem 0;
-  .dropdown{
-    float: right;
-    .btn-secondary{
-      border: 1.5px solid #000;/*枠線の幅、線種、色*/
-      background-color: #00000000;
-      color: black;
-      font-size: 1.2rem;
-      font-weight: 700;
-      line-height: 1.5;
-      position: relative;
-      padding: 0.2rem 1rem;
-      margin-right: 1rem;
-      margin-top: 0.5rem;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-transition: all 0.3s;
-      transition: all 0.3s;
-      text-align: center;
-      vertical-align: middle;
-      text-decoration: none;
-      border-radius: 0.5rem;
-    }
+.user_show {
+  padding: 1rem;
+  .dropdown-menu{
+    margin-right: 5rem;
   }
 }
-
-
-
-
-// 設定開くボタン
-.other-button{
+.usershow-username {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+.usershow-belowheader{
+  margin: 0.5rem;
+}
+// ボタンのポジション
+.usershow-editbutton{
+  position: relative;
   float: right;
   border: 1.5px solid #000;
-  /*枠線の幅、線種、色*/
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  padding: 0.2rem 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
   border-radius: 0.5rem;
-}
-// 下から上がってくる設定
-.other-bottomup {
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  z-index: 3;
-  top: 10px;
-}
-// アニメーション前
-.other-bottomup-transition {
-  opacity:0;
-  bottom: -100%;
-  top: 100%;
-  height: 0;
-  transition: 0.3s;
-  visibility: hidden;
-}
-
-// アニメーション後
-.other-bottomup-transition-active {
-  opacity: 1;
-  bottom: 0;
-  top: 0;
-  height: 100%;
-  transition: 0.3s;
-  visibility: visible
-}
-  // 閉じるボタン
-  #closeIcone {
-    text-align: right;
-    font-size: 35px;
-    padding-right: 40px;
-    background-color: #fff;
-  }
-  ul.other-bottomup-ul {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    position:absolute;
-    width:100%;
-    li {
-      display: block;
-    }
-    .usershow-blank {
-      height: 100%;
-    }
-  } 
-
-.frame_icon{
-  float: left; /*左に回り込み*/
-  padding-right: 1rem;
-   /*丸アイコン*/
-  .circle {
-    width: 84px;
-    height: 84px;
-    overflow: hidden; /*画像が円から出た部分は隠す*/
-    background: #fff; /*背景色*/
-    float: left; /*左に回り込み*/
-    border: 2px solid #fff; /*枠線の幅、線種、色*/
-    border-radius: 50%; /*アイコン画像を円にする*/
-  }
-}
-
-.frame_profile{
-  float: left; /*左に回り込み*/
-  width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.edit-btn{
-  float: right;
-  border: 1.5px solid #000; /*枠線の幅、線種、色*/
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  padding: 0.2rem 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  width: 46px;
   text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
+  top: -80px;
+  margin: 5px;
+  color: black!important;
+  a {
+    color: black !important;
+  }
+}
+.dropdown{
+  margin-right: 25px;
+  margin-top: 5px;
+  float: right;
+  border: 1.5px solid #000;
   border-radius: 0.5rem;
-  a{
-    color: #fff;
-    &:hover{
-      color: #fff;
-    }
+  top: -80px;
+  height: 23px;
+  width: 46px;
+  text-align: center;
+  align-items: center;
+  .dropdown-menu{
+    z-index: 100; //ヘッダーよりは下に来るように
+  }
+  button{
+  position: relative;
+  top: -3px;
+  outline: none!important;
+  }
+  button {
+  height: 23px;
+  width: 46px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  }
+  .dropdown-toggle::after {
+    display: none;
   }
 }
-
-.follow-btn{
-  float: right;
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  padding: 0.2rem 1rem;
-  margin-right: 0.3rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-
-}
-
-.user-name{
-  font-size:x-large ;
-}
-
-.color-brack{
-  color:rgb(90, 82, 82);
-}
-
-.sns{
-  margin-left: 0.5rem;
-  margin-top: -1.5rem;
-}
-
 .group-join{
+  ul.group-you-in{
+      list-style: none;
+        margin: 0;
+        padding: 0;
+  }
   p{
     margin: 0.3rem;
     margin: 0;
@@ -207,22 +77,15 @@ html, body {
     }
   }
 }
-
-
+// ステータスにそれぞれ区分ごとに間を開ける
+.usershow-followe-follower,
+.frame.profile,
+.usershow-add-accounts {
+  margin-top: 7px;
+}
 .reviews, .lectures{
   padding: 0 0 0;/*デフォルトのpadding: 0 0 40 を消す。*/
 }
-
-.following-follower-index{
-  .following-follower{
-    border-bottom: 1px solid gray;
-    height: 3.5rem;
-    .follow-btn{
-      float: right;
-    }
-  }
-}
-
 .user_show{
   nav{
     a{
@@ -237,8 +100,12 @@ html, body {
       }
     }
   }
+  .sns{
+    a{
+      color: black;
+    }
+  }
 }
-
 .list-group-item{
   a{
     color: #000;

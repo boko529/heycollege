@@ -1,0 +1,71 @@
+en:
+  users:
+    show:
+      mygroup: "My group"
+      msg: "bio"
+      help: "Help"
+      contactus: "Contact us"
+      logout: "Log out"
+      lang: 日本語に変更
+      leave: "Delete account"
+      college: "College"
+      grade: "Grade"
+      edit: ""
+      title_login: "MyPage"
+      faculty: "Faculty"
+      college_point: "CollegePoint"
+      point_score: "Score"
+      following: " Following"
+      follower: " Follower"
+      add_account: "Add account"
+      reviews_count: "Reviews"
+      review: "Review"
+      class: "Class"
+      delete_account_message: "If you click OK, you are no longer log in this account."
+      term: "Terms of service"
+      privacypolicy: "Privacy policy"
+    lecture: 
+      teachername: "Teacher name"
+      reviews: "Reviews"
+      edit: "Edit"
+      delete: "Delete"
+      noreviews: "No reviews"
+      delete-lecture-message: "If you delete this class, All reviews of this class are deleted. Do you really want to delete this?"
+    review: 
+      teachername: "Teacher name"
+      delete: "Delete"
+      reallydelete: "Do you really want to delete?"
+    user:
+      userinformation: "User Info"
+      name: "Name"
+      unspe: "Unspecified"
+    edit:
+      userinfo: "User information"
+      editmypage: "Edit my page"
+      mypageedit: "My page edit"
+      nick: "Nickname"
+      gen: "Gender"
+      grade: "Grade"
+      faculty: "Faculty"
+      unspe: "unspecified"
+      username: "username"
+      msg: "bio"
+      change: "Change"
+      in100: "in 100 letters"
+      twi: "Twitter username"
+      insta: "Instagram username"
+      twi_message: "ex)Hey_College_"
+      insta_message: "ex)hey.college"
+    follower:
+      follower: "Follower"
+    following:
+      following: "Following"
+    unfollow:
+      follower: "follower"
+      following: "following"
+    follow:
+      follower: " Follower"
+      following: " Following"
+    follow-button:
+      follow: "Follow"
+      unfollow: "UnFollow"

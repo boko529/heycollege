@@ -1,9 +1,9 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
     <span id="star-review<%= review.id %>"></span>
 
-  <p><%= link_to review.lecture.name, review.lecture %></p>
+  <p><%= link_to l_display_name(review.lecture), review.lecture %></p>
   <%= link_to review.user do %>
-    <%= image_tag 'default_user.png', :size => '20x20' %><%= display_name(review.user) %>
+    <%= render partial: "shared/user_image/display_icon20", locals: {user: review.user} %><%= u_display_name(review.user) %>
   <% end %>
   <p class="content">
     <%= safe_join(review.content.split("\n"),tag(:br)) %>
@@ -11,6 +11,12 @@
   <p class="timestamp">
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>
+  <%# レビュー作成者のときのみ削除欄を表示 %>
+  <p>
+    <% if current_user?(review.user) %>
+      <%= link_to t('.delete'), lecture_review_path(review.lecture,review), method: :delete, data: { confirm: t('.reallydelete')} %>
+    <% end %>
+   </p>
 
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= review.id %>">

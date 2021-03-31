@@ -1,0 +1,37 @@
+ja:
+  lectures:
+    show:
+      post_review: "投稿"
+      to-class-list: "》クラスリストへ"
+      class-teacher: "先生"
+      no-review: "レビューはありません。"
+      edit: "編集"
+      delete: "削除"
+      delete-message: "削除すると、このクラスに関するすべてのレビューが削除されます。本当に削除しますか？"
+      most-helpful-rev: "もっともいいねがあるレビュー"
+      ratings: "評価"
+      show-own-review: "自分のレビューをみる"
+      review-number: "評価数"
+      return_to_class_list: "》クラス一覧へ戻る"
+      lecture_creater: "作成者"
+      review-write: "レビューを書く"
+    new:
+      create-class: "クラス作成"
+      title: "新規クラス作成"
+      create: "作成"
+    form:
+      official_name_plese: "公式名称でお願いします。"
+      family-name: "姓"
+      first-name: "名前"
+      correct-language-plese: "シラバス表記で記入してください"
+      example: "例）日本語 → 山田 太郎、 英語 → Yamada Taro"
+      teacher_name: "先生名"
+    index:
+      class-list: "クラスリスト"
+    edit:
+      edit-class: "クラス編集"
+      title: "編集"
+      change: "編集"
+    review:
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"

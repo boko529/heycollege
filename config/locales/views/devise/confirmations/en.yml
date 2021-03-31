@@ -1,0 +1,6 @@
+en:
+ devise:
+  confirmations:
+    new:
+      resend: "Resend confirmation email"
+      instruction: "Resend confirmation email"

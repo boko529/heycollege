@@ -3,27 +3,26 @@
 <li>
   <strong>
     <%= link_to user_path(visitor) do %>
-      <div class="circle">
-        <%= image_tag 'default_user.png', :size => '50x50' %>
-      </div>
+      <%= render partial: "shared/user_image/display_icon20", locals: {user: visitor} %>
     <% end %>
   </strong>      
   <div>
     <strong>
       <%= link_to user_path(visitor) do %>
-        <%= visitor.name %>さん
+        <%= visitor.name %><%= t('.san') %>
       <% end %>
-      が
+      <%= t('.ga') %>
       <%# 通知内容を種類ごとに変更 %>
       <% case notification.action %>
         <% when 'helpful' then %>
-          <%= link_to 'あなたのレビュー', lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %>にいいねしました
+          <%= link_to t('.yourreview'), lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %><%= t('.liked') %>
+          <%= t('.point') %><i class="fas fa-coins"></i>
         <% when 'follow' then %>
-          あなたをフォローしました
+          <%= t('.startfollow') %>
         <% end %>
     </strong>
     <span class="small text_muted text-right">
-      <br><%= time_ago_in_words(notification.created_at).upcase %>前
+      <br><%= time_ago_in_words(notification.created_at).upcase %><%= t('.ago') %>
     </span>
   </div>
 </li>

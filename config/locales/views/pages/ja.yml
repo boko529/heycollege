@@ -1,0 +1,15 @@
+ja:
+  pages:
+    explain_confirmation:
+      sent: "確認メールを送りました"
+      mail: "送ったメールの"
+      mailend: してください
+      mailred: クリック/タップ
+      time: メールが届くのに
+      timeend: "ほどかかります"
+      timered: 5分
+      confirm: 確認メールが
+      confirmend: に入っていることがあります
+      confirmred: スパムメール
+      didnot: 確認メールが届いていない方はこちら
+      title: "メールを確認してください"

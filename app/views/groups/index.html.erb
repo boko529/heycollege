@@ -1,14 +1,22 @@
-<% provide(:title, 'グループ一覧') %>
+<% provide(:title, t('.grouplist')) %>
 <div class="groups-index">
-  <h2 class="title">グループ</h2>
-  <p class="new btn btn-primary"><%= link_to "新規グループ作成", new_group_path %></p>
+  <h2 class="title"><%= t('.group') %></h2>
+  <%# 新規グループ作成コメントアウト %>
+  <%# <p class="new btn btn-primary"> %>
+    <%#= link_to t('.makenew'), new_group_path %>
+  <%# </p> %>
   <ul class="groups">
     <% @groups.each do |group| %>
-    <div class = "group">
-    <div class="row">
-      <span class="class-name p-0"><%= link_to group.name, group %></span>
+      <div class = "group">
+        <span class="class-name p-0">
+          <%= link_to group.name, group %>
+          <span class="groups-index-groupimg">
+            <%= render partial: "shared/group_image/display_icon20", locals: {group: group} %>
+          </span>
+          <%# グループのプロフィールを部分的に表示する。truncateが省略のメソッドで...含めて()のなかの数字の文字数になるように省略する %>
+          <%= group.profile.truncate(30) %>
+        </span>
       </div>
-    </div>
     <% end %>
     <%= paginate @groups, param_name: "group_page" 'twitter-bootstrap-4' %> 
   </ul>

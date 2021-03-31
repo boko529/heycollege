@@ -1,0 +1,71 @@
+ja:
+  users:
+    show:
+      mygroup: "マイグループ"
+      msg: "メッセージ"
+      help: "ヘルプ"
+      contactus: "お問い合わせ"
+      logout: "ログアウト"
+      lang: Switch to English     
+      leave: "退会（アカウント削除）"
+      college: "学部"
+      grade: "学年"
+      edit: ""
+      title_login: "マイページ"
+      faculty: "学部"
+      college_point: "カレッジポイント"
+      point_score: "スコア"
+      following: "フォロー"
+      follower: "フォロワー"
+      add_account: "アカウントを追加する"
+      reviews_count: "レビィー数"
+      review: "レビュー"
+      class: "クラス"
+      delete_account_message: "退会すると再度ログインできなくなります。本当に退会しますか？"
+      term: "利用規約"
+      privacypolicy: "プライバシーポリシー"
+    lecture: 
+      teachername: "先生名"
+      reviews: "レビュー数"
+      edit: "編集"
+      delete: "削除"
+      noreviews: "レビューなし"
+      delete-lecture-message: "削除すると、このクラスに関するすべてのレビューが削除されます。本当に削除しますか？"
+    review: 
+      teachername: "先生名"
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"
+    user:
+      userinformation: "ユーザー情報"
+      name: "名前"
+      unspe: "指定なし"
+    edit:
+      userinfo: "ユーザー情報"
+      editmypage: "マイページを編集する"
+      mypageedit: "マイページ編集"
+      nick: "ニックネーム"
+      gen: "性別"
+      grade: "学年"
+      faculty: "学部"
+      unspe: "指定なし"
+      username: "ユーザーネーム"
+      msg: "メッセージ"
+      change: "変更する"
+      in100: "１００文字以内"
+      twi: "Twitter ユーザーネーム"
+      insta: "Instagram ユーザーネーム"
+      twi_message: "例)Hey_College_"
+      insta_message: "例)hey.college"
+    follower:
+      follower: "フォロワー"
+    following:
+      following: "フォロー"
+    unfollow:
+      follower: "フォロワー"
+      following: "フォロー"
+    follow:
+      follower: "フォロワー"
+      following: "フォロー"
+    follow-button:
+      follow: "フォロー"
+      unfollow: "フォロー解除"

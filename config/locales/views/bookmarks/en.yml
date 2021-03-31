@@ -1,0 +1,7 @@
+en:
+  bookmarks:
+      index:
+        bookmark: "Bookmark"
+        class: "Class"
+        noclass: "There are no classes you registered."
+        howto: "You can add classes to the bookmark in the class pages."

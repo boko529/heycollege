@@ -1,28 +1,27 @@
-<header>
-  <div class="container-fluid p-0 px-md-4"> 
-    <div class="row h-auto mt-2 p-sm-o p-0">
-      <%#　スマホ画面用ハンバーガーボタン　%>
+
+  <div class="container-fluid header-container"> 
+    <div class="row">
+      <%# スマホ画面用ハンバーガーボタン %>
       <div class="col-sm-1 d-md-none d-none d-sm-block col-sm-1 d-md-none">
         <button type="button" class="btn btn-success mx-2" onclick="openSubSide()">
           <i class="fas fa-bars"></i>
         </button>
       </div>
-      <%#　ヘイカレッジロゴ %>
-      <div class="logo col-5 col-sm-3 mx-md-0 ml-3">
+      <%# ヘイカレッジロゴ %>
+      <div class="logo col-5 col-sm-3 mx-md-0 ml-sm-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-5 col-md-6 offset-md-1 offset-1 mx-auto d-none d-sm-block">
+      <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
         <%# 検索バー %>
         <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
           <div class="input-group justify-content-center">
-            <%= f.search_field :name_or_teacher_name_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: 'クラス名か先生名で検索' %>
+            <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: t('.search_insidetext') %>
             <%# 詳細検索表示ボタン %>
             <div class="input-group-append justify-content-right">
-              <%# 条件検索用のボタン(検索フォームはapplication.html.erbでコメントアウト) %>
-              <%# <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseSearchLecture" aria-expanded="false" aria-controls="collapseSearchLecture">
-                条件
-              </button> %>
-              <%# f.submit ("検索") , class: 'btn btn-outline-success'%>
+              <%# 条件検索用のモーダルスイッチ %>
+              <div class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                <i class="fas fa-search-plus"></i><br>
+              </div>
               <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
                 <i class="fas fa-search"></i>
               <% end %>
@@ -30,31 +29,54 @@
           </div>
         <% end %>
       </div>
+      
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-      <div class="search col-1 offset-2 d-sm-none d-block">
-        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-          <i class="fas fa-search"></i>  
-        </button>
+      <div class="search col-1 offset-3 d-md-none d-block p-0">
+        <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
+          <i class="fas fa-search fa-2x"></i>  
+        </div>
       </div>
       
       <% if user_signed_in? %>
-        <%#　ユーザーアイコン　%>
+        <%# ユーザーアイコン %>
         <div class="user col-1 mx-2 d-none d-sm-block">
           <%= link_to user_path(current_user) do %>
             <i class="fas fa-user-circle fa-2x"></i>
           <% end %>
         </div>
-        <%#　お知らせアイコン　%>
-        <div class="bell col-1 offset-1 offset-sm-0">
+        <%# お知らせアイコン %>
+        <div class="bell col-1 offset-1 offset-sm-0 d-flex m-0 text-right">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
           <% end %>
         </div>
-      <% else %>
-        <%# ログインしていないときも幅を調整するため %>
-        <div class="col-1"></div>
-        <div class="col-1"></div>
+        <%# 言語切り替えボタン %>
+        <div class="lang col-1 text-right d-none d-sm-block">
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en" do %>
+              EN
+            <% end %>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja" do %>
+              日本
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% unless user_signed_in? %>
+        <%# 言語切り替えボタン %>
+        <div class="lang col-1 text-right">
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en" do %>
+              EN
+            <% end %>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja" do %>
+              日本
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
-</header>

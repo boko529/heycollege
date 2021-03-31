@@ -1,0 +1,25 @@
+<% provide(:title, t('.title')) %> <%# Title %>
+<%# email認証前にメール見てね！ってページ %>
+
+<%# コメント書いてないすまん、マサキに聞いて %>
+<div style="background-color:#fff7ec; position:fixed; width:100%; height:100%; z-index:999999; top:0; right:0; left:0; bottom:0; overflow:hidden;">
+  <div class="container">
+    <div class="row">
+      <div class="col-10 offset-1 col-sm-4 offset-sm-4 ">
+        <div class="confirm-check " style="background-color:#fff7ec; margin:0 auto;">
+          <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
+          <i class="far fa-envelope fa-6x d-block mx-auto"></i>
+          <p class="text-center" style="justify-content:center;display:flex;"><%= t('.sent') %></p>
+          <ul>
+            <li><%= t('.mail') %><span style="color:red;"><%= t('.mailred') %></span><%= t('.mailend') %></li>
+            <li><%= t('.time') %><span style="color:red;"><%= t('.timered') %></span><%= t('.timeend') %></li>
+            <li><%= t('.confirm') %><span style="color:red;"><%= t('.confirmred') %></span><%= t('.confirmend') %></li>
+          </ul>
+          <div style="justify-content:center;display:flex;">
+          <%= link_to t('.didnot'), new_user_confirmation_path %> <%# 飛んだ先の文字がひどいwから直してほしー %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+ja:
+  teachers:
+    show:
+      back-to-teacher-index: "》先生リスト"
+      return-to-class-index: "》クラスリスト"
+      teacher-creater: "作成者："
+      level-of-satisfaction: "満足度"
+      teaching-class: "教えているクラス"
+      most-helpful-reviews: "最も参考になっているレビュー"
+      null-review: "レビューがありません"
+      number-of-review: "レビュー"
+    index:
+      teacher-index: "先生リスト"
+    lecture:
+      no-review: "レビューがありません"
+    review:
+      delete: "削除"
+      reallydelete: "本当に削除しますか？"

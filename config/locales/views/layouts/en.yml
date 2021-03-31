@@ -1,0 +1,33 @@
+en:
+  layouts:
+    header:
+      search_insidetext: "Look up by class or teacher name"
+    sidebar:
+      group: "Group"
+      ranking: "Ranking"
+      create: "Add pages"
+      book: "Bookmark"
+      help: "Help"
+      contact: "Contact us"
+      signout: "Logout"
+      signup: "Signup"
+      signin: "Login"
+      sig&log: "Login&Signup"
+    footer:
+      title_login: "My Page"
+      group: Group
+      ranking: Ranking
+      create: Make a new page
+      book: Bookmark
+      contact: "Contact us"
+      signout: Signout
+      term: "Terms of service"
+      privacypolicy: "Privacy policy"
+      leave: Leave
+      lang: 日本語に変更
+    subsidebar:
+      rank: "Ranking"
+      make: "Make a page"
+      book: "Bookmark"
+      contact: Contact us
+      log: Login&Signup

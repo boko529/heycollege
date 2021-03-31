@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_012832) do
+
+ActiveRecord::Schema.define(version: 2021_03_30_043205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auto_creates", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -45,20 +52,15 @@ ActiveRecord::Schema.define(version: 2021_03_30_012832) do
     t.index ["group_id"], name: "index_group_points_on_group_id"
   end
 
-  create_table "group_profiles", force: :cascade do |t|
-    t.text "content"
-    t.bigint "group_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_group_profiles_on_group_id"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "instagram_name"
     t.string "twitter_name"
+    t.text "profile"
+    t.string "header_image"
+    t.string "profile_image"
   end
 
   create_table "helpfuls", force: :cascade do |t|
@@ -70,12 +72,18 @@ ActiveRecord::Schema.define(version: 2021_03_30_012832) do
   end
 
   create_table "lectures", force: :cascade do |t|
-    t.text "name"
+    t.text "name_ja"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
-    t.index ["name"], name: "index_lectures_on_name"
+    t.string "name_en"
+    t.integer "lecture_lang", default: 1
+    t.integer "field", default: 1
+    t.index ["field"], name: "index_lectures_on_field"
+    t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
+    t.index ["name_en"], name: "index_lectures_on_name_en"
+    t.index ["name_ja"], name: "index_lectures_on_name_ja"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
@@ -123,10 +131,11 @@ ActiveRecord::Schema.define(version: 2021_03_30_012832) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.string "name"
+    t.string "name_ja"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name_en"
     t.index ["user_id", "created_at"], name: "index_teachers_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
@@ -137,6 +146,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_012832) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.boolean "confirmation", default: false, null: false
     t.index ["group_id"], name: "index_user_group_relations_on_group_id"
     t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_user_group_relations_on_user_id"
@@ -193,6 +203,7 @@ ActiveRecord::Schema.define(version: 2021_03_30_012832) do
     t.boolean "is_deleted", default: false, null: false
     t.string "twitter_name"
     t.string "instagram_name"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -215,7 +226,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_012832) do
   add_foreign_key "group_point_histories", "group_points"
   add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
-  add_foreign_key "group_profiles", "groups"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "users"
   add_foreign_key "reviews", "lectures"

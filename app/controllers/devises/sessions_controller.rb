@@ -24,7 +24,7 @@ class Devises::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false) && (@user.confirmed_at.blank? == false)) # メール認証が終わっているのを追加
         flash[:alert] = "退会済みユーザーです。"
         redirect_to new_user_session_path
       end

@@ -1,0 +1,30 @@
+ja:
+  groups:
+    edit_admin:
+      chooseamember: "他のメンバーにも編集を許可する"
+    edit:
+      groupedit: "グループ編集"
+      changes: "更新"
+    join:
+      join: "参加"
+    unjoin:
+      leave: "退会"
+    index:
+      group: "グループ"
+      makenew: "新しくグループを作る"
+      grouplist: "グループリスト"
+    new:
+      makenew: "新しいグループ"
+      make: "作る"
+    show:
+      allowothers: "共同ホストを増やす"
+      profileedit: "グループ編集"
+      score: "スコア"
+      profile: "プロフィール"
+      makenew: "プロフィールを設定する"
+      addaccount: "アカウントを追加"
+      member: "メンバー"
+      addprofile: "プロフィールを追加"
+      confirmation: "新規メンバーを承認"
+    edit_confirmation:
+      chooseamember: "参加を承認するメンバーを選んでください。"

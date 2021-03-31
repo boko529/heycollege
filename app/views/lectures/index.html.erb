@@ -1,6 +1,8 @@
-<% provide(:title, 'クラス一覧') %>
+<% provide(:title, t('.class-list')) %>
 <div class="lectures-index">
-  <h2 class="title">クラス一覧</h2>
+  <h2 class="title">
+    <%= t('.class-list') %>
+  </h2>
   <ul class="rankings">
     <% @lectures.each do |lecture| %>
       <%= render lecture %>

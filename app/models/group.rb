@@ -8,6 +8,9 @@ class Group < ApplicationRecord
     has_one :group_point, dependent: :destroy
     has_many :group_point_history, dependent: :destroy
     has_one :group_profile, dependent: :destroy
+    mount_uploader :profile_image, GroupProfileImageUploader
+    mount_uploader :header_image, GroupHeaderImageUploader
     validates :twitter_name, length: { maximum: 30}
     validates :instagram_name, length: { maximum: 30}
+    validates :profile, length: { maximum: 1000 }
 end

@@ -1,0 +1,6 @@
+ja:
+ devise:
+  confirmations:
+    new:
+      resend: "確認メールを再送信"
+      instruction: "確認のメールを再送信"

@@ -1,0 +1,37 @@
+en:
+  lectures:
+    show:
+      post_review: "Post"
+      to-class-list: "》Class list"
+      class-teacher: "Teacher"
+      no-review: "No reviews"
+      edit: "Edit"
+      delete: "Delete"
+      delete-message: "If you delete this class, All reviews of this class are deleted. Do you really want to delete this?"
+      most-helpful-rev: "Most liked review"
+      ratings: "Rating"
+      show-own-review: "Show my review about his class"
+      review-number: "Reviews"
+      return_to_class_list: "》Return to ClassList"
+      lecture_creater: "Author"
+      review-write: "Write a review"
+    new:
+      create-class: "Create a class"
+      title: "New Class"
+      create: "Create"
+    form:
+      official_name_plese: "Please use the official name."
+      family-name: "Family name"
+      first-name: "First name"
+      correct-language-plese: "Write your teacher's name by the language used in this class."
+      example: "ex）Japanese → 山田 太郎、 English → Yamada Taro"
+      teacher_name: "Teacher name"
+    index:
+      class-list: "Class list"
+    edit:
+      edit-class: "Edit Class"
+      title: "Edit"
+      change: "Update"
+    review:
+      delete: "Delete"
+      reallydelete: "Do you really want to delete this?"

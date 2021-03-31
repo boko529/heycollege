@@ -14,18 +14,36 @@
 }
 
 // スライドショーのscss
+// マージン消したから、その分スライドショーを中央に持ってくるためのブロック
+.slide-container {
+  width: 93%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
 .slide_show{
+  width: 90%;
+  display: flex;
+  align-content: center;
+  margin-right: 0;
+  margin-left: 0;
+  max-height: 200px; //読み込み時に縦に並ばないように
+  .slick-prev:before, .slick-next:before{
+    // color: #b0ee52;
+    color: black;
+  }
   .slide_content{
     .slide{
       width: 100%;
       max-height: 200px; //最大高さは指定してその範囲で画像の縦横比を保つ
       object-fit: contain;
-      background-color: gray;
+      background-color: rgb(253, 249, 245);
     }
   }
 }
 
-div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
+// ランキング系
+div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index, .user{
   >nav{
     a{
       text-align: center;
@@ -41,101 +59,96 @@ div.ranking-index, .lectures-index, .teacher-lectures-index, div.groups-index {
   }
   ul.rankings,ul.groups {
     list-style: none;
-    margin: 0;
     padding: 0;
-    color: rgb(39, 33, 33);
-
+    color: rgb(54, 48, 48);
      // 中身
     div.lecture,div.teacher,div.user{
-      height: 85px;
+      height: 48px;
       background-color: #eeeeee;
       border-radius: 4px;
       overflow: auto;
       border-bottom: 1px solid gray;
+      margin-bottom: 10px;
       .row {
         height: 100%;
         border-bottom: none;
-      }
-      .rank{
-        font-weight: bold;
-        min-width: 50px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-      }
-      .score{
-        border-radius: 20%;
-        height: 29px;
-        width: 55px;
-        font-weight: bold;
-        color: rgb(39, 33, 33);
-        display: flex;
-        align-items: center;
-        text-align: left;
-        height: 100%;
-        a{
-          background-color: gold;
-          margin: 7%;
-          margin-left: 20%;
+        .rank{
+          font-weight: bold;
+          min-width: 50px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
         }
-      }
-      .class-name{
-        height: 100%;
-        padding: 10px;
-        font-weight: bold;
-        color: rgb(39, 33, 33);
-        margin-left: 5%;
-        margin-right: 5%;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .teacher-name, .teacher-teachername{
-        height: 100%;
-        width: 80%;
-        padding: 10px;
-        font-weight: bold;
-        color: rgb(39, 33, 33);
-        margin-left: 5%;
-        margin-right: 0;
-        display: flex;
-
-        align-items: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .web-reviewcount{
-        margin-left: 5px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
-
-      .mobile-teacher {
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
-      .mobile-class-and-teacher{
-        height: 100%;
-      }
-      .mobile-class-name, .mobile-teacher-name{
-        height: 40px;
-        display: flex;
-        align-items: center;
-      }
-      .review-count{
-        display: flex;
-        align-items: center;
-      }
-      a{
-        display: inline-block;
-        color: rgb(39, 33, 33);
-        font-weight: bold;
+        .score{
+          white-space: nowrap;
+          border-radius: 20%;
+          font-weight: bold;
+          color: rgb(39, 33, 33);
+          display: flex;
+          align-items: center;
+          height: 100%;
+          a{
+            background-color: gold;
+            padding: 6px;
+            border-radius: 4px;
+          }
+        }
+        .class-name{
+          height: 100%;
+          font-weight: bold;
+          color: rgb(39, 33, 33);
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .teacher-name, .teacher-teachername{
+          height: 100%;
+          font-weight: bold;
+          color: rgb(39, 33, 33);
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .web-reviewcount{
+          margin-left: 7px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        .teacher-mobile-teacherNlecture {
+          align-items: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .lecture-mobile-class-name, .lecture-mobile-teacher-name{
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        .lecture-mobile-review-count, .teacher-mobile-review-count {
+          display: flex;
+          align-items: center;
+          margin-left: 8px;
+        }
+        .teacher-mobile-teacher {
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        .static-user-name {
+          align-items: center;
+          margin-left: 10px;
+        }
+        a{
+          display: inline-block;
+          color: rgb(39, 33, 33);
+          font-weight: bold;
+        }
       }
     }
   }

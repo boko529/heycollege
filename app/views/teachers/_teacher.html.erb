@@ -11,7 +11,7 @@
     <div class="col-sm-7 p-0 p-sm-auto d-none d-sm-flex">
     <%# 先生名 %>
       <span class="teacher-name">
-        <%= link_to teacher.name, teacher %>
+        <%= link_to t_display_name(teacher), teacher %>
      
         <%# レビュー数 %>
         <span　class="web-reviewcount m-5" style="margin:10px;">
@@ -25,7 +25,7 @@
     <div class="col-9 d-inline d-sm-none p-0 m-0">
       <div class="mobile-teacher">
         <span class="mobile-teacher-name d-inlineblock" style="min-width:100px;">
-          <%= link_to teacher.name, teacher %>
+          <%= link_to t_display_name(teacher), teacher %>
             <%# レビュー数 %>
           
         </span>

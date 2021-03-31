@@ -1,0 +1,34 @@
+ja:
+  layouts:
+    header:
+      search_insidetext: "クラスまたは先生名で探す"
+    sidebar:
+      group: "グループ"
+      ranking: "ランキング"
+      create: "ページを作る"
+      book: "ブックマーク"
+      help: "ヘルプ"
+      contact: "お問い合わせ"
+      signout: "ログアウト"
+      signup: "新規登録"
+      signin: "ログイン"
+      sig&log: "ログイン＆新規登録"
+    footer:
+      title_login: "マイページ"
+      group: グループ
+      ranking: ランキング
+      create: ページ作成
+      book: ブックマーク
+      contact: お問い合わせ
+      signout: ログアウト
+      term: "利用規約"
+      privacypolicy: "プライバシーポリシー"
+      leave: 退会する
+      lang: Switch to English
+    subsidebar:
+      rank: "ランキング"
+      make: "ページを作る"
+      book: "ブックマーク"
+      contact: お問い合わせ
+      log: ログイン&新規登録
+      

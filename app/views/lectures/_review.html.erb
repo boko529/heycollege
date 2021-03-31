@@ -1,0 +1,40 @@
+<li id="review-<%= review.id %>" class = "review list-group-item" >
+  <h4>
+    <span><%= review.score %></span><div id="star-review<%= review.id %>"></div>
+  </h4>
+  
+  <%= link_to review.user do %>
+    <%= render partial: "shared/user_image/display_icon20", locals: {user: review.user} %><%= u_display_name(review.user) %>
+  <% end %>
+
+  <p class="content">
+    <%= safe_join(review.content.split("\n"),tag(:br)) %>
+  </p>
+  <p class="timestamp">
+    <%= review.updated_at.strftime("%Y-%m-%d") %>
+  </p>
+
+  <%# レビュー作成者のときのみ削除欄を表示 %>
+  <p>
+    <% if current_user?(review.user) %>
+      <%= link_to t('.delete'), lecture_review_path(review.lecture,review), method: :delete, data: { confirm: t('.reallydelete')} %>
+    <% end %>
+   </p>
+
+  <%# 役に立ったボタン %>
+  <div id="helpfuls_buttons_<%= review.id %>">
+    <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
+  </div>
+</li>
+
+<%# 星表示のためのjavascript %>
+<script>
+  $('#star-review<%= review.id %>').raty({
+    size      : 36,
+    starOff   : '<%= asset_path('star-off.png') %>',
+    starOn    : '<%= asset_path('star-on.png') %>',
+    half      : false,
+    readOnly: true,
+    score: <%= review.score %>,
+  });
+</script>

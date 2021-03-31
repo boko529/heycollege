@@ -1,18 +1,24 @@
-<% provide(:title, 'フォロワー') %>
+<% provide(:title, t('.follower')) %>
 <div class="col-lg-6 offset-lg-3">
     <div class="following-follower-index">
-        <h2>フォロワー</h2>
+        <h2><%= t('.follower') %></h2>
         <% @followers.each do |f_user| %>
         <ul class="following-follower">
-            <div class="circle">
-                <%= image_tag 'default_user.png', :size => '50x50' %>
-            </div>
-            <%= link_to display_name(f_user), user_path(f_user.id) %>
+            <%= link_to f_user do %>
+                <div id="item1">
+                <%= render partial: "shared/user_image/display_icon20", locals: {user: f_user} %>
+                </div>
+            <% end %>
+            <%= link_to f_user do %>
+                <div class="follow-name" id="item2">
+                    <%= u_display_name(f_user) %>
+                </div>
+            <% end %>
             <%= f_user.faculty_i18n %>
             <span id='follow-button_<%= f_user.id %>'>
-                <span class="follow-btn">
+                <div id="item3">
                     <%= render 'users/follow-button', user: f_user  %>
-                </span>
+                </div>
             </span>
         </ul>     
         <% end %>

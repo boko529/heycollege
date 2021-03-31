@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
-      flash[:notice] = "プロフィールを変更しました"
+      flash[:notice] = t('.updated-user')
     else
       render 'edit'
     end
@@ -53,20 +53,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
     reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心からお待ちしております。"
+    flash[:notice] = t('.hide-message')
     redirect_to root_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :message)
+    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :message, :image, :image_cache, :remove_image)
   end
 
   # 退会しているかを確認(user/show用)
   def user_is_not_deleted_show
     @user = User.find(params[:id])
     if @user.is_deleted
-      flash[:notice] = "退会済みユーザーです"
+      flash[:notice] = t('.user-hidden')
       redirect_to root_path
     end
   end
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   def user_is_not_deleted_follow
     @user = User.find(params[:user_id])
     if @user.is_deleted
-      flash[:notice] = "退会済みユーザーです"
+      flash[:notice] = t('.user-hidden')
       redirect_to root_path
     end
   end

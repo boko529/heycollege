@@ -1,0 +1,8 @@
+ja:
+  reviews:
+    create:
+      post: "レビューを投稿しました"
+      post-failed: "レビューの投稿に失敗しました"
+      one-review: "一つのクラスにレビューは一つまでです"
+    destroy:
+      delete-review: "レビューを削除しました"

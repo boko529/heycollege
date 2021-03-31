@@ -1,8 +1,8 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
-    <span id="star-review<%= review.id %>"></span>
+  <span id="star-review<%= review.id %>"></span>
 
-  <p><%= link_to review.lecture.name, review.lecture %></p>
-  &emsp;担当教員：<%= link_to review.lecture.teacher.name, review.lecture.teacher %>
+  <p><%= link_to l_display_name(review.lecture), review.lecture %></p>
+  &emsp;<%= t('.teachername') %>：<%= link_to t_display_name(review.lecture.teacher), review.lecture.teacher %>
   <p class="content">
     <%= safe_join(review.content.split("\n"),tag(:br)) %>
   </p>
@@ -10,6 +10,12 @@
     <%= review.updated_at.strftime("%Y-%m-%d") %>
   </p>
 
+   <%# マイページのときのみ表示 %>
+   <p>
+    <% if current_user?(review.user) %>
+      <%= link_to t('.delete'), lecture_review_path(review.lecture,review), method: :delete, data: { confirm: t('.reallydelete')} %>
+    <% end %>
+   </p>
   <%# 役に立ったボタン %>
   <div id="helpfuls_buttons_<%= review.id %>">
     <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>

@@ -1,0 +1,10 @@
+ja:
+  lectures:
+    create:
+      create-class: "クラスを作成しました"
+      create-class-teacher: "クラスと先生を作成しました"
+    update:
+      updated-class: "クラス情報は更新されました"
+      updated-class-teacher: "クラス情報は更新されました！&先生ページを作成しました!"
+    destroy:
+      deleted-class: "クラスを削除しました"

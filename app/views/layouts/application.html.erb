@@ -8,9 +8,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/header'%>
+    <header>
+      <%= render 'layouts/header'%>
+    </header>
+    <%# これはヘッダーのなかに入れると不具合が出る(positonが固定されている中に入れると不具合出る) %>
     <%= render 'layouts/modal_search_form' %>
-    <div class="container-fluid">
+
+    <div class="container-fluid content">
       <div class="row">
 
         <%# サイドバー %>
@@ -22,28 +26,23 @@
           <%= render 'layouts/subsidebar'%>
         </div>
        
-        <%#　メインコンテント %>
-        <div class="col-md-10 col_12 main_content">
+        <%# メインコンテント %>
+        <div class="col-md-10 col-12 main_content px-sm-5 pt-sm-2">
         
           <%# ここから3行はフラッシュ表示 %>
           <% flash.each do |message_type, message| %>
             <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
           <% end %>
-          
-          <div class="container">
             <div class="yield_box">
               <%# 他のページをここに代入 %>
               <%= yield %>
             </div>
-          </div>
-
           <%# フッターと開発者用のやつ卍 %>
           <div>
           <%# 次の行は開発用の表示 %>
               <%= debug(params) if Rails.env.development? %>
               <%= render 'layouts/footer'%>
           </div>
-          
         </div>
       </div>
     </div>

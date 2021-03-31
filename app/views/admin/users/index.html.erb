@@ -1,18 +1,43 @@
 <% provide(:title, 'User一覧') %>
 <h1>User</h1>
 
-<table>
-    <tr>
-    <th>id</th>
-    <th>name</th>
-    </tr>
-    <% @users.each do |user| %>
-      <% if user.admin == false %>
-        <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        </tr>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+      <th scope="col">id</th>
+      <th scope="col">名前</th>
+      <th scope="col">学年</th>
+      <th scope="col">性別</th>
+      <th scope="col">学科</th>
+      <th scope="col">point</th>
+      <th scope="col">class</th>
+      <th scope="col">review</th>
+      <th scope="col">group</th>
+      <th scope="col">認証</th>
+      <th scope="col">退会</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <% if user.admin == false %>
+          <tr>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.name %></td>
+            <td><%= user.grade %></td>
+            <td><%= user.gender %></td>
+            <td><%= user.faculty %></td>
+            <td><%= user.user_point.current_point %></td>
+            <td><%= user.lectures.count %></td>
+            <td><%= user.reviews.count %></td>
+            <td><%= user.group.count %></td>
+            <td><%= !user.confirmed_at.blank? %></td>
+            <td><%= user.is_deleted %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-</table>
+    </tbody>
+  </table>
+</div>
+<%= paginate @users, theme: 'twitter-bootstrap-4' %>
 </ul>
