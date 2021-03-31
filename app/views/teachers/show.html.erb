@@ -28,6 +28,16 @@
     <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
     <%# 講義表示 %>
+    <%# 最も参考になるレビュー %>
+      <div class="most_helpful_review">
+        <strong><p class="most_helpful"><%= t('.most-helpful-reviews') %></p></strong>
+        <% if @most_helpful_review %>
+          <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
+        <% else %>
+          <p><%= t('.null-review') %></p>
+        <% end %>
+      </div>
+  
       <div class="col-md-8 teachers_class">
         <% if @teacher.lectures.any? %>
           <%= t('.teaching-class') %> (<%= @teacher.lectures.count %>)
@@ -40,16 +50,7 @@
           </div>
         <% end %>
       </div>
-      <%# 最も参考になるレビュー %>
-      <div class="most_helpful_review">
-        <strong><p class="most_helpful"><%= t('.most-helpful-reviews') %></p></strong>
-        <% if @most_helpful_review %>
-          <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
-        <% else %>
-          <p><%= t('.null-review') %></p>
-        <% end %>
-      </div>
-  
+      
     <%# レビュー表示 %>
     <div class="col-md-12 lecture-reviews">
       <% if @reviews.present? %>
