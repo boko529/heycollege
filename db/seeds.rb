@@ -7,8 +7,25 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 University.create!(name_ja: "立命館アジア太平洋大学")
+University.create!(name_ja: "大阪府立大学")
 
-User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Apu::User, faculty: "APS")
+User.create!(name:  "APUadmin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Apu::User, faculty: "APS", university_id: 1)
+User.create!(name:  "OPUadmin", email: "sample@edu.osakafu-u.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Opu::User, faculty: "Kougaku", university_id: 2)
+
+#追加のユーザーをまとめて生成する
+15.times do |n|
+  name  = Faker::Name.name
+  email = "user-#{n+1}@apu.ac.jp"
+  password = "foobar"
+  User.create!(name:  name,
+  email: email,
+  password: password,
+  confirmed_at: Time.now,
+  agreement: true,
+  type: Apu::User,
+  faculty: "APM",
+  university_id: 1)
+end
 
 #追加のユーザーをまとめて生成する
 15.times do |n|
@@ -21,7 +38,8 @@ User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", mes
   confirmed_at: Time.now,
   agreement: true,
   type: Opu::User,
-  faculty: "Kougaku")
+  faculty: "Gensisu",
+  university_id: 2)
 end
 
 # ユーザーごとにポイントテーブルを作成
@@ -34,8 +52,11 @@ User.all.each do |user|
   user.user_point_history.create(point_type: 1, amount: 10, user_point_id: user_p.id)
 end
 
-Teacher.create!(name_ja: "森 直樹", name_en: "MORI NAOKI", user_id: 1)
-Teacher.create!(name_ja: "藤岡 真由美",name_en: "FUJIOKA MAYUMI", user_id: 2)
+Teacher.create!(name_ja: "森 直樹", name_en: "MORI NAOKI", user_id: 1, university_id: 1)
+Teacher.create!(name_ja: "藤岡 真由美",name_en: "FUJIOKA MAYUMI", user_id: 1, university_id: 1)
+
+Teacher.create!(name_ja: "本田圭佑", name_en: "HONDA KEISUKE", user_id: 1, university_id: 2)
+Teacher.create!(name_ja: "春日俊彰",name_en: "KASUGA TOSHIAKI", user_id: 1, university_id: 2)
 
 users = User.order(:created_at).take(5)
 10.times do |n|
@@ -49,7 +70,7 @@ users = User.order(:created_at).take(5)
   # lecture_term = "First"
   # day_of_week = "Mon"
   # period = "second"
-  users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1, field: field, lecture_lang: language)}
+  users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1, field: field, lecture_lang: language, university_id: user.university_id)}
 end
 
 5.times do |n|
@@ -66,18 +87,24 @@ Notification.create(visitor_id: 2, visited_id: 1, review_id: 1, action: "helpful
 Relationship.create(follower_id: 2, followed_id: 1)
 Notification.create(visitor_id: 2, visited_id: 1, action: "follow")
 
-News.create(title: "<お知らせ>ベータ版につきまして", message: "ベータ版を触っていただきありがとうございます。
-  触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。")
+News.create(title: "<お知らせ>アジア太平洋大学について", message: "ベータ版を触っていただきありがとうございます。
+  触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。", university_id: 1)
+
+News.create(title: "<お知らせ>大阪府立大学について", message: "ベータ版を触っていただきありがとうございます。
+  触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。", university_id: 2)
 
 # サンプルグループを2つ作成
-group1 = Group.create(name: "白鷺祭", profile: "毎年11月に中百舌鳥キャンパスで行われる大学祭を実行しています。一緒に思い出を作りましょう！")
-group2 = Group.create(name: "APUテニスサークル", profile: "APU公式テニスサークルです。大学から自転車で10分のグラウンドで毎週月水に活動してます！\n初心者大歓迎です。新歓来てね👍")
+group1 = Group.create(name: "APUTIMES", profile: "APU学内で新聞を出版しています", university_id: 1)
+group2 = Group.create(name: "APUテニスサークル", profile: "APU公式テニスサークルです。大学から自転車で10分のグラウンドで毎週月水に活動してます！\n初心者大歓迎です。新歓来てね👍", university_id: 1)
+group3 = Group.create(name: "白鷺祭", profile: "毎年11月に中百舌鳥キャンパスで行われる大学祭を実行しています。一緒に思い出を作りましょう！", university_id: 2)
+group4 = Group.create(name: "スマッシュ", profile: "大阪府立大学のテニスサークルです。", university_id: 2)
 
-users = User.all
 UserGroupRelation.create(user_id: 1, group_id: 1, admin: true, confirmation: true)
 UserGroupRelation.create(user_id: 1, group_id: 2, admin: true, confirmation: true)
-members = users[3..11]
-members.each { |user| user.join(group1) && user.join(group2) }
+UserGroupRelation.create(user_id: 2, group_id: 3, admin: true, confirmation: true)
+UserGroupRelation.create(user_id: 2, group_id: 4, admin: true, confirmation: true)
+User.all.where(university_id: 1).where.not(id: 1).each { |user| user.join(group1) && user.join(group2) }
+User.all.where(university_id: 2).where.not(id: 2).each { |user| user.join(group3) && user.join(group4) }
 
 # 団体ごとにポイントテーブルを作成
 Group.all.each do |group|

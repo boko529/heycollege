@@ -13,6 +13,7 @@ class Lecture < ApplicationRecord
   validates :teacher_id, presence: true
   validates :field, presence: true
   validates :lecture_lang, presence: true
+  validates :university_id, presence: true
   # validates :lecture_term, presence: true
   # validates :day_of_week, presence: true
   # validates :period, presence: true

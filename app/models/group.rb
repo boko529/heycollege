@@ -14,4 +14,5 @@ class Group < ApplicationRecord
     validates :twitter_name, length: { maximum: 30}
     validates :instagram_name, length: { maximum: 30}
     validates :profile, length: { maximum: 1000 }
+    validates :university_id, presence: true
 end

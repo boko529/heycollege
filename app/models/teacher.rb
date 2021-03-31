@@ -5,6 +5,7 @@ class Teacher < ApplicationRecord
   validates :user_id, presence: true
   validates :name_ja,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_en?
   validates :name_en,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_ja?
+  validates :university_id, presence: true
 
   def average_score
     if self.lectures.blank?

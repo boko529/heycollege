@@ -47,7 +47,7 @@ class Devises::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :type, :university_id])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -70,8 +70,10 @@ class Devises::RegistrationsController < Devise::RegistrationsController
     email = params[:user][:email]
     if email.include?("@apu.ac.jp")
       params[:user][:type] = "Apu::User"
+      params[:user][:university_id] = 1
     elsif email.include?("@edu.osakafu-u.ac.jp")
       params[:user][:type] = "Opu::User"
+      params[:user][:university_id] = 2
     else
       flash[:danger] = "アジア太平洋大学または大阪府立大学のメールアドレスを使用してください。"
       redirect_to  new_user_registration_path
