@@ -6,7 +6,7 @@
     <% end %>
 
     <%= link_to user_path(f.user.id) do %>
-      ホスト: <%= display_name(f.user) %>
+      ホスト: <%= u_display_name(f.user) %>
     <% end %>
 
     <p>参加者数: <%= f.count %><br>

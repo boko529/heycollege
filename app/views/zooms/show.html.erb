@@ -1,7 +1,7 @@
 <p>タイトル: <%= @zoom.title%></p>
 
 <%= link_to user_path(@zoom.user.id) do %>
-  <p>ホスト: <%= display_name(@zoom.user) %></p>
+  <p>ホスト: <%= u_display_name(@zoom.user) %></p>
 <% end %>
 <!--
 <p>説明: <%= @zoom.description %></p>
