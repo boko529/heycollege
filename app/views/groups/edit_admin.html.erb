@@ -3,9 +3,12 @@
     <p><%= t('.chooseamember') %></p>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
-      <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).admin == false %>
-        <li class="list-group-item list-group-item-action member-list-box">
-        <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id}, method: :patch %></li>
+      <% relation = UserGroupRelation.find_by(user_id: user.id, group_id: @group.id) %>
+      <% if relation.confirmation == true %>
+        <% if relation.admin == false %>
+          <li class="list-group-item list-group-item-action member-list-box">
+          <%= link_to user.name, {controller: 'groups', action: 'update_admin', id: @group.id, user_id: user.id}, method: :patch %></li>
+        <% end %>
       <% end %>
     <% end %>
 </div>
