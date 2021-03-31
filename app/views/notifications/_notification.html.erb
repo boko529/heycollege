@@ -16,6 +16,7 @@
       <% case notification.action %>
         <% when 'helpful' then %>
           <%= link_to t('.yourreview'), lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %><%= t('.liked') %>
+          <%= t('.point') %><i class="fas fa-coins"></i>
         <% when 'follow' then %>
           <%= t('.startfollow') %>
         <% end %>
