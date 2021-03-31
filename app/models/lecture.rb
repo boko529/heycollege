@@ -3,6 +3,7 @@ class Lecture < ApplicationRecord
   belongs_to :teacher
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  belongs_to :university
   # name_jaかname_enのどちらかは必須(両方あってもいいよ),文字数は50字まで。分けて書かない方法もあるだろうけど。。
   validates :name_ja, presence: true, unless: :name_en?
   validates :name_ja, length: { maximum: 70 }, uniqueness: {scope: :teacher_id}

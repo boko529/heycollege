@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# #メインのサンプルユーザー
-# User.create!(name: "Example User", email: "sample@example.com",password: "foobar")
+University.create!(name_ja: "立命館アジア太平洋大学")
 
 User.create!(name:  "admin", email: "sample@apu.ac.jp", password:  "foobar", message: "HeyCollege運営です。\n英語勉強しています！！", admin: true, confirmed_at: Time.now, agreement: true, type: Apu::User, faculty: "APS")
 

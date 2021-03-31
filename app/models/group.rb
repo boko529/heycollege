@@ -7,6 +7,7 @@ class Group < ApplicationRecord
     has_many :users, through: :passive_relations
     has_one :group_point, dependent: :destroy
     has_many :group_point_history, dependent: :destroy
+    belongs_to :university
     has_one :group_profile, dependent: :destroy
     mount_uploader :profile_image, GroupProfileImageUploader
     mount_uploader :header_image, GroupHeaderImageUploader

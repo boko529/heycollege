@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :user_point, dependent: :destroy
   has_many :user_point_history, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  belongs_to :university
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :active_relations, class_name:  "UserGroupRelation",

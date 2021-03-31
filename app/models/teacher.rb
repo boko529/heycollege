@@ -1,5 +1,6 @@
 class Teacher < ApplicationRecord
   belongs_to :user
+  belongs_to :university
   has_many   :lectures, dependent: :destroy
   validates :user_id, presence: true
   validates :name_ja,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_en?
