@@ -6,8 +6,8 @@
   <%# <div class="lecture-header"> %>
     <%# link_to t('.return_to_class_list'), lectures_path %>
     <%# <span class="creator_name"> %>
-      <%#= t('.lecture_creater') %>：
-      <%#= link_to @lecture.user do %>
+      <%#= t('.lecture_creater') %><%#：%>
+      <%#= link_to @lecture.user.becomes(User) do %>
         <%#= render partial: "shared/user_image/display_icon20", locals: {user: @lecture.user} %><%#= u_display_name(@lecture.user) %>
       <%# end %>
     <%# </span> %>

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <h2><%= t('.userinfo') %></h2><br>
-      <%= form_with model: @user, local:true do |f| %>
+      <%= form_with model: @user.becomes(User), local:true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="user-info-form">
             <div class="field">
@@ -34,13 +34,13 @@
 
             <div class="field">
               <%= f.label :grade,t('.grade'), class:"title" %><br>
-              <%= f.select :grade, APU::User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
+              <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
             </div>
 
             <div class="field">
               <%= f.label :faculty,t('.faculty'), class:"title" %><br>
               <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspe') %>
-              <%= f.collection_radio_buttons :faculty, f.object.faculties_i18n, :first, :last do |b|  %>
+              <%= f.collection_radio_buttons :faculty, @user.class.faculties_i18n, :first, :last do |b|  %>
                 <%=  b.radio_button(class: "form-contorl") %>
                 <%= b.label %>
               <% end %> 

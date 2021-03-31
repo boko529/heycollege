@@ -7,7 +7,7 @@
     <%# プロフィール画像と作成者の名前 %>
     <%# <div class="creator_name"> %>
       <%#= t('.teacher-creater') %>
-      <%#= link_to @teacher.user do %>
+      <%#= link_to @teacher.user.becomes(User) do %>
         <%#= render partial: "shared/user_image/display_icon20", locals: {user: @teacher.user} %><%#= u_display_name(@teacher.user) %>
       <%# end %>
     <%# </div> %>

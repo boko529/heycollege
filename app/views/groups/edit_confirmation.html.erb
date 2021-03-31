@@ -1,0 +1,11 @@
+<% provide(:title, @group.name) %>
+<div class="col-md-8 offset-md-2 edit-admin-index">
+    <p><%= t('.chooseamember') %></p>
+    <%= render 'shared/stats_user' %>
+    <% @users.each do |user| %>
+      <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).confirmation == false %>
+        <li class="list-group-item list-group-item-action member-list-box">
+        <%= link_to user.name, {controller: 'groups', action: 'confirm', id: @group.id, user_id: user.id}, method: :patch %></li>
+      <% end %>
+    <% end %>
+</div>

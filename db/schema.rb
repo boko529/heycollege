@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_125902) do
+ActiveRecord::Schema.define(version: 2021_03_30_043205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_125902) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.boolean "confirmation", default: false, null: false
     t.index ["group_id"], name: "index_user_group_relations_on_group_id"
     t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_user_group_relations_on_user_id"
@@ -192,7 +193,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_125902) do
     t.string "twitter_name"
     t.string "instagram_name"
     t.string "image"
-    t.string "type"
+    t.string "type", default: "Apu::User", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
