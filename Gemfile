@@ -75,3 +75,4 @@ gem 'fog-aws' # s3に画像保存用
 gem 'redis'
 gem 'redis-rails'
 gem 'roo' # csvファイル関係
+# gem 'jwt' zoom APIを用いたzoom作成用のgem

@@ -1,0 +1,23 @@
+<% @zooms.each do |f| %>
+  <% if (f.end_time - Time.now) >= 0 %>
+    <div class = "zoom_room">
+    <p><%= truncate(f.title, length: 10)%></p>
+
+    <%= link_to user_path(f.user.id) do %>
+      ホスト: <%= u_display_name(f.user) %>
+    <% end %>
+
+    <p>参加者数: <%= f.count %><br>
+    
+    開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>
+    終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
+    <% if f.user == current_user %>
+      <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+      <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+    <% end %>
+    <%= link_to "このzoomに参加する", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to "自分がホストとしてzoomを作る", new_zoom_path, class: "btn btn-success" %>

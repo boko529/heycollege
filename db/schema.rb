@@ -171,6 +171,16 @@ ActiveRecord::Schema.define(version: 2021_03_30_043205) do
     t.index ["user_id"], name: "index_user_points_on_user_id"
   end
 
+  create_table "user_zooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "zoom_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "zoom_id"], name: "index_user_zooms_on_user_id_and_zoom_id", unique: true
+    t.index ["user_id"], name: "index_user_zooms_on_user_id"
+    t.index ["zoom_id"], name: "index_user_zooms_on_zoom_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -195,6 +205,18 @@ ActiveRecord::Schema.define(version: 2021_03_30_043205) do
     t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "zooms", force: :cascade do |t|
+    t.text "join_url"
+    t.integer "user_id"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "count", default: 1
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.index ["start_time"], name: "index_zooms_on_start_time"
   end
 
   add_foreign_key "bookmarks", "lectures"
