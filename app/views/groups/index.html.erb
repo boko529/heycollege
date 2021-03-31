@@ -14,6 +14,10 @@
             <%= render partial: "shared/group_image/display_icon20", locals: {group: group} %>
           </span>
         </span>
+        <%# グループのプロフィールを部分的に表示する。truncateが省略のメソッドで...含めて()のなかの数字の文字数になるように省略する %>
+        <% if group.profile %>
+          <div><%= group.profile.truncate(24) %></div>
+        <% end %>
       </div>
     <% end %>
     <%= paginate @groups, param_name: "group_page" 'twitter-bootstrap-4' %> 
