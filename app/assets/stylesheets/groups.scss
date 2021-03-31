@@ -79,6 +79,10 @@
   // below header
   .group-info {
     margin: 1rem;
+    .group-bio{
+      // 英語とかURLがはみ出るからその対策
+      word-break: break-all;
+    }
   }
 
   .follow{

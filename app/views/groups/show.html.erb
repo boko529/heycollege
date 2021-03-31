@@ -72,40 +72,38 @@
               </span>
             </div>
             -->
-            <div>
-              <div class="sns">
-                <%# プロフィール表示 %>
-                <% if @group.profile.present? %>
-                  <span class="group-bio">
-                    <%# t('.profile') %>
-                    <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
-                  </span>
-                <% elsif @relation &&  @relation.admin %>
-                  <span>
-                    <%= link_to t('.addprofile'), edit_group_path(@group.id) %>
-                  </span>
-                <% end %>
-                <br>
-                <% if @group.instagram_name.present? %>
-                  <small>
-                    <i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
-                  </small>
-                <% elsif @relation &&  @relation.admin %>
-                  <small>
-                    <i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
-                  </small>
-                <% end %>
-                &nbsp;&nbsp;
-                <% if @group.twitter_name.present? %>
-                  <small>
-                    <i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
-                  </small>
-                <% elsif @relation &&  @relation.admin %>
-                  <small>
-                    <i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
-                  </small>
-                <% end %>
-              </div>
+            <div class="sns">
+              <%# プロフィール表示 %>
+              <% if @group.profile.present? %>
+                <span class="group-bio">
+                  <%# t('.profile') %>
+                  <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
+                </span>
+              <% elsif @relation &&  @relation.admin %>
+                <span>
+                  <%= link_to t('.addprofile'), edit_group_path(@group.id) %>
+                </span>
+              <% end %>
+              <br>
+              <% if @group.instagram_name.present? %>
+                <small>
+                  <i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
+                </small>
+              <% elsif @relation &&  @relation.admin %>
+                <small>
+                  <i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
+                </small>
+              <% end %>
+              &nbsp;&nbsp;
+              <% if @group.twitter_name.present? %>
+                <small>
+                  <i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
+                </small>
+              <% elsif @relation &&  @relation.admin %>
+                <small>
+                  <i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
+                </small>
+              <% end %>
             </div>
           </div>
         </div>
