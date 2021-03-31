@@ -1,27 +1,21 @@
 <% @zooms.each do |f| %>
-  <% if f.end_time.present? && (f.end_time - Time.now) >= 0 %>
+  <% if (f.end_time - Time.now) >= 0 %>
     <div class = "zoom_room">
-    <%= link_to zoom_path(f.id) do %>
-      <p><%= truncate(f.title, length: 10)%></p>
-    <% end %>
+    <p><%= truncate(f.title, length: 10)%></p>
 
     <%= link_to user_path(f.user.id) do %>
       ホスト: <%= u_display_name(f.user) %>
     <% end %>
 
     <p>参加者数: <%= f.count %><br>
-    <!--
-    説明: <%= truncate(f.description, length: 10)%><br>
-    -->
+    
     開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>
     終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
-    <% if current_user.belongs_zoom?(f) %>
-    <!-- すでにzoomへの参加リンクを押している場合そのままzoomの招待リンクに飛ばす -->
-      <%= link_to "このzoomに参加する", f.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
-    <% else %>
-    <!-- すでにzoomへの参加リンクを押していない場合user_zooms_pathを通す -->
-      <%= link_to "このzoomに参加する", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+    <% if f.user == current_user %>
+      <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+      <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
     <% end %>
+    <%= link_to "このzoomに参加する", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
     </div>
   <% end %>
 <% end %>

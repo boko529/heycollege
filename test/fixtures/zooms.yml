@@ -6,7 +6,6 @@
 
 zoom1:
   title: "test"
-  description: "test"
   join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09"
   user: user1
   start_time: Time.now+100
@@ -15,7 +14,6 @@ zoom1:
 
 zoom2:
   title: "test"
-  description: "test"
   join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09"
   user: user2
   start_time: Time.now+100

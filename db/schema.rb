@@ -208,16 +208,15 @@ ActiveRecord::Schema.define(version: 2021_03_30_043205) do
   end
 
   create_table "zooms", force: :cascade do |t|
-    t.text "host_url"
     t.text "join_url"
     t.integer "user_id"
-    t.text "title"
-    t.text "description"
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "count", default: 1
     t.datetime "start_time"
     t.datetime "end_time"
+    t.index ["start_time"], name: "index_zooms_on_start_time"
   end
 
   add_foreign_key "bookmarks", "lectures"
