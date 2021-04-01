@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum grade: { B1: 1, B2: 2, B3: 3, B4: 4}, _prefix: :true
   enum gender: { male: 1,  female: 2 }, _prefix: :true
-  #開発の都合でユーザー破壊されたらデータも破壊、後々改善する必要あり
+  #うっかりadminユーザー消したときのためにdependent: :destroyは早く外したい
   has_many :lectures, dependent: :destroy
   has_many :reviews
   has_many :helpfuls
@@ -33,6 +33,7 @@ class User < ApplicationRecord
   validates :twitter_name, length: { maximum: 30}
   validates :instagram_name, length: { maximum: 30}
   validates :university_id, presence: true
+  validates :type, presence: true
   validates_acceptance_of :agreement, allow_nil: false, on: :create # 登録時の利用規約とプライバシーポリシーのチェックボックス
 
   
