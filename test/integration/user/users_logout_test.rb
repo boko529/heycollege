@@ -9,8 +9,7 @@ class UsersLogoutTest < ActionDispatch::IntegrationTest
   test "logout successful" do
     login_as(@user, scope: :user)
     delete destroy_user_session_path
-    get root_path
-    assert_template 'static_pages/home' 
+    follow_redirect!
     assert_select "div.alert"
   end
 end
