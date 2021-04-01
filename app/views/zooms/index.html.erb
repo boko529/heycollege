@@ -1,23 +1,46 @@
-<% @zooms.each do |f| %>
-  <% if (f.end_time - Time.now) >= 0 %>
-    <div class = "zoom_room">
-    <p><%= truncate(f.title, length: 10)%></p>
+<% provide(:title, 'E-mee') %>
+<div class="zoom-index">
+  <h2>E-mee</h2>
+  <%= link_to "+ New room", new_zoom_path, class: "btn btn-success" %>
+  <% @zooms.each do |f| %>
+    <% if (f.end_time - Time.now) >= 0 %>
+    <div class="container p-0">
+      <div class = "zoom_room row">
+        <% if Time.now > f.start_time %> 
+          <div class="ontime">
+            <i class="fas fa-compact-disc fa-spin white"></i> 
+            <strong>Ontime</strong>
+          </div>
+        <% end %>
+        <span class="title col-12"><%= f.title %></span>
+        <p class="zoom_info col-9">
+        <%= link_to user_path(f.user.id) do %>
+          <i class="fas fa-user-circle fa-lg"></i>&nbsp;<%= u_display_name(f.user) %>
+        <% end %>
 
-    <%= link_to user_path(f.user.id) do %>
-      ホスト: <%= u_display_name(f.user) %>
-    <% end %>
-
-    <p>参加者数: <%= f.count %><br>
-    
-    開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>
-    終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
-    <% if f.user == current_user %>
-      <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
-      <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-    <% end %>
-    <%= link_to "このzoomに参加する", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+        <!-- 参加人数 -->
+        <span class="watcher">
+        <i class="fas fa-user"></i> <%= f.count %>
+        </span>
+        <br>
+        <!-- 開催時刻 -->
+        <%= f.start_time.strftime("%m/%d %H:%M") %> ~ <%= f.end_time.strftime("%m/%d %H:%M") %>
+        </p>
+        <div class="col-12 p-0">
+        <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+        <% if f.user == current_user %>
+          <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+          <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+        <% end %>
+        </div>
+      </div>
     </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
-<%= link_to "自分がホストとしてzoomを作る", new_zoom_path, class: "btn btn-success" %>
+    <!-- <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
+      <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-teacher-ranking' || params[:active_tab] == nil %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><i class="fas fa-headset"></i>&nbsp;公開中</a>
+
+      <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><i class="fas fa-bed"></i>&nbsp;公開予定</a>
+    </div> %>-->
