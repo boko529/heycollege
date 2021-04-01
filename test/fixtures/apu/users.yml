@@ -4,8 +4,68 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+apu_user1:
+  email: user1@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  # test用の画像
+  <% file_path = Rails.root.join('test/fixtures/files') %>
+  image: <%= file_path.join('test_image.png') %>
+
+apu_user2:
+  email: user2@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+
+
+apu_user3:
+  name: user3
+  email: user3@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+apu_user4:
+  name: user4
+  email: user4@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+apu_user5:
+  name: user5
+  email: user5@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+not_confirm_apu_user:
+  name: not_confirm_user
+  email: not_confirm_user@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+
+test_apu_admin:
+  name: testadmin
+  email: testadmin@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  admin: true
+
+is_deleted_apu_user:  # 退会済みユーザー
+  name: is_deleted_user
+  email: user_isdeleted@apu.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  gender: "male"
+  grade: "B1"
+  faculty: "APS"
+  is_deleted: true
