@@ -3,7 +3,7 @@ require "test_helper"
 class ZoomTest < ActiveSupport::TestCase
   def setup
     @user = users(:user1)
-    @zoom = @user.zooms.build(title: "test",description: "test",join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09", user_id: @user.id, start_time:Time.now+100, end_time:Time.now+200, count: 1)
+    @zoom = @user.zooms.build(title: "test",join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09", user_id: @user.id, start_time:Time.now+100, end_time:Time.now+200, count: 1)
   end
 
   test "zoom should be valid" do
@@ -42,10 +42,6 @@ class ZoomTest < ActiveSupport::TestCase
   end
   test "zoom title should be valid" do
     @zoom.title= " "
-    assert_not @zoom.valid?
-  end
-  test "zoom description should be valid" do
-    @zoom.description = " "
     assert_not @zoom.valid?
   end
 end

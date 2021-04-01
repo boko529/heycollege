@@ -1,10 +1,8 @@
 <div class="zoom-index">
-
   <h2>E-mee</h2>
   <%= link_to "自分がホストとしてzoomを作る", new_zoom_path, class: "btn btn-success" %>
-
   <% @zooms.each do |f| %>
-    <% if f.end_time.present? && (f.end_time - Time.now) >= 0 %>
+    <% if (f.end_time - Time.now) >= 0 %>
     <div class="container p-0">
       <div class = "zoom_room row">
         <%= link_to zoom_path(f.id), class:"title col-12" do %>
@@ -19,21 +17,16 @@
         <span class="watcher">
         <i class="fas fa-user"></i> <%= f.count %>
         </span>
-        <!--
-        説明: <%= truncate(f.description, length: 10)%><br>
-        -->
         <br>
         <!-- 開催時刻 -->
         <%= f.start_time.strftime("%m/%d %H:%M") %> ~ <%= f.end_time.strftime("%m/%d %H:%M") %>
         </p>
         <div class="col-3 enter">
-        <% if current_user.belongs_zoom?(f) %>      
-          <!-- すでにzoomへの参加リンクを押している場合そのままzoomの招待リンクに飛ばす -->
-            <%= link_to "Enter", f.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
-          <% else %>
-          <!-- すでにzoomへの参加リンクを押していない場合user_zooms_pathを通す -->
-            <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
-          <% end %>
+        <% if f.user == current_user %>
+          <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+          <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+        <% end %>
+        <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
         </div>
       </div>
     </div>
@@ -41,8 +34,8 @@
   <% end %>
 </div>
 
-    <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
+    <!-- <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
       <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-teacher-ranking' || params[:active_tab] == nil %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><i class="fas fa-headset"></i>&nbsp;公開中</a>
 
       <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><i class="fas fa-bed"></i>&nbsp;公開予定</a>
-    </div>
+    </div> %>-->

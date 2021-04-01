@@ -1,5 +1,5 @@
 class ZoomsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit,:update,:show,:create,:new,:destory]
+  before_action :authenticate_user!, only: [:index,:edit,:update,:create,:new,:destory]
   before_action :correct_user, only: [:edit,:destroy, :update]
 
   def create
@@ -36,22 +36,11 @@ class ZoomsController < ApplicationController
     #   flash[:danger] = "zoomの部屋を複数作ることはできません(過去に作ったzoomを削除してから再度zoomを作成してください)"
     #   render new_zoom_path
     # els
-    if @zoom.end_time.nil? || @zoom.start_time.nil?
-      flash[:danger] = "開始時刻、終了時刻が正しく入力されていません"
-      render new_zoom_path
-    elsif @zoom.end_time - @zoom.start_time <= 0
-      flash[:danger] = "開始時刻、終了時刻が正しく入力されていません"
-      render new_zoom_path
-    elsif @zoom.start_time - Time.now < -60
-      flash[:danger] = "開始時刻が現在時刻を過ぎています"
-      render new_zoom_path
+    if @zoom.save
+      flash[:notice] = "zoomの部屋が作成されました"
+      redirect_to zooms_path
     else
-      if @zoom.save
-        flash[:notice] = "zoomの部屋が作成されました"
-        redirect_to zoom_path(@zoom.id)
-      else
-        render :new
-      end
+      render :new
     end
 
   end
@@ -62,12 +51,6 @@ class ZoomsController < ApplicationController
 
   def index
     @zooms = Zoom.all
-    @zoom = Zoom.new
-    @user=current_user
-  end
-  
-  def show
-    @zoom = Zoom.find(params[:id])
   end
   
   def edit
@@ -125,8 +108,7 @@ class ZoomsController < ApplicationController
 
   private
   def zoom_params
-    params.require(:zoom).permit(:join_url, :user_id, :title, :description, :start_time, :end_time)
-    # params.require(:zoom).permit(:join_url,:host_url, :user_id, :title, :description)
+    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time)
   end
 
   def correct_user

@@ -1,5 +1,5 @@
-<% provide(:title, '新規zoom作成') %>
-<% provide(:button_text, '作成') %>
+<% provide(:title, 'zoom編集') %>
+<% provide(:button_text, '編集') %>
 <h1>ZOOM編集</h1>
 
 <%= form_with(model: @zoom, local: true) do |f| %>
@@ -13,12 +13,6 @@
             <span>ex) 1回生向けのオススメ授業</span>
             <%= f.text_field :title, :placeholder => "zoomで話す内容を一言で！", class: 'form-control' %>
           </div>
-          <!--
-          <div>
-            <%= f.label :description %>
-            <%= f.text_area :description, :placeholder => "", class: 'form-control' %>
-          </div>
-          -->
           <div>
             <%= f.label :join_url %>
             <span>ex) https://us04web.zoom.us...</span>

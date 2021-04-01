@@ -41,7 +41,6 @@ ja:
         content: 詳細
       zoom:
         title: トピック
-        description: 概要
         join_url: 招待URL
         start_time: 開始時刻
         end_time: 終了時刻

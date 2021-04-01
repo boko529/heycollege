@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   resource :redis, only: %i[show]
   patch "redis/ranking_update", to: 'redis#ranking_update'
   # E-mee
-  resources :zooms, only: [:index,:new,:edit,:update,:create,:show,:destroy]
+  resources :zooms, only: [:index,:new,:edit,:update,:create,:destroy]
   # zoom参加者管理のパス(userとzoomの中間テーブル)
   post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
 end

@@ -5,8 +5,8 @@ ja:
       notilist: "通知リスト"
       Nonotification: "通知はありません"
     notification:
-      san: さん
-      ga: が
+      san: "さん"
+      ga: "が"
       liked: "いいねしました"
       startfollow: "あなたをフォローしました"
       yourreview: "あなたのレビューに"
