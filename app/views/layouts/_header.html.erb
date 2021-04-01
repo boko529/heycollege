@@ -12,29 +12,33 @@
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
       <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
-        <%# 検索バー %>
-        <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
-          <div class="input-group justify-content-center">
-            <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: t('.search_insidetext') %>
-            <%# 詳細検索表示ボタン %>
-            <div class="input-group-append justify-content-right">
-              <%# 条件検索用のモーダルスイッチ %>
-              <div class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-                <i class="fas fa-search-plus"></i><br>
-              </div>
-              <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
-                <i class="fas fa-search"></i>
-              <% end %>
-            </div> 
-          </div>
+        <% if user_signed_in? %>
+          <%# 検索バー %>
+          <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
+            <div class="input-group justify-content-center">
+              <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control d-sm-block d-none" ,placeholder: t('.search_insidetext') %>
+              <%# 詳細検索表示ボタン %>
+              <div class="input-group-append justify-content-right">
+                <%# 条件検索用のモーダルスイッチ %>
+                <div class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                  <i class="fas fa-search-plus"></i><br>
+                </div>
+                <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+              </div> 
+            </div>
+          <% end %>
         <% end %>
       </div>
       
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
       <div class="search col-1 offset-3 d-md-none d-block p-0">
-        <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
-          <i class="fas fa-search fa-2x"></i>  
-        </div>
+        <% if user_signed_in? %>
+          <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-search fa-2x"></i>  
+          </div>
+        <% end %>
       </div>
       
       <% if user_signed_in? %>
