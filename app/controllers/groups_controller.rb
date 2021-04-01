@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
-    @groups = Group.all
+    @groups = Group.where(university_id: current_user.university_id)
     @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(5)
   end
 

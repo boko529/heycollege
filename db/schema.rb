@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_101149) do
+ActiveRecord::Schema.define(version: 2021_03_31_114506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apu_lectures", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "auto_creates", force: :cascade do |t|
     t.string "name"
@@ -112,6 +117,11 @@ ActiveRecord::Schema.define(version: 2021_03_31_101149) do
     t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
+  create_table "opu_lectures", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|

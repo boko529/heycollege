@@ -47,6 +47,6 @@ class StaticPagesController < ApplicationController
     @users = Kaminari.paginate_array(users).page(params[:users_page]).per(20)
 
     #最新のニュースを表示
-    @news = News.all
+    @news = News.where(university_id: current_user.university_id) if current_user
   end
 end
