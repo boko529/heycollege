@@ -5,7 +5,13 @@
   <% @zooms.each do |f| %>
     <% if (f.end_time - Time.now) >= 0 %>
     <div class="container p-0">
-      <div class = "zoom_room row <%= "emee-ontime" if Time.now > f.start_time %>">
+      <div class = "zoom_room row">
+        <% if Time.now > f.start_time %> 
+          <div class="ontime">
+            <i class="fas fa-compact-disc fa-spin white"></i> 
+            <strong>Ontime</strong>
+          </div>
+        <% end %>
         <span class="title col-12"><%= f.title %></span>
         <p class="zoom_info col-9">
         <%= link_to user_path(f.user.id) do %>
