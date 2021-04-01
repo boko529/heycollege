@@ -1,29 +1,48 @@
-<% @zooms.each do |f| %>
-  <% if f.end_time.present? && (f.end_time - Time.now) >= 0 %>
-    <div class = "zoom_room">
-    <%= link_to zoom_path(f.id) do %>
-      <p><%= truncate(f.title, length: 10)%></p>
-    <% end %>
+<div class="zoom-index">
 
-    <%= link_to user_path(f.user.id) do %>
-      ホスト: <%= u_display_name(f.user) %>
-    <% end %>
+  <h2>E-mee</h2>
+  <%= link_to "自分がホストとしてzoomを作る", new_zoom_path, class: "btn btn-success" %>
 
-    <p>参加者数: <%= f.count %><br>
-    <!--
-    説明: <%= truncate(f.description, length: 10)%><br>
-    -->
-    開始時刻: <%= f.start_time.strftime("%m/%d %H:%M") %><br>
-    終了時刻: <%= f.end_time.strftime("%m/%d %H:%M") %></p>
-    <% if current_user.belongs_zoom?(f) %>
-    <!-- すでにzoomへの参加リンクを押している場合そのままzoomの招待リンクに飛ばす -->
-      <%= link_to "このzoomに参加する", f.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
-    <% else %>
-    <!-- すでにzoomへの参加リンクを押していない場合user_zooms_pathを通す -->
-      <%= link_to "このzoomに参加する", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
-    <% end %>
+  <% @zooms.each do |f| %>
+    <% if f.end_time.present? && (f.end_time - Time.now) >= 0 %>
+    <div class="container p-0">
+      <div class = "zoom_room row">
+        <%= link_to zoom_path(f.id), class:"title col-12" do %>
+          <%= truncate(f.title, length: 10)%>
+        <% end %>
+        <p class="zoom_info col-9">
+        <%= link_to user_path(f.user.id) do %>
+          <i class="fas fa-user-circle fa-lg"></i>&nbsp;<%= u_display_name(f.user) %>
+        <% end %>
+
+        <!-- 参加人数 -->
+        <span class="watcher">
+        <i class="fas fa-user"></i> <%= f.count %>
+        </span>
+        <!--
+        説明: <%= truncate(f.description, length: 10)%><br>
+        -->
+        <br>
+        <!-- 開催時刻 -->
+        <%= f.start_time.strftime("%m/%d %H:%M") %> ~ <%= f.end_time.strftime("%m/%d %H:%M") %>
+        </p>
+        <div class="col-3 enter">
+        <% if current_user.belongs_zoom?(f) %>      
+          <!-- すでにzoomへの参加リンクを押している場合そのままzoomの招待リンクに飛ばす -->
+            <%= link_to "Enter", f.join_url, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+          <% else %>
+          <!-- すでにzoomへの参加リンクを押していない場合user_zooms_pathを通す -->
+            <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+          <% end %>
+        </div>
+      </div>
     </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
-<%= link_to "自分がホストとしてzoomを作る", new_zoom_path, class: "btn btn-success" %>
+    <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
+      <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-teacher-ranking' || params[:active_tab] == nil %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><i class="fas fa-headset"></i>&nbsp;公開中</a>
+
+      <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><i class="fas fa-bed"></i>&nbsp;公開予定</a>
+    </div>
