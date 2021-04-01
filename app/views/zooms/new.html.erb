@@ -5,9 +5,9 @@
   <%= form_with(model: @zoom, local: true) do |f| %>
     <%= render 'shared/error_messages', object: @zoom %>
     <div class="container">
-      <div class="row">
+      <div class="zoom-new row">
         <div class="col d-sm-block d-none"></div>
-        <div class="col-xs-8">
+        <div class="col-10 offset-1">
         <div>
           <%= f.label :title %>
           <span>ex) 1回生向けのオススメ授業</span>
@@ -31,9 +31,7 @@
           <%= f.datetime_field :end_time, class: 'form-control' %>
         </div>
         <div>
-          <p>
-          <%= f.submit '作成する', class: "btn btn-primary"%>
-          </p>
+        <%= f.submit '作成する', class: "btn btn-primary"%>
         </div>
       </div>
       <div class="col d-sm-block d-none"></div>

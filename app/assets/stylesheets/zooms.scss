@@ -55,3 +55,15 @@
   }
 
 }
+.zoom-new, .zoom-edit{
+  div{
+    margin-top: 0.8rem;
+    line-height: 1em;
+    input{
+      margin-top: 0.3rem;
+    }
+  }
+  .create{
+    margin: 0;
+  }
+}
