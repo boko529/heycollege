@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
   before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
   before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
+  before_action :barrier_leave, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
     @groups = Group.all
@@ -106,6 +107,15 @@ class GroupsController < ApplicationController
       group = Group.find(params[:id])
       if user_group_relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
         redirect_to(group) unless user_group_relation.confirmation == true
+      else
+        redirect_to(group)
+      end
+    end
+
+    def barrier_leave
+      group = Group.find(params[:id])
+      if user_group_relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
+        redirect_to(group) unless user_group_relation.leave == false
       else
         redirect_to(group)
       end

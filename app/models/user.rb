@@ -72,11 +72,12 @@ class User < ApplicationRecord
     group << group1
   end
 
-  def unjoin(group1)
-    active_relations.find_by(group_id: group1.id).destroy
-  end
+  # def unjoin(group1)
+  #   active_relations.find_by(group_id: group1.id).destroy
+  # end
 
   # groupに参加しているかどうかを確認する
+  # 一回joinすれば必ずtrueになる(退会は論理削除のため)
   def belongs?(group1)
     group.include?(group1)
   end

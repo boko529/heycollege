@@ -41,7 +41,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user_group_relations, only: [:create, :destroy, :edit, :update]
+  resources :user_group_relations, only: [:create]
+  patch 'user_group_relations/leave/:group_id', to: 'user_group_relations#leave'
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
