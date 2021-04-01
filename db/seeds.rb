@@ -55,11 +55,11 @@ end
 Teacher.create!(name_ja: "森 直樹", name_en: "MORI NAOKI", user_id: 1, university_id: 1)
 Teacher.create!(name_ja: "藤岡 真由美",name_en: "FUJIOKA MAYUMI", user_id: 1, university_id: 1)
 
-Teacher.create!(name_ja: "本田圭佑", name_en: "HONDA KEISUKE", user_id: 1, university_id: 2)
-Teacher.create!(name_ja: "春日俊彰",name_en: "KASUGA TOSHIAKI", user_id: 1, university_id: 2)
+Teacher.create!(name_ja: "本田圭佑", name_en: "HONDA KEISUKE", user_id: 2, university_id: 2)
+Teacher.create!(name_ja: "春日俊彰",name_en: "KASUGA TOSHIAKI", user_id: 2, university_id: 2)
 
-users = User.order(:created_at).take(5)
-10.times do |n|
+users = User.where(university_id: 1).order(:created_at).take(5)
+5.times do |n|
   subject_name_ja = "英語"
   subject_name_en = "English"
   next_name = "#{n+1}"
@@ -70,12 +70,33 @@ users = User.order(:created_at).take(5)
   # lecture_term = "First"
   # day_of_week = "Mon"
   # period = "second"
-  users.each { |user| user.lectures.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1, field: field, lecture_lang: language, university_id: user.university_id)}
+  users.each { |user| Apu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 1, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
 end
 
 5.times do |n|
   content = Faker::Lorem.sentence(word_count: 10)
-  lecture_id = 50 - n
+  lecture_id = n + 1
+  users.each{ |user| user.reviews.create!(content: content, lecture_id: lecture_id, score: 3) }
+end
+
+users = User.where(university_id: 2).order(:created_at).take(5)
+5.times do |n|
+  subject_name_ja = "数学"
+  subject_name_en = "Mathematic"
+  next_name = "#{n+1}"
+  name_ja = subject_name_ja + next_name
+  name_en = subject_name_en + next_name
+  field = 1
+  language = 1
+  # lecture_term = "First"
+  # day_of_week = "Mon"
+  # period = "second"
+  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 3, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
+end
+
+5.times do |n|
+  content = Faker::Lorem.sentence(word_count: 10)
+  lecture_id = n + 26
   users.each{ |user| user.reviews.create!(content: content, lecture_id: lecture_id, score: 3) }
 end
 

@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.string "name_en"
     t.integer "lecture_lang", default: 1
     t.integer "field", default: 1
+    t.string "type", default: "Apu::Lecture", null: false
     t.bigint "university_id", default: 1
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
@@ -243,7 +244,9 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.integer "count", default: 1
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "university_id"
     t.index ["start_time"], name: "index_zooms_on_start_time"
+    t.index ["university_id"], name: "index_zooms_on_university_id"
   end
 
   add_foreign_key "bookmarks", "lectures"
@@ -264,4 +267,5 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
   add_foreign_key "user_point_histories", "users"
   add_foreign_key "user_points", "users"
   add_foreign_key "users", "universities"
+  add_foreign_key "zooms", "universities"
 end

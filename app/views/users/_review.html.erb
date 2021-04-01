@@ -1,7 +1,7 @@
 <li id="review-<%= review.id %>" class = "review list-group-item" >
   <span id="star-review<%= review.id %>"></span>
 
-  <p><%= link_to l_display_name(review.lecture), review.lecture %></p>
+  <p><%= link_to l_display_name(review.lecture), review.lecture.becomes(Lecture) %></p>
   &emsp;<%= t('.teachername') %>：<%= link_to t_display_name(review.lecture.teacher), review.lecture.teacher %>
   <p class="content">
     <%= safe_join(review.content.split("\n"),tag(:br)) %>
