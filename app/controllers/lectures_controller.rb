@@ -7,6 +7,7 @@ class LecturesController < ApplicationController
   # after_action :delete_teacher_automatically, only: [:update, :destroy]
 
   def index
+    #検索である程度数が絞られてたらredisなしのが早い
     @q = Lecture.where(university_id: current_user.university_id).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @lectures = @q.result.left_joins(:reviews).distinct.sort_by do |lecture|
