@@ -13,7 +13,7 @@
   }
   .zoom_room{
     clear: both;
-    background-color: #fafafa;
+    background-color: #fdfdfd;
     margin: 0;
     margin-bottom: 1rem;
     width: 100%;
@@ -38,12 +38,19 @@
     }
     .btn-primary{
       color: #fff;
-      position: absolute;
-      right: 0;
-      bottom: 0;
+      float: right;
       
     }
-    .enter{
+    .btn-success{
+      color: #fff;
+      margin: 0;
+      float: right;
+      margin-right: 0.5rem;
+    }
+    .btn-danger{
+      color: #fff;
+      float: right;
+      margin-right: 0.5rem;
     }
   }
 
