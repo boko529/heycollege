@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
     include UsersHelper
     before_action :authenticate_user!, only: :show
+    before_action :check_university, only: :show
     # 最初はteacher/indexいらない
     # def index
     #     @p = Teacher.ransack(params[:p])
@@ -54,4 +55,10 @@ class TeachersController < ApplicationController
       #     @name = ""
       #   end
       # end
+      def check_university
+        @teacher = Teacher.find(params[:id])
+        if current_user.university_id != @teacher.university_id
+          redirect_back(fallback_location: root_path)
+        end
+      end
 end

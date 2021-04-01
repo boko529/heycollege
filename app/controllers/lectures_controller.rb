@@ -1,6 +1,7 @@
 class LecturesController < ApplicationController
   # before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
   before_action :authenticate_user!, only: [:show]
+  before_action :check_university, only: :show
   # before_action :baria_user, only: [:edit, :destroy, :update]
   # before_action :set_teacher_name, only: [:create, :update]
   # before_action :set_past_teacher, only: [:update, :destroy]
@@ -131,4 +132,11 @@ class LecturesController < ApplicationController
     #     @past_teacher.destroy
     #   end
     # end
+
+    def check_university
+      @lecture = Lecture.find(params[:id])
+      if current_user.university_id != @lecture.university_id
+        redirect_back(fallback_location: root_path)
+      end
+    end
 end
