@@ -31,7 +31,7 @@
             <%= render 'join_form' %>
 
             <%# group settings %>
-            <% if @relation &&  @relation.admin %>
+            <% if @relation &&  @relation.admin && @relation.leave == false %>
               <div class="group-setting-outer">
               <div class="group-settings" onclick="openGroupSet()">
                 <i class="fas fa-users-cog fa-2x"></i>
