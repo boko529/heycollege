@@ -51,7 +51,7 @@ class ZoomsController < ApplicationController
   end
 
   def index
-    @zooms = Zoom.where(university_id: current_user.university_id) #自分の大学のzoom一覧を表示
+    @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]) #自分の大学のzoom一覧を表示
   end
   
   def edit
