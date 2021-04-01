@@ -110,3 +110,8 @@ User.all.where(university_id: 2).where.not(id: 2).each { |user| user.join(group3
 Group.all.each do |group|
   group.initial_point
 end
+
+Zoom.create!(title: "オンライン履修相談会",join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09", user_id: 1,start_time:Time.now+100, end_time:Time.now+200, count: 1)
+Zoom.create!(title: "アメフト部とアイスホッケー部によるオンライン新歓",join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09", user_id: 1,start_time:Time.now+100, end_time:Time.now+10000, count: 1)
+Zoom.create!(title: "プログラミングに興味がある人集合！",join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09", user_id: 1,start_time:Time.now+10000, end_time:Time.now+20000, count: 1)
+Zoom.create!(title: "愛知県出身が語り合う会",join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09", user_id: 1,start_time:Time.now+30000, end_time:Time.now+40000, count: 1)
