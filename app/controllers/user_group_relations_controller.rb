@@ -15,9 +15,9 @@ class UserGroupRelationsController < ApplicationController
 
   def leave
     relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: params[:group_id])
-    group = relation.group
+    group = Group.find_by(id: params[:group_id])
     relations = UserGroupRelation.where(group_id: group.id)
-    if relation.confirm == true
+    if relation.confirmation == true
       if relation.admin == true # 自分が管理者のとき
         if admincount(relations) >= 2 #自分ともう1人(以上)管理者が存在する場合
           # current_user.unjoin(group)
@@ -40,6 +40,7 @@ class UserGroupRelationsController < ApplicationController
     else
       current_user.unjoin(group) # そもそもconfirmされてないユーザーはunjoinでいい.
       flash[:success] = "#{current_user.name}さんは#{group.name}から退会しました!"
+      redirect_to group
     end
   end
 

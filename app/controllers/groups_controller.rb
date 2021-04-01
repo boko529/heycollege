@@ -13,7 +13,15 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @users = @group.users
     @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
-    @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
+    @members = Array.new
+    @users.each do |user|
+      relation = UserGroupRelation.find_by(user_id: user.id, group_id: @group.id)
+      if relation.confirmation == true && relation.leave == false
+        @members.push(user)
+      end
+    end
+    # @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
+    @members = Kaminari.paginate_array(@members).page(params[:user_page]).per(10)
     if @group.twitter_name.present? && @group.instagram_name.present?
       @twitter = "https://twitter.com/"+@group.twitter_name
       @instagram = "https://instagram.com/"+@group.instagram_name
