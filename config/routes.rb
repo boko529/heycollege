@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     resources :auto_creates, only: [:new, :create]
     resource :groups, only: [:new, :create]
   end
-  root 'static_pages#home'
+  root 'zooms#index'
+  get 'ranking', to: 'static_pages#home', as:'ranking'
   resources :lectures, only: [:show, :index] do
     resources :reviews, only: [:create, :destroy] do
       resources :helpfuls, only: [:create]
