@@ -29,7 +29,7 @@
         <% end %>
        
         <%# メインコンテント %>
-        <div class="col-md-10 col-12 main_content px-sm-5 pt-sm-2">
+        <div class="col-12 main_content px-sm-5 pt-sm-2 <%= "col-md-10" if user_signed_in? %>">
         
           <%# ここから3行はフラッシュ表示 %>
           <% flash.each do |message_type, message| %>
