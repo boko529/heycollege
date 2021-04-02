@@ -72,10 +72,13 @@ class Devises::RegistrationsController < Devise::RegistrationsController
       params[:user][:type] = "Apu::User"
       params[:user][:university_id] = 1
     elsif email.include?("@edu.osakafu-u.ac.jp")
-      params[:user][:type] = "Opu::User"
-      params[:user][:university_id] = 2
+      flash[:notice] = "大阪府立大学には近日対応予定です。"
+      redirect_to  new_user_registration_path
+      # params[:user][:type] = "Opu::User"
+      # params[:user][:university_id] = 2
     else
-      flash[:danger] = "アジア太平洋大学または大阪府立大学のメールアドレスを使用してください。"
+      flash[:danger] = "アジア太平洋大学のメールアドレスを使用してください。"
+      # flash[:danger] = "アジア太平洋大学または大阪府立大学のメールアドレスを使用してください。"
       redirect_to  new_user_registration_path
     end
   end
