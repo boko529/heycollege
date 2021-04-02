@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.text "profile"
     t.string "header_image"
     t.string "profile_image"
-    t.bigint "university_id", default: 1
+    t.bigint "university_id", default: 1, null: false
     t.index ["university_id"], name: "index_groups_on_university_id"
   end
 
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.integer "lecture_lang", default: 1
     t.integer "field", default: 1
     t.string "type", default: "Apu::Lecture", null: false
-    t.bigint "university_id", default: 1
+    t.bigint "university_id", default: 1, null: false
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
     t.index ["name_en"], name: "index_lectures_on_name_en"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "university_id", default: 1
+    t.bigint "university_id", default: 1, null: false
     t.index ["university_id"], name: "index_news_on_university_id"
   end
 
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name_en"
-    t.bigint "university_id", default: 1
+    t.bigint "university_id", default: 1, null: false
     t.index ["university_id"], name: "index_teachers_on_university_id"
     t.index ["user_id", "created_at"], name: "index_teachers_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_teachers_on_user_id"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.integer "count", default: 1
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "university_id"
+    t.bigint "university_id", null: false
     t.index ["start_time"], name: "index_zooms_on_start_time"
     t.index ["university_id"], name: "index_zooms_on_university_id"
   end
