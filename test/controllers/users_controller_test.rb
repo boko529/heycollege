@@ -7,6 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @other_user = users(:user4)
     @new_user = User.new(name: "ExampleUser", email: "user@apu.ac.jp",password: "foobar",password_confirmation: "foobar", gender: "male", grade: "B1", faculty: "APS")
     @deleted_user = users(:is_deleted_user)
+    @opu_user = users(:other_university_user)
   end
 
   # フレンドリーフォワーディングのtest追加
@@ -95,7 +96,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as(@new_user, scope: :user)
     get admin_users_path
     follow_redirect!
-    assert_template 'static_pages/home'
+    assert_template nil
   end
 
   test "valid is_deleted" do 
@@ -140,9 +141,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as(@user)
     get users_follower_path(@deleted_user)
     follow_redirect!
+    assert_template "zooms/index"
     # 退会したユーザーのfollowerページには行けない
     assert_not flash.empty?
     assert_template root_path
+  end
+
+  test "should not show other university user" do
+    login_as(@opu_user, scope: :user)
+    get user_path(@user)
+    follow_redirect!
+    assert_template "zooms/index" # rootページへ
   end
 
 end
