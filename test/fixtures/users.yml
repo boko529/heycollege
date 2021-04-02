@@ -68,9 +68,6 @@ is_deleted_user:  # 退会済みユーザー
   email: user_isdeleted@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
-  gender: "male"
-  grade: "B1"
-  faculty: "APS"
   is_deleted: true
   type: Apu::User
   university_id: 1
