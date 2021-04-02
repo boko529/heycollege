@@ -9,7 +9,7 @@
         <%= f.text_field :name, autofocus: true, autocomplete: t('.name') %>
       </div>
 
-<!-- とりま今は無くしてる！
+      <!-- とりま今は無くしてる！
       <div class="field">
         <%= f.label :grade,t('.grade') %><br/>
         <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
@@ -31,9 +31,7 @@
           <%=  b.radio_button(class: "form-contorl") %>
           <%= b.label %>
         <% end %> 
-      </div> 
-
-  -->
+      </div>-->
 
       <div class="field">
         <%= f.label :email %><br/>
