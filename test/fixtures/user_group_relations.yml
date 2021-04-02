@@ -5,28 +5,53 @@ one:
   user: user1
   group: group2
   admin: false
+  confirmation: true
 
 two:
   user: user2
   group: group1
   admin: true
+  confirmation: true
 
 three:
   user: user3
   group: group1
   admin: false
+  confirmation: true
 
 forth:
   user: user1
   group: group1
   admin: false
+  confirmation: true
 
 five:
   user: user4
   group: group1
   admin: true
+  confirmation: true
 
 six:
   user: user4
   group: group2
   admin: true
+  confirmation: true
+
+seven:
+  user: user1
+  group: group3
+  admin: true
+  confirmation: false
+
+eight:
+  user: user2
+  group: group3
+  admin: true
+  confirmation: true
+  leave: true
+
+nine:
+  user: user3
+  group: group3
+  admin: false
+  confirmation: true
