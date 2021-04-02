@@ -13,15 +13,15 @@ class RedisController < ApplicationController
     #ユーザーランキング処理(管理者、退会者は除く,非承認者)
     # ↓なぜかこの書き方（map）にしたらいけた. ちょい見栄え悪いかもやけど許して.
     User.where(admin: false, is_deleted: false).where.not(confirmed_at: nil).includes(:user_point_history).map{ |user|
-      total_amount = 0
-      if user.user_point_history.present?
-        user.user_point_history.all.each do |user_point_history|
-          if user_point_history.created_at.month == Time.now.month
-            total_amount += user_point_history.amount
-          end
-        end
-      end
-      REDIS.zadd "rank/users", total_amount, user.id
+      # total_amount = 0
+      # if user.user_point_history.present?
+      #   user.user_point_history.all.each do |user_point_history|
+      #     if user_point_history.created_at.month == Time.now.month
+      #       total_amount += user_point_history.amount
+      #     end
+      #   end
+      # end
+      REDIS.zadd "rank/users", user.user_point.current_point, user.id
     }
     flash[:success] = "ランキングを更新しました"
     render 'show'
