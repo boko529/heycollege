@@ -135,7 +135,6 @@ ul.groups{
     border-radius: 4px;
     border-bottom: 1px solid gray;
     padding: 1rem 0.4rem;
-
     .class-name{
       height: 100%;
       padding: 10px;
@@ -151,6 +150,12 @@ ul.groups{
       display: inline-block;
       color: #333;
       font-weight: bold;
+    }
+    .group-profile{
+      margin: 0 0.3rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
