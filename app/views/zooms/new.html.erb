@@ -1,0 +1,40 @@
+<% provide(:title, '新規zoom作成') %>
+<% provide(:button_text, '作成') %>
+<h1>ZOOM作成</h1>
+
+  <%= form_with(model: @zoom, local: true) do |f| %>
+    <%= render 'shared/error_messages', object: @zoom %>
+    <div class="container">
+      <div class="zoom-new row">
+        <div class="col d-sm-block d-none"></div>
+        <div class="col-10 offset-1">
+        <div>
+          <%= f.label :title %>
+          <span>ex) 1回生向けのオススメ授業</span>
+          <%= f.text_field :title, :placeholder => "zoomで話す内容を一言で！", class: 'form-control' %>
+        </div>
+        <div>
+          <%= f.label :join_url %>
+          <span>ex) https://us04web.zoom.us...</span>
+          <%= f.text_field :join_url, class: 'form-control', :placeholder => "招待リンクをコピーしてください" %>
+        </div>
+        <div>
+          <%= f.label :start_time %>
+          <br>
+          <span><small>現在時刻から数分後に設定すると良いです</small></span>
+          <br>
+          <%= f.datetime_field :start_time, class: 'form-control' %>
+        </div>
+        <div>
+          <%= f.label :end_time %>
+          <br>
+          <%= f.datetime_field :end_time, class: 'form-control' %>
+        </div>
+        <div>
+        <%= f.submit '作成する', class: "btn btn-primary"%>
+        </div>
+      </div>
+      <div class="col d-sm-block d-none"></div>
+    </div>
+  </div>
+<% end %>
