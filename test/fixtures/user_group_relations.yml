@@ -55,3 +55,9 @@ nine:
   group: group3
   admin: false
   confirmation: true
+
+ten:
+  user: user4
+  group: group3
+  admin: true
+  confirmation: true
