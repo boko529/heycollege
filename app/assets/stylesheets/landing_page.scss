@@ -5,10 +5,19 @@
   .land-e-mee {
     text-align: center;
   }
+  .land-title {
+    .links {
+      margin-top: 3rem;
+      text-align: left;
+      margin-left: 1rem;
+      font-size: 1rem;
+      color: rgb(90, 82, 82);
+    }
+  }
   .land-class-review,
   .land-group-list,
   .land-e-mee {
-    margin-top: 4rem;
+    margin-top: 3rem;
     h2 {
       color: #77a763;
       font-size: 3rem;
