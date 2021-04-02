@@ -16,7 +16,7 @@
         </span>
         <%# グループのプロフィールを部分的に表示する。truncateが省略のメソッドで...含めて()のなかの数字の文字数になるように省略する %>
         <% if group.profile %>
-          <div><%= group.profile.truncate(24) %></div>
+          <div class="group-profile"><%= group.profile.truncate(50) %></div>
         <% end %>
       </div>
     <% end %>
