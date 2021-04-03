@@ -1,0 +1,47 @@
+.about{
+  h1{
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  .about-list{
+    display: flex;
+    flex-wrap: wrap;
+    .list-item{
+      display: block;
+      min-width: 48%;
+      width:400px;
+      max-width: 98%;
+      margin: 0 auto;
+      margin-bottom: 1.2rem;
+      .list-item_img{
+        height: 10rem;
+        padding: 0;
+        background-color:  rgb(245, 245, 245);
+        margin-bottom: 0.5rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+        overflow: hidden
+        ;
+        img{
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          display: block;
+          margin: auto;
+        }
+      }
+      .list-item_inner{
+        .list-item_title{
+          padding: 0;
+          font-size: 1.2rem;
+          a{
+            color:#333
+          }
+          .green{
+            color: rgb(42, 133, 14);
+          }
+        }
+      }
+    }
+  }
+}
