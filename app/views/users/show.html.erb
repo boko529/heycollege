@@ -132,6 +132,12 @@
     <% elsif @user == current_user %>
       <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
     <% end %>
+    &nbsp;&nbsp;
+    <% if @user.zoom_url.present? %>
+      <small><%= t('.complete_zoom_url') %></small>
+    <% elsif @user == current_user %>
+      <small><%= link_to t('.add_zoom_url'),edit_user_path(@user.id) %></small>
+    <% end %>
     </div> 
 
     <%# 所属団体 %>

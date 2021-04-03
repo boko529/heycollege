@@ -38,6 +38,9 @@ class User < ApplicationRecord
   validates :twitter_name, length: { maximum: 30}
   validates :instagram_name, length: { maximum: 30}
   validates_acceptance_of :agreement, allow_nil: false, on: :create # 登録時の利用規約とプライバシーポリシーのチェックボックス
+  # ZOOM招待URLのバリデーション
+  VALID_ZOOMURL_REGEX = /\A^((http|https):\/\/*(us)?[0-9]?[0-9]?(web\.)?zoom\.us\/j\/(.*)|\s)?$\z/ix
+  validates :zoom_url,format: { with: VALID_ZOOMURL_REGEX }, on: :update
 
   
   # ユーザーをフォローする

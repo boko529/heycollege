@@ -18,6 +18,8 @@ ja:
       following: "フォロー"
       follower: "フォロワー"
       add_account: "アカウントを追加する"
+      add_zoom_url: "ZOOMの招待URLを追加する"
+      complete_zoom_url: "ZOOMの招待URL登録済み"
       reviews_count: "レビィー数"
       review: "レビュー"
       class: "クラス"
@@ -54,8 +56,10 @@ ja:
       in100: "１００文字以内"
       twi: "Twitter ユーザーネーム"
       insta: "Instagram ユーザーネーム"
+      zoom: "ZOOM 招待URL"
       twi_message: "例)Hey_College_"
       insta_message: "例)hey.college"
+      zoom_message: "例)https://us04web.zoom.us.."
     follower:
       follower: "フォロワー"
     following:

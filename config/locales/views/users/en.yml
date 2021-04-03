@@ -18,6 +18,8 @@ en:
       following: " Following"
       follower: " Follower"
       add_account: "Add account"
+      add_zoom_url: "Add ZOOM invitation URL"
+      complete_zoom_url: "Registered ZOOM invitation URL"
       reviews_count: "Reviews"
       review: "Review"
       class: "Class"
@@ -54,8 +56,10 @@ en:
       in100: "in 100 letters"
       twi: "Twitter username"
       insta: "Instagram username"
+      zoom: "ZOOM invitation URL"
       twi_message: "ex)Hey_College_"
       insta_message: "ex)hey.college"
+      zoom_message: "ex)https://us04web.zoom.us.."
     follower:
       follower: "Follower"
     following:
