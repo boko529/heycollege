@@ -18,8 +18,6 @@ en:
       following: " Following"
       follower: " Follower"
       add_account: "Add account"
-      add_zoom_url: "Add ZOOM invitation URL"
-      complete_zoom_url: "Registered ZOOM invitation URL"
       reviews_count: "Reviews"
       review: "Review"
       class: "Class"
