@@ -46,6 +46,7 @@
         <a class="col-6 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><i class="fas fa-bed"></i>&nbsp;公開予定</a>
       </div> %>-->
 <% else %>
+  <% provide(:title, 'クラスレビューサイト') %>
   <div class="landing-page">
     <%# title %>
     <div class="land-title">

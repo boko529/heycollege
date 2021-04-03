@@ -66,7 +66,6 @@ class ZoomsControllerTest < ActionDispatch::IntegrationTest
       delete zoom_path(@zoom.id)
     end
     assert_not flash.empty?
-    follow_redirect!
     assert_template "zooms/index"
   end
   
