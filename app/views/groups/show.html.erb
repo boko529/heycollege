@@ -31,7 +31,7 @@
             <%= render 'join_form' %>
 
             <%# group settings %>
-            <% if @relation &&  @relation.admin %>
+            <% if @relation &&  @relation.admin && @relation.leave == false %>
               <div class="group-setting-outer">
               <div class="group-settings" onclick="openGroupSet()">
                 <i class="fas fa-users-cog fa-2x"></i>
@@ -112,15 +112,13 @@
 
           <div class="member-list">
             <%= render 'shared/stats_user' %>
-            <% @users.each do |user| %>
-              <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).confirmation == true %>
-                <li class="list-group-item list-group-item-action member-list-box">
-                  <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user %>
-                </li>
-              <% end %>
+            <% @members.each do |user| %>
+              <li class="list-group-item list-group-item-action member-list-box">
+                <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user %>
+              </li>
             <% end %>
             <div class="page-box">
-              <%= paginate @users, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
+              <%= paginate @members, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
             </div>
           </div>
 

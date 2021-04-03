@@ -8,6 +8,7 @@ class GroupsEditAdminTest < ActionDispatch::IntegrationTest
     @user3 = users(:user3) # group1に所属、admin == false
     @group1 = groups(:group1) # user2(admin),user3が所属
     @group2 = groups(:group2) # user1が所属
+    @group3 = groups(:group3) # user1: confirmation == false, user2: leave = true
     @relation = user_group_relations(:one) # user1がgroup2に所属、admin == false
   end
 
@@ -56,6 +57,32 @@ class GroupsEditAdminTest < ActionDispatch::IntegrationTest
   test "admin user cannot update other group admin" do
     login_as(@user2, scope: :user)
     patch "/groups/#{@group2.id}/update_admin", params: { id: @group2.id, user_id: @user2.id }
+    assert_template nil
+    assert_not_equal @relation.admin, true
+  end
+
+  test "not confirmed user cannot edit_admin" do
+    login_as(@user1, scope: :user)
+    get "/groups/#{@group3.id}/edit_admin"
+    assert_template nil
+  end
+
+  test "not confirmed user cannot update_admin" do
+    login_as(@user1, scope: :user)
+    patch "/groups/#{@group3.id}/update_admin", params: { id: @group3.id, user_id: @user3.id }
+    assert_template nil
+    assert_not_equal @relation.admin, true
+  end
+
+  test " user who left group cannot edit_admin" do
+    login_as(@user2, scope: :user)
+    get "/groups/#{@group3.id}/edit_admin"
+    assert_template nil
+  end
+
+  test "user who left group cannot update_admin" do
+    login_as(@user2, scope: :user)
+    patch "/groups/#{@group3.id}/update_admin", params: { id: @group3.id, user_id: @user3.id }
     assert_template nil
     assert_not_equal @relation.admin, true
   end
