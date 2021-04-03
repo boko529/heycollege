@@ -1,5 +1,5 @@
 class ZoomsController < ApplicationController
-  before_action :authenticate_user!, only: [:index,:edit,:update,:create,:new,:destory]
+  before_action :authenticate_user!, only: [:edit,:update,:create,:new,:destory] # indexはランディングページを兼ねている
   before_action :correct_user, only: [:edit,:destroy, :update]
 
   def create
@@ -51,7 +51,9 @@ class ZoomsController < ApplicationController
   end
 
   def index
-    @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]) #自分の大学のzoom一覧を表示
+    if user_signed_in?
+      @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]) #自分の大学のzoom一覧を表示
+    end
   end
   
   def edit

@@ -15,16 +15,14 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
 
   test "news new in not login" do
     get new_admin_news_path
-    follow_redirect!
-    assert_template 'devise/sessions/new'
+    assert_template nil
     assert_not flash.empty?
   end
 
   test 'news new in not admin' do
     login_as(@user)
     get new_admin_news_path
-    follow_redirect!
-    assert_template root_path
+    assert_template nil
   end
 
   test 'news new in admin' do
@@ -38,9 +36,8 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
   #newsがすでにある&ログインしていない
   test 'create in not login && news exists' do
     assert_no_difference 'News.count' do
-      post admin_news_index_path, params: { news: { title:  "test", message: "test" }}
-      follow_redirect!
-      assert_template 'devise/sessions/new'
+      post admin_news_index_path, params: { news: { title:  "test", message: "test", university_id: 1 }}
+      assert_template nil
       assert_not flash.empty?
     end
   end
@@ -49,9 +46,8 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
   test 'create in login && news exists' do
     login_as(@user)
     assert_no_difference 'News.count' do
-      post admin_news_index_path, params: { news: { title:  "test", message: "test" }}
-      follow_redirect!
-      assert_template root_path
+      post admin_news_index_path, params: { news: { title:  "test", message: "test", university_id: 1 }}
+      assert_template nil
     end
   end
 
@@ -59,24 +55,21 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
   test 'create in admin && news exists' do
     login_as(@admin_user)
     assert_no_difference 'News.count' do
-      post admin_news_index_path, params: { news: { title:  "test", message: "test" }}
-      follow_redirect!
-      assert_template root_path
+      post admin_news_index_path, params: { news: { title:  "test", message: "test", university_id: 1 }}
+      assert_template nil
     end
   end
 
   test "news edit in not login" do
     get edit_admin_news_path(@news)
-    follow_redirect!
-    assert_template 'devise/sessions/new'
+    assert_template nil
     assert_not flash.empty?
   end
 
   test 'news edit in not admin' do
     login_as(@user)
     get edit_admin_news_path(@news)
-    follow_redirect!
-    assert_template root_path
+    assert_template nil
   end
 
   test 'news edit in admin' do
@@ -86,9 +79,8 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'update in not login' do
-    patch admin_news_path(@news), params: { news: { title:  "test2", message: "test2" }}
-    follow_redirect!
-    assert_template 'devise/sessions/new'
+    patch admin_news_path(@news), params: { news: { title:  "test2", message: "test2", university_id: 1 }}
+    assert_template nil
     assert_not flash.empty?
     @news.reload
     assert_not_equal "test2", @news.title
@@ -96,17 +88,15 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
 
   test 'update in not admin' do
     login_as(@user)
-    patch admin_news_path(@news), params: { news: { title:  "test2", message: "test2" }}
-    follow_redirect!
-    assert_template root_path
+    patch admin_news_path(@news), params: { news: { title:  "test2", message: "test2", university_id: 1 }}
+    assert_template nil
     @news.reload
     assert_not_equal "test2", @news.title
   end
 
   test 'valid update in admin' do
     login_as(@admin_user)
-    patch admin_news_path(@news), params: { news: { title:  "test2", message: "test2" }}
-    follow_redirect!
+    patch admin_news_path(@news), params: { news: { title:  "test2", message: "test2", university_id: 1 }}
     assert_template 'news/show'
     @news.reload
     assert_equal "test2", @news.title
@@ -115,8 +105,7 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
   test 'destroy in not login' do
     assert_no_difference 'News.count' do
       delete admin_news_path(@news)
-      follow_redirect!
-      assert_template 'devise/sessions/new'
+      assert_template nil
       assert_not flash.empty?
     end
   end
@@ -125,8 +114,7 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
     login_as(@user)
     assert_no_difference 'News.count' do
       delete admin_news_path(@news)
-      follow_redirect!
-      assert_template root_path
+      assert_template nil
     end
   end
 
@@ -134,8 +122,7 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
     login_as(@admin_user)
     assert_difference 'News.count', -1 do
       delete admin_news_path(@news)
-      follow_redirect!
-      assert_template root_path
+      assert_template nil
     end
   end
 end
