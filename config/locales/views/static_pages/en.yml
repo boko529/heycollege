@@ -7,7 +7,6 @@ en:
     user:
       place: "th"
     home:
-      classreviewsite: "APU Class Reveiw site"
       class: "Class"
       teacher: "Teacher"
       user_point: "User"
