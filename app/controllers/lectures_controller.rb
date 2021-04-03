@@ -1,7 +1,7 @@
 class LecturesController < ApplicationController
   # before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
-  before_action :authenticate_user!, only: [:show]
-  before_action :check_university, only: :show
+  before_action :authenticate_user!, only: [:show, :index]
+  before_action :check_university, only: [:show]
   # before_action :baria_user, only: [:edit, :destroy, :update]
   # before_action :set_teacher_name, only: [:create, :update]
   # before_action :set_past_teacher, only: [:update, :destroy]
