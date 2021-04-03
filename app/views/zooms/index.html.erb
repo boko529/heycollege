@@ -1,6 +1,6 @@
-<% provide(:title, 'E-mee') %>
+<% provide(:title, 'Zoom-house') %>
 <div class="zoom-index">
-  <h2>E-mee</h2>
+  <h2>Zoom-house</h2>
   <%= link_to "+ New room", new_zoom_path, class: "btn btn-success" %>
   <% @zooms.each do |f| %>
     <% if (f.end_time - Time.now) >= 0 %>
