@@ -54,8 +54,10 @@ ja:
       in100: "１００文字以内"
       twi: "Twitter ユーザーネーム"
       insta: "Instagram ユーザーネーム"
+      zoom: "ZOOM 招待URL"
       twi_message: "例)Hey_College_"
       insta_message: "例)hey.college"
+      zoom_message: "例)https://us04web.zoom.us.."
     follower:
       follower: "フォロワー"
     following:

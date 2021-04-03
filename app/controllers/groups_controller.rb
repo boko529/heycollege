@@ -27,9 +27,9 @@ class GroupsController < ApplicationController
       @twitter = "https://twitter.com/"+@group.twitter_name
       @instagram = "https://instagram.com/"+@group.instagram_name
     elsif @group.twitter_name.present?
-      @twitter = "https://twitter.com"+@group.twitter_name
+      @twitter = "https://twitter.com/"+@group.twitter_name
     elsif @group.instagram_name.present?
-      @instagram = "https://instagram.com"+@group.instagram_name
+      @instagram = "https://instagram.com/"+@group.instagram_name
     end
   end
 

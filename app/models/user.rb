@@ -35,6 +35,9 @@ class User < ApplicationRecord
   validates :university_id, presence: true
   validates :type, presence: true
   validates_acceptance_of :agreement, allow_nil: false, on: :create # 登録時の利用規約とプライバシーポリシーのチェックボックス
+  # ZOOM招待URLのバリデーション
+  VALID_ZOOMURL_REGEX = /\A^((http|https):\/\/*(us)?[0-9]?[0-9]?(web\.)?zoom\.us\/j\/(.*)|\s)?$\z/ix
+  validates :zoom_url,format: { with: VALID_ZOOMURL_REGEX }, on: :update
 
   
   # ユーザーをフォローする
