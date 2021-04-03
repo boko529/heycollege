@@ -100,3 +100,15 @@ en:
       point_type:
         init: "Initial point"
         helpfuled: "レビューがいいねされました"
+    apu:
+      user:
+        faculty:
+          APS: "APS"
+          APM: "APM"
+    opu:
+      user:
+        faculty:
+          Gensisu: "現代システム"
+          Kougaku: "工学"
+          Seikan: "生命環境科学"
+          Tiiki: "地域保健"

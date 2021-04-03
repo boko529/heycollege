@@ -8,33 +8,7 @@
         <%= f.label :name,t('.nickname') %><br/>
         <%= f.text_field :name, autofocus: true, autocomplete: t('.name') %>
       </div>
-
-<!-- とりま今は無くしてる！
-      <div class="field">
-        <%= f.label :grade,t('.grade') %><br/>
-        <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
-      </div>
-
-      <div class="field">
-        <%= f.label :gender,t('.gender') %><br/>
-        <%= f.radio_button :gender, '', {:checked => true} %><%= t('.unspecified') %>
-        <%= f.collection_radio_buttons :gender, User.genders_i18n, :first, :last do |b|  %>
-          <%=  b.radio_button(class: "form-contorl") %>
-          <%= b.label %>
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= f.label :faculty,t('.faculty') %><br/>
-        <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspecified') %>
-        <%= f.collection_radio_buttons :faculty, User.faculties_i18n, :first, :last do |b|  %>
-          <%=  b.radio_button(class: "form-contorl") %>
-          <%= b.label %>
-        <% end %> 
-      </div> 
-
-  -->
-
+      
       <div class="field">
         <%= f.label :email %><br/>
         <%= f.email_field :email, autocomplete: "email" %>

@@ -11,12 +11,16 @@ user1:
   # test用の画像
   <% file_path = Rails.root.join('test/fixtures/files') %>
   image: <%= file_path.join('test_image.png') %>
+  type: Apu::User
+  university_id: 1
 
 
 user2:
   email: user2@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
+  type: Apu::User
+  university_id: 1
 
 
 user3:
@@ -24,35 +28,31 @@ user3:
   email: user3@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
-  gender: "male"
-  grade: "B1"
-  faculty: "APS"
+  type: Apu::User
+  university_id: 1
 
 user4:
   name: user4
   email: user4@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
-  gender: "male"
-  grade: "B1"
-  faculty: "APS"
+  type: Apu::User
+  university_id: 1
 
 user5:
   name: user5
   email: user5@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
-  gender: "male"
-  grade: "B1"
-  faculty: "APS"
+  type: Apu::User
+  university_id: 1
 
 not_confirm_user:
   name: not_confirm_user
   email: not_confirm_user@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  gender: "male"
-  grade: "B1"
-  faculty: "APS"
+  type: Apu::User
+  university_id: 1
 
 test_admin:
   name: testadmin
@@ -60,14 +60,25 @@ test_admin:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
   admin: true
+  type: Apu::User
+  university_id: 1
 
 is_deleted_user:  # 退会済みユーザー
   name: is_deleted_user
   email: user_isdeleted@apu.ac.jp
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   confirmed_at: <%= Time.now - 100 %>
-  gender: "male"
-  grade: "B1"
-  faculty: "APS"
   is_deleted: true
+  type: Apu::User
+  university_id: 1
+
+other_university_user: # 他大学のユーザー
+  name: opu_student
+  email: sample@edu.osakafu-u.ac.jp
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  confirmed_at: <%= Time.now - 100 %>
+  type: Opu::User
+  university_id: 2
+
+
 

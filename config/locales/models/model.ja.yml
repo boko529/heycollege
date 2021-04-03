@@ -60,9 +60,6 @@ ja:
         D1: "博士1年"
         D2: "博士2年"
         D3: "博士3年"
-      faculty:
-        APS: "APS"
-        APM: "APM"
     lecture:
       field:
         APS: "APS"
@@ -110,3 +107,15 @@ ja:
       point_type:
         init: "初期ポイント"
         helpfuled: "レビューがいいねされました"
+    apu:
+      user:
+        faculty:
+          APS: "APS"
+          APM: "APM"
+    opu:
+      user:
+        faculty:
+            Gensisu: "現代システム"
+            Kougaku: "工学"
+            Seikan: "生命環境科学"
+            Tiiki: "地域保健"

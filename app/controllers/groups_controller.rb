@@ -1,11 +1,12 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :show, :new, :edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
   before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
   before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
+  before_action :check_university, only: [:show] # editなどはバリアユーザーがかかってるので問題ないでしょう
   before_action :barrier_leave, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
-    @groups = Group.all
+    @groups = Group.where(university_id: current_user.university_id)
     @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(5)
   end
 
@@ -117,6 +118,13 @@ class GroupsController < ApplicationController
         redirect_to(group) unless user_group_relation.confirmation == true
       else
         redirect_to(group)
+      end
+    end
+
+    def check_university
+      @group = Group.find(params[:id])
+      if current_user.university_id != @group.university_id
+        redirect_back(fallback_location: root_path)
       end
     end
 

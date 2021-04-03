@@ -3,6 +3,7 @@ require "test_helper"
 class ZoomsControllerTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   def setup
+    @university = universities(:one)
     @user = users(:user1)
     @zoom = zooms(:zoom1)
     @other_zoom = zooms(:zoom2)
@@ -12,10 +13,10 @@ class ZoomsControllerTest < ActionDispatch::IntegrationTest
   test "zoom create" do
     login_as(@user, scope: :user)
     assert_difference 'Zoom.count', 1 do
-      post zooms_path, params: { zoom: { title: "test1", join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09",user_id: @user.id, start_time: Time.now+100, end_time: Time.now+200, count: 1}}
+      post zooms_path, params: { zoom: { title: "test1", join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09",user_id: @user.id, start_time: Time.now+100, end_time: Time.now+200, count: 1, university_id: @university.id}}
     end
-    follow_redirect!
-    assert_template 'zooms/show'
+    # follow_redirect!
+    assert_template 'zooms/index'
   end
   
   test "zoom create without title" do

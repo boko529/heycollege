@@ -30,6 +30,7 @@ class ZoomsController < ApplicationController
     # 招待URLを用いてzoom作成
     @zoom = Zoom.new(zoom_params)
     @zoom.user_id = current_user.id
+    @zoom.university_id = current_user.university_id # zoomのuniversity_idはユーザーと同じ
     # @zoom.host_url = parseURL["start_url"]
     # @zoom.join_url = parseURL["join_url"]
     # if current_user.zoom.present?
@@ -50,7 +51,7 @@ class ZoomsController < ApplicationController
   end
 
   def index
-    @zooms = Zoom.all
+    @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]) #自分の大学のzoom一覧を表示
   end
   
   def edit

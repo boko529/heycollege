@@ -15,6 +15,11 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "apu_lectures", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "auto_creates", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -60,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.text "profile"
     t.string "header_image"
     t.string "profile_image"
+    t.bigint "university_id", default: 1, null: false
+    t.index ["university_id"], name: "index_groups_on_university_id"
   end
 
   create_table "helpfuls", force: :cascade do |t|
@@ -79,11 +86,14 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.string "name_en"
     t.integer "lecture_lang", default: 1
     t.integer "field", default: 1
+    t.string "type", default: "Apu::Lecture", null: false
+    t.bigint "university_id", default: 1, null: false
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
     t.index ["name_en"], name: "index_lectures_on_name_en"
     t.index ["name_ja"], name: "index_lectures_on_name_ja"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
+    t.index ["university_id"], name: "index_lectures_on_university_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
     t.index ["user_id"], name: "index_lectures_on_user_id"
   end
@@ -93,6 +103,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "university_id", default: 1, null: false
+    t.index ["university_id"], name: "index_news_on_university_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -106,6 +118,11 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
+  create_table "opu_lectures", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -135,8 +152,16 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name_en"
+    t.bigint "university_id", default: 1, null: false
+    t.index ["university_id"], name: "index_teachers_on_university_id"
     t.index ["user_id", "created_at"], name: "index_teachers_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_teachers_on_user_id"
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.string "name_ja"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_group_relations", force: :cascade do |t|
@@ -204,8 +229,11 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.string "twitter_name"
     t.string "instagram_name"
     t.string "image"
+    t.string "type", default: "Apu::User", null: false
+    t.bigint "university_id", default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["university_id"], name: "index_users_on_university_id"
   end
 
   create_table "zooms", force: :cascade do |t|
@@ -217,7 +245,9 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
     t.integer "count", default: 1
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "university_id", null: false
     t.index ["start_time"], name: "index_zooms_on_start_time"
+    t.index ["university_id"], name: "index_zooms_on_university_id"
   end
 
   add_foreign_key "bookmarks", "lectures"
@@ -225,12 +255,18 @@ ActiveRecord::Schema.define(version: 2021_04_01_053347) do
   add_foreign_key "group_point_histories", "group_points"
   add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
+  add_foreign_key "groups", "universities"
   add_foreign_key "lectures", "teachers"
+  add_foreign_key "lectures", "universities"
   add_foreign_key "lectures", "users"
+  add_foreign_key "news", "universities"
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"
+  add_foreign_key "teachers", "universities"
   add_foreign_key "teachers", "users"
   add_foreign_key "user_point_histories", "user_points"
   add_foreign_key "user_point_histories", "users"
   add_foreign_key "user_points", "users"
+  add_foreign_key "users", "universities"
+  add_foreign_key "zooms", "universities"
 end

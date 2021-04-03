@@ -1,9 +1,11 @@
 class Teacher < ApplicationRecord
   belongs_to :user
+  belongs_to :university
   has_many   :lectures, dependent: :destroy
   validates :user_id, presence: true
-  validates :name_ja,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_en?
-  validates :name_en,    presence: true, length: { maximum: 50 }, uniqueness: true, unless: :name_ja?
+  # validates :university_id, presence: true # これがなくてもuniversity_idが必須のtestは通ってしまう
+  validates :name_ja,    presence: true, length: { maximum: 50 }, uniqueness: {scope: :university_id } # 大学内で同じ名前はだめ
+  validates :name_en,    presence: true, length: { maximum: 50 }, uniqueness: {scope: :university_id } # 大学内で同じ名前はだめ
 
   def average_score
     if self.lectures.blank?

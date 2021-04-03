@@ -22,7 +22,7 @@
     <%# クラス名 ウェブ%>
     <div class="col-2 col-lg-4 d-none d-sm-block">
       <span class="class-name p-0">
-        <%= link_to l_display_name(lecture), lecture %>
+        <%= link_to l_display_name(lecture), lecture.becomes(Lecture) %>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
     <%# 二段構成 %>
      <div class="d-inlineblock ">
         <span class="lecture-mobile-class-name d-inlineblock">
-            <%= link_to l_display_name(lecture), lecture %>
+            <%= link_to l_display_name(lecture), lecture.becomes(Lecture) %>
           </span>
         <span class="lecture-mobile-teacher-name d-inlineblock">
             <%= link_to t_display_name(lecture.teacher), lecture.teacher %>

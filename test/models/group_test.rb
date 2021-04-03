@@ -2,7 +2,8 @@ require "test_helper"
 
 class GroupTest < ActiveSupport::TestCase
   def setup
-    @group = Group.new(name: "ExampleGroup")
+    @university = universities(:one)
+    @group = Group.new(name: "ExampleGroup", university_id: @university.id)
   end
 
   test "should be valid" do
@@ -13,11 +14,16 @@ class GroupTest < ActiveSupport::TestCase
     @group.name = "   "
     assert_not @group.valid?
   end
-
+  
   test "name should be unique" do
     duplicate_group = @group.dup
     @group.save
     assert_not duplicate_group.valid?
+  end
+
+  test "university_id should be present" do
+    @group.university_id = nil
+    assert_not @group.valid?
   end
 
   test "twitter name should not be too long" do

@@ -7,7 +7,7 @@
       <%# ランキング %>
       <div class="footer-rank col">
         <div class="mobile-footer-logo">
-        <%= link_to root_path do %>
+        <%= link_to ranking_path do %>
           <i class="fas fa-medal fa-2x"></i>
         <% end %>
         </div>
@@ -33,26 +33,6 @@
         </div>
         <div class="mobile-footer-logo-let">My page</div>
       </div>
-
-      <%# 作る %>
-      <%# <div class="footer-add col"> %>
-        <%# <div class="mobile-footer-logo"> %>
-          <%#= link_to new_lecture_path do %>
-            <%# <i class="far fa-plus-square fa-2x"></i> %>
-          <%# end %>
-        <%# </div> %>
-        <%# <div class="mobile-footer-logo-let">New page</div> %>
-      <%# </div> %>
-
-      <%# ブックマーク %>
-      <%# <div class="footer-book col">
-        <div class="mobile-footer-logo"> %>
-          <%# link_to bookmarks_path do %>
-            <%# <i class="far fa-bookmark fa-2x"></i> %>
-          <%# end %>
-        <%# </div>
-        <div class="mobile-footer-logo-let">Bookmark</div>
-      </div> %>
 
         <%# その他・設定ボタン %>
         <div class="footer-other col" id="open" onclick="openBottomup()" >
@@ -87,25 +67,13 @@
             </li>
             <%# ランキング %>
             <li class="list-group-item text-left">
-              <%= link_to root_path do %>           
+              <%= link_to ranking_path do %>           
                 <span class="icon">
                   <i class="fas fa-medal fa-lg"></i>
                 </span>
                 <span class="d-inline"><%= t('.ranking') %></span>
               <% end %>
             </li>
-            
-            <%# 新規クラス作成 %>
-            <%# <li class="list-group-item text-left"> %>
-              <%#= link_to new_lecture_path do %>
-                <%# <span class="icon"> %>
-                  <%# <i class="far fa-plus-square fa-lg"></i> %>
-                <%# </span> %>
-                <%# <span class="d-inline"> %>
-                 <%#= t('.create') %>
-                <%# </span> %>
-              <%# end %>
-            <%# </li> %>
 
             <%# ブックマーク %>
             <li class="list-group-item text-left under-line">
@@ -185,16 +153,7 @@
 
       <%# ログインしてない時 %>
       <% else %>
-        <div class="footer-rank col-4">
-          <div class="mobile-footer-logo">
-            <%= link_to root_path do %>
-              <i class="fas fa-medal fa-2x"></i>
-            <% end %>
-          </div>
-          <div class="mobile-footer-logo-let">Ranking</div>
-        </div>
-
-        <div class="footer-login col-4">
+        <div class="footer-login col-6">
           <div class="mobile-footer-logo">
             <%= link_to new_user_session_path do %>
               <i class="fas fa-sign-in-alt fa-2x"></i>
@@ -203,7 +162,7 @@
           <div class="mobile-footer-logo-let">Login</div>
         </div>
 
-        <div class="footer-contact col-4">
+        <div class="footer-contact col-6">
           <div class="mobile-footer-logo">
             <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
               <i class="fas fa-envelope fa-2x"></i>
@@ -239,17 +198,6 @@
       </div>
       <div class="footer_words col-md-6 col-sm-6 col-xs-12">
         <ul class="menu list-inline">       
-          <%# <li>
-            <a href="#">Home</a>
-          </li>       %>
-          <!--
-            <li>
-                <a href="#">About</a>
-            </li>   
-          -->
-          <%# <li>
-            <a href="#">Blog</a>
-          </li>    %>
           <li>
             <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
              <span class="d-none d-lg-inline">Contact</span>
