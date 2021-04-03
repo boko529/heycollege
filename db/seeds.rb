@@ -117,8 +117,8 @@ News.create(title: "<お知らせ>大阪府立大学について", message: "ベ
   触っていただいて不便だと思ったことや、ほしいと思う機能がありましたら[Contact](Googleformに飛びます)に記入していただきたいです。皆様の声をもとによりよいサービスにしていきます。", university_id: 2)
 
 # サンプルグループを2つ作成
-group1 = Group.create(name: "APUTIMES", profile: "APU学内で新聞を出版しています", university_id: 1)
-group2 = Group.create(name: "APUテニスサークル", profile: "APU公式テニスサークルです。大学から自転車で10分のグラウンドで毎週月水に活動してます！\n初心者大歓迎です。新歓来てね👍", university_id: 1)
+group1 = Group.create(name: "学内新聞", profile: "APU学内で新聞を出版しています", university_id: 1)
+group2 = Group.create(name: "テニスサークル", profile: "APU公式テニスサークルです。大学から自転車で10分のグラウンドで毎週月水に活動してます！\n初心者大歓迎です。新歓来てね👍", university_id: 1)
 group3 = Group.create(name: "白鷺祭", profile: "毎年11月に中百舌鳥キャンパスで行われる大学祭を実行しています。一緒に思い出を作りましょう！", university_id: 2)
 group4 = Group.create(name: "スマッシュ", profile: "大阪府立大学のテニスサークルです。", university_id: 2)
 

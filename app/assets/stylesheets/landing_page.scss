@@ -10,8 +10,15 @@
       margin-top: 3rem;
       text-align: left;
       margin-left: 1rem;
-      font-size: 1rem;
+      font-size: 1.5rem;
       color: rgb(90, 82, 82);
+      a {
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        color: rgb(90, 82, 82);
+      }
     }
   }
   .land-class-review,
@@ -26,10 +33,10 @@
     }
     .img {
       border: 0.5rem solid #28a7455c;
-      border-radius: 1rem;
+      border-radius: 0.5rem;
       margin: 0 auto;
       margin-top: 1rem;
-      width: 74%;
+      width: 218px;
     }
     .explanation {
       display: flex;
@@ -59,11 +66,18 @@
       }
     }
   }
-  .registration{
+  .links {
     margin-top: 3rem;
-    background-color: white;
-    width: 100%;
-    height: 12rem;
-    border-radius: 0.5rem;
+    text-align: left;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+    color: rgb(90, 82, 82);
+    a {
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+      color: rgb(90, 82, 82);
+    }
   }
 }
