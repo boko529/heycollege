@@ -54,6 +54,8 @@ end
 
 Teacher.create!(name_ja: "森 直樹", name_en: "MORI NAOKI", user_id: 1, university_id: 1)
 Teacher.create!(name_ja: "藤岡 真由美",name_en: "FUJIOKA MAYUMI", user_id: 1, university_id: 1)
+teacher = Teacher.create!(name_ja: "山田 太郎",name_en: "Yamada Taro", user_id: 1, university_id: 1)
+Lecture.create!(name_ja: "経済学入門", name_en: "Introduction to economics", teacher_id: teacher.id, field: "Liberal", lecture_lang: "ja", user_id: 1, university_id: 1)
 
 Teacher.create!(name_ja: "本田圭佑", name_en: "HONDA KEISUKE", user_id: 2, university_id: 2)
 Teacher.create!(name_ja: "春日俊彰",name_en: "KASUGA TOSHIAKI", user_id: 2, university_id: 2)
