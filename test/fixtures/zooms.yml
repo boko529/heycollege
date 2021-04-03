@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+
+zoom1:
+  title: "test"
+  join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09"
+  user: user1
+  start_time: Time.now+100
+  end_time: Time.now+200
+  count: 1
+  university_id: 1
+
+zoom2:
+  title: "test"
+  join_url: "https://us04web.zoom.us/j/73988743960?pwd=cWRNMzNGcUwrWFlyVFg3ZjlRUjF3Zz09"
+  user: user2
+  start_time: Time.now+100
+  end_time: Time.now+200
+  count: 1
+  university_id: 1

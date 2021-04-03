@@ -33,7 +33,6 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference "Review.count" do
       post lecture_reviews_path(@reviewd_lecture), params: { review: { user_id: @user.id, lecture_id: @lecture.id, score: 2}}
     end
-    follow_redirect!
     assert_not flash.empty?
   end
 

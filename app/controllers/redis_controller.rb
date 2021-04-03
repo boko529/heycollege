@@ -7,21 +7,24 @@ class RedisController < ApplicationController
   end
 
   def ranking_update
-    REDIS.flushall
-    Lecture.all.map{ |lecture| REDIS.zadd "rank/lectures", lecture.average_score, lecture.id  unless lecture.average_score == "不明" }
-    Teacher.all.map{ |teacher| REDIS.zadd "rank/teachers", teacher.average_score, teacher.id  unless teacher.average_score == "不明" }
-    #ユーザーランキング処理(管理者、退会者は除く,非承認者)
-    # ↓なぜかこの書き方（map）にしたらいけた. ちょい見栄え悪いかもやけど許して.
-    User.where(admin: false, is_deleted: false).where.not(confirmed_at: nil).includes(:user_point_history).map{ |user|
-      # total_amount = 0
-      # if user.user_point_history.present?
-      #   user.user_point_history.all.each do |user_point_history|
-      #     if user_point_history.created_at.month == Time.now.month
-      #       total_amount += user_point_history.amount
-      #     end
-      #   end
-      # end
-      REDIS.zadd "rank/users", user.user_point.current_point, user.id
+    REDIS.flushall # redisを一旦リセット
+    #ランキング更新, 大学ごとにデータ保存分けてる.
+    (1..2).each{|univ_id| # 1:apu, 2:opu 新たに大学が増えたときは繰り返し増やす.
+      Lecture.where(university_id: univ_id).map{ |lecture| REDIS.zadd "rank/lectures/#{univ_id}", lecture.average_score, lecture.id  unless lecture.average_score == "不明" }
+      Teacher.where(university_id: univ_id).map{ |teacher| REDIS.zadd "rank/teachers/#{univ_id}", teacher.average_score, teacher.id  unless teacher.average_score == "不明" }
+      #ユーザーランキング処理(管理者、退会者は除く,非承認者)
+      # ↓なぜかこの書き方（map）にしたらいけた. ちょい見栄え悪いかもやけど許して.
+      User.where(admin: false, is_deleted: false, university_id: univ_id).where.not(confirmed_at: nil).includes(:user_point_history).map{ |user|
+        # total_amount = 0
+        # if user.user_point_history.present?
+        #   user.user_point_history.all.each do |user_point_history|
+        #     if user_point_history.created_at.month == Time.now.month
+        #       total_amount += user_point_history.amount
+        #     end
+        #   end
+        # end
+        REDIS.zadd "rank/users/#{univ_id}", user.user_point.current_point, user.id
+      }
     }
     flash[:success] = "ランキングを更新しました"
     render 'show'

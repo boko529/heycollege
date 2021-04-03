@@ -5,7 +5,7 @@
   </h2>
   <ul class="rankings">
     <% @lectures.each do |lecture| %>
-      <%= render lecture %>
+      <%= render lecture.becomes(Lecture) %>
     <% end %>
     <%= paginate @lectures, theme: 'twitter-bootstrap-4' %>
   </ul>

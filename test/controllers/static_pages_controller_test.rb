@@ -5,10 +5,11 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     @base_title = "HeyCollege"
   end
 
-  test "should get root" do
-    get root_path
-    assert_response :success
-    assert_select "title", "APUクラスレビューサイト | #{@base_title}"
-  end
+  # いらん
+  # test "should get root" do
+  #   get root_path
+  #   assert_response :success
+  #   assert_select "title", "APUクラスレビューサイト | #{@base_title}"
+  # end
 
 end

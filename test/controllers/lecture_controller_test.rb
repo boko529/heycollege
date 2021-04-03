@@ -9,15 +9,13 @@ class LecturesControllerTest < ActionDispatch::IntegrationTest
     @teacher = teachers(:teacher1)
   end
 
-  # each文を使ったテストエラーがでちゃう。
+  # apu_lecture_reviews_pathにいっちゃう
   test "index including pagination" do
+    login_as(@user, scope: :user)
     get lectures_path
     assert_template 'lectures/index'
     assert_select 'ul.pagination'
     assert_select 'a[href=?]', lecture_path(@lecture), text: @lecture.name_ja
-    # Lecture.page(page: 1).each do |lecture|
-    #   assert_select 'a[href=?]', lecture_path(lecture), text: lecture.name
-    # end
   end
 
   # test "invalid name lecture create" do

@@ -2,6 +2,7 @@
 
 class Devises::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
+  before_action :guess_university, only: [:create] # 入力されたメアドで大学を指定
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -46,7 +47,7 @@ class Devises::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :type, :university_id])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -62,5 +63,23 @@ class Devises::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     page_path('explain_confirmation')
+  end
+
+  # メールアドレスから大学を指定する
+  def guess_university
+    email = params[:user][:email]
+    if email.include?("@apu.ac.jp")
+      params[:user][:type] = "Apu::User"
+      params[:user][:university_id] = 1
+    elsif email.include?("@edu.osakafu-u.ac.jp")
+      flash[:notice] = "大阪府立大学には近日対応予定です。"
+      redirect_to  new_user_registration_path
+      # params[:user][:type] = "Opu::User"
+      # params[:user][:university_id] = 2
+    else
+      flash[:danger] = "アジア太平洋大学のメールアドレスを使用してください。"
+      # flash[:danger] = "アジア太平洋大学または大阪府立大学のメールアドレスを使用してください。"
+      redirect_to  new_user_registration_path
+    end
   end
 end

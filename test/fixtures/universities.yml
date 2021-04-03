@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name_ja: MyString
+  name_ja: アジア太平洋大学
 
 two:
-  name_ja: MyString
+  name_ja: 大阪府立大学

@@ -4,12 +4,12 @@
         <h2><%= t('.following') %></h2>
         <% @followings.each do |f_user| %>
             <ul class="following-follower">
-                <%= link_to f_user do %>
+                <%= link_to f_user.becomes(User) do %>
                     <div id="item1">
                         <%= render partial: "shared/user_image/display_icon20", locals: {user: f_user} %>
                     </div>
                 <% end %>
-                <%= link_to f_user do %>
+                <%= link_to f_user.becomes(User) do %>
                     <div class="follow-name" id="item2">
                         <%= u_display_name(f_user) %>
                     </div>

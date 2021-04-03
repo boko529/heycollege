@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     resources :auto_creates, only: [:new, :create]
     resource :groups, only: [:new, :create]
   end
-  root 'static_pages#home'
+  root 'zooms#index'
+  get 'ranking', to: 'static_pages#home', as:'ranking'
   resources :lectures, only: [:show, :index] do
     resources :reviews, only: [:create, :destroy] do
       resources :helpfuls, only: [:create]
@@ -22,7 +23,8 @@ Rails.application.routes.draw do
     resource :bookmarks, only: [:create,:destroy]
   end
   resources :bookmarks, only: [:index]
-  resources :teachers, only: [:index, :show]
+  # resources :teachers, only: [:index, :show]
+  resources :teachers, only: [:show]
   resources :notifications, only: :index
   # お知らせのshowページはログイン関係なく見れるので管理者と分けています。
   resources :news, only: [:show]
@@ -40,9 +42,8 @@ Rails.application.routes.draw do
       get :group
     end
   end
-
-  resources :user_group_relations, only: [:create, :destroy, :edit, :update]
-
+  resources :user_group_relations, only: [:create]
+  patch 'user_group_relations/leave/:group_id', to: 'user_group_relations#leave'
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
@@ -54,4 +55,8 @@ Rails.application.routes.draw do
   # redis, ランキング更新
   resource :redis, only: %i[show]
   patch "redis/ranking_update", to: 'redis#ranking_update'
+  # E-mee
+  resources :zooms, only: [:index,:new,:edit,:update,:create,:destroy]
+  # zoom参加者管理のパス(userとzoomの中間テーブル)
+  post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
 end

@@ -4,12 +4,13 @@ class Admin::NewsController < ApplicationController
 
   def new
     @news = News.new
+    @past_news = News.all
   end
 
   def create
     @news = News.new(news_params)
     # お知らせは一つしか存在できない。
-    if News.count == 0
+    if News.where(university_id: news_params[:university_id]).count == 0
       if @news.save
         flash[:success] = "お知らせを作成しました"
         redirect_to root_path
@@ -17,7 +18,7 @@ class Admin::NewsController < ApplicationController
         render 'new'
       end
     else
-      flash[:danger] = "お知らせは一つしか公開できません"
+      flash[:danger] = "お知らせは一つの大学に一つしか公開できません"
       redirect_to root_path
     end
   end
@@ -29,8 +30,8 @@ class Admin::NewsController < ApplicationController
   def update
     @news = News.find(params[:id])
     if @news.update(news_params)
-      flash[:success] = "お知らせは更新されました！"
-      redirect_to @news
+    flash[:success] = "お知らせは更新されました！"
+    redirect_to @news
     else
       render 'edit'
     end
@@ -48,6 +49,6 @@ class Admin::NewsController < ApplicationController
   end
 
   def news_params
-    params.require(:news).permit(:title, :message)
+    params.require(:news).permit(:title, :message, :university_id)
   end
 end
