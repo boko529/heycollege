@@ -16,7 +16,6 @@
 
     <div class="container-fluid content">
       <div class="row">
-
         <%# サイドバー %>
         <div class="col-2 d-none d-md-block sidebar_col p-0">
           <%= render 'layouts/sidebar'%>
@@ -27,7 +26,7 @@
         </div>
        
         <%# メインコンテント %>
-        <div class="col-md-10 col-12 main_content px-sm-5 pt-sm-2">
+        <div class="col-12 main_content px-sm-5 pt-sm-2 col-md-10">
         
           <%# ここから3行はフラッシュ表示 %>
           <% flash.each do |message_type, message| %>

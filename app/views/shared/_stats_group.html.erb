@@ -4,7 +4,8 @@
     <strong id="group" class="stat">
       <% count = 0 %>
       <% @user.group.each do |group| %>
-        <% if UserGroupRelation.find_by(user_id: @user.id, group_id: group.id).confirmation == true %>
+      <% relation = UserGroupRelation.find_by(user_id: @user.id, group_id: group.id) %>
+        <% if relation.confirmation == true && relation.leave = false %>
           <% count += 1 %>
         <% end %>
       <% end %>

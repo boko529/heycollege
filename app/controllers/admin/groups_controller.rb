@@ -7,8 +7,8 @@ class Admin::GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(name: group_params[:name])
-    if host = User.find_by(email: group_params[:email])
+    @group = Group.new(name: group_params[:name], university_id: group_params[:university_id])
+    if host = User.find_by(email: group_params[:email], university_id: group_params[:university_id])
       if @group.save
         # ポイントテーブル作成+初期ポイント付与
         @group.initial_point
@@ -31,6 +31,6 @@ class Admin::GroupsController < ApplicationController
 
   def group_params
     # params.require(:group).permit(:name, :instagram_name, :twitter_name, :profile, :profile_image, :profile_image_cache, :remove_profile_image, :header_image, :header_image_cache, :remove_header_image)
-    params.require(:group).permit(:name, :email)
+    params.require(:group).permit(:name, :email, :university_id)
   end
 end

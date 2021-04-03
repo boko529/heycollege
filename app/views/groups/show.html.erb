@@ -29,30 +29,31 @@
             </div>
             <%# leave & join%>
             <%= render 'join_form' %>
+
             <%# group settings %>
-            <div class="group-setting-outer">
+            <% if @relation &&  @relation.admin && @relation.leave == false %>
+              <div class="group-setting-outer">
               <div class="group-settings" onclick="openGroupSet()">
                 <i class="fas fa-users-cog fa-2x"></i>
               </div>
               <%# ドロップダウン %>
-              <div class="group-setting-drop" >
-              <ul>
-                <% if @relation &&  @relation.admin %>
-                <li>  
-                  <%= link_to t('.confirmation'), {controller: 'groups', action: 'edit_confirmation', id: @group.id}, class: '' %>
-                </li>
-                <hr>
-                <li>  
-                  <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: '' %>
-                </li>
-                <hr>
-                <li>
-                <%= link_to t('.profileedit'), edit_group_path(@group.id), class: '' %>
-                </li>
-                <% end %>
-              </ul>
-            </div>
-            </div>
+                <div class="group-setting-drop" >
+                  <ul>
+                    <li>  
+                      <%= link_to t('.confirmation'), {controller: 'groups', action: 'edit_confirmation', id: @group.id}, class: '' %>
+                    </li>
+                    <hr>
+                    <li>  
+                      <%= link_to t('.allowothers'), {controller: 'groups', action: 'edit_admin', id: @group.id}, class: '' %>
+                    </li>
+                    <hr>
+                    <li>
+                      <%= link_to t('.profileedit'), edit_group_path(@group.id), class: '' %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
           </div>
           
           <%# コンテント %>
@@ -71,40 +72,38 @@
               </span>
             </div>
             -->
-            <div>
-              <div class="sns">
-                <%# プロフィール表示 %>
-                <% if @group.profile.present? %>
-                  <span class="group-bio">
-                    <%# t('.profile') %>
-                    <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
-                  </span>
-                <% elsif @relation &&  @relation.admin %>
-                  <span>
-                    <%= link_to t('.addprofile'), edit_group_path(@group.id) %>
-                  </span>
-                <% end %>
-                <br>
-                <% if @group.instagram_name.present? %>
-                  <small>
-                    <i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
-                  </small>
-                <% elsif @relation &&  @relation.admin %>
-                  <small>
-                    <i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
-                  </small>
-                <% end %>
-                &nbsp;&nbsp;
-                <% if @group.twitter_name.present? %>
-                  <small>
-                    <i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
-                  </small>
-                <% elsif @relation &&  @relation.admin %>
-                  <small>
-                    <i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
-                  </small>
-                <% end %>
-              </div>
+            <div class="sns">
+              <%# プロフィール表示 %>
+              <% if @group.profile.present? %>
+                <span class="group-bio">
+                  <%# t('.profile') %>
+                  <%= safe_join(@group.profile.split("\n"),tag(:br)) %>
+                </span>
+              <% elsif @relation &&  @relation.admin %>
+                <span>
+                  <%= link_to t('.addprofile'), edit_group_path(@group.id) %>
+                </span>
+              <% end %>
+              <br>
+              <% if @group.instagram_name.present? %>
+                <small>
+                  <i class="fab fa-instagram fa-1x"></i><%= link_to @group.instagram_name, @instagram, target: :_blank, rel: "noopener noreferrer" %>
+                </small>
+              <% elsif @relation &&  @relation.admin %>
+                <small>
+                  <i class="fab fa-instagram fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
+                </small>
+              <% end %>
+              &nbsp;&nbsp;
+              <% if @group.twitter_name.present? %>
+                <small>
+                  <i class="fab fa-twitter-square fa-1x"></i><%= link_to @group.twitter_name, @twitter, target: :_blank, rel: "noopener noreferrer" %>
+                </small>
+              <% elsif @relation &&  @relation.admin %>
+                <small>
+                  <i class="fab fa-twitter-square fa-1x"></i><%= link_to t('.addaccount'),edit_group_path(@group.id) %>
+                </small>
+              <% end %>
             </div>
           </div>
         </div>
@@ -113,15 +112,13 @@
 
           <div class="member-list">
             <%= render 'shared/stats_user' %>
-            <% @users.each do |user| %>
-              <% if UserGroupRelation.find_by(user_id: user.id, group_id: @group.id).confirmation == true %>
-                <li class="list-group-item list-group-item-action member-list-box">
-                  <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user %>
-                </li>
-              <% end %>
+            <% @members.each do |user| %>
+              <li class="list-group-item list-group-item-action member-list-box">
+                <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user.becomes(User) %>
+              </li>
             <% end %>
             <div class="page-box">
-              <%= paginate @users, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
+              <%= paginate @members, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
             </div>
           </div>
 

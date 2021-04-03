@@ -7,3 +7,13 @@
     <%= render 'form' %>
   </div>
 </div>
+
+<ul>
+  <% @past_news.each do |news| %>
+    <%= link_to news_path(news) do %>
+      <li>
+        <%= news.university.name_ja %><br><%= news.title %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

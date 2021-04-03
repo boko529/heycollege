@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:show,:following,:follower, :hide]
   before_action :user_is_not_deleted_show, only: [:show]
   before_action :user_is_not_deleted_follow, only: [:following, :follower]
+  before_action :check_university_show, only: [:show]
+  before_action :check_university_follow, only: [:following, :follower]
+
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.includes(lecture: :teacher).page(params[:reviews_page]).per(10)
@@ -77,6 +80,22 @@ class UsersController < ApplicationController
     if @user.is_deleted
       flash[:notice] = t('.user-hidden')
       redirect_to root_path
+    end
+  end
+
+  # 自分と同じ大学のshowページしか見れない
+  def check_university_show
+    @user = User.find(params[:id])
+    if current_user.university_id != @user.university_id
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  # 自分と同じ大学のshowページしか見れない
+  def check_university_follow
+    @user = User.find(params[:user_id])
+    if current_user.university_id != @user.university_id
+      redirect_back(fallback_location: root_path)
     end
   end
 end

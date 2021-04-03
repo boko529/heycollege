@@ -11,6 +11,7 @@ zoom1:
   start_time: Time.now+100
   end_time: Time.now+200
   count: 1
+  university_id: 1
 
 zoom2:
   title: "test"
@@ -19,3 +20,4 @@ zoom2:
   start_time: Time.now+100
   end_time: Time.now+200
   count: 1
+  university_id: 1

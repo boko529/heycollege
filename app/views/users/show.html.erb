@@ -146,7 +146,8 @@
         <%# t('.mygroup') %><%# @groups.count %>
         <ul class="group-you-in">
           <% @groups.each do |group| %>
-            <% if UserGroupRelation.find_by(user_id: @user.id, group_id: group.id).confirmation == true %>
+          <% relation = UserGroupRelation.find_by(user_id: @user.id, group_id: group.id) %>
+            <% if relation.confirmation == true && relation.leave == false %>
               <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
             <% end %>
           <% end %>

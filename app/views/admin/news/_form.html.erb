@@ -6,6 +6,9 @@
 
   <%= f.label :message %>
   <%= f.text_area :message, class: 'form-control',size: "20x10", maxlength: "600", placeholder: "(300字以内)例,いつもサイトを使ってくれてありがとうございます！！" %>
+
+  <%= f.label :university_id %>
+  <%= f.select :university_id, {'アジア太平洋大学': 1, '大阪府立大学': 2}, { include_blank: '選択してください'}, { class: 'form-control'} %>
   
   <%= f.submit yield(:button_text), class: "btn btn-primary", data: { confirm: "全てのユーザーに表示されます。本当に送信しますか？"} %>
 <% end %>

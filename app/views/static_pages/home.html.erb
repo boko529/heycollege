@@ -1,6 +1,6 @@
-<% provide(:title, t('.classreviewsite')) %>
+<% provide(:title, 'ランキング') %>
 <%# 運営からのメッセージがあったら表示する %>
-<% if @news.exists? %>
+<% if user_signed_in? && @news.exists? %>
   <% @news.each do |news| %>
     <%= link_to news.title, news, class:"news_by" %>
   <% end %>

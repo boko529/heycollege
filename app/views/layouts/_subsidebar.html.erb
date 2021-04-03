@@ -4,7 +4,7 @@
     <%# ログイン中 %>
     <% if user_signed_in? %>
       <li class="list-group-item text-center text-lg-left">
-        <%= link_to root_path do %>
+        <%= link_to ranking_path do %>
           <i class="fas fa-medal fa-2x"></i><span><%= t('.rank') %></span>
         <% end %>
       </li>
@@ -71,31 +71,10 @@
     <%# ログインしてない時 %>
     <% else %>
       <li class="list-group-item text-center text-lg-left">
-        <%= link_to root_path do %>
-          <i class="fas fa-home fa-2x"></i><span><%= t('.rank') %></span>
-        <% end %>
-      </li>
-      <%# <li class="list-group-item"> %>
-      <!--
-      <li class="list-group-item text-center text-lg-left">
-        <%= link_to groups_path do %>
-          <i class="fas fa-medal fa-2x"></i><span >グループ</span>
-        <% end %>
-      </li>
-      -->
-      <li class="list-group-item text-center text-lg-left">
         <%= link_to new_user_session_path do %>
           <i class="fas fa-sign-in-alt fa-2x"></i><span><%= t('.log') %></span>
         <% end %>
       </li>
-
-      <!--
-        <li class="list-group-item text-center text-lg-left">
-          <%= link_to root_path do %>
-            <i class="fas fa-question fa-2x"></i><span >ヘルプ</span>
-          <% end %>
-        </li>
-      -->
       
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
@@ -104,7 +83,6 @@
       </li>
     <% end %>
       <li class="blank">
-      
       </li>
   </ul>
 </div>

@@ -1,4 +1,1 @@
-<%= form_with(model: current_user.active_relations.find_by(group_id: @group.id),
-            html: { method: :delete }, local: true) do |f| %>
-  <%= f.submit t('.leave'), class: "btn btn-secondary" %>
-<% end %>
+<%= link_to t('.leave'), {controller: 'user_group_relations', action: 'leave', group_id: @group.id}, method: :patch, class: "btn btn-secondary" %>
