@@ -41,6 +41,7 @@ yarn-debug.log*
 
 # まさき5,000件を無視
 /vender
+/vendor
 
 # ローカルで作成したプロフィール画像はgitで共有しない
 /public/uploads
