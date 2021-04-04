@@ -93,7 +93,7 @@ users = User.where(university_id: 2).order(:created_at).take(5)
   # lecture_term = "First"
   # day_of_week = "Mon"
   # period = "second"
-  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 3, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
+  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 5, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
 end
 
 5.times do |n|
