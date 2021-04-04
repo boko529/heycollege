@@ -32,6 +32,9 @@
     <%# 先生ランキング表示 %>
     <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-teacher-ranking' || params[:active_tab] == nil %>" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
       <ul class="rankings">
+        <% # 同率順位を表示するための変数 %>
+        <% @lastScore = 0 %>
+        <% @j = 1 %>
         <% @teachers.each.with_index(1) do |teacher, i| %>
           <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
         <% end %>
@@ -41,6 +44,9 @@
     <%# 講義ランキング表示 %>
     <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
       <ul class="rankings">
+        <% # 同率順位を表示するための変数 %>
+        <% @lastScore = 0 %>
+        <% @j = 1 %>
         <% @lectures.each.with_index(1) do |lecture, i| %>
           <%= render partial: "static_pages/lecture", locals: {lecture: lecture, i: i} %>
         <% end %>
@@ -50,6 +56,9 @@
     <%# ユーザーランキング表示 %>
     <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-user-ranking' %>" id="nav-user-lanking" role="tabpanel" aria-labelledby="nav-user-lanking-tab">
       <ul class="rankings">
+        <% # 同率順位を表示するための変数 %>
+        <% @lastScore = 0 %>
+        <% @j = 1 %>
         <% @users.each.with_index(1) do |user, i| %>
           <%= render partial: "static_pages/user", locals: {user: user, i: i} %>
         <% end %>
