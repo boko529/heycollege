@@ -3,7 +3,7 @@ class Admin::SlideContentsController < ApplicationController
   before_action :if_not_admin
   
   def index
-    @slides = SlideContent.where(university_id: current_user.university.id)
+    @slides = SlideContent.order(updated_at: :desc)
   end
 
   def new
@@ -12,7 +12,7 @@ class Admin::SlideContentsController < ApplicationController
 
   def create
     @slide = SlideContent.new(slide_params)
-    if @news.save
+    if @slide.save
       flash[:success] = "スライドを追加しました"
       redirect_to admin_slide_contents_path
     else
@@ -25,12 +25,19 @@ class Admin::SlideContentsController < ApplicationController
   end
 
   def update
+    @slide = SlideContent.find(params[:id])
+    if @slide.update(slide_params)
+    flash[:success] = "スライドは更新されました！"
+    redirect_to admin_slide_contents_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     SlideContent.find(params[:id]).destroy
     flash[:success] = "スライドを削除しました"
-    redirect_to root_path
+    redirect_to admin_slide_contents_path
   end
 
   private
