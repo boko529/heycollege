@@ -1,0 +1,2 @@
+module Admin::SlideContentsHelper
+end

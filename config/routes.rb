@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :news, except: [:index, :show]
     resources :auto_creates, only: [:new, :create]
     resource :groups, only: [:new, :create]
+    resources :slide_contents, except: [:show]
   end
   root 'zooms#index'
   get 'ranking', to: 'static_pages#home', as:'ranking'

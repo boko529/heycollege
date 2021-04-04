@@ -1,0 +1,11 @@
+<% provide(:title, 'スライド一覧') %>
+<h1><%= current_user.university.name_ja %>のスライド一覧</h1>
+<% @slides.each do |slide| %>
+  <div>
+    <span>image</span>
+    <%= image_tag slide.slide_image.to_s, alt: "slide" %>
+    <span>link</span>
+    <%= slide.link %>
+    <%= slide.created_at %>
+  </div>
+<% end %>
