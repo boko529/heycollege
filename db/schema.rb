@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_03_125435) do
+ActiveRecord::Schema.define(version: 2021_04_04_025840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 2021_04_03_125435) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "review_id"], name: "index_helpfuls_on_user_id_and_review_id", unique: true
+  end
+
+  create_table "lecture_infos", force: :cascade do |t|
+    t.integer "faculty"
+    t.integer "department"
+    t.integer "major"
+    t.integer "day_of_week"
+    t.integer "semester"
+    t.integer "period"
+    t.bigint "lecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lecture_id"], name: "index_lecture_infos_on_lecture_id"
   end
 
   create_table "lectures", force: :cascade do |t|
@@ -266,6 +279,7 @@ ActiveRecord::Schema.define(version: 2021_04_03_125435) do
   add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
   add_foreign_key "groups", "universities"
+  add_foreign_key "lecture_infos", "lectures"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "universities"
   add_foreign_key "lectures", "users"
