@@ -44,7 +44,6 @@ ja:
         join_url: 招待URL
         start_time: 開始時刻
         end_time: 終了時刻
-
   enums:
     user:
       gender:
@@ -60,62 +59,95 @@ ja:
         D1: "博士1年"
         D2: "博士2年"
         D3: "博士3年"
-    lecture:
-      field:
-        APS: "APS"
-        APM: "APM"
-        Liberal: "一般教養"
-        Language: "言語"
-      language:
-        none: "不明"
-        ja: "日本語"
-        en: "英語"
-        es: "スペイン語"
-        ko: "韓国語"
-        zh: "中国語"
-        ms: "マレー語・インドネシア語"
-        th: "タイ語"
-        vi: "ベトナム語"
-        ej: "日本語・英語"
-      # lecture_term:
-      #   First: "Semester"
-      #   Second: "Semester2"
-      #   Q1: "Q1"
-      #   Q2: "Q2"
-      #   Q3: "Q3"
-      #   Q4: "Q4"
-      #   session1: "Session1"
-      #   session2: "Session2"
-      # day_of_week:
-      #   Mon: "月"
-      #   Tue: "火"
-      #   Wed: "水"
-      #   Thu: "木"
-      #   Fri: "金"
-      #   Sat: "土"
-      #   Sun: "日"
-      #   Other: "--"
-      # period:
-      #   none: "--"
-      #   first: "1"
-      #   second: "2"
-      #   third: "3"
-      #   fourth: "4"
-      #   fifth: "5"
-      #   sixth: "6"
     user_point_history:
       point_type:
         init: "初期ポイント"
         helpfuled: "レビューがいいねされました"
+    lecture_info:
+      faculty:
+        Gensisu: "現代システム"
+        Kougaku: "工学"
+        Seikan: "生命環境科学"
+        Tiiki: "地域保健"
+      department:
+        denden: "電気電子系"
+        bukka: "物質科学系"
+        kikai: "機械系"
+        juui: "獣医"
+        ousei: "応用生命科"
+        ryokuti: "緑地環境科"
+        rigaku: "理"
+        kango: "看護"
+        rihabiri: "総合リハビリテーション"
+        kyouhuku: "教育福祉"
+        tijou: "知識情報システム"
+        kanshisu: "環境システム"
+        maneji: "マネジメント"
+      major:
+        joukou: "情報工学"
+        densisu: "電気電子システム工学"
+        denbutu: "電子物理工学"
+        ouka: "応用化学"
+        kakou: "化学工学"
+        material: "マテリアル工学"
+        koukuu: "航空宇宙工学"
+        kaiyou: "海洋システム工学"
+        kikaikou: "機械工学"
+        seimei: "生命機能科学"
+        shokubutu: "植物バイオサイエンス"
+        suuri: "数理科学"
+        buturi: "物理科学"
+        bunshi: "分子科学"
+        seibutu: "生物科学"
+        rigakuryou: "理学療法学"
+        sagyouryou: "作業療法学"
+        eiyouryou: "栄養療法学"
+        kankyou: "環境共生科学"
+        shakyou: "社会共生科学"
+        ninkan: "人間環境科学"
     apu:
       user:
         faculty:
           APS: "APS"
           APM: "APM"
+      lecture:
+        field:
+          APS: "APS"
+          APM: "APM"
+          Liberal: "一般教養"
+          Language: "言語"
+        language:
+          none: "不明"
+          ja: "日本語"
+          en: "英語"
+          es: "スペイン語"
+          ko: "韓国語"
+          zh: "中国語"
+          ms: "マレー語・インドネシア語"
+          th: "タイ語"
+          vi: "ベトナム語"
+          ej: "日本語・英語"
     opu:
       user:
         faculty:
-            Gensisu: "現代システム"
-            Kougaku: "工学"
-            Seikan: "生命環境科学"
-            Tiiki: "地域保健"
+          Gensisu: "現代システム"
+          Kougaku: "工学"
+          Seikan: "生命環境科学"
+          Tiiki: "地域保健"
+      lecture:
+        field:
+          Syozemi: "初年次ゼミナール"
+          Pankyo: "教養科目"
+          English: "英語"
+          Shogai: "初習外国語"
+          Gaikokugotokubetu: "外国語特別"
+          Kaigaikensyu: "海外研修科目"
+          Kenkou: "健康スポーツ・科学科目"
+          Zyouhou: "情報基礎科目"
+          Iryo: "医療保険科目"
+          Senmon: "専門科目"
+          Tokurei: "特例"
+          Sikaku: "資格科目"
+          Rikeikiso: "理系基礎科目"
+
+
