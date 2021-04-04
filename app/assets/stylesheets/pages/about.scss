@@ -18,7 +18,7 @@
         opacity: 0.6;
       }      
       &:hover img{
-        transform: scale(1.1,1.1);
+        transform: scale(1.15,1.15);
         transition: 1s all;
       }
       &:hover .list-item_img{
@@ -55,6 +55,42 @@
       }
       .green{
         color: rgb(42, 133, 14);
+      }
+    }
+  }
+}
+
+.vision, .service, .sdgs, .ir, .faq{
+  .main-title{
+    color: #333;
+    font-size: 1.6rem;
+    padding: 1rem 0 10px 0px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom:solid 1.5px rgb(42, 133, 14);
+  }
+  .item{
+    margin-bottom: 2rem;
+    .mini-title{
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+    p{
+      padding: 8px;
+      margin-bottom: 0;
+    }
+    img{
+      width: 92%;
+      margin-left: 4%;
+      margin-right: 4%;
+    }
+    .box{
+      padding: 3%;
+      border: 0.5px solid #222;
+      margin: 0 10px;
+      img{
+        width: 20%;
+        margin-right: 2%;
       }
     }
   }
