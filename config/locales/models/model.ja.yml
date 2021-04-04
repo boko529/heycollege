@@ -44,7 +44,6 @@ ja:
         join_url: 招待URL
         start_time: 開始時刻
         end_time: 終了時刻
-
   enums:
     user:
       gender:
@@ -60,49 +59,6 @@ ja:
         D1: "博士1年"
         D2: "博士2年"
         D3: "博士3年"
-    lecture:
-      field:
-        APS: "APS"
-        APM: "APM"
-        Liberal: "一般教養"
-        Language: "言語"
-      language:
-        none: "不明"
-        ja: "日本語"
-        en: "英語"
-        es: "スペイン語"
-        ko: "韓国語"
-        zh: "中国語"
-        ms: "マレー語・インドネシア語"
-        th: "タイ語"
-        vi: "ベトナム語"
-        ej: "日本語・英語"
-      # lecture_term:
-      #   First: "Semester"
-      #   Second: "Semester2"
-      #   Q1: "Q1"
-      #   Q2: "Q2"
-      #   Q3: "Q3"
-      #   Q4: "Q4"
-      #   session1: "Session1"
-      #   session2: "Session2"
-      # day_of_week:
-      #   Mon: "月"
-      #   Tue: "火"
-      #   Wed: "水"
-      #   Thu: "木"
-      #   Fri: "金"
-      #   Sat: "土"
-      #   Sun: "日"
-      #   Other: "--"
-      # period:
-      #   none: "--"
-      #   first: "1"
-      #   second: "2"
-      #   third: "3"
-      #   fourth: "4"
-      #   fifth: "5"
-      #   sixth: "6"
     user_point_history:
       point_type:
         init: "初期ポイント"
@@ -154,6 +110,23 @@ ja:
         faculty:
           APS: "APS"
           APM: "APM"
+      lecture:
+        field:
+          APS: "APS"
+          APM: "APM"
+          Liberal: "一般教養"
+          Language: "言語"
+        language:
+          none: "不明"
+          ja: "日本語"
+          en: "英語"
+          es: "スペイン語"
+          ko: "韓国語"
+          zh: "中国語"
+          ms: "マレー語・インドネシア語"
+          th: "タイ語"
+          vi: "ベトナム語"
+          ej: "日本語・英語"
     opu:
       user:
         faculty:

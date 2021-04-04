@@ -50,52 +50,6 @@ en:
         B2: "2nd year"
         B3: "3rd year"
         B4: "4th year"
-      faculty:
-        APS: "APS"
-        APM: "APM"
-    lecture:
-      field:
-        APS: "APS"
-        APM: "APM"
-        Liberal: "一般教養"
-        Language: "言語"
-      language:
-        none: "Unknown"
-        ja: "Japanese"
-        en: "English"
-        es: "Spanish"
-        ko: "Korean"
-        zh: "Chinese"
-        ms: "Malay/Indonesian"
-        th: "Thai"
-        vi: "Vietnamese"
-        ej: "Japanese/English"
-      # lecture_term:
-      #   First: "Semester"
-      #   Second: "Semester2"
-      #   Q1: "Q1"
-      #   Q2: "Q2"
-      #   Q3: "Q3"
-      #   Q4: "Q4"
-      #   session1: "Session1"
-      #   session2: "Session2"
-      # day_of_week:
-      #   Mon: "Mon"
-      #   Tue: "Tue"
-      #   Wed: "Wed"
-      #   Thu: "Thu"
-      #   Fri: "Fri"
-      #   Sat: "Sat"
-      #   Sun: "Sun"
-      #   Other: "--"
-      # period:
-      #   none: "--"
-      #   first: "1"
-      #   second: "2"
-      #   third: "3"
-      #   fourth: "4"
-      #   fifth: "5"
-      #   sixth: "6"
     user_point_history:
       point_type:
         init: "Initial point"
@@ -147,7 +101,24 @@ en:
         faculty:
           APS: "APS"
           APM: "APM"
-     opu:
+      lecture:
+        field:
+          APS: "APS"
+          APM: "APM"
+          Liberal: "LiberalArts"
+          Language: "Language"
+      language:
+        none: "Unknown"
+        ja: "Japanese"
+        en: "English"
+        es: "Spanish"
+        ko: "Korean"
+        zh: "Chinese"
+        ms: "Malay/Indonesian"
+        th: "Thai"
+        vi: "Vietnamese"
+        ej: "Japanese/English"
+    opu:
       user:
         faculty:
           Gensisu: "現代システム"

@@ -23,7 +23,7 @@ User.create!(name:  "OPUadmin", email: "sample@edu.osakafu-u.ac.jp", password:  
   confirmed_at: Time.now,
   agreement: true,
   type: Apu::User,
-  faculty: "APM",
+  faculty: "APS",
   university_id: 1)
 end
 
