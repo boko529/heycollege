@@ -84,9 +84,10 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
     t.integer "day_of_week"
     t.integer "semester"
     t.integer "period"
-    t.integer "lecture_id"
+    t.bigint "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["lecture_id"], name: "index_lecture_infos_on_lecture_id"
   end
 
   create_table "lectures", force: :cascade do |t|
@@ -269,6 +270,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
   add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
   add_foreign_key "groups", "universities"
+  add_foreign_key "lecture_infos", "lectures"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "universities"
   add_foreign_key "lectures", "users"
