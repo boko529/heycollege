@@ -1,0 +1,14 @@
+class CreateLectureInfos < ActiveRecord::Migration[6.1]
+  def change
+    create_table :lecture_infos do |t|
+      t.integer :faculty
+      t.integer :department
+      t.integer :major
+      t.integer :day_of_week
+      t.integer :semester
+      t.integer :period
+
+      t.timestamps
+    end
+  end
+end
