@@ -39,7 +39,18 @@ en:
         name: Nickname
       review:
         content: content
-
+      zoom:
+        title: トピック
+        join_url: 招待URL
+        start_time: 開始時刻
+        end_time: 終了時刻
+      lecture_info:
+        faculty: "学域"
+        department: "学類"
+        major: "専門"
+        day_of_week: "曜日"
+        semester: "期間"
+        period: "コマ"
   enums:
     user:
       gender:
@@ -96,6 +107,28 @@ en:
         kankyou: "環境共生科学"
         shakyou: "社会共生科学"
         ninkan: "人間環境科学"
+      day_of_week:
+        sun: "Sun"
+        mon: "Mon"
+        tue: "Tue"
+        wed: "Wen"
+        thu: "Thu"
+        fri: "Fri"
+        sat: "Sat"
+        out: "Out"
+      semester:
+        fir_seme: "前期"
+        sec_seme: "後期"
+        fir_session: "前期集中"
+        sec_session: "後期集中"
+        total_seme: "通年"
+      period:
+        first: "1"
+        second: "2"
+        third: "3"
+        fourth: "4"
+        fifth: "5"
+        sixth: "6"
     apu:
       user:
         faculty:
