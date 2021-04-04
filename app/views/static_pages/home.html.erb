@@ -1,4 +1,4 @@
-<% provide(:title, t('ランキング')) %>
+<% provide(:title, 'ランキング') %>
 <%# 運営からのメッセージがあったら表示する %>
 <% if user_signed_in? && @news.exists? %>
   <% @news.each do |news| %>

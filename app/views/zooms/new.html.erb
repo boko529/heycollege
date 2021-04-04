@@ -14,21 +14,21 @@
           <%= f.text_field :title, :placeholder => "zoomで話す内容を一言で！", class: 'form-control' %>
         </div>
         <div>
-          <%= f.label :join_url %>
+          <%= f.label :join_url%>
           <span>ex) https://us04web.zoom.us...</span>
-          <%= f.text_field :join_url, class: 'form-control', :placeholder => "招待リンクをコピーしてください" %>
+          <%= f.text_field :join_url,value: current_user.zoom_url, class: 'form-control', :placeholder => "招待リンクをコピーしてください" %>
         </div>
         <div>
           <%= f.label :start_time %>
           <br>
           <span><small>現在時刻から数分後に設定すると良いです</small></span>
           <br>
-          <%= f.datetime_field :start_time, class: 'form-control' %>
+          <%= f.datetime_field :start_time, :value => Time.now.strftime("%Y-%m-%dT%H:%M"), class: 'form-control' %>
         </div>
         <div>
           <%= f.label :end_time %>
           <br>
-          <%= f.datetime_field :end_time, class: 'form-control' %>
+          <%= f.datetime_field :end_time, :value => (Time.now+3600).strftime("%Y-%m-%dT%H:%M"), class: 'form-control' %>
         </div>
         <div>
         <%= f.submit '作成する', class: "btn btn-primary"%>
