@@ -1,6 +1,8 @@
+<% provide(:title, 'Hey Collegeとは') %>
 <div class="about">
-  <h1>About Hey College</h1>
+  <h1>Hey Collegeとは</h1>
   <div class="about-list">
+    <%= link_to page_path('vision') do %>
     <div class="list-item">
       <p class="list-item_img"><%= image_tag("HeyCollegelogo.png", alt: "ロゴ", id: 'logo') %></p>
       <div class="list-item_inner">
@@ -9,6 +11,8 @@
         </h3>
       </div>
     </div>
+    <% end %>
+    <%= link_to page_path('service') do %>
     <div class="list-item">
       <p class="list-item_img"><%= image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo') %></p>
       <div class="list-item_inner">
@@ -17,14 +21,18 @@
         </h3>
       </div>
     </div>
+    <% end %> 
+    <%= link_to page_path('sdgs') do %>
     <div class="list-item">
-      <p class="list-item_img"><%= image_tag("sdg_icon_04_ja_2", alt: "ロゴ", width: "150px", id: 'logo') %></p>
+      <p class="list-item_img"><%= image_tag("sdgs", alt: "", width: "150px") %></p>
       <div class="list-item_inner">
         <h3 class="list-item_title">
           <a><i class="fas fa-arrow-circle-right green"></i>&nbsp;SDGsへの取り組み</a>
         </h3>
       </div>
     </div>
+    <% end %> 
+    <%= link_to page_path('ir') do %>
     <div class="list-item">
       <p class="list-item_img"><%= image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo') %></p>
       <div class="list-item_inner">
@@ -33,13 +41,26 @@
         </h3>
       </div>
     </div>
-     <div class="list-item">
-      <p class="list-item_img"><%= image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo') %></p>
+    <% end %> 
+    <%= link_to page_path('faq') do %>
+    <div class="list-item">
+      <p class="list-item_img"><%= image_tag("faq.png", alt: "", width: "150px") %></p>
       <div class="list-item_inner">
         <h3 class="list-item_title">
-          <a><i class="fas fa-arrow-circle-right green"></i>&nbsp;よくある質問</a>
+          <a><i class="fas fa-arrow-circle-right green"></i>&nbsp;よくあるご質問</a>
         </h3>
       </div>
-    </div>       
+    </div>
+    <% end %> 
+    <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+      <div class="list-item">
+        <p class="list-item_img"><%= image_tag("contact.png", alt: "", width: "150px") %></p>
+        <div class="list-item_inner">
+          <h3 class="list-item_title">
+            <a><i class="fas fa-arrow-circle-right green"></i>&nbsp;<%= t('.contact') %></a>
+          </h3>
+        </div>
+      </div>
+    <% end %>  
   </div>
 </div>
