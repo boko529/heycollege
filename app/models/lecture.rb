@@ -9,7 +9,6 @@ class Lecture < ApplicationRecord
   validates :user_id, presence: true
   validates :teacher_id, presence: true
   validates :field, presence: true
-  validates :lecture_lang, presence: true
   validates :university_id, presence: true
   validates :type, presence: true
   # validates :lecture_term, presence: true
