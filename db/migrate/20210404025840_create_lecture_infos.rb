@@ -7,6 +7,7 @@ class CreateLectureInfos < ActiveRecord::Migration[6.1]
       t.integer :day_of_week
       t.integer :semester
       t.integer :period
+      t.integer :lecture_id
 
       t.timestamps
     end

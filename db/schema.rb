@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
     t.integer "day_of_week"
     t.integer "semester"
     t.integer "period"
+    t.integer "lecture_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

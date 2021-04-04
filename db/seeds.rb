@@ -96,6 +96,19 @@ users = User.where(university_id: 2).order(:created_at).take(5)
   users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 3, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
 end
 
+lectures = Opu::Lecture.all
+lectures.each do |lecture|
+  LectureInfo.create!(
+    faculty: 1,
+    department: 1,
+    major: 1,
+    day_of_week: 1,
+    semester: 1,
+    period: 1,
+    lecture_id: lecture.id,
+  )
+end
+
 5.times do |n|
   content = Faker::Lorem.sentence(word_count: 10)
   lecture_id = n + 26
