@@ -77,3 +77,4 @@ gem 'redis-rails'
 gem 'roo' # csvファイル関係
 # gem 'jwt' zoom APIを用いたzoom作成用のgem
 gem 'sitemap_generator' # サイトマップ作成用
+gem 'aws-sdk' #AWS接続用
