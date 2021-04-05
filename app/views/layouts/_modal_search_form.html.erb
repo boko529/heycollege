@@ -49,14 +49,9 @@
                 </div> 
               </div>
               <%# 分野選択 %>
-              <div class="first">
-                <strong><%= f.label :field, class:"title"  %></strong>
-                <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
-                <%= f.radio_button :field_eq, 1 %>APS
-                <%= f.radio_button :field_eq, 2 %>APM
-                <%= f.radio_button :field_eq, 3 %>APS & APM
-                <%= f.radio_button :field_eq, 4 %>Liberal arts
-                <%= f.radio_button :field_eq, 5 %>Language
+              <div>
+                <strong><%= f.label :field_eq, class:"title" %></strong>
+                <%= f.select :field, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
               </div>
 
               <%# 言語選択 %>

@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_search
-    @q = Lecture.ransack(params[:q])
-    @lectures = @q.result.page(params[:page])
+    if user_signed_in?
+      if current_user.university_id == 1
+      end
+      @q = Lecture.ransack(params[:q])
+      @lectures = @q.result.page(params[:page])
+    end
   end
 
   # ログインページ,ハイボルテージ関係以外のときはページのバスをセッションに保存する
