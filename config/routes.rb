@@ -61,4 +61,6 @@ Rails.application.routes.draw do
   resources :zooms, only: [:index,:new,:edit,:update,:create,:destroy]
   # zoom参加者管理のパス(userとzoomの中間テーブル)
   post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
+  # sitemapのルーティング
+  get '/sitemap', to: redirect("https://s3-#{ENV['AWS_REGION']}.amazonaws.com/#{ENV['AWS_BUCKET']}/sitemaps/sitemap.xml.gz")
 end
