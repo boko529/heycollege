@@ -5,5 +5,6 @@ class LectureInfo < ApplicationRecord
   enum day_of_week: { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6, out: 7 }, _prefix: :true # outは時間割外 
   enum semester: { fir_seme: 0, sec_seme: 1, fir_session: 2, sec_session: 3, total_seme: 4}, _prefix: :true # sessionは短期集中、total_semeは通年 
   enum period: { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6}, _prefix: :true 
+  enum grade: { first: 1, second: 2, thire: 3, fourth: 4}
   belongs_to :lecture
 end

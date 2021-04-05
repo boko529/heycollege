@@ -7,6 +7,8 @@ class CreateLectureInfos < ActiveRecord::Migration[6.1]
       t.integer :day_of_week
       t.integer :semester
       t.integer :period
+      t.string :syllabus
+      t.integer :grade
       t.references :lecture, null: false, foreign_key: true
 
       t.timestamps
