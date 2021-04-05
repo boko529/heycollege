@@ -84,7 +84,7 @@ class AutoCreate < ApplicationRecord
     # 文字コードの関係でAPUのCSVは文字コードをANSIに一度変換しないといけない
     CSV.foreach(file.path, headers: true).with_index(2) do |row, row_number|
       begin
-        teacher_name = row["教員名"].gsub(" ", "") # 読み込んで半角スペース削除
+        teacher_name = row["教員名"].gsub(" ", "").sub(/・.+/, "").sub(/\n.+/, "") # 読み込んで半角スペース削除、"・他"も削除、オムニバスは最初の一人のみ(\n以降を削除)
         lecture_name = row["授業名"].sub(/\(.+\)/, "").sub(/\（.+\）/, "").sub(/\<.+\>/, "")
         if row["期間"].include?("前期授業")
           semester = "fir_seme"
