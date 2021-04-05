@@ -9,9 +9,6 @@
     <%= f.search_field :teacher_name_cont, class: "form-control mr-sm-2" ,placeholder: '検索する先生の名前を入力...' %>
   </div>
 
-  <%# ユーザーの大学内のみで検索 %>
-  <%= f.hidden_field :university_id_cont, value: current_user.university_id %>
-
   <%= f.submit ("検索") , class: 'btn btn-outline-success my-2 my-sm-0 mx-auto d-block'%>
 <% end %>
 
