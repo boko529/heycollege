@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_071042) do
+ActiveRecord::Schema.define(version: 2021_04_05_095217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,8 +84,6 @@ ActiveRecord::Schema.define(version: 2021_04_05_071042) do
     t.integer "day_of_week"
     t.integer "semester"
     t.integer "period"
-    t.string "syllabus"
-    t.integer "grade"
     t.bigint "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -99,8 +97,8 @@ ActiveRecord::Schema.define(version: 2021_04_05_071042) do
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
     t.string "name_en"
-    t.integer "lecture_lang", default: 1
-    t.integer "field", default: 1
+    t.integer "lecture_lang"
+    t.integer "field"
     t.string "type", default: "Apu::Lecture", null: false
     t.bigint "university_id", default: 1, null: false
     t.integer "state"

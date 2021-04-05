@@ -52,8 +52,6 @@ en:
         day_of_week: "曜日"
         semester: "期間"
         period: "コマ"
-        grade: "学年"
-        syllabus: "シラバス"
   enums:
     user:
       gender:
@@ -73,6 +71,7 @@ en:
         Online: "オンライン"
         Offline: "対面"
         Complex: "混合"
+        Unknown: "不明"
     lecture_info:
       faculty:
         Gensisu: "現代システム"
@@ -171,7 +170,7 @@ en:
           Syozemi: "初年次ゼミナール"
           Pankyo: "教養科目"
           English: "英語"
-          Shogai: "初習外国語"
+          Shogai: "初修外国語"
           Gaikokugotokubetu: "外国語特別"
           Kaigaikensyu: "海外研修科目"
           Kenkou: "健康スポーツ・科学科目"
