@@ -61,6 +61,8 @@ SitemapGenerator::Sitemap.create do
   end
   add new_user_session_path
   add notifications_path
+  news = News.all
+  news
   add news_path
   add page_path
 end

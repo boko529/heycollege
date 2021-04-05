@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.where(university_id: current_user.university_id)
-    @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(5)
+    @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(15)
   end
 
   def show
