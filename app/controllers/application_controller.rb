@@ -5,11 +5,15 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_search
+    # ログインしてる時に大学によってモデルを変える
     if user_signed_in?
       if current_user.university_id == 1
+        @q = Apu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      elsif current_user.university_id == 2
+        @q = Opu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
       end
-      @q = Lecture.ransack(params[:q])
-      @lectures = @q.result.page(params[:page])
     end
   end
 

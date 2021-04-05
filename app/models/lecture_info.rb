@@ -6,7 +6,7 @@ class LectureInfo < ApplicationRecord
   enum semester: { fir_seme: 0, sec_seme: 1, fir_session: 2, sec_session: 3, total_seme: 4}, _prefix: :true # sessionは短期集中、total_semeは通年 
   enum period: { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6}, _prefix: :true 
   belongs_to :lecture
-  validates :day_of_week, presence: true
+  # validates :day_of_week, presence: true
   validates :semester, presence: true
   # validates :period, presence: true
 end
