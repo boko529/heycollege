@@ -3,7 +3,7 @@ SitemapGenerator::Sitemap.default_host = "https://www.heycollege.jp"
 SitemapGenerator::Sitemap.sitemaps_host = "https://s3-#{ENV['AWS_REGION']}.amazonaws.com/#{ENV['AWS_BUCKET']}"
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
   ENV['AWS_BUCKET'],
-  aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+  aws_access_key_id: ENV['AWS_ACCESS_KEY'],
   aws_secret_access_key: ENV['AWS_SECRET_KEY'],
   aws_region: ENV['AWS_REGION'],
 )
