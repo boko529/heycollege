@@ -71,19 +71,21 @@
       <h2>Class Review</h2>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-6">
             <div class="img">
               <%= link_to image_tag("Screen Shot 2021-04-03 at 12.47.52 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="d-flex align-items-center h-100">
-              <div class="explanation ">
-                <div class="icon">
-                  <i class="fas fa-pencil-alt fa-2x"></i>
-                </div>
-                <div class="exple">友達のレビューを見よう !</div>
-              </div>
+              <ul class="explanation scroll_appear animate">
+                <li>
+                  <div class="icon">
+                    <i class="fas fa-pencil-alt fa-2x"></i>
+                  </div>
+                  <div class="exple">友達のレビューを見よう !</div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -94,29 +96,33 @@
         <h2>Group List</h2>
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-4 d-lg-block d-none">
+            <div class="col-lg-6 d-lg-block d-none">
               <div class="d-flex align-items-center h-100">
-                <div class="explanation">
-                  <div class="icon">
-                    <i class="fas fa-users fa-2x"></i>
-                  </div>
-                  <div class="exple">学生団体を見よう！</div>
-                </div>
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                       <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div class="exple">学生団体を見よう！</div>
+                  </li>
+                </ul>                
               </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-6">
               <div class="img">
                 <%= link_to image_tag("Screen Shot 2021-04-03 at 12.51.18 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
               </div>
             </div>
-            <div class="col-lg-4 d-block d-lg-none">
-              <div class="d-flex align-items-center h-100">
-                <div class="explanation">
-                  <div class="icon">
-                    <i class="fas fa-users fa-2x"></i>
-                  </div>
-                  <div class="exple">学生団体を見よう！</div>
-                </div>
+            <div class="col-lg-6 d-block d-lg-none">
+              <div class="d-flex align-items-center h-100"> 
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                      <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div class="exple">学生団体を見よう！</div>
+                  </li>
+                </ul> 
               </div>
             </div>
           </div>
@@ -128,24 +134,26 @@
         <h2>Zoom House</h2>
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
               <div class="img">
                 <%= link_to image_tag("Screen Shot 2021-04-03 at 12.48.13 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
               </div>  
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
               <div class="d-flex align-items-center h-100">
-                <div class="explanation">
-                  <div class="icon">
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
                       <i class="fas fa-comments fa-2x"></i>
-                  </div>
-                  <div class="exple">
-                    <ul>
-                      <li>イベントに参加しよう！</li>
-                      <li>友達と話そう！</li>
-                    </ul>
-                  </div>
-                </div>
+                    </div>
+                    <div class="exple">
+                      <p>
+                        イベントに参加しよう！
+                        <br>友達と話そう！
+                      </p>
+                    </div>
+                  </li>
+                </ul>                 
               </div>
             </div>
           </div>
@@ -162,3 +170,18 @@
     </div>
   </div>
 <% end %>
+
+<script>
+$(function(){
+  $(window).scroll(function (){
+    $(".animate > *").each(function(){
+      var targetAnime = $(this).offset().top;
+      var scroll = $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (scroll > targetAnime - windowHeight + 0){
+        $(this).addClass("explanation moving");
+      }
+    });
+  });
+});
+</script>
