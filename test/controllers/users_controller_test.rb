@@ -95,7 +95,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login_as(@new_user, scope: :user)
     get admin_users_path
     follow_redirect!
-    assert_template nil
+    assert_template "zooms/index"
   end
 
   # pathcリクエストが通らない

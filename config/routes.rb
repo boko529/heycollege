@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :news, except: [:index, :show]
     resources :auto_creates, only: [:new, :create]
     resource :groups, only: [:new, :create]
+    resources :slide_contents, except: [:show]
+    get 'home', to: 'users#admin_home', as:'home'
   end
   root 'zooms#index'
   get 'ranking', to: 'static_pages#home', as:'ranking'
@@ -59,4 +61,6 @@ Rails.application.routes.draw do
   resources :zooms, only: [:index,:new,:edit,:update,:create,:destroy]
   # zoom参加者管理のパス(userとzoomの中間テーブル)
   post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
+  # sitemapのルーティング
+  get '/sitemap', to: redirect("https://s3-#{ENV['AWS_REGION']}.amazonaws.com/#{ENV['AWS_BUCKET']}/sitemaps/sitemap.xml.gz")
 end

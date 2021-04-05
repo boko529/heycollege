@@ -4,6 +4,9 @@ class Admin::UsersController < ApplicationController
   def index
     @users = User.where(university_id: current_user.university_id).includes([:user_point]).page(params[:page]).per(30)
   end
+
+  def admin_home
+  end
   
   private
   def if_not_admin
