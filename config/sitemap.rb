@@ -62,7 +62,10 @@ SitemapGenerator::Sitemap.create do
   add new_user_session_path
   add notifications_path
   news = News.all
-  news
-  add news_path
-  add page_path
+  news.each do |a|
+    add news_path(a)
+  end
+  add page_path('explain_confirmation')
+  add page_path('privacypolicy')
+  add page_path('terms')
 end

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   # ログインページ,ハイボルテージ関係以外のときはページのバスをセッションに保存する
   def store_location
-    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms') && request.path != page_path('landing_page')
+    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms')
       session[:previous_url] = request.fullpath 
     end
   end
