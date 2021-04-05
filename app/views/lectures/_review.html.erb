@@ -7,6 +7,17 @@
     <%= render partial: "shared/user_image/display_icon20", locals: {user: review.user} %><%= u_display_name(review.user) %>
   <% end %>
 
+  <% if review.user.group.any? %>
+    <div class="group-join">
+      <% review.user.group.each do |group| %>
+        <% relation = UserGroupRelation.find_by(user_id: review.user.id, group_id: group.id) %>
+        <% if relation.confirmation == true && relation.leave == false %>
+          <%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
   <p class="content">
     <%= safe_join(review.content.split("\n"),tag(:br)) %>
   </p>
