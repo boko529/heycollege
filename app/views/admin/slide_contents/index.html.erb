@@ -1,0 +1,39 @@
+<% provide(:title, 'スライド一覧') %>
+<p>更新が新しい順で並び替えてる。順番を変えたかったらいい感じにupdateしましょう。</p>
+<h1>スライドショー管理</h1>
+<p><%= link_to "スライド追加", new_admin_slide_content_path, class: "btn btn-outline-primary" %></p>
+
+<nav>
+  <%# 講義ランキング先生ランキング切り替えタブ %>
+  <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
+    <a class="col-6 nav-item nav-link <%= 'active' if current_user.university_id == 1 %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false">立命館アジア太平洋大学</a>
+    <a class="col-6 nav-item nav-link <%= 'active' if current_user.university_id == 2 %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true">大阪府立大学</a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+    <%# 先生ランキング表示 %>
+    <div class="tab-pane fade <%= 'active show' if current_user.university_id == 1 %>" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
+      <% @slides.where(university_id: 1).each do |slide| %>
+        <div class="admin_slide">
+          <%= image_tag slide.slide_image.to_s, alt: "slide" %>
+          <p>link: <%= slide.link %></p>
+          <%= link_to "編集", edit_admin_slide_content_path(slide), class: "btn btn-outline-success" %>
+          <%= link_to "削除", admin_slide_content_path(slide), method: :delete, class: "btn btn-outline-danger" %>
+          <p><%= slide.created_at %></p>
+        </div>
+      <% end %>
+    </div>
+    <%# 講義ランキング表示 %>
+    <div class="tab-pane fade <%= 'active show' if current_user.university_id == 2 %>" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
+      <% @slides.where(university_id: 2).each do |slide| %>
+        <div class="admin_slide">
+          <%= image_tag slide.slide_image.to_s, alt: "slide" %>
+          <p>link: <%= slide.link %></p>
+          <%= link_to "編集", edit_admin_slide_content_path(slide), class: "btn btn-outline-success" %>
+          <%= link_to "削除", admin_slide_content_path(slide), method: :delete, class: "btn btn-outline-danger" %>
+          <p><%= slide.created_at %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
