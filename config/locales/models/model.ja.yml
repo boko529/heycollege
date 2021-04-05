@@ -10,6 +10,7 @@ ja:
         name_en: "LectureName"
         field: "分野"
         lecture_lang: "言語"
+        state: "形式"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -51,6 +52,8 @@ ja:
         day_of_week: "曜日"
         semester: "期間"
         period: "コマ"
+        grade: "学年"
+        syllabus: "シラバス"
   enums:
     user:
       gender:
@@ -70,6 +73,11 @@ ja:
       point_type:
         init: "初期ポイント"
         helpfuled: "レビューがいいねされました"
+    lecture:
+      state:
+        Online: "オンライン"
+        Offline: "対面"
+        Complex: "混合"
     lecture_info:
       faculty:
         Gensisu: "現代システム"

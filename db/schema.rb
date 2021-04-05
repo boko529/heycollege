@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_025840) do
+ActiveRecord::Schema.define(version: 2021_04_05_071042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
     t.integer "day_of_week"
     t.integer "semester"
     t.integer "period"
+    t.string "syllabus"
+    t.integer "grade"
     t.bigint "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -101,10 +103,12 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
     t.integer "field", default: 1
     t.string "type", default: "Apu::Lecture", null: false
     t.bigint "university_id", default: 1, null: false
+    t.integer "state"
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
     t.index ["name_en"], name: "index_lectures_on_name_en"
     t.index ["name_ja"], name: "index_lectures_on_name_ja"
+    t.index ["state"], name: "index_lectures_on_state"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["university_id"], name: "index_lectures_on_university_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
