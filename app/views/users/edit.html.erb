@@ -47,6 +47,11 @@
             </div>
 
             <div class="field">
+              <%= f.label :email, class:"email" %><br>
+              <%= f.text_field :email %>
+            </div>
+
+            <div class="field">
               <%= f.label :twitter_name,t('.twi'), class:"title"  %><br>
               <%= f.text_field :twitter_name, placeholder: t('.twi_message') %>
             </div>
