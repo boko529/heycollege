@@ -37,7 +37,7 @@
               <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
             </div>
 
-            <div class="field">
+            <div class="field faculty_field">
               <%= f.label :faculty,t('.faculty'), class:"title" %><br>
               <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspe') %>
               <%= f.collection_radio_buttons :faculty, @user.class.faculties_i18n, :first, :last do |b|  %>
