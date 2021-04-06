@@ -12,7 +12,9 @@
       <%= render 'layouts/header'%>
     </header>
     <%# これはヘッダーのなかに入れると不具合が出る(positonが固定されている中に入れると不具合出る) %>
-    <%= render 'layouts/modal_search_form' %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/modal_search_form' %>
+    <% end %>
 
     <div class="container-fluid content">
       <div class="row">

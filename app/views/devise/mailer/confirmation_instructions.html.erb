@@ -1,17 +1,23 @@
 <p>ようこそHeyCollegeへ <%= @email %>!</p>
 
+<% if @resource.unconfirmed_email %>
+<p>メールアドレスの変更ありがとうございます！</p>
+<p>以下のリンクをクリックすると、メールアドレスの変更をされます。</p>
+<% else %>
 <p>登録ありがとうございます！</p>
-
 <p>以下のリンクからもう一度ログインし、メールアドレスの確認を行ってください。</p>
+<% end %>
 
 <p><%= link_to "確認する", confirmation_url(@resource, confirmation_token: @token) %></p>
 
 ---------------------------------
 
 <p>Welcome to Hey College <%= @email %>!</p>
-
+<% if @resource.unconfirmed_email %>
+<p>Thank you for resetting your email address.</p>
+<p>click the link below and you can complete resetting your email address</p>
+<% else %>
 <p>Thank you for registering!</p>
-
 <p>Please log in again from the link below and confirm your email address.</p>
-
+<% end %>
 <p><%= link_to "Check", confirmation_url(@resource, confirmation_token: @token) %></p>

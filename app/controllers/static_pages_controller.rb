@@ -48,5 +48,6 @@ class StaticPagesController < ApplicationController
 
       #最新のニュースを表示
       @news = News.where(university_id: current_user.university_id) if current_user
+      @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc)
     end
 end
