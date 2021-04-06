@@ -131,32 +131,31 @@ class AutoCreate < ApplicationRecord
           period = "sixth"
         end
 
-        case row["分類"]
-        when "初年次ゼミナール" then
+        if row["分類"].include?("初年次ゼミナール")
           field = "Syozemi"
-        when "教養科目" then
+        elsif row["分類"].include?("教養科目")
           field = "Pankyo"
-        when "外国語科目（英語）" then
+        elsif row["分類"].include?("外国語科目（英語）")
           field = "English"
-        when "初修外国語" then
+        elsif row["分類"].include?("初修外国語")
           field = "Shogai"
-        when "外国語特別科目" then
+        elsif row["分類"].include?("外国語特別科目")
           field = "Gaikokugotokubetu"
-        when "海外語学研修科目" then
+        elsif row["分類"].include?("海外語学研修科目")
           field = "Kaigaikensyu"
-        when "健康・スポーツ科学科目" then
+        elsif row["分類"].include?("健康・スポーツ科学科目")
           field = "Kenkou"
-        when "情報基礎科目" then
+        elsif row["分類"].include?("情報基礎科目")
           field = "Zyouhou"
-        when "医療・保険基礎科目" then
+        elsif row["分類"].include?("医療・保険基礎科目")
           field = "Iryo"
-        when "専門科目" then
+        elsif row["分類"].include?("専門科目")
           field = "Senmon"
-        when "特例科目" then
+        elsif row["分類"].include?("特例科目")
           field = "Tokurei"
-        when "資格科目（教職科目）" then
+        elsif row["分類"].include?("資格科目（教職科目）")
           field = "Sikaku"
-        when "理系基礎科目" then
+        elsif row["分類"].include?("理系基礎科目")
           field = "Rikeikiso"
         end
 
