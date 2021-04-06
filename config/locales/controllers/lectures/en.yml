@@ -8,3 +8,5 @@ en:
       updated-class-teacher: Class information updated & Teacher is created"
     destroy:
       deleted-class: "Deleted class"
+    index:
+      too_many: "There are too many search results. Please narrow down the search conditions. "

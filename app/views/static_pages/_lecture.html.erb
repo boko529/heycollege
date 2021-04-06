@@ -4,10 +4,23 @@
     <div class="col-1 d-flex ">
       <span class="rank">
         <%# ページネートに合わせて順位を表示。1ページ目はnil %>
-        <% if params[:lectures_page] %>
-          <%= i + 20 * ( params[:lectures_page].to_i - 1 ) %><%= t('.place')%>
+        <% if i == 1 %>
+          <% @lastScore = lecture.average_score %>
+        <% end %>
+        <% if lecture.average_score != @lastScore %>
+          <% @j = i %>
+          <% if params[:lectures_page] %>
+            <%= @j + 20 * ( params[:lectures_page].to_i - 1 ) %><%= t('.place')%>
+          <% else %>
+            <%= @j + 20 * params[:lectures_page].to_i %><%= t('.place')%>
+          <% end %>
+          <% lastScore = lecture.average_score %>
         <% else %>
-          <%= i + 20 * params[:lectures_page].to_i %><%= t('.place')%>
+          <% if params[:lectures_page] %>
+            <%= @j + 20 * ( params[:lectures_page].to_i - 1 ) %><%= t('.place')%>
+          <% else %>
+            <%= @j + 20 * params[:lectures_page].to_i %><%= t('.place')%>
+          <% end %>
         <% end %>
       </span>
     </div>
