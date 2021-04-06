@@ -268,21 +268,21 @@ class AutoCreate < ApplicationRecord
         
         # 以上をもとに作成開始
         if teacher = Teacher.find_by(name_ja: teacher_name, university_id: 2) # OPUは英語名と日本語名同じなので日本語のほうで条件分岐
-          if lecture = Opu::Lecture.find_by(name_ja: lecture_name, teacher_id: teacher.id, university_id: 2, state: state)
-            unless LectureInfo.find_by(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period,lecture_id: lecture.id)
-              LectureInfo.create!(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id)
+          if lecture = Opu::Lecture.find_by(name_ja: lecture_name, teacher_id: teacher.id, university_id: 2)
+            unless LectureInfo.find_by(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id, state: state)
+              LectureInfo.create!(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id, state: state)
             end
           else
-            lecture = Opu::Lecture.create!(name_ja: lecture_name, name_en: lecture_name, user_id: 1, teacher_id: teacher.id, field: field, university_id: 2, state: state)
-            LectureInfo.create!(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id)
+            lecture = Opu::Lecture.create!(name_ja: lecture_name, name_en: lecture_name, user_id: 1, teacher_id: teacher.id, field: field, university_id: 2)
+            LectureInfo.create!(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id, state: state)
           end
         else
           #先生を作成
           teacher = Teacher.create!(name_ja: teacher_name, name_en: teacher_name, user_id: 1, university_id: 2)
           #クラスの大本情報(分類、先生、クラス名)
-          lecture = Opu::Lecture.create!(name_ja: lecture_name, name_en: lecture_name, user_id: 1, teacher_id: teacher.id, field: field, university_id: 2, state: state)
+          lecture = Opu::Lecture.create!(name_ja: lecture_name, name_en: lecture_name, user_id: 1, teacher_id: teacher.id, field: field, university_id: 2)
           # 時間割や学類などのたくさんある情報シラバス
-          LectureInfo.create!(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id)
+          LectureInfo.create!(faculty: faculty, department: department, major: major, day_of_week: day_of_week, semester: semester, period: period, lecture_id: lecture.id, state: state)
         end
       rescue
         # エラーが出た際に何行目でエラーが出たかを表示する
