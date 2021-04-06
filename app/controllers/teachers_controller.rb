@@ -28,7 +28,7 @@ class TeachersController < ApplicationController
       # end.reverse
 
       # redisでlecture取得→lecture.teacher == @teacherのものだけ取得.
-      all_lectures = REDIS.zrevrangebyscore( "rank/lectures", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
+      all_lectures = REDIS.zrevrangebyscore( "rank/lectures/#{current_user.university_id}", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
       lectures = Array.new
       all_lectures.each do |lecture|
         if lecture.teacher == @teacher
