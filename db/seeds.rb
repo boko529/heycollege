@@ -102,6 +102,7 @@ lectures.each do |lecture|
     day_of_week: 1,
     semester: 1,
     period: 1,
+    state: 1,
     lecture_id: lecture.id,
   )
 end

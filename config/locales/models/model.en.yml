@@ -66,12 +66,6 @@ en:
       point_type:
         init: "Initial point"
         helpfuled: "レビューがいいねされました"
-    lecture:
-      state:
-        Online: "オンライン"
-        Offline: "対面"
-        Complex: "混合"
-        Unknown: "不明"
     lecture_info:
       faculty:
         Gensisu: "現代システム"
@@ -140,6 +134,11 @@ en:
         fourth: "4"
         fifth: "5"
         sixth: "6"
+      state:
+        Online: "オンライン"
+        Offline: "対面"
+        Complex: "混合"
+        Unknown: "不明"
     apu:
       user:
         faculty:
