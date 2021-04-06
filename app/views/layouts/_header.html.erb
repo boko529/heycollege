@@ -11,7 +11,7 @@
       <div class="logo col-5 col-sm-3 mx-md-0 ml-sm-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
-      <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
+      <div class="search col-4 col-md-6 offset-md-1 offset-1 mx-auto d-none d-md-block">
         <% if user_signed_in? %>
           <%# 検索バー %>
           <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
@@ -21,7 +21,7 @@
               <div class="input-group-append justify-content-right">
                 <%# 条件検索用のモーダルスイッチ %>
                 <div class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fas fa-search-plus"></i><br>
+                  <i class="fas fa-sliders-h"></i>
                 </div>
                 <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
                   <i class="fas fa-search"></i>
