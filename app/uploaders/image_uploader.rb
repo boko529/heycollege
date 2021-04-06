@@ -30,8 +30,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # 画像の上限を640x480にする(継承先で記入)
   #process :resize_to_limit => [640, 480]
 
-  # 保存形式をpngにする
-  process :convert => 'png'
+  # # 保存形式をpngにする
+  # process :convert => 'png'
 
   # サムネイルを生成する設定(継承先で記入)
   # version :thumb80 do
@@ -56,15 +56,15 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg png)
   end
 
-  # 拡張子が同じでないとGIFをPNGとかにコンバートできないので、ファイル名を変更
-  def filename
-    super.chomp(File.extname(super)) + '.png' if original_filename.present?
-  end
+  # # 拡張子が同じでないとGIFをPNGとかにコンバートできないので、ファイル名を変更
+  # def filename
+  #   super.chomp(File.extname(super)) + '.png'
+  # end
 
   # ファイル名を日付にするとタイミングのせいでサムネイル名がずれる
   #ファイル名はランダムで一意になる
   def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
+    "#{secure_token}.#{file.extension}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
