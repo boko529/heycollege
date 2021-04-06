@@ -90,7 +90,7 @@ users = User.where(university_id: 2).order(:created_at).take(5)
   name_en = subject_name_en + next_name
   field = 1
   language = 1
-  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 3, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
+  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 5, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
 end
 
 lectures = Opu::Lecture.all

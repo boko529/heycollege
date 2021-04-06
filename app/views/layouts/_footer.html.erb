@@ -74,9 +74,8 @@
                 <span class="d-inline"><%= t('.ranking') %></span>
               <% end %>
             </li>
-
             <%# ブックマーク %>
-            <li class="list-group-item text-left under-line">
+            <li class="list-group-item text-left">
                <%= link_to bookmarks_path do %>           
                 <span class="icon">
                   <i class="far fa-bookmark fa-lg"></i>
@@ -84,6 +83,15 @@
                 <span class="d-inline"><%= t('.book') %></span>
               <% end %>
             </li>
+            <%# E-mee %>
+            <li class="list-group-item text-left under-line">
+               <%= link_to zooms_path do %>           
+                <span class="icon">
+                  <i class="fas fa-tv fa-lg"></i>
+                </span>
+                <span class="d-inline">E-mee</span>
+              <% end %>
+            </li>            
             <%# 言語切り替え %>
             <% if current_user.university_id == 1 %>
               <li class="list-group-item text-left under-line">

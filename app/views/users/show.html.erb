@@ -134,6 +134,12 @@
     <% elsif @user == current_user %>
       <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
     <% end %>
+    <% if @user.university_id == 1 %>
+      <% if @user.email.include?("@apu.ac.jp") %>
+      <% else %>
+        <small><i class="far fa-envelope fa-2x"></i><%= link_to t('.change_email'), email_edit_path(@user) %></small>
+      <% end %>
+    <% end %>
     </div> 
 
     <%# 所属団体 %>

@@ -1,0 +1,20 @@
+<% provide(:title, t('.changeedit')) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2><%= t('.userinfo') %></h2><br>
+      <%= form_with method: :patch, url:"/users/#{@user.id}/emailupdate",model: @user.becomes(User), local:true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="user-info-form">
+          <div class="form-content">
+            <div class="field">
+              <%= f.label :email, class:"email" %><br>
+              <%= f.text_field :email %>
+            </div>
+          <%= f.submit t('.change_email') %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
