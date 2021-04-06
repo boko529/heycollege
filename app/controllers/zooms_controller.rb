@@ -53,6 +53,8 @@ class ZoomsController < ApplicationController
   def index
     if user_signed_in?
       @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]).order(:start_time) #自分の大学のzoom一覧を表示
+      @news = News.where(university_id: current_user.university_id)
+      @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc)
     end
   end
   

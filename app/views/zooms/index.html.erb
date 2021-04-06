@@ -1,7 +1,31 @@
 <% if user_signed_in? %>
   <% provide(:title, 'ZoomHouse') %>
+  <%# 運営からのメッセージがあったら表示する %>
+  <% if @news.exists? %>
+    <% @news.each do |news| %>
+      <%= link_to news.title, news, class:"news_by" %>
+    <% end %>
+  <% end %>
+
+  <% if @slides %>
+    <div class="slide-container">
+      <div class="slide_show">
+        <% @slides.each do |slide| %>
+          <div class="slide_content">
+            <% if !slide.link.blank? %>
+              <%= link_to "slide.link", target: :_blank, rel: "noopener noreferrer" do %>
+                <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+              <% end %>
+            <% else %>
+                <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   <div class="zoom-index">
-    <h2>ZoomHouse</h2>
+    <%# <h2>ZoomHouse</h2> %>
     <%= link_to "+ New room", new_zoom_path, class: "btn btn-success" %>
     <% @zooms.each do |f| %>
       <% if (f.end_time - Time.now) >= 0 %>
@@ -185,3 +209,19 @@ $(function(){
   });
 });
 </script>
+
+<% if @slides %>
+  <script>
+    $(function() {
+      $('.slide_show').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+      });
+      // マウスをホバーしたときにそのスライドに移動
+      $('.slick-dots li').on('mouseover', function() {
+        $('.slide_show').slick('goTo', $(this).index());
+      });
+    });
+  </script>
+<% end %>
