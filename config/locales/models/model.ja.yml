@@ -10,6 +10,7 @@ ja:
         name_en: "LectureName"
         field: "分野"
         lecture_lang: "言語"
+        state: "形式"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -70,6 +71,12 @@ ja:
       point_type:
         init: "初期ポイント"
         helpfuled: "レビューがいいねされました"
+    lecture:
+      state:
+        Online: "オンライン"
+        Offline: "対面"
+        Complex: "混合"
+        Unknown: "不明"
     lecture_info:
       faculty:
         Gensisu: "現代システム"
@@ -168,7 +175,7 @@ ja:
           Syozemi: "初年次ゼミナール"
           Pankyo: "教養科目"
           English: "英語"
-          Shogai: "初習外国語"
+          Shogai: "初修外国語"
           Gaikokugotokubetu: "外国語特別"
           Kaigaikensyu: "海外研修科目"
           Kenkou: "健康スポーツ・科学科目"

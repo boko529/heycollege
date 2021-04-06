@@ -11,7 +11,7 @@ class LecturesController < ApplicationController
     #検索である程度数が絞られてたらredisなしのが早い
     @q = Lecture.where(university_id: current_user.university_id).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
-    @lectures = @q.result.left_joins(:reviews).distinct.sort_by do |lecture|
+    @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
       reviews = lecture.reviews
       if reviews.present?
         reviews.map(&:score).sum / reviews.size
