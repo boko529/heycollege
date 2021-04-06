@@ -99,6 +99,14 @@ class AutoCreate < ApplicationRecord
         elsif row["期間"].include?("後期集中")
           semester = "sec_session"
           day_of_week = "out"
+        elsif row["期間"].include?("前期前半")
+          semester = "fir_qu"
+        elsif row["期間"].include?("前期後半")
+          semester = "sec_qu"
+        elsif row["期間"].include?("後期前半")
+          semester = "thi_qu"
+        elsif row["期間"].include?("後期後半")
+          semester = "fou_qu"
         end
 
         if row["曜日"].include?("月曜")
