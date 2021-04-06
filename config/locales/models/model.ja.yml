@@ -134,6 +134,10 @@ ja:
         fir_session: "前期集中"
         sec_session: "後期集中"
         total_seme: "通年"
+        fir_qu: "前期前半"
+        sec_qu: "前期後半"
+        thi_qu: "後期前半"
+        fou_qu: "後期後半"
       period:
         first: "1"
         second: "2"
