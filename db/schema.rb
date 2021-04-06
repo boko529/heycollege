@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_095217) do
+ActiveRecord::Schema.define(version: 2021_04_06_022639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,13 @@ ActiveRecord::Schema.define(version: 2021_04_05_095217) do
     t.bigint "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["day_of_week"], name: "index_lecture_infos_on_day_of_week"
+    t.index ["department"], name: "index_lecture_infos_on_department"
+    t.index ["faculty"], name: "index_lecture_infos_on_faculty"
     t.index ["lecture_id"], name: "index_lecture_infos_on_lecture_id"
+    t.index ["major"], name: "index_lecture_infos_on_major"
+    t.index ["period"], name: "index_lecture_infos_on_period"
+    t.index ["semester"], name: "index_lecture_infos_on_semester"
   end
 
   create_table "lectures", force: :cascade do |t|
