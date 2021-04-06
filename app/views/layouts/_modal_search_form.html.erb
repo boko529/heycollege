@@ -69,8 +69,8 @@
                 <%# 状態検索(オンラインかどうか) %>
                 <div class="w-50">
                   <%# ここはもっとスリムに書けるけどとりあえずこれで %>
-                  <strong><%= f.label :state, class:"title" %></strong>
-                  <%= f.select :state_eq, [['オンライン', 1], ['対面', 2], ['混合', 3], ['不明', 4]],{include_blank: '選択なし'} %>
+                  <strong><%= f.label "形式", class:"title" %></strong>
+                  <%= f.select :lecture_infos_state_eq, [['オンライン', 1], ['対面', 2], ['混合', 3], ['不明', 4]],{include_blank: '選択なし'} %>
                 </div>
               </div>
 
@@ -223,8 +223,8 @@
               <%# 状態検索(オンラインかどうか) %>
               <div>
                 <%# ここはもっとスリムに書けるけどとりあえずこれで %>
-                <strong><%= f.label :state, class:"title" %></strong>
-                <%= f.select :state_eq, [['オンライン', 1], ['対面', 2], ['混合', 3], ['不明', 4]],{include_blank: '選択なし'} %>
+                <strong><%= f.label "形式", class:"title" %></strong>
+                <%= f.select :lecture_infos_state_eq, [['オンライン', 1], ['対面', 2], ['混合', 3], ['不明', 4]],{include_blank: '選択なし'} %>
               </div>
 
               <%# 期間選択 %>

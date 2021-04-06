@@ -5,8 +5,10 @@ class LectureInfo < ApplicationRecord
   enum day_of_week: { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6, out: 7 }, _prefix: :true # outは時間割外 
   enum semester: { fir_seme: 0, sec_seme: 1, fir_session: 2, sec_session: 3, total_seme: 4, fir_qu: 5, sec_qu: 6, thi_qu: 7, fou_qu: 8}, _prefix: :true # sessionは短期集中、total_semeは通年 5~8はクオーター制
   enum period: { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6}, _prefix: :true 
+  enum state: { Online: 1, Offline: 2, Complex: 3, Unknown: 4} # 授業形式がオンラインかオフラインか混合か
   belongs_to :lecture
   # validates :day_of_week, presence: true
   validates :semester, presence: true
+  validates :state, presence: true
   # validates :period, presence: true
 end

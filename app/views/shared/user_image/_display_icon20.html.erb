@@ -1,6 +1,6 @@
 <%# ユーザーの画像を表示するためのパーシャル(20×20) %>
 <% if user.image? %>
-  <%= image_tag user.image.thumb20.to_s, alt: "user-icon", class: "user-icon" %>
+  <%= image_tag user.image.thumb20.url.to_s, alt: "user-icon", class: "user-icon" %>
 <% else %>
   <i class="fas fa-user user-icon font-awesome-20"></i>
 <% end %>
