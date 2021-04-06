@@ -61,4 +61,7 @@ Rails.application.routes.draw do
   post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
   # sitemapのルーティング
   get '/sitemap', to: redirect("https://s3-#{ENV['AWS_REGION']}.amazonaws.com/#{ENV['AWS_BUCKET']}/sitemaps/sitemap.xml.gz")
+  #email変更
+  get 'users/:id/emailedit', to: 'users#emailedit',as:'email_edit'
+  patch 'users/:id/emailupdate', to: 'users#emailupdate',as:'email_update'
 end
