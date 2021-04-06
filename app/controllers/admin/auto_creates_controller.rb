@@ -33,8 +33,15 @@ class Admin::AutoCreatesController < ApplicationController
           redirect_to new_admin_auto_create_path
         end
       when "2" then
-        flash[:danger] = "大阪府立大学はまだ対応していません"
-        redirect_to new_admin_auto_create_path
+        if @auto_create.valid?
+          AutoCreate.import_OPU(auto_create_params[:file])
+          @auto_create.save!
+          flash[:success] = "自動作成に成功しました"
+          redirect_to new_admin_auto_create_path
+        else
+          flash[:danger] = "ログの作成に失敗しました"
+          redirect_to new_admin_auto_create_path
+        end
       else
         flash[:danger] = "大学を指定してください"
         redirect_to new_admin_auto_create_path

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_025840) do
+ActiveRecord::Schema.define(version: 2021_04_06_022639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,13 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
     t.bigint "lecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["day_of_week"], name: "index_lecture_infos_on_day_of_week"
+    t.index ["department"], name: "index_lecture_infos_on_department"
+    t.index ["faculty"], name: "index_lecture_infos_on_faculty"
     t.index ["lecture_id"], name: "index_lecture_infos_on_lecture_id"
+    t.index ["major"], name: "index_lecture_infos_on_major"
+    t.index ["period"], name: "index_lecture_infos_on_period"
+    t.index ["semester"], name: "index_lecture_infos_on_semester"
   end
 
   create_table "lectures", force: :cascade do |t|
@@ -97,14 +103,16 @@ ActiveRecord::Schema.define(version: 2021_04_04_025840) do
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
     t.string "name_en"
-    t.integer "lecture_lang", default: 1
-    t.integer "field", default: 1
+    t.integer "lecture_lang"
+    t.integer "field"
     t.string "type", default: "Apu::Lecture", null: false
     t.bigint "university_id", default: 1, null: false
+    t.integer "state"
     t.index ["field"], name: "index_lectures_on_field"
     t.index ["lecture_lang"], name: "index_lectures_on_lecture_lang"
     t.index ["name_en"], name: "index_lectures_on_name_en"
     t.index ["name_ja"], name: "index_lectures_on_name_ja"
+    t.index ["state"], name: "index_lectures_on_state"
     t.index ["teacher_id"], name: "index_lectures_on_teacher_id"
     t.index ["university_id"], name: "index_lectures_on_university_id"
     t.index ["user_id", "updated_at"], name: "index_lectures_on_user_id_and_updated_at"
