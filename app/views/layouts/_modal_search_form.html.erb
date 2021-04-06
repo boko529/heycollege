@@ -97,19 +97,19 @@
               <div class="first">
                 <strong><%= f.label "期間", class:"title"  %></strong>
                 <label>
-                  <%= f.radio_button :lecture_infos_faculty_eq, '', {:checked => true} %>選択なし
+                  <%= f.radio_button :lecture_infos_semester_eq, '', {:checked => true} %>選択なし
                 </label>
                 <label>
-                  <%= f.radio_button :lecture_infos_faculty_eq, 0 %>前期
+                  <%= f.radio_button :lecture_infos_semester_eq, 0 %>前期
                 </label>
                 <label>
-                  <%= f.radio_button :lecture_infos_faculty_eq, 1 %>後期
+                  <%= f.radio_button :lecture_infos_semester_eq, 1 %>後期
                 </label>
                 <label>
-                  <%= f.radio_button :lecture_infos_faculty_eq, 2 %>前期集中
+                  <%= f.radio_button :lecture_infos_semester_eq, 2 %>前期集中
                 </label>
                 <label>
-                  <%= f.radio_button :lecture_infos_faculty_eq, 3 %>後期集中
+                  <%= f.radio_button :lecture_infos_semester_eq, 3 %>後期集中
                 </label>
                 <label>
                   <%= f.radio_button :lecture_infos_faculty_eq, 4 %>通期
