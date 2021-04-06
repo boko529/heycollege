@@ -74,16 +74,18 @@
   </div>
 </div>
 
-<script>
-  $(function() {
-    $('.slide_show').slick({
-      dots: true,
-      autoplay: true,
-      autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+<% if @slides %>
+  <script>
+    $(function() {
+      $('.slide_show').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+      });
+      // マウスをホバーしたときにそのスライドに移動
+      $('.slick-dots li').on('mouseover', function() {
+        $('.slide_show').slick('goTo', $(this).index());
+      });
     });
-    // マウスをホバーしたときにそのスライドに移動
-    $('.slick-dots li').on('mouseover', function() {
-      $('.slide_show').slick('goTo', $(this).index());
-    });
-  });
-</script>
+  </script>
+<% end %>
