@@ -7,6 +7,9 @@ class HelpfulsController < ApplicationController
   def create
     helpful = Helpful.create(user_id: current_user.id, review_id: params[:review_id])
     helpful.save
+    review.user.group.each |group| do
+      
+    end 
     # 通知を発行
     helpful.create_notification_helpful!(current_user)
     # レビュー書き手に個人ポイントを発行
