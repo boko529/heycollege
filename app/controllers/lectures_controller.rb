@@ -10,7 +10,7 @@ class LecturesController < ApplicationController
   def index
     #検索である程度数が絞られてたらredisなしのが早い
     @q = Lecture.where(university_id: current_user.university_id).ransack(params[:q])
-    if @q.result.length < 20 # 上限は適当に設定してくだされ.
+    if @q.result.length < 50 # 上限は適当に設定してくだされ.
       @q.sorts = 'updated_at desc' if @q.sorts.empty?
       @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
         reviews = lecture.reviews
