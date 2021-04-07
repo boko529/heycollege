@@ -41,6 +41,11 @@
       float: right;
       
     }
+    .btn-secondary{
+      color: #fff;
+      float: right;
+      
+    }
     .btn-success{
       color: #fff;
       margin: 0;
@@ -63,6 +68,9 @@
       color: rgb(245, 245, 245);
       margin-right: 0.1rem;
     }
+  }
+  .disable{
+    pointer-events: none
   }
 }
 .zoom-new, .zoom-edit{

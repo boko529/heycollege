@@ -155,7 +155,7 @@ class AutoCreate < ApplicationRecord
           field = "Kenkou"
         elsif row["分類"].include?("情報基礎科目")
           field = "Zyouhou"
-        elsif row["分類"].include?("医療・保険基礎科目")
+        elsif row["分類"].include?("医療・保健基礎科目")
           field = "Iryo"
         elsif row["分類"].include?("専門科目")
           field = "Senmon"
@@ -242,7 +242,7 @@ class AutoCreate < ApplicationRecord
           elsif row["課程"].include?("生命機能化学")
             major = "seimei"
           elsif row["課程"].include?("植物バイオサイエンス")
-            major = "shokugutu"
+            major = "shokubutu"
           elsif row["課程"].include?("数理科学")
             major = "suuri"
           elsif row["課程"].include?("物理科学")

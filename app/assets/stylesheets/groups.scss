@@ -172,11 +172,14 @@ ul.groups{
 // --------------------------------
 // about form.html
   // header and img, buttons
-  .groupshow-edit {
-    .groupshow-headerimg {
+.group-edit{
+  margin-bottom: 9rem;
+}
+.groupshow-edit {
+  .groupshow-headerimg {
+    width: 100%;
+    img {
       width: 100%;
-      img {
-        width: 100%;
-      }
     }
   }
+}
