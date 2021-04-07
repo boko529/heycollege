@@ -9,7 +9,8 @@ class UserGroupRelationsController < ApplicationController
     else
       current_user.join(group)
     end
-    flash[:success] = "#{current_user.name}さんは#{group.name}に参加しました!"
+    # flash[:success] = "#{current_user.name}さんは#{group.name}に参加しました!"
+    flash[:success] = "Joinリクエストを送信しました！ホストからの承認をお待ち下さい。"
     redirect_to group
   end
 
