@@ -66,7 +66,7 @@ class ZoomsController < ApplicationController
     @zoom = Zoom.find(params[:id])
     if @zoom.update(zoom_params)
       flash[:notice] = "zoom情報を更新しました"
-      redirect_to zoom_path(@zoom.id)
+      redirect_to zooms_path
     else
       render :edit
     end
