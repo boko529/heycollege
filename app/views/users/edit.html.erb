@@ -46,10 +46,15 @@
               <% end %> 
             </div>
 
-            <div class="field">
-              <%= f.label :email, class:"email" %><br>
-              <%= f.text_field :email %>
-            </div>
+            <% if @user.university_id == 1 %>
+              <% if @user.email.include?("@apu.ac.jp") %>
+              <% else %>
+                <div class="field">
+                  <%= f.label :email, class:"email" %><br>
+                  <%= f.text_field :email %>
+                </div>
+              <% end %>
+            <% end %>
 
             <div class="field">
               <%= f.label :twitter_name,t('.twi'), class:"title"  %><br>
