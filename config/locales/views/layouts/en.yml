@@ -23,7 +23,7 @@ en:
       signout: Signout
       term: "Terms of service"
       privacypolicy: "Privacy policy"
-      leave: Leave
+      leave: Leave(Delete your account)
       lang: 日本語に変更
     subsidebar:
       rank: "Ranking"
