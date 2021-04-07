@@ -10,21 +10,22 @@ class LecturesController < ApplicationController
   def index
     #検索である程度数が絞られてたらredisなしのが早い
     @q = Lecture.where(university_id: current_user.university_id).ransack(params[:q])
-    if @q.result.length < 20 # 上限は適当に設定してくだされ.
-      @q.sorts = 'updated_at desc' if @q.sorts.empty?
-      @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
-        reviews = lecture.reviews
-        if reviews.present?
-          reviews.map(&:score).sum / reviews.size
-        else
-          0
-        end
-      end.reverse
-      @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
-    else
-      flash[:alert] = t('.too_many')
-      redirect_to root_path
-    end  
+    # if @q.result.length < 50 # 上限は適当に設定してくだされ.
+    #   @q.sorts = 'updated_at desc' if @q.sorts.empty?
+    #   @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
+    #     reviews = lecture.reviews
+    #     if reviews.present?
+    #       reviews.map(&:score).sum / reviews.size
+    #     else
+    #       0
+    #     end
+    #   end.reverse
+    #  @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+      @lectures = Kaminari.paginate_array(@q.result).page(params[:page]).per(20)
+    # else
+    #   flash[:alert] = t('.too_many')
+    #   redirect_to root_path
+    # end  
   end
 
   def show
