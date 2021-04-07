@@ -13,7 +13,7 @@
         <% @slides.each do |slide| %>
           <div class="slide_content">
             <% if !slide.link.blank? %>
-              <%= link_to "slide.link", target: :_blank, rel: "noopener noreferrer" do %>
+              <%= link_to slide.link, target: :_blank, rel: "noopener noreferrer" do %>
                 <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
               <% end %>
             <% else %>
