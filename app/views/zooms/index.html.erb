@@ -1,7 +1,31 @@
 <% if user_signed_in? %>
-  <% provide(:title, 'Zoom-house') %>
+  <% provide(:title, 'ZoomHouse') %>
+  <%# 運営からのメッセージがあったら表示する %>
+  <% if @news.exists? %>
+    <% @news.each do |news| %>
+      <%= link_to news.title, news, class:"news_by" %>
+    <% end %>
+  <% end %>
+
+  <% if @slides %>
+    <div class="slide-container">
+      <div class="slide_show">
+        <% @slides.each do |slide| %>
+          <div class="slide_content">
+            <% if !slide.link.blank? %>
+              <%= link_to "slide.link", target: :_blank, rel: "noopener noreferrer" do %>
+                <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+              <% end %>
+            <% else %>
+                <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   <div class="zoom-index">
-    <h2>Zoom-house</h2>
+    <%# <h2>ZoomHouse</h2> %>
     <%= link_to "+ New room", new_zoom_path, class: "btn btn-success" %>
     <% @zooms.each do |f| %>
       <% if (f.end_time - Time.now) >= 0 %>
@@ -48,114 +72,156 @@
 <% else %>
   <% provide(:title, 'クラスレビューサイト') %>
   <div class="landing-page mx-lg-5 pz-lg-5">
-  <%# title %>
-  <div class="land-title">
-    <div class="logo">
-      <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "250px", id: 'logo'), root_path %>
-    </div>
-    <h6>- 大学生向けSNS -</h6>
-    <div class="links">
-      <div>
-        <%= link_to new_user_registration_path do %>
-          <i class="fas fa-arrow-circle-right"></i>新規登録
-        <% end %>
+    <%# title %>
+    <div class="land-title">
+      <div class="logo">
+        <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "250px", id: 'logo'), root_path %>
       </div>
-      <div>
-        <i class="fas fa-arrow-circle-down"></i>Hey Collegeって？
+      <h6>- 大学生向けSNS -</h6>
+      <div class="links">
+        <div class="btn btn-success">
+          <%= link_to new_user_registration_path do %>
+            <i class="fas fa-arrow-circle-right"></i>新規登録はこちら
+          <% end %>
+        </div>
+        <div class="btn">
+          <i class="fas fa-arrow-circle-down"></i>Hey Collegeって？
+        </div>
       </div>
     </div>
-  </div>
   
-  <%# about review %>
-  <div class="land-class-review">
-    <h2>Class Review</h2>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="img">
-            <%= link_to image_tag("Screen Shot 2021-04-03 at 12.47.52 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
+    <%# about review %>
+    <div class="land-class-review">
+      <h2>Class Review</h2>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="img">
+              <%= link_to image_tag("Screen Shot 2021-04-03 at 12.47.52 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="d-flex align-items-center h-100">
-            <div class="explanation ">
-              <div class="icon">
-                <i class="fas fa-pencil-alt fa-2x"></i>
-              </div>
-              <div class="exple">友達のレビューを見よう !</div>
+          <div class="col-lg-6">
+            <div class="d-flex align-items-center h-100">
+              <ul class="explanation scroll_appear animate">
+                <li>
+                  <div class="icon">
+                    <i class="fas fa-pencil-alt fa-2x"></i>
+                  </div>
+                  <div class="exple">友達のレビューを見よう !</div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
- <%# about group %>
-  <div class="land-class-review">
-    <h2>Group List</h2>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-4 d-lg-block d-none">
-          <div class="d-flex align-items-center h-100">
-            <div class="explanation">
-              <div class="icon">
-                <i class="fas fa-users fa-2x"></i>
+      <%# about group %>
+      <div class="land-class-review">
+        <h2>Group List</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6 d-lg-block d-none">
+              <div class="d-flex align-items-center h-100">
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                       <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div class="exple">学生団体を見よう！</div>
+                  </li>
+                </ul>                
               </div>
-              <div class="exple">学生団体を見よう！</div>
+            </div>
+            <div class="col-lg-6">
+              <div class="img">
+                <%= link_to image_tag("Screen Shot 2021-04-03 at 12.51.18 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
+              </div>
+            </div>
+            <div class="col-lg-6 d-block d-lg-none">
+              <div class="d-flex align-items-center h-100"> 
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                      <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div class="exple">学生団体を見よう！</div>
+                  </li>
+                </ul> 
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-8">
-          <div class="img">
-            <%= link_to image_tag("Screen Shot 2021-04-03 at 12.51.18 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
+      </div>
+
+      <%# about ZoomHouse %>
+      <div class="land-e-mee">
+        <h2>ZoomHouse</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="img">
+                <%= link_to image_tag("Screen Shot 2021-04-03 at 12.48.13 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
+              </div>  
+            </div>
+            <div class="col-lg-6">
+              <div class="d-flex align-items-center h-100">
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                      <i class="fas fa-comments fa-2x"></i>
+                    </div>
+                    <div class="exple">
+                      <p>
+                        イベントに参加しよう！
+                        <br>友達と話そう！
+                      </p>
+                    </div>
+                  </li>
+                </ul>                 
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-lg-4 d-block d-lg-none">
-          <div class="d-flex align-items-center h-100">
-            <div class="explanation">
-              <div class="icon">
-                <i class="fas fa-users fa-2x"></i>
-              </div>
-              <div class="exple">学生団体を見よう！</div>
-            </div>
+        <%# new registration %>
+        <div class="links">
+          <div class="btn btn-success bottom-newgegi">
+            <%= link_to new_user_registration_path do %>
+              <i class="fas fa-arrow-circle-right"></i>新規登録はこちら
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+<% end %>
 
-  <%# about e-mee %>
-  <div class="land-e-mee">
-    <h2>Zoom House</h2>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="img">
-            <%= link_to image_tag("Screen Shot 2021-04-03 at 12.48.13 PM.png", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
-          </div>  
-        </div>
-        <div class="col-lg-4">
-          <div class="d-flex align-items-center h-100">
-            <div class="explanation">
-              <div class="icon">
-                  <i class="fas fa-comments fa-2x"></i>
-              </div>
-              <div class="exple">
-                <ul>
-                  <li>イベントに参加しよう！</li>
-                  <li>友達と話そう！</li>
-                </ul>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <%# new registration %>
-  <div class="links">
-    <%= link_to new_user_registration_path do %>
-      <i class="fas fa-arrow-circle-right"></i>新規登録
-    <% end %>
-  </div>
-</div>
+<script>
+$(function(){
+  $(window).scroll(function (){
+    $(".animate > *").each(function(){
+      var targetAnime = $(this).offset().top;
+      var scroll = $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (scroll > targetAnime - windowHeight + 0){
+        $(this).addClass("explanation moving");
+      }
+    });
+  });
+});
+</script>
+
+<% if @slides %>
+  <script>
+    $(function() {
+      $('.slide_show').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+      });
+      // マウスをホバーしたときにそのスライドに移動
+      $('.slick-dots li').on('mouseover', function() {
+        $('.slide_show').slick('goTo', $(this).index());
+      });
+    });
+  </script>
 <% end %>

@@ -10,6 +10,7 @@ en:
         name_en: "LectureName"
         field: "Field"
         lecture_lang: "Language"
+        state: "形式"
       user:
         user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -122,6 +123,10 @@ en:
         fir_session: "前期集中"
         sec_session: "後期集中"
         total_seme: "通年"
+        fir_qu: "前期前半"
+        sec_qu: "前期後半"
+        thi_qu: "後期前半"
+        fou_qu: "後期後半"
       period:
         first: "1"
         second: "2"
@@ -129,6 +134,11 @@ en:
         fourth: "4"
         fifth: "5"
         sixth: "6"
+      state:
+        Online: "オンライン"
+        Offline: "対面"
+        Complex: "混合"
+        Unknown: "不明"
     apu:
       user:
         faculty:
@@ -163,7 +173,7 @@ en:
           Syozemi: "初年次ゼミナール"
           Pankyo: "教養科目"
           English: "英語"
-          Shogai: "初習外国語"
+          Shogai: "初修外国語"
           Gaikokugotokubetu: "外国語特別"
           Kaigaikensyu: "海外研修科目"
           Kenkou: "健康スポーツ・科学科目"

@@ -9,8 +9,8 @@
             <div class="field">
               <%= render partial: "shared/user_image/display_icon80", locals: {user: @user} %> <%# 80*80のプロフィール画像表示 %>
               <br>
-              <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
-              <%= f.hidden_field :image_cache, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+              <%= f.file_field :image, accept: 'image/jpeg,image/png,image/jpg', class: "image-select-btn" %>
+              <%= f.hidden_field :image_cache, accept: 'image/jpeg,image/png,image/jpg', class: "image-select-btn" %>
               <br>
               <label>
                 <%= f.check_box :remove_image %>画像を削除する
@@ -37,13 +37,18 @@
               <%= f.select :grade, User.grades_i18n.keys.map {|k| [I18n.t("enums.user.grade.#{k}"), k]} %>
             </div>
 
-            <div class="field">
+            <div class="field faculty_field">
               <%= f.label :faculty,t('.faculty'), class:"title" %><br>
               <%= f.radio_button :faculty, '', {:checked => true} %><%= t('.unspe') %>
               <%= f.collection_radio_buttons :faculty, @user.class.faculties_i18n, :first, :last do |b|  %>
                 <%=  b.radio_button(class: "form-contorl") %>
                 <%= b.label %>
               <% end %> 
+            </div>
+
+            <div class="field">
+              <%= f.label :email, class:"email" %><br>
+              <%= f.text_field :email %>
             </div>
 
             <div class="field">

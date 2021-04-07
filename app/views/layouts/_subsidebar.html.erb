@@ -27,6 +27,12 @@
           <i class="far fa-bookmark fa-2x"></i><span><%= t('.book') %></span>
         <% end %>
       </li>
+      <%# ZoomHouse %>
+      <li class="list-group-item text-center text-lg-left">
+          <%= link_to zooms_path do %>           
+          <i class="fas fa-tv fa-2x"></i><span>ZoomHouse</span>
+        <% end %>
+      </li>       
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
           <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>

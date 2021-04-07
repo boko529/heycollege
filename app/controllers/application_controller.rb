@@ -5,13 +5,21 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_search
-    @q = Lecture.ransack(params[:q])
-    @lectures = @q.result.page(params[:page])
+    # ログインしてる時に大学によってモデルを変える
+    if user_signed_in?
+      if current_user.university_id == 1
+        @q = Apu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      elsif current_user.university_id == 2
+        @q = Opu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      end
+    end
   end
 
   # ログインページ,ハイボルテージ関係以外のときはページのバスをセッションに保存する
   def store_location
-    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms') && request.path != page_path('landing_page')
+    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms')
       session[:previous_url] = request.fullpath 
     end
   end

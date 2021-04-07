@@ -90,9 +90,6 @@ users = User.where(university_id: 2).order(:created_at).take(5)
   name_en = subject_name_en + next_name
   field = 1
   language = 1
-  # lecture_term = "First"
-  # day_of_week = "Mon"
-  # period = "second"
   users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 5, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
 end
 
@@ -105,6 +102,7 @@ lectures.each do |lecture|
     day_of_week: 1,
     semester: 1,
     period: 1,
+    state: 1,
     lecture_id: lecture.id,
   )
 end

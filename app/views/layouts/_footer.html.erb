@@ -74,9 +74,8 @@
                 <span class="d-inline"><%= t('.ranking') %></span>
               <% end %>
             </li>
-
             <%# ブックマーク %>
-            <li class="list-group-item text-left under-line">
+            <li class="list-group-item text-left">
                <%= link_to bookmarks_path do %>           
                 <span class="icon">
                   <i class="far fa-bookmark fa-lg"></i>
@@ -84,22 +83,33 @@
                 <span class="d-inline"><%= t('.book') %></span>
               <% end %>
             </li>
-            <%# 言語切り替え %>
+            <%# ZoomHouse %>
             <li class="list-group-item text-left under-line">
-              <% if session[:locale] == "ja" || session[:locale].blank? %>
-                <%= link_to "/application/change_language/en" do %>
-              <i class="fas fa-language fa-lg"></i>
-              </span>
-              <span class="d-inline"><%= t('.lang') %></span>
-                <% end %>
-              <% elsif session[:locale] == "en" %>
-                <%= link_to "/application/change_language/ja" do %>
-              <i class="fas fa-language fa-lg"></i>
-              </span>
-              <span class="d-inline"><%= t('.lang') %></span>
-                <% end %>
+               <%= link_to zooms_path do %>           
+                <span class="icon">
+                  <i class="fas fa-tv fa-lg"></i>
+                </span>
+                <span class="d-inline">ZoomHouse</span>
               <% end %>
-            </li>
+            </li>            
+            <%# 言語切り替え %>
+            <% if current_user.university_id == 1 %>
+              <li class="list-group-item text-left under-line">
+                <% if session[:locale] == "ja" || session[:locale].blank? %>
+                  <%= link_to "/application/change_language/en" do %>
+                <i class="fas fa-language fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.lang') %></span>
+                  <% end %>
+                <% elsif session[:locale] == "en" %>
+                  <%= link_to "/application/change_language/ja" do %>
+                <i class="fas fa-language fa-lg"></i>
+                </span>
+                <span class="d-inline"><%= t('.lang') %></span>
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>
             <%# お問い合わせ %>                                              
             <li class="list-group-item text-left under-line">
               <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
