@@ -242,7 +242,7 @@ class AutoCreate < ApplicationRecord
           elsif row["課程"].include?("生命機能化学")
             major = "seimei"
           elsif row["課程"].include?("植物バイオサイエンス")
-            major = "shokugutu"
+            major = "shokubutu"
           elsif row["課程"].include?("数理科学")
             major = "suuri"
           elsif row["課程"].include?("物理科学")
