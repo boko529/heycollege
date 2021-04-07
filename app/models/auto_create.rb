@@ -155,7 +155,7 @@ class AutoCreate < ApplicationRecord
           field = "Kenkou"
         elsif row["分類"].include?("情報基礎科目")
           field = "Zyouhou"
-        elsif row["分類"].include?("医療・保険基礎科目")
+        elsif row["分類"].include?("医療・保健基礎科目")
           field = "Iryo"
         elsif row["分類"].include?("専門科目")
           field = "Senmon"
