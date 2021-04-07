@@ -137,7 +137,8 @@ background-color: white;
 nav{
   ul.pagination{
     margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
+    // スマホでフッターが隠れるから追加
+    margin-bottom: 12rem;
     li.page-item{
       background-color: #fff;
       &:last-child .page-link {
