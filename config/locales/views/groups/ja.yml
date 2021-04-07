@@ -6,7 +6,7 @@ ja:
       groupedit: "グループ編集"
       changes: "更新"
     join:
-      join: "参加"
+      join: "Joinリクエストを送る"
     unjoin:
       leave: "退会"
     index:
