@@ -5,34 +5,150 @@
       <div class="modal-content d-sm-block d-none pc-search-form">
         <div class="modal-header">
           <%= search_form_for @q, url: lectures_path do |f| %>
-            <div class="input-group justify-content-center">
-              <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
-              <%# 検索ボタン %>
-              <div class="input-group-append">
-                <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
-              </div> 
-            </div>
-            <%# 分野選択 %>
-            <div class="first">
-              <strong><%= f.label :field, class:"title"  %></strong>
-              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
-              <%= f.radio_button :field_eq, 1 %>APS
-              <%= f.radio_button :field_eq, 2 %>APM
-              <%= f.radio_button :field_eq, 3 %>APS & APM
-              <%= f.radio_button :field_eq, 4 %>Liberal arts
-              <%= f.radio_button :field_eq, 5 %>Language
-            </div>
+            <% if current_user.university_id == 1 %>
+              <div class="input-group justify-content-center">
+                <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
+                <%# 検索ボタン %>
+                <div class="input-group-append">
+                  <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+                </div> 
+              </div>
+              <%# 分野選択 %>
+              <div class="first">
+                <strong><%= f.label :field, class:"title"  %></strong>
+                <label>
+                  <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 1 %>APS
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 2 %>APM
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 3 %>APS & APM
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 4 %>Liberal arts
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 5 %>Language
+                </label>
+              </div>
 
-            <%# 言語選択 %>
-            <div>
-              <%# ここはもっとスリムに書けるけどとりあえずこれで %>
-              <strong><%= f.label :lecture_lang_eq, class:"title" %></strong>
-              <%= f.select :lecture_lang, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
-            </div>
-            <%= button_tag type: 'submit', class: 'btn btn-outline-success search-btn' do %>
-              検索
+              <%# 言語選択 %>
+              <div>
+                <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                <strong><%= f.label :lecture_lang, class:"title" %></strong>
+                <%= f.select :lecture_lang_eq, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
+              </div>
+              <%= button_tag type: 'submit', class: 'btn btn-outline-success search-btn' do %>
+                検索
+              <% end %>
+            <% end %>
+            
+            <%# 大阪府立大学のときの検索フォーム %>
+            <% if current_user.university_id ==2 %>
+              <div class="input-group justify-content-center">
+                <%= f.search_field :name_ja_or_teacher_name_ja_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
+                <%# 検索ボタン %>
+                <div class="input-group-append">
+                  <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+                </div> 
+              </div>
+              <div class="first">
+                <%# 分野選択 %>
+                <div class="w-50">
+                  <strong><%= f.label :field, class:"title" %></strong>
+                  <%= f.select :field_eq, [['初年次ゼミナール', 1], ['教養', 2], ['英語', 3], ['初修外国語', 4], ['外国語特別', 5], ['海外研修', 6], ['健康スポーツ・科学', 7], ['情報基礎', 8], ['医療保険', 9], ['専門', 10], ['特例', 11], ['資格科目', 12], ['理系基礎', 13]], {include_blank: '選択なし'} %>
+                </div>
+                <%# 状態検索(オンラインかどうか) %>
+                <div class="w-50">
+                  <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                  <strong><%= f.label "形式", class:"title" %></strong>
+                  <%= f.select :lecture_infos_state_eq, [['オンライン', 1], ['対面', 2], ['混合', 3], ['不明', 4]],{include_blank: '選択なし'} %>
+                </div>
+              </div>
+
+              <%# 期間選択 %>
+              <div>
+                <strong><%= f.label "期間", class:"title"  %></strong>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, '', {:checked => true} %>選択なし
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 0 %>前期
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 1 %>後期
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 2 %>前期集中
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 3 %>後期集中
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 4 %>通年
+                </label>
+              </div>              
+
+              <%# 学域選択 %>
+              <div>
+                <strong><%= f.label "学域", class:"title"  %></strong>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, '', {:checked => true} %>選択なし
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, 1 %>現シス
+                </label>
+                <label>
+                 <%= f.radio_button :lecture_infos_faculty_eq, 2 %>工学
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, 3 %>生命環境
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, 4 %>地域保健
+                </label>
+              </div>
+
+              <div>
+                <%# 学類検索 %>
+                <div class="w-50">
+                  <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                  <strong><%= f.label "学類", class:"title" %></strong>
+                  <%= f.select :lecture_infos_department_eq, [['電気電子', 0], ['物質科学', 1], ['機械系', 2], ['獣医', 3], ['応用生命', 4], ['緑地環境', 5], ['理', 6], ['看護', 7], ['総合リハビリテーション', 8], ['教育福祉', 9], ['知識情報システム', 10], ['環境システム', 11], ['マネジメント', 12]],{include_blank: '選択なし'} %>
+                </div>
+                <%# 専攻検索 %>
+                <div class="w-50">
+                  <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                  <strong><%= f.label "課程", class:"title" %></strong>
+                  <%= f.select :lecture_infos_major_eq, [['情報工学', 0], ['電気電子システム工学', 1], ['電子物理工学', 2], ['応用化学', 3], ['化学工学', 4], ['マテリアル工学', 5], ['航空宇宙工学', 6], ['海洋システム工学', 7], ['機械工学', 8], ['生命機能科学', 9], ['植物バイオサイエンス', 10], ['数理科学', 11], ['物理化学', 12], ['分子科学', 13], ['生物科学', 14], ['理学療法学', 15], ['作業療法学', 16], ['栄養療法学', 17], ['環境共生科学', 18], ['社会共生科学', 19], ['人間環境科学', 20]],{include_blank: '選択なし'} %>
+                </div>
+              </div>
+              
+              <div>
+                <%# 曜日検索 %>
+                <div class="w-50">
+                  <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                  <strong><%= f.label "曜日", class:"title" %></strong>
+                  <%= f.select :lecture_infos_day_of_week_eq, [['月', 1], ['火', 2], ['水', 3], ['木', 4], ['金', 5], ['時間割外', 7]],{include_blank: '選択なし'} %>
+                </div>
+                <%# 時間検索 %>
+                <div class="w-50">
+                  <strong><%= f.label "コマ", class:"title" %></strong>
+                  <%= f.select :lecture_infos_period_eq, [['１', 1], ['２', 2], ['３', 3], ['４', 4], ['５', 5], ['６', 6]],{include_blank: '選択なし'} %>
+                </div>
+              </div>
+
+              <%= button_tag type: 'submit', class: 'btn btn-outline-success search-btn' do %>
+                検索
+              <% end %>
             <% end %>
           <% end %>
         </div>
@@ -43,33 +159,148 @@
       <div class="modal-content d-sm-none mobile-search-form">
         <div class="modal-header">  
           <%= search_form_for @q, url: lectures_path do |f| %>
-            <div class="input-group justify-content-center">
-              <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
-              <%# 検索ボタン %>
-              <div class="input-group-append">
-                <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
-              </div> 
-            </div>
-            <%# 分野選択 %>
-            <div class="first">
-              <strong><%= f.label :field, class:"title" %></strong><br>
-              <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
-              <%= f.radio_button :field_eq, 1 %>APS
-              <%= f.radio_button :field_eq, 2 %>APM
-              <%= f.radio_button :field_eq, 3 %>APS & APM
-              <%= f.radio_button :field_eq, 4 %>Liberal arts
-              <%= f.radio_button :field_eq, 5 %>Language
-            </div>
-            <%# 言語選択 %>
-            <div>
-              <%# ここはもっとスリムに書けるけどとりあえずこれで %>
-              <strong><%= f.label :lecture_lang, class:"title" %></strong><br>
-              <%= f.select :lecture_lang_eq, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
-            </div>
-            <%= button_tag type: 'submit', class: 'btn btn-outline-success search-btn' do %>
-              検索
+            <% if current_user.university_id == 1 %>
+              <div class="input-group justify-content-center">
+                <%= f.search_field :name_ja_or_name_en_or_teacher_name_ja_or_teacher_name_en_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
+                <%# 検索ボタン %>
+                <div class="input-group-append">
+                  <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+                </div> 
+              </div>
+              <%# 分野選択 %>
+              <div class="first">
+                <strong><%= f.label :field, class:"title"  %></strong>
+                <label>
+                  <%= f.radio_button :field_eq, '', {:checked => true} %>指定なし
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 1 %>APS
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 2 %>APM
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 3 %>APS & APM
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 4 %>Liberal arts
+                </label>
+                <label>
+                  <%= f.radio_button :field_eq, 5 %>Language
+                </label>
+              </div>
+
+              <%# 言語選択 %>
+              <div>
+                <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                <strong><%= f.label :lecture_lang, class:"title" %></strong>
+                <%= f.select :lecture_lang_eq, [['日本語', 1], ['英語', 2], ['スペイン語', 3], ['韓国語', 4], ['中国語', 5], ['マレーシア語＋インドネシア語', 6], ['タイ語', 7], ['ベトナム語', 8], ['日本語＋英語', 9]],{include_blank: '選択なし'} %>
+              </div>
+              <%= button_tag type: 'submit', class: 'btn btn-outline-success search-btn' do %>
+                検索
+              <% end %>
+            <% end %>
+            
+            <%# 大阪府立大学のときの検索フォーム %>
+            <% if current_user.university_id ==2 %>
+              <div class="input-group justify-content-center">
+                <%= f.search_field :name_ja_or_teacher_name_ja_cont, class: "searchbar form-control" ,placeholder: 'クラスまたは先生名で探す' %>
+                <%# 検索ボタン %>
+                <div class="input-group-append">
+                  <%= button_tag type: 'submit', class: 'btn btn-outline-success' do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+                </div> 
+              </div>
+              <%# 分野選択 %>
+              <div>
+                <strong><%= f.label :field, class:"title" %></strong>
+                 <%= f.select :field_eq, [['初年次ゼミナール', 1], ['教養', 2], ['英語', 3], ['初修外国語', 4], ['外国語特別', 5], ['海外研修', 6], ['健康スポーツ・科学', 7], ['情報基礎', 8], ['医療保険', 9], ['専門', 10], ['特例', 11], ['資格科目', 12], ['理系基礎', 13]], {include_blank: '選択なし'} %>
+              </div>
+
+              <%# 状態検索(オンラインかどうか) %>
+              <div>
+                <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                <strong><%= f.label "形式", class:"title" %></strong>
+                <%= f.select :lecture_infos_state_eq, [['オンライン', 1], ['対面', 2], ['混合', 3], ['不明', 4]],{include_blank: '選択なし'} %>
+              </div>
+
+              <%# 期間選択 %>
+              <div class="first">
+                <strong><%= f.label "期間", class:"title"  %></strong>
+                <br>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, '', {:checked => true} %>選択なし
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 0 %>前期
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 1 %>後期
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 2 %>前期集中
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 3 %>後期集中
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_semester_eq, 4 %>通年
+                </label>
+              </div>
+
+              <%# 学域選択 %>
+              <div class="first">
+                <strong><%= f.label "学域", class:"title"  %></strong>
+                <br>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, '', {:checked => true} %>選択なし
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, 1 %>現シス
+                </label>
+                <label>
+                 <%= f.radio_button :lecture_infos_faculty_eq, 2 %>工学
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, 3 %>生命環境
+                </label>
+                <label>
+                  <%= f.radio_button :lecture_infos_faculty_eq, 4 %>地域保健
+                </label>
+              </div>
+
+              <%# 学類検索 %>
+              <div>
+                <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                <strong><%= f.label "学類", class:"title" %></strong>
+                <%= f.select :lecture_infos_department_eq, [['電気電子', 0], ['物質科学', 1], ['機械系', 2], ['獣医', 3], ['応用生命', 4], ['緑地環境', 5], ['理', 6], ['看護', 7], ['総合リハビリテーション', 8], ['教育福祉', 9], ['知識情報システム', 10], ['環境システム', 11], ['マネジメント', 12]],{include_blank: '選択なし'} %>
+              </div>
+
+              <%# 専攻検索 %>
+              <div>
+                <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                <strong><%= f.label "課程", class:"title" %></strong>
+                <%= f.select :lecture_infos_major_eq, [['情報工学', 0], ['電気電子システム工学', 1], ['電子物理工学', 2], ['応用化学', 3], ['化学工学', 4], ['マテリアル工学', 5], ['航空宇宙工学', 6], ['海洋システム工学', 7], ['機械工学', 8], ['生命機能科学', 9], ['植物バイオサイエンス', 10], ['数理科学', 11], ['物理化学', 12], ['分子科学', 13], ['生物科学', 14], ['理学療法学', 15], ['作業療法学', 16], ['栄養療法学', 17], ['環境共生科学', 18], ['社会共生科学', 19], ['人間環境科学', 20]],{include_blank: '選択なし'} %>
+              </div>
+
+              <%# 曜日検索 %>
+              <div>
+                <%# ここはもっとスリムに書けるけどとりあえずこれで %>
+                <strong><%= f.label "曜日", class:"title" %></strong>
+                <%= f.select :lecture_infos_day_of_week_eq, [['月', 1], ['火', 2], ['水', 3], ['木', 4], ['金', 5], ['時間割外', 7]],{include_blank: '選択なし'} %>
+              </div>
+              <%# 時間検索 %>
+              <div>              
+                <strong><%= f.label "コマ", class:"title" %></strong>
+                <%= f.select :lecture_infos_period_eq, [['１', 1], ['２', 2], ['３', 3], ['４', 4], ['５', 5], ['６', 6]],{include_blank: '選択なし'} %>
+              </div>
+
+              <%= button_tag type: 'submit', class: 'btn btn-outline-success search-btn' do %>
+                検索
+              <% end %>
             <% end %>
           <% end %>
         </div>

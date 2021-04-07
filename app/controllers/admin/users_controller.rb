@@ -2,7 +2,10 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :if_not_admin
   def index
-    @users = User.includes([:user_point]).page(params[:page]).per(30)
+    @users = User.where(university_id: current_user.university_id).includes([:user_point]).page(params[:page]).per(30)
+  end
+
+  def admin_home
   end
   
   private

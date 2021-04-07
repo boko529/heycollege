@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:show,:following,:follower, :hide]
   before_action :user_is_not_deleted_show, only: [:show]
   before_action :user_is_not_deleted_follow, only: [:following, :follower]
+  before_action :check_university_show, only: [:show]
+  before_action :check_university_follow, only: [:following, :follower]
+
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.includes(lecture: :teacher).page(params[:reviews_page]).per(10)
@@ -36,6 +39,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def emailedit
+    @user = User.find(params[:id])
+    if @user == current_user
+      render 'emailedit'
+    else
+      redirect_to user_path(current_user)
+    end
+  end
+
+  def emailupdate
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to page_path('explain_confirmation')
+      flash[:notice] = t('.updated-user')
+    else
+      render 'emailedit'
+    end
+  end
+
   # 自分がフォローしているユーザー一覧
   def following
     @user = User.find(params[:user_id])
@@ -59,7 +81,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :message, :image, :image_cache, :remove_image)
+    params.require(:user).permit(:name,:gender,:grade,:faculty, :twitter_name, :instagram_name, :zoom_url, :message, :image, :image_cache, :remove_image, :email)
   end
 
   # 退会しているかを確認(user/show用)
@@ -77,6 +99,22 @@ class UsersController < ApplicationController
     if @user.is_deleted
       flash[:notice] = t('.user-hidden')
       redirect_to root_path
+    end
+  end
+
+  # 自分と同じ大学のshowページしか見れない
+  def check_university_show
+    @user = User.find(params[:id])
+    if current_user.university_id != @user.university_id
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  # 自分と同じ大学のshowページしか見れない
+  def check_university_follow
+    @user = User.find(params[:user_id])
+    if current_user.university_id != @user.university_id
+      redirect_back(fallback_location: root_path)
     end
   end
 end

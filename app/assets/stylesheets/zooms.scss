@@ -41,6 +41,11 @@
       float: right;
       
     }
+    .btn-secondary{
+      color: #fff;
+      float: right;
+      
+    }
     .btn-success{
       color: #fff;
       margin: 0;
@@ -53,10 +58,20 @@
       margin-right: 0.5rem;
     }
   }
-  .zoom_room.emee-ontime{
-    background-color: red; //消していいよ
+  .ontime{
+    color: rgb(245, 245, 245);
+    background-color: rgb(255, 30, 0);
+    border-radius: 50rem;
+    padding: 0.1rem 0.4rem;
+    margin-bottom: 0.4rem;
+    .white{
+      color: rgb(245, 245, 245);
+      margin-right: 0.1rem;
+    }
   }
-  
+  .disable{
+    pointer-events: none
+  }
 }
 .zoom-new, .zoom-edit{
   div{

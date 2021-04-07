@@ -27,6 +27,12 @@
           <i class="far fa-bookmark fa-2x"></i><span><%= t('.book') %></span>
         <% end %>
       </li>
+      <%# ZoomHouse %>
+      <li class="list-group-item text-center text-lg-left">
+          <%= link_to zooms_path do %>           
+          <i class="fas fa-tv fa-2x"></i><span>ZoomHouse</span>
+        <% end %>
+      </li>       
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
           <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>
@@ -71,31 +77,10 @@
     <%# ログインしてない時 %>
     <% else %>
       <li class="list-group-item text-center text-lg-left">
-        <%= link_to ranking_path do %>
-          <i class="fas fa-home fa-2x"></i><span><%= t('.rank') %></span>
-        <% end %>
-      </li>
-      <%# <li class="list-group-item"> %>
-      <!--
-      <li class="list-group-item text-center text-lg-left">
-        <%= link_to groups_path do %>
-          <i class="fas fa-medal fa-2x"></i><span >グループ</span>
-        <% end %>
-      </li>
-      -->
-      <li class="list-group-item text-center text-lg-left">
         <%= link_to new_user_session_path do %>
           <i class="fas fa-sign-in-alt fa-2x"></i><span><%= t('.log') %></span>
         <% end %>
       </li>
-
-      <!--
-        <li class="list-group-item text-center text-lg-left">
-          <%= link_to root_path do %>
-            <i class="fas fa-question fa-2x"></i><span >ヘルプ</span>
-          <% end %>
-        </li>
-      -->
       
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
@@ -104,7 +89,6 @@
       </li>
     <% end %>
       <li class="blank">
-      
       </li>
   </ul>
 </div>

@@ -135,7 +135,6 @@ ul.groups{
     border-radius: 4px;
     border-bottom: 1px solid gray;
     padding: 1rem 0.4rem;
-
     .class-name{
       height: 100%;
       padding: 10px;
@@ -152,6 +151,12 @@ ul.groups{
       color: #333;
       font-weight: bold;
     }
+    .group-profile{
+      margin: 0 0.3rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }
 .group-show .member-list-box {
@@ -167,11 +172,14 @@ ul.groups{
 // --------------------------------
 // about form.html
   // header and img, buttons
-  .groupshow-edit {
-    .groupshow-headerimg {
+.group-edit{
+  margin-bottom: 9rem;
+}
+.groupshow-edit {
+  .groupshow-headerimg {
+    width: 100%;
+    img {
       width: 100%;
-      img {
-        width: 100%;
-      }
     }
   }
+}

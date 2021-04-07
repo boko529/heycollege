@@ -6,7 +6,7 @@ en:
       groupedit: "Group edit"
       changes: "Update"
     join:
-      join: "Join"
+      join: "Request to join?"
     unjoin:
       leave: "Leave"
     index:

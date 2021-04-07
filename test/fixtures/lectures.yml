@@ -7,6 +7,8 @@ lecture_1:
   field: "APS"
   user: user1
   teacher: teacher1
+  university_id: 1
+  type: "Apu::Lecture"
 
 
 lecture_2:
@@ -16,6 +18,8 @@ lecture_2:
   field: "APS"
   user: user2
   teacher: teacher2
+  university_id: 1
+  type: "Apu::Lecture"
 
 <% 50.times do |n| %>
 lecture_<%= n+3 %>:
@@ -25,6 +29,8 @@ lecture_<%= n+3 %>:
   field: "APS"
   user: user1
   teacher: teacher1
+  university_id: 1
+  type: "Apu::Lecture"
 <% end %>
 
 lecture_53:
@@ -34,6 +40,8 @@ lecture_53:
   field: "APS"
   user: user1
   teacher: teacher3
+  university_id: 1
+  type: "Apu::Lecture"
 
 lecture_54:
   name_ja: "人工無能"
@@ -42,3 +50,5 @@ lecture_54:
   field: "APS"
   user: user1
   teacher: teacher4
+  university_id: 1
+  type: "Apu::Lecture"

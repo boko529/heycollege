@@ -12,24 +12,23 @@
       <%= render 'layouts/header'%>
     </header>
     <%# これはヘッダーのなかに入れると不具合が出る(positonが固定されている中に入れると不具合出る) %>
-    <%= render 'layouts/modal_search_form' %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/modal_search_form' %>
+    <% end %>
 
     <div class="container-fluid content">
       <div class="row">
-
         <%# サイドバー %>
-        <% if user_signed_in? %>
-          <div class="col-2 d-none d-md-block sidebar_col p-0">
-            <%= render 'layouts/sidebar'%>
-          </div>
+        <div class="col-2 d-none d-md-block sidebar_col p-0">
+          <%= render 'layouts/sidebar'%>
+        </div>
 
-          <div class="subsidebar-file">
-            <%= render 'layouts/subsidebar'%>
-          </div>
-        <% end %>
+        <div class="subsidebar-file">
+          <%= render 'layouts/subsidebar'%>
+        </div>
        
         <%# メインコンテント %>
-        <div class="col-12 main_content px-sm-5 pt-sm-2 <%= "col-md-10" if user_signed_in? %>">
+        <div class="col-12 main_content px-sm-5 pt-sm-2 col-md-10">
         
           <%# ここから3行はフラッシュ表示 %>
           <% flash.each do |message_type, message| %>
@@ -43,9 +42,7 @@
           <div>
           <%# 次の行は開発用の表示 %>
               <%= debug(params) if Rails.env.development? %>
-              <% if user_signed_in? %>
-                <%= render 'layouts/footer'%>
-              <% end %>
+              <%= render 'layouts/footer'%>
           </div>
         </div>
       </div>

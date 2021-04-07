@@ -36,19 +36,21 @@
           <i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> 
-          <% if session[:locale] == "ja" || session[:locale].blank? %>
-            <%= link_to "/application/change_language/en", class: "dropdown-item" do %>
-              <i class="fas fa-language fa-lg"></i>
-              &nbsp;
-              <span class="d-inline"><%= t('.lang') %></span>
+          <% if current_user.university_id == 1 %>
+            <% if session[:locale] == "ja" || session[:locale].blank? %>
+              <%= link_to "/application/change_language/en", class: "dropdown-item" do %>
+                <i class="fas fa-language fa-lg"></i>
+                &nbsp;
+                <span class="d-inline"><%= t('.lang') %></span>
+              <% end %>
+            <% elsif session[:locale] == "en" %>
+              <%= link_to "/application/change_language/ja", class: "dropdown-item" do %>
+                <i class="fas fa-language fa-lg"></i>
+                &nbsp;
+                <span class="d-inline"><%= t('.lang') %></span>
+              <% end %>
             <% end %>
-          <% elsif session[:locale] == "en" %>
-            <%= link_to "/application/change_language/ja", class: "dropdown-item" do %>
-              <i class="fas fa-language fa-lg"></i>
-              &nbsp;
-              <span class="d-inline"><%= t('.lang') %></span>
-            <% end %>
-          <% end %>      
+          <% end %>
           <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", class: "dropdown-item", target: :_blank, rel: "noopener noreferrer" do %>
             <i class="fas fa-envelope fa-lg"></i>
             &nbsp;
@@ -132,6 +134,12 @@
     <% elsif @user == current_user %>
       <small><i class="fab fa-twitter-square fa-2x"></i><%= link_to t('.add_account'),edit_user_path(@user.id) %></small>
     <% end %>
+    <% if @user.university_id == 1 %>
+      <% if @user.email.include?("@apu.ac.jp") %>
+      <% else %>
+        <small><i class="far fa-envelope fa-2x"></i><%= link_to t('.change_email'), email_edit_path(@user) %></small>
+      <% end %>
+    <% end %>
     </div> 
 
     <%# 所属団体 %>
@@ -140,7 +148,8 @@
         <%# t('.mygroup') %><%# @groups.count %>
         <ul class="group-you-in">
           <% @groups.each do |group| %>
-            <% if UserGroupRelation.find_by(user_id: @user.id, group_id: group.id).confirmation == true %>
+          <% relation = UserGroupRelation.find_by(user_id: @user.id, group_id: group.id) %>
+            <% if relation.confirmation == true && relation.leave == false %>
               <li><%= render partial: "shared/group_image/display_icon20", locals: {group: group} %><%= link_to group.name, group %></li>
             <% end %>
           <% end %>

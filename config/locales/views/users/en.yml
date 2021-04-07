@@ -18,6 +18,7 @@ en:
       following: " Following"
       follower: " Follower"
       add_account: "Add account"
+      change_email: "大学用メールアドレスに変更(ex)~@apu.ac.jp"
       reviews_count: "Reviews"
       review: "Review"
       class: "Class"
@@ -54,8 +55,13 @@ en:
       in100: "in 100 letters"
       twi: "Twitter username"
       insta: "Instagram username"
+      zoom: "ZOOM invitation URL"
       twi_message: "ex)Hey_College_"
       insta_message: "ex)hey.college"
+      zoom_message: "ex)https://us04web.zoom.us.."
+    emailedit:
+      changeedit: "Email edit"
+      change_email: "change"
     follower:
       follower: "Follower"
     following:

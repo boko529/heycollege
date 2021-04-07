@@ -8,3 +8,5 @@ ja:
       updated-class-teacher: "クラス情報は更新されました！&先生ページを作成しました!"
     destroy:
       deleted-class: "クラスを削除しました"
+    index:
+      too_many: "検索結果が多すぎます。検索条件を絞ってください。"

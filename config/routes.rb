@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :news, except: [:index, :show]
     resources :auto_creates, only: [:new, :create]
     resource :groups, only: [:new, :create]
+    resources :slide_contents, except: [:show]
+    get 'home', to: 'users#admin_home', as:'home'
   end
   root 'zooms#index'
   get 'ranking', to: 'static_pages#home', as:'ranking'
@@ -42,9 +44,8 @@ Rails.application.routes.draw do
       get :group
     end
   end
-  
-  resources :user_group_relations, only: [:create, :destroy, :edit, :update]
-  
+  resources :user_group_relations, only: [:create]
+  patch 'user_group_relations/leave/:group_id', to: 'user_group_relations#leave'
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   post 'unfollow/:id', to: 'relationships#unfollow', as: 'unfollow'
   get 'users/following/:user_id', to: 'users#following', as:'users_following'
@@ -56,8 +57,13 @@ Rails.application.routes.draw do
   # redis, ランキング更新
   resource :redis, only: %i[show]
   patch "redis/ranking_update", to: 'redis#ranking_update'
-  # E-mee
+  # ZoomHouse
   resources :zooms, only: [:index,:new,:edit,:update,:create,:destroy]
   # zoom参加者管理のパス(userとzoomの中間テーブル)
   post 'zooms/:id', to: 'user_zooms#create', as:'user_zooms'
+  # sitemapのルーティング
+  get '/sitemap', to: redirect("https://s3-#{ENV['AWS_REGION']}.amazonaws.com/#{ENV['AWS_BUCKET']}/sitemaps/sitemap.xml.gz")
+  #email変更
+  get 'users/:id/emailedit', to: 'users#emailedit',as:'email_edit'
+  patch 'users/:id/emailupdate', to: 'users#emailupdate',as:'email_update'
 end

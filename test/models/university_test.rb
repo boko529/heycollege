@@ -10,7 +10,7 @@ class UniversityTest < ActiveSupport::TestCase
   end
 
   test "name_ja should be present" do
-    @user1.name = " "
-    assert_not @user1.valid?
+    @university.name_ja = " "
+    assert_not @university.valid?
   end
 end

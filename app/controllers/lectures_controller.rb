@@ -1,7 +1,7 @@
 class LecturesController < ApplicationController
   # before_action :authenticate_user!, only: [:create, :show, :new, :edit, :upgrade, :destroy]
-  before_action :authenticate_user!, only: [:show]
-  before_action :check_university, only: :show
+  before_action :authenticate_user!, only: [:show, :index]
+  before_action :check_university, only: [:show]
   # before_action :baria_user, only: [:edit, :destroy, :update]
   # before_action :set_teacher_name, only: [:create, :update]
   # before_action :set_past_teacher, only: [:update, :destroy]
@@ -10,16 +10,21 @@ class LecturesController < ApplicationController
   def index
     #検索である程度数が絞られてたらredisなしのが早い
     @q = Lecture.where(university_id: current_user.university_id).ransack(params[:q])
-    @q.sorts = 'updated_at desc' if @q.sorts.empty?
-    @lectures = @q.result.left_joins(:reviews).distinct.sort_by do |lecture|
-      reviews = lecture.reviews
-      if reviews.present?
-        reviews.map(&:score).sum / reviews.size
-      else
-        0
-      end
-    end.reverse
-    @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+    if @q.result.length < 20 # 上限は適当に設定してくだされ.
+      @q.sorts = 'updated_at desc' if @q.sorts.empty?
+      @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
+        reviews = lecture.reviews
+        if reviews.present?
+          reviews.map(&:score).sum / reviews.size
+        else
+          0
+        end
+      end.reverse
+      @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+    else
+      flash[:alert] = t('.too_many')
+      redirect_to root_path
+    end  
   end
 
   def show

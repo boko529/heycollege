@@ -16,7 +16,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   test "user should not watch user index" do
     login_as(@user, scope: :user)
     get admin_users_path
-    follow_redirect!
-    assert_template 'static_pages/home'
+    # follow_redirect!
+    assert_template nil
   end
 end

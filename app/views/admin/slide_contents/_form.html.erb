@@ -1,0 +1,20 @@
+<%= form_with(model: [:admin, @slide], local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%# ヘッダー系 %>
+  <div>
+    <% if @slide.slide_image? %>
+      <%= image_tag @slide.slide_image.url, alt: "group-header" %>
+    <% end %>
+    <%= f.file_field :slide_image, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+    <%= f.hidden_field :slide_image_cache, accept: 'image/jpeg,image/gif,image/png,image/jpg', class: "image-select-btn" %>
+  </div>
+
+  <%= f.label :link %>(ここにリンクを入力するとスライドショーをクリックした際にそこに遷移します)
+  <%= f.text_field :link, class: 'form-control' %>
+
+  <%= f.label :university_id %>
+  <%= f.select :university_id, {'アジア太平洋大学': 1, '大阪府立大学': 2}, { include_blank: '選択してください'}, { class: 'form-control'} %>
+  
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

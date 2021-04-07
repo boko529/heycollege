@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_114506) do
+ActiveRecord::Schema.define(version: 2021_04_06_062725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,27 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.index ["user_id", "review_id"], name: "index_helpfuls_on_user_id_and_review_id", unique: true
   end
 
+  create_table "lecture_infos", force: :cascade do |t|
+    t.integer "faculty"
+    t.integer "department"
+    t.integer "major"
+    t.integer "day_of_week"
+    t.integer "semester"
+    t.integer "period"
+    t.bigint "lecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "state"
+    t.index ["day_of_week"], name: "index_lecture_infos_on_day_of_week"
+    t.index ["department"], name: "index_lecture_infos_on_department"
+    t.index ["faculty"], name: "index_lecture_infos_on_faculty"
+    t.index ["lecture_id"], name: "index_lecture_infos_on_lecture_id"
+    t.index ["major"], name: "index_lecture_infos_on_major"
+    t.index ["period"], name: "index_lecture_infos_on_period"
+    t.index ["semester"], name: "index_lecture_infos_on_semester"
+    t.index ["state"], name: "index_lecture_infos_on_state"
+  end
+
   create_table "lectures", force: :cascade do |t|
     t.text "name_ja"
     t.datetime "created_at", precision: 6, null: false
@@ -84,8 +105,8 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.bigint "user_id", null: false
     t.bigint "teacher_id", null: false
     t.string "name_en"
-    t.integer "lecture_lang", default: 1
-    t.integer "field", default: 1
+    t.integer "lecture_lang"
+    t.integer "field"
     t.string "type", default: "Apu::Lecture", null: false
     t.bigint "university_id", default: 1, null: false
     t.index ["field"], name: "index_lectures_on_field"
@@ -146,6 +167,15 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "slide_contents", force: :cascade do |t|
+    t.string "slide_image", null: false
+    t.string "link"
+    t.bigint "university_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["university_id"], name: "index_slide_contents_on_university_id"
+  end
+
   create_table "teachers", force: :cascade do |t|
     t.string "name_ja"
     t.bigint "user_id", null: false
@@ -171,6 +201,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.boolean "confirmation", default: false, null: false
+    t.boolean "leave", default: false, null: false
     t.index ["group_id"], name: "index_user_group_relations_on_group_id"
     t.index ["user_id", "group_id"], name: "index_user_group_relations_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_user_group_relations_on_user_id"
@@ -230,6 +261,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
     t.string "image"
     t.string "type", default: "Apu::User", null: false
     t.bigint "university_id", default: 1
+    t.string "zoom_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["university_id"], name: "index_users_on_university_id"
@@ -255,12 +287,14 @@ ActiveRecord::Schema.define(version: 2021_03_31_114506) do
   add_foreign_key "group_point_histories", "groups"
   add_foreign_key "group_points", "groups"
   add_foreign_key "groups", "universities"
+  add_foreign_key "lecture_infos", "lectures"
   add_foreign_key "lectures", "teachers"
   add_foreign_key "lectures", "universities"
   add_foreign_key "lectures", "users"
   add_foreign_key "news", "universities"
   add_foreign_key "reviews", "lectures"
   add_foreign_key "reviews", "users"
+  add_foreign_key "slide_contents", "universities"
   add_foreign_key "teachers", "universities"
   add_foreign_key "teachers", "users"
   add_foreign_key "user_point_histories", "user_points"

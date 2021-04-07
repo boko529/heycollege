@@ -7,6 +7,7 @@ class GroupsEditTest < ActionDispatch::IntegrationTest
     @user2 = users(:user2) # group1に所属、admin == true
     @group1 = groups(:group1) # user2が所属
     @group2 = groups(:group2) # user1が所属
+    @group3 = groups(:group3) # user1が所属,confirmation == false, user2が所属、leave == true
   end
 
   test "blank edit" do
@@ -23,7 +24,7 @@ class GroupsEditTest < ActionDispatch::IntegrationTest
     assert_template 'groups/edit'
     name  = "名大祭"
     patch group_path(@group1), params: { group: { name: name } }
-    assert_not flash.empty?
+    # assert_not flash.empty?
     assert_redirected_to @group1
     @group1.reload
     assert_equal name,  @group1.name
@@ -72,7 +73,7 @@ class GroupsEditTest < ActionDispatch::IntegrationTest
     assert_template 'groups/edit'
     profile  = "逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ、逃げちゃダメだ！"
     patch group_path(@group1), params: { group: { profile: profile } }
-    assert_not flash.empty?
+    # assert_not flash.empty?
     assert_redirected_to @group1
     @group1.reload
     assert_equal profile,  @group1.profile
@@ -102,5 +103,25 @@ class GroupsEditTest < ActionDispatch::IntegrationTest
     assert_template 'groups/show'
     @group1.reload
     assert_not_equal profile,  @group2.profile
+  end
+
+  test "not confirmed member can not edit my group" do
+    login_as(@user1, scope: :user)
+    get edit_group_path(@group3)
+    assert_template nil
+    name  = "名大祭"
+    patch group_path(@group3), params: { group: { name: name } }
+    assert_template nil
+    assert_not_equal @group3.name, name
+  end
+
+  test "a member who already left the group cannot edit it" do
+    login_as(@user2, scope: :user)
+    get edit_group_path(@group3)
+    assert_template nil
+    name  = "名大祭"
+    patch group_path(@group3), params: { group: { name: name } }
+    assert_template nil
+    assert_not_equal @group3.name, name
   end
 end
