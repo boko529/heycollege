@@ -10,7 +10,7 @@
       </li>
       <li class="list-group-item text-center text-lg-left">
         <%= link_to groups_path do %>
-          <i class="fas fa-users fa-2x"></i><span >グループ</span>
+          <i class="fas fa-users fa-2x"></i><span ><%= t('.group') %></span>
         <% end %>
       </li>
       <%# 手動作成はいらないと思うのでコメントアウト %>
@@ -30,7 +30,7 @@
       <%# ZoomHouse %>
       <li class="list-group-item text-center text-lg-left">
           <%= link_to zooms_path do %>           
-          <i class="fas fa-tv fa-2x"></i><span>ZoomHouse</span>
+          <i class="fas fa-broadcast-tower fa-2x"></i><span><%= t('.zoomhouse') %></span>
         <% end %>
       </li>       
       <li class="list-group-item text-center text-lg-left">
