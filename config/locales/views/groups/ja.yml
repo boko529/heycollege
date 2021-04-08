@@ -10,8 +10,8 @@ ja:
     unjoin:
       leave: "退会"
     index:
-      group: "グループ"
-      makenew: "新しくグループを作る"
+      # group: "グループ"
+      # makenew: "新しくグループを作る"
       grouplist: "グループリスト"
       notes: "当ページには運営が認証した学生団体のみを表示しております。"
     new:

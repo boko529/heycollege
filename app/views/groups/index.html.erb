@@ -1,7 +1,30 @@
 <% provide(:title, t('.grouplist')) %>
 <div class="groups-index">
-  <h2 class="title"><%= t('.group') %></h2>
+  <%# <h2 class="title"> %>
+    <%#= t('.group') %>
+  <%# </h2> %>
+
+<%# スライドショー %>
+  <% if @slides %>
+    <div class="slide-container">
+      <div class="slide_show">
+        <% @slides.each do |slide| %>
+          <div class="slide_content">
+            <% if !slide.link.blank? %>
+              <%= link_to slide.link, target: :_blank, rel: "noopener noreferrer" do %>
+                <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+              <% end %>
+            <% else %>
+                <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <p><%= t('.notes') %></p>
+
   <%# 新規グループ作成コメントアウト %>
   <%# <p class="new btn btn-primary"> %>
     <%#= link_to t('.makenew'), new_group_path %>
@@ -24,3 +47,17 @@
     <%= paginate @groups, param_name: "group_page", theme: 'twitter-bootstrap-4' %> 
   </ul>
 </div>
+
+<script>
+  $(function() {
+    $('.slide_show').slick({
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+    });
+    // マウスをホバーしたときにそのスライドに移動
+    $('.slick-dots li').on('mouseover', function() {
+      $('.slide_show').slick('goTo', $(this).index());
+    });
+  });
+  </script>

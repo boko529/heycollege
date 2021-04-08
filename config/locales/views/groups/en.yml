@@ -10,8 +10,8 @@ en:
     unjoin:
       leave: "Leave"
     index:
-      group: "Group"
-      makenew: "Make a new group"
+      # group: "Group"
+      # makenew: "Make a new group"
       grouplist: "Group List"
       notes:  "This page only displays organizations certified by the operation. "
     new:
