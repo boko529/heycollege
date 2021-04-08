@@ -6,50 +6,65 @@
   <% end %>
 <% end %>
 
-<div class="slide-container">
-  <div class="slide_show">
-    <div class="slide_content"><%= image_tag("slideshow/slide1.png", alt: "スライド1", class: "slide") %></div>
-    <div class="slide_content"><%= image_tag("slideshow/slide2.png", alt: "スライド2", class: "slide") %></div>
-    <div class="slide_content">
-      <%= link_to "https://aputimes2019.wixsite.com/aputimes", target: :_blank, rel: "noopener noreferrer"  do %>
-      <%= image_tag("slideshow/slide3.png", alt: "スライド3", class: "slide") %>
+<% if @slides %>
+  <div class="slide-container">
+    <div class="slide_show">
+      <% @slides.each do |slide| %>
+        <div class="slide_content">
+          <% if !slide.link.blank? %>
+            <%= link_to "slide.link", target: :_blank, rel: "noopener noreferrer" do %>
+              <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+            <% end %>
+          <% else %>
+              <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
-</div>
+<% end %>
 
 <%#以下はページネーションをクリックした際にパラメーターを付与して、そのパラメーターによって条件分岐してる%>
 <div class="ranking-index">
   <nav>
     <%# 講義ランキング先生ランキング切り替えタブ %>
     <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
-      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-teacher-ranking' || params[:active_tab] == nil %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><%= t('.teacher') %></a>
-      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><%= t('.class') %></a>
+      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-lecture-ranking' || params[:active_tab] == nil %>" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true"><%= t('.class') %></a>
+      <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-teacher-ranking' %>" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false"><%= t('.teacher') %></a>
       <a class="col-4 nav-item nav-link <%= 'active' if params[:active_tab] == 'nav-user-ranking' %>" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false"><%= t('.user_point') %></a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
-    <%# 先生ランキング表示 %>
-    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-teacher-ranking' || params[:active_tab] == nil %>" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
-      <ul class="rankings">
-        <% @teachers.each.with_index(1) do |teacher, i| %>
-          <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
-        <% end %>
-        <%= paginate @teachers, param_name: 'teachers_page', params: {param_name: 'teachers_page',active_tab: "nav-teacher-ranking"}, theme: 'twitter-bootstrap-4' %>
-      </ul>
-    </div>
     <%# 講義ランキング表示 %>
-    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-lecture-ranking' %>" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
+    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-lecture-ranking' || params[:active_tab] == nil %>" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
       <ul class="rankings">
+        <% # 同率順位を表示するための変数 %>
+        <% @lastScore = 0 %>
+        <% @j = 1 %>
         <% @lectures.each.with_index(1) do |lecture, i| %>
           <%= render partial: "static_pages/lecture", locals: {lecture: lecture, i: i} %>
         <% end %>
         <%= paginate @lectures, param_name: 'lectures_page', params: {param_name: 'lectures_page',active_tab: "nav-lecture-ranking"}, theme: 'twitter-bootstrap-4' %>
       </ul>
     </div>
+    <%# 先生ランキング表示 %>
+    <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-teacher-ranking' %>" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
+      <ul class="rankings">
+        <% # 同率順位を表示するための変数 %>
+        <% @lastScore = 0 %>
+        <% @j = 1 %>
+        <% @teachers.each.with_index(1) do |teacher, i| %>
+          <%= render partial: "static_pages/teacher", locals: {teacher: teacher, i: i} %>
+        <% end %>
+        <%= paginate @teachers, param_name: 'teachers_page', params: {param_name: 'teachers_page',active_tab: "nav-teacher-ranking"}, theme: 'twitter-bootstrap-4' %>
+      </ul>
+    </div>
     <%# ユーザーランキング表示 %>
     <div class="tab-pane fade <%= 'active show' if params[:active_tab] == 'nav-user-ranking' %>" id="nav-user-lanking" role="tabpanel" aria-labelledby="nav-user-lanking-tab">
       <ul class="rankings">
+        <% # 同率順位を表示するための変数 %>
+        <% @lastScore = 0 %>
+        <% @j = 1 %>
         <% @users.each.with_index(1) do |user, i| %>
           <%= render partial: "static_pages/user", locals: {user: user, i: i} %>
         <% end %>
@@ -59,16 +74,18 @@
   </div>
 </div>
 
-<script>
-  $(function() {
-    $('.slide_show').slick({
-      dots: true,
-      autoplay: true,
-      autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+<% if @slides %>
+  <script>
+    $(function() {
+      $('.slide_show').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+      });
+      // マウスをホバーしたときにそのスライドに移動
+      $('.slick-dots li').on('mouseover', function() {
+        $('.slide_show').slick('goTo', $(this).index());
+      });
     });
-    // マウスをホバーしたときにそのスライドに移動
-    $('.slick-dots li').on('mouseover', function() {
-      $('.slide_show').slick('goTo', $(this).index());
-    });
-  });
-</script>
+  </script>
+<% end %>

@@ -4,12 +4,12 @@ class Lecture < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   belongs_to :university
+  has_many :lecture_infos, dependent: :destroy # lectureが消えたらlecture_infoも消える。
   validates :name_ja, presence: true, length: { maximum: 70 }, uniqueness: {scope: :teacher_id} # 大学内は含まれてるのでscopeつけてない
   validates :name_en, presence: true, length: { maximum: 70 }, uniqueness: {scope: :teacher_id} # 大学内は含まれているのでscopeつけていない
   validates :user_id, presence: true
   validates :teacher_id, presence: true
   validates :field, presence: true
-  validates :lecture_lang, presence: true
   validates :university_id, presence: true
   validates :type, presence: true
   # validates :lecture_term, presence: true

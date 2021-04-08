@@ -57,12 +57,12 @@ p {
   form{
     width: 100%;
   }
-  .first{
+  .title{
+    margin-bottom: 0rem;
     margin-top: 0.3rem;
   }
-  .title{
-    margin-bottom: 0.1rem;
-    margin-top: 0.3rem;
+  label{
+    margin-bottom: 0;
   }
   select{
     width: 100%;
@@ -81,12 +81,19 @@ p {
     width: 100%;
   }
   .first{
-    margin-top: 0.3rem;
+    padding-top: 0.5rem;
   }
   .title{
     margin-bottom: 0.1rem;
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
     margin-right: 0.5rem;
+  }
+  label{
+    margin-bottom: 0;
+  }
+  .w-50{
+    width: 50%;
+    float: left;
   }
   .search-btn{
     margin-top: 1rem;
@@ -130,7 +137,6 @@ background-color: white;
 nav{
   ul.pagination{
     margin-top: 0.1rem;
-    margin-bottom: 0.5rem;
     li.page-item{
       background-color: #fff;
       &:last-child .page-link {
@@ -167,6 +173,8 @@ nav{
 }
 .yield_box{
   min-height: 45rem;
+  // スマホでフッターが隠れるから追加
+  margin-bottom: 80px;
 }
 // デバック表示(開発環境)の整形
 .debug_dump {

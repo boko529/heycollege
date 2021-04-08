@@ -23,7 +23,7 @@ User.create!(name:  "OPUadmin", email: "sample@edu.osakafu-u.ac.jp", password:  
   confirmed_at: Time.now,
   agreement: true,
   type: Apu::User,
-  faculty: "APM",
+  faculty: "APS",
   university_id: 1)
 end
 
@@ -90,10 +90,21 @@ users = User.where(university_id: 2).order(:created_at).take(5)
   name_en = subject_name_en + next_name
   field = 1
   language = 1
-  # lecture_term = "First"
-  # day_of_week = "Mon"
-  # period = "second"
-  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 3, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
+  users.each { |user| Opu::Lecture.create!(name_ja: user.id.to_s + name_ja, name_en: user.id.to_s + name_en, teacher_id: 5, field: field, lecture_lang: language, user_id: user.id, university_id: user.university_id)}
+end
+
+lectures = Opu::Lecture.all
+lectures.each do |lecture|
+  LectureInfo.create!(
+    faculty: 1,
+    department: 1,
+    major: 1,
+    day_of_week: 1,
+    semester: 1,
+    period: 1,
+    state: 1,
+    lecture_id: lecture.id,
+  )
 end
 
 5.times do |n|
@@ -126,8 +137,8 @@ UserGroupRelation.create(user_id: 1, group_id: 1, admin: true, confirmation: tru
 UserGroupRelation.create(user_id: 1, group_id: 2, admin: true, confirmation: true)
 UserGroupRelation.create(user_id: 2, group_id: 3, admin: true, confirmation: true)
 UserGroupRelation.create(user_id: 2, group_id: 4, admin: true, confirmation: true)
-User.all.where(university_id: 1).where.not(id: 1).each { |user| user.join(group1) && user.join(group2) }
-User.all.where(university_id: 2).where.not(id: 2).each { |user| user.join(group3) && user.join(group4) }
+User.all.where(university_id: 1).where.not(id: 1).take(5).each { |user| user.join(group1) && user.join(group2) }
+User.all.where(university_id: 2).where.not(id: 2).take(5).each { |user| user.join(group3) && user.join(group4) }
 
 # 団体ごとにポイントテーブルを作成
 Group.all.each do |group|
