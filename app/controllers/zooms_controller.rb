@@ -52,7 +52,7 @@ class ZoomsController < ApplicationController
 
   def index
     if user_signed_in?
-      @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]).order(:start_time) #自分の大学のzoom一覧を表示
+      @zooms = Zoom.where(university_id: current_user.university_id).or(Zoom.where(is_public: :true)).includes([:user]).order(:start_time) #自分の大学のzoomもしくはis_publicがtrueのzoomを一覧を表示
     end
   end
   
@@ -111,7 +111,7 @@ class ZoomsController < ApplicationController
 
   private
   def zoom_params
-    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time)
+    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time, :is_public)
   end
 
   def correct_user

@@ -21,14 +21,16 @@
         <div>
           <%= f.label :start_time %>
           <br>
-          <span><small>現在時刻から数分後に設定すると良いです</small></span>
-          <br>
           <%= f.datetime_field :start_time, :value => Time.now.strftime("%Y-%m-%dT%H:%M"), class: 'form-control' %>
         </div>
         <div>
           <%= f.label :end_time %>
           <br>
           <%= f.datetime_field :end_time, :value => (Time.now+3600).strftime("%Y-%m-%dT%H:%M"), class: 'form-control' %>
+        </div>
+        <div>
+          <%= f.label :is_public %>
+          <%= f.check_box :is_public, class: 'edit-control' %>
         </div>
         <div>
         <%= f.submit '作成する', class: "btn btn-primary"%>

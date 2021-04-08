@@ -39,6 +39,12 @@ en:
         name: Nickname
       review:
         content: content
+      zoom:
+        title: Topic
+        join_url: Invitation URL
+        start_time: Start Time
+        end_time: End Time
+        is_public: Published to other universities
 
   enums:
     user:
