@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.where(university_id: current_user.university_id).includes(:group_point).order("group_points.current_point DESC")
     @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(20)
+    @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc) # スライドショー
   end
 
   def show
