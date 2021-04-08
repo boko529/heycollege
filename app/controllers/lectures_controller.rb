@@ -31,7 +31,7 @@ class LecturesController < ApplicationController
   def show
     @lecture = Lecture.find(params[:id])
     # 参考になる順で表示 + 詳細が書かれているものに限定,一番参考になるものは上で特別に表示しているので下の一覧では表示しない(参考になるボタンに不具合が生じるから)
-    reviews = @lecture.reviews.where.not(content: "").includes([:helpfuls ,:user]).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.drop(1)
+    reviews = @lecture.reviews.where.not(content: "").includes(:helpfuls, user: :group).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.drop(1)
     @reviews = Kaminari.paginate_array(reviews) # しばらくはページネーションなくて良さそう。ページネーションを追加する際はviewの自分のレビューへ飛ぶ際に場合分けで1ページ目のときはそのまま2ページ目以降は?page=params[:page]=2/~~みたいにする必要あり
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
