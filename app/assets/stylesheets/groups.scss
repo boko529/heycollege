@@ -135,6 +135,7 @@ ul.groups{
     border-radius: 4px;
     border-bottom: 1px solid gray;
     padding: 1rem 0.4rem;
+    // display: inline-block;
     .class-name{
       height: 100%;
       padding: 10px;
@@ -150,12 +151,20 @@ ul.groups{
       display: inline-block;
       color: #333;
       font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .group-profile-name{
+      margin-left: 10px;
+    }
+    .group-name{
+      display: block;
+      margin-bottom: 5px;
     }
     .group-profile{
-      margin: 0 0.3rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
   }
 }
@@ -166,7 +175,9 @@ ul.groups{
 // --------------------------------
 // about groups index
 .groups-index-groupimg{
-  margin-left: 0.7rem;
+  height: 100px;
+  width: 100px;
+  margin-right: 0.7rem;
 }
 
 // --------------------------------

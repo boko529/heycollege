@@ -1,0 +1,6 @@
+<%# ユーザーの画像を表示するためのパーシャル(100×100) %>
+<% if group.profile_image? %>
+  <%= image_tag group.profile_image.thumb100.url.to_s, alt: "group-icon", class: "group-icon" %>
+<% else %>
+  <i class="fas fa-users group-icon font-awesome-100"></i>
+<% end %>

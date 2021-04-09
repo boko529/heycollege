@@ -33,15 +33,19 @@
     <% @groups.each do |group| %>
       <div class = "group">
         <span class="class-name p-0">
-          <%= link_to group.name, group %>
-          <span class="groups-index-groupimg">
-            <%= render partial: "shared/group_image/display_icon20", locals: {group: group} %>
-          </span>
+        <%= render partial: "shared/group_image/display_icon100", locals: {group: group} %>
+        <div class="group-profile-name" >
+          <div class="group-name">
+            <%= link_to group.name, group %>
+          </div>
+          <%# グループのプロフィールを部分的に表示する。truncateが省略のメソッドで...含めて()のなかの数字の文字数になるように省略する %>
+          <% if group.profile %>
+              <div class="group-profile">
+                <%= group.profile.truncate(100) %>
+              </div>
+          <% end %>
+        </div>
         </span>
-        <%# グループのプロフィールを部分的に表示する。truncateが省略のメソッドで...含めて()のなかの数字の文字数になるように省略する %>
-        <% if group.profile %>
-          <div class="group-profile"><%= group.profile.truncate(50) %></div>
-        <% end %>
       </div>
     <% end %>
     <%= paginate @groups, param_name: "group_page", theme: 'twitter-bootstrap-4' %> 
