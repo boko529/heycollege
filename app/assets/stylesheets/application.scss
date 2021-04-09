@@ -112,13 +112,18 @@ body {
 }
 
 // ユーザーアイコンやグループアイコンを丸くするためのクラス(groupはユーザーと区別してまんまるじゃなくて少し丸みがある四角でも良いかも。)
-.user-icon, .group-icon{
+.user-icon{
   border-radius: 100%;
 }
 .group-icon {
 border: 2px solid #fff7ec;
-border-radius: 50%;
+border-radius: 20%;
 background-color: white;
+}
+
+.group-icon-100{
+  width: 100px;
+  height: 100px;
 }
 
 // fontawesomeを100×100にする
