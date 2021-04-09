@@ -53,6 +53,7 @@
         margin-left: 1rem;
         font-size: 1rem;
         align-items: center;
+        max-width: 12rem;
         p {
           padding:0;
           margin:0;
@@ -92,6 +93,46 @@
     }
     a {
       color: white;
+    }
+  }
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------*/
+// about page用
+  .school-name {
+    margin-top: 1rem;
+    padding-left:0.3rem;
+    height: 3rem;
+    width: 100%;
+    background-color: #ddd9c3;
+    border-radius: 0.5rem;
+    align-items: center;
+    display: flex;
+  }
+.FAQs {
+  text-align: left;
+  margin: 2rem;
+  .faq-bar {
+    height: 3rem;
+    width: 100%;
+    background-color: #ddd9c3;
+    border-radius: 0.5rem;
+    align-items: center;
+    display: flex;
+    padding-left: 0.5rem;
+  }
+  .faq-contents{
+    padding-left: 0.5rem;
+    margin-top: 1rem;
+    ul{
+      list-style: none;
+      padding: 0;
+      margin:0;
+      li {
+        a{
+          color:rgb(90, 82, 82);
+        }
+      }
     }
   }
 }
