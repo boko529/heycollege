@@ -6,8 +6,9 @@ class GroupsController < ApplicationController
   before_action :barrier_leave, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
-    @groups = Group.where(university_id: current_user.university_id)
-    @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(15)
+    @groups = Group.where(university_id: current_user.university_id).includes(:group_point).order("group_points.current_point DESC")
+    @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(20)
+    @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc) # スライドショー
   end
 
   def show

@@ -112,13 +112,24 @@ body {
 }
 
 // ユーザーアイコンやグループアイコンを丸くするためのクラス(groupはユーザーと区別してまんまるじゃなくて少し丸みがある四角でも良いかも。)
-.user-icon, .group-icon{
+.user-icon{
   border-radius: 100%;
 }
 .group-icon {
 border: 2px solid #fff7ec;
-border-radius: 50%;
+border-radius: 20%;
 background-color: white;
+}
+
+.group-icon-100{
+  width: 100px;
+  height: 100px;
+}
+
+// fontawesomeを100×100にする
+.font-awesome-100{
+  width: 100px !important;
+  height: 100px;
 }
 
 // fontawesomeを80×80にする
@@ -137,8 +148,6 @@ background-color: white;
 nav{
   ul.pagination{
     margin-top: 0.1rem;
-    // スマホでフッターが隠れるから追加
-    margin-bottom: 12rem;
     li.page-item{
       background-color: #fff;
       &:last-child .page-link {
@@ -175,6 +184,8 @@ nav{
 }
 .yield_box{
   min-height: 45rem;
+  // スマホでフッターが隠れるから追加
+  margin-bottom: 80px;
 }
 // デバック表示(開発環境)の整形
 .debug_dump {

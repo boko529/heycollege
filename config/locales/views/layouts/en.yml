@@ -12,7 +12,8 @@ en:
       signout: "Logout"
       signup: "Signup"
       signin: "Login"
-      sig&log: "Login&Signup"
+      sig&log: "Login"
+      zoomhouse: ZoomHouse
     footer:
       title_login: "My Page"
       group: Group
@@ -23,11 +24,15 @@ en:
       signout: Signout
       term: "Terms of service"
       privacypolicy: "Privacy policy"
-      leave: Leave
+      leave: Leave(Delete your account)
       lang: 日本語に変更
+      menu: Menu
+      zoomhouse: ZoomHouse
     subsidebar:
       rank: "Ranking"
-      make: "Make a page"
+      # make: "Make a page"
       book: "Bookmark"
       contact: Contact us
-      log: Login&Signup
+      log: Login
+      zoomhouse: ZoomHouse
+      group: Group
