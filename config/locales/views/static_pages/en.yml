@@ -10,3 +10,4 @@ en:
       class: "Class"
       teacher: "Teacher"
       user_point: "User"
+      notes: "Only the top 20 people are displayed in the user ranking."

@@ -23,10 +23,44 @@ class RedisController < ApplicationController
         #     end
         #   end
         # end
-        REDIS.zadd "rank/users/#{univ_id}", user.user_point.current_point, user.id
+        # 同率のとき、レビュー数が高い順にソート→小数部分でレビュー数を表す.
+        REDIS.zadd "rank/users/#{univ_id}", user.user_point.current_point + 0.001 * user.reviews.count, user.id
       }
     }
     flash[:success] = "ランキングを更新しました"
+    render 'show'
+  end
+
+  def reset_ranking
+    REDIS.flushall # redisを一旦リセット
+    flash[:success] = "ランキングをリセットしました"
+    render 'show'
+  end
+
+  def lecture_ranking_update
+    (1..2).each{|univ_id| # 1:apu, 2:opu 新たに大学が増えたときは繰り返し増やす.
+      Lecture.where(university_id: univ_id).includes(:reviews).map{ |lecture| REDIS.zadd "rank/lectures/#{univ_id}", lecture.average_score, lecture.id  unless lecture.average_score == "不明" }
+    }
+    flash[:success] = "講義ランキングを更新しました"
+    render 'show'
+  end
+
+  def teacher_ranking_update
+    (1..2).each{|univ_id| # 1:apu, 2:opu 新たに大学が増えたときは繰り返し増やす.
+      Teacher.where(university_id: univ_id).includes(:lectures).map{ |teacher| REDIS.zadd "rank/teachers/#{univ_id}", teacher.average_score, teacher.id  unless teacher.average_score == "不明" }
+    }
+    flash[:success] = "先生ランキングを更新しました"
+    render 'show'
+  end
+
+  def user_ranking_update
+    (1..2).each{|univ_id| # 1:apu, 2:opu 新たに大学が増えたときは繰り返し増やす.
+      User.where(admin: false, is_deleted: false, university_id: univ_id).where.not(confirmed_at: nil).includes(:user_point).map{ |user|
+        # 同率のとき、レビュー数が高い順にソート→小数部分でレビュー数を表す.
+        REDIS.zadd "rank/users/#{univ_id}", user.user_point.current_point + 0.001 * user.reviews.count, user.id
+      }
+    }
+    flash[:success] = "ユーザーランキングを更新しました"
     render 'show'
   end
 

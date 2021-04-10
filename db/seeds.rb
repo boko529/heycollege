@@ -28,7 +28,7 @@ User.create!(name:  "OPUadmin", email: "sample@edu.osakafu-u.ac.jp", password:  
 end
 
 #追加のユーザーをまとめて生成する
-15.times do |n|
+30.times do |n|
   name  = Faker::Name.name
   email = "user-#{n+1}@edu.osakafu-u.ac.jp"
   password = "foobar"
