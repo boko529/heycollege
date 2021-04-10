@@ -9,6 +9,8 @@ en:
       join: "Request to join?"
     unjoin:
       leave: "Leave"
+    waiting:
+      waiting: "awaiting approval"
     index:
       # group: "Group"
       # makenew: "Make a new group"
