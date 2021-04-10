@@ -28,7 +28,7 @@ User.create!(name:  "OPUadmin", email: "sample@edu.osakafu-u.ac.jp", password:  
 end
 
 #追加のユーザーをまとめて生成する
-15.times do |n|
+30.times do |n|
   name  = Faker::Name.name
   email = "user-#{n+1}@edu.osakafu-u.ac.jp"
   password = "foobar"
@@ -137,8 +137,8 @@ UserGroupRelation.create(user_id: 1, group_id: 1, admin: true, confirmation: tru
 UserGroupRelation.create(user_id: 1, group_id: 2, admin: true, confirmation: true)
 UserGroupRelation.create(user_id: 2, group_id: 3, admin: true, confirmation: true)
 UserGroupRelation.create(user_id: 2, group_id: 4, admin: true, confirmation: true)
-User.all.where(university_id: 1).where.not(id: 1).each { |user| user.join(group1) && user.join(group2) }
-User.all.where(university_id: 2).where.not(id: 2).each { |user| user.join(group3) && user.join(group4) }
+User.all.where(university_id: 1).where.not(id: 1).take(5).each { |user| user.join(group1) && user.join(group2) }
+User.all.where(university_id: 2).where.not(id: 2).take(5).each { |user| user.join(group3) && user.join(group4) }
 
 # 団体ごとにポイントテーブルを作成
 Group.all.each do |group|

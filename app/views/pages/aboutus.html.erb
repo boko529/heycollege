@@ -1,0 +1,159 @@
+<% provide(:title, 'About us') %>
+<div class="landing-page mx-lg-5 pz-lg-5">
+    <%# title %>
+    <div class="land-title">
+      <div class="logo">
+        <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "250px", id: 'logo'), root_path %>
+      </div>
+      <h6>- 大学生向けSNS -</h6>
+      <div class="links">
+        <div class="btn">
+          なぜ？だれが？何のために？
+        </div>
+      </div>
+    </div>
+  
+    <%# about review %>
+    <div class="land-class-review">
+      <h2>Why?</h2>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="d-flex align-items-center h-100">
+              <ul class="explanation scroll_appear animate">
+                <li>
+                  <div class="icon">
+                    <i class="<i fas fa-bullseye fa-2x"></i>
+                  </div>
+                  <div class="exple">
+                    大学生にもっと学校を楽しんでほしい!<br>
+                    自分の好きなクラス・先生を見つけよう！</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# about group %>
+      <div class="land-class-review">
+        <h2>Who?</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6 d-lg-block d-none">
+              <div class="d-flex align-items-center h-100">
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                       <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div class="exple">日本の学校の教育格差に問題を感じでている学生9名！</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="school-name">アジア太平洋大学</div>
+              <div class="school-name">大阪府立大学</div>
+              <div class="school-name">立命館大学</div>
+              <div class="school-name">早稲田大学</div>
+            </div>
+            <%# スマホ用 %>
+            <div class="col-lg-6 d-block d-lg-none">
+              <div class="d-flex align-items-center h-100"> 
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                       <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div class="exple">日本の学校の教育格差に問題を感じでている学生9名！</div>
+                  </li>
+                </ul> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# about ZoomHouse %>
+      <div class="land-e-mee">
+        <h2>What we do?</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="img">
+                <%= link_to image_tag("89FDA42A-D5B5-4E87-BD95-3412E7F6ECFE 2.PNG", alt: "ロゴ", width: "200px", id: 'logo'), root_path %>
+              </div>  
+            </div>
+            <div class="col-lg-6">
+              <div class="d-flex align-items-center h-100">
+                <ul class="explanation scroll_appear animate">
+                  <li>
+                    <div class="icon">
+                      <i class="fas fa-comments fa-2x"></i>
+                    </div>
+                    <div class="exple">
+                      <p>
+                        ウェブサイトの運営！
+                        <br>学生・学生団体の支援活動！
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# 関連FAQ%>
+      <div class="FAQs">
+        <div class="faq-bar">
+          関連FAQ
+        </div>
+      <div class="faq-contents">
+        <ul>
+          <li>
+            <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
+             <span class="d-none d-lg-inline">Contact</span>
+            <% end %>
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li><%= link_to t('.privacy'), page_path('privacypolicy') %></li>
+          <li><%= link_to t('.terms'), page_path('terms') %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+$(function(){
+  $(window).scroll(function (){
+    $(".animate > *").each(function(){
+      var targetAnime = $(this).offset().top;
+      var scroll = $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (scroll > targetAnime - windowHeight + 0){
+        $(this).addClass("explanation moving");
+      }
+    });
+  });
+});
+</script>
+
+<% if @slides %>
+  <script>
+    $(function() {
+      $('.slide_show').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000, //何ミリ秒で移り変わるかどうかの設定
+      });
+      // マウスをホバーしたときにそのスライドに移動
+      $('.slick-dots li').on('mouseover', function() {
+        $('.slide_show').slick('goTo', $(this).index());
+      });
+    });
+  </script>
+<% end %>

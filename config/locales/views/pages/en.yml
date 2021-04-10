@@ -13,3 +13,6 @@ en:
       confirmred: " a spam"
       didnot: Did not get the confirmation Email?
       title: "Please check Email"
+    aboutus:
+      privacy: "Privacy Policy"
+      terms: "Terms of service"

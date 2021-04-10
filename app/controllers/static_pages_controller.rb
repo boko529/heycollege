@@ -43,7 +43,7 @@ class StaticPagesController < ApplicationController
       # end.reverse
 
       # redis用のコード
-      users = REDIS.zrevrangebyscore( "rank/users/#{current_user.university_id}", "+inf", "-inf" ).map{ |id| User.find(id) }
+      users = REDIS.zrevrangebyscore( "rank/users/#{current_user.university_id}", "+inf", "-inf", limit: [0, 20] ).map{ |id| User.find(id) }
       @users = Kaminari.paginate_array(users).page(params[:users_page]).per(20)
 
       #最新のニュースを表示

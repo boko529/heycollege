@@ -13,7 +13,7 @@
         <% @slides.each do |slide| %>
           <div class="slide_content">
             <% if !slide.link.blank? %>
-              <%= link_to "slide.link", target: :_blank, rel: "noopener noreferrer" do %>
+              <%= link_to slide.link, target: :_blank, rel: "noopener noreferrer" do %>
                 <%= image_tag slide.slide_image.to_s, alt: "スライド", class: "slide" %>
               <% end %>
             <% else %>
@@ -52,7 +52,11 @@
           <%= f.start_time.strftime("%m/%d %H:%M") %> ~ <%= f.end_time.strftime("%m/%d %H:%M") %>
           </p>
           <div class="col-12 p-0">
-          <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+          <% if f.start_time > Time.now %>
+            <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-secondary disable", target: :_blank, rel: "noopener noreferrer"  %>
+          <% else %>
+            <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
+          <% end %>
           <% if f.user == current_user %>
             <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
             <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>

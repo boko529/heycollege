@@ -70,6 +70,7 @@
       opacity: 1;
       visibility: visible;
       display: block;
+      z-index: 10;
     }
   }
   .group-name {
@@ -150,12 +151,20 @@ ul.groups{
       display: inline-block;
       color: #333;
       font-weight: bold;
+      font-size: 1.2rem;
+    }
+    .group-profile-name{
+      margin-left: 10px;
+    }
+    .group-name{
+      display: block;
+      margin-bottom: 5px;
     }
     .group-profile{
-      margin: 0 0.3rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
   }
 }
@@ -166,17 +175,22 @@ ul.groups{
 // --------------------------------
 // about groups index
 .groups-index-groupimg{
-  margin-left: 0.7rem;
+  height: 100px;
+  width: 100px;
+  margin-right: 0.7rem;
 }
 
 // --------------------------------
 // about form.html
   // header and img, buttons
-  .groupshow-edit {
-    .groupshow-headerimg {
+.group-edit{
+  margin-bottom: 9rem;
+}
+.groupshow-edit {
+  .groupshow-headerimg {
+    width: 100%;
+    img {
       width: 100%;
-      img {
-        width: 100%;
-      }
     }
   }
+}

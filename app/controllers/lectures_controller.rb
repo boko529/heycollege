@@ -10,27 +10,28 @@ class LecturesController < ApplicationController
   def index
     #検索である程度数が絞られてたらredisなしのが早い
     @q = Lecture.where(university_id: current_user.university_id).ransack(params[:q])
-    if @q.result.length < 20 # 上限は適当に設定してくだされ.
-      @q.sorts = 'updated_at desc' if @q.sorts.empty?
-      @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
-        reviews = lecture.reviews
-        if reviews.present?
-          reviews.map(&:score).sum / reviews.size
-        else
-          0
-        end
-      end.reverse
-      @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
-    else
-      flash[:alert] = t('.too_many')
-      redirect_to root_path
-    end  
+    # if @q.result.length < 50 # 上限は適当に設定してくだされ.
+    #   @q.sorts = 'updated_at desc' if @q.sorts.empty?
+    #   @lectures = @q.result.left_joins(:reviews).includes([:reviews]).distinct.sort_by do |lecture|
+    #     reviews = lecture.reviews
+    #     if reviews.present?
+    #       reviews.map(&:score).sum / reviews.size
+    #     else
+    #       0
+    #     end
+    #   end.reverse
+    #  @lectures = Kaminari.paginate_array(@lectures).page(params[:page]).per(20)
+      @lectures = Kaminari.paginate_array(@q.result).page(params[:page]).per(20)
+    # else
+    #   flash[:alert] = t('.too_many')
+    #   redirect_to root_path
+    # end  
   end
 
   def show
     @lecture = Lecture.find(params[:id])
     # 参考になる順で表示 + 詳細が書かれているものに限定,一番参考になるものは上で特別に表示しているので下の一覧では表示しない(参考になるボタンに不具合が生じるから)
-    reviews = @lecture.reviews.where.not(content: "").includes([:helpfuls ,:user]).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.drop(1)
+    reviews = @lecture.reviews.where.not(content: "").includes(:helpfuls, user: :group).sort{ |a,b| b.helpfuls.size <=> a.helpfuls.size }.drop(1)
     @reviews = Kaminari.paginate_array(reviews) # しばらくはページネーションなくて良さそう。ページネーションを追加する際はviewの自分のレビューへ飛ぶ際に場合分けで1ページ目のときはそのまま2ページ目以降は?page=params[:page]=2/~~みたいにする必要あり
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)

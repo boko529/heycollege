@@ -11,7 +11,7 @@
           <i class="fas fa-medal fa-2x"></i>
         <% end %>
         </div>
-        <div class="mobile-footer-logo-let">Ranking</div>
+        <div class="mobile-footer-logo-let"><%= t('.ranking') %></div>
       </div>
 
       <%# グループ %>
@@ -21,17 +21,17 @@
           <i class="fas fa-users fa-2x"></i>
         <% end %>
         </div>
-        <div class="mobile-footer-logo-let">Group</div>
+        <div class="mobile-footer-logo-let"><%= t('.group') %></div>
       </div>
 
-      <%# ユーザー %>
+      <%# zoomハウス %>
       <div class="footer-rank col">
         <div class="mobile-footer-logo">
-          <%= link_to user_path(current_user) do %>
-          <i class="fas fa-user-circle fa-2x"></i>
-        <% end %>
+          <%= link_to zooms_path do %>
+            <i class="fas fa-broadcast-tower fa-2x"></i>
+          <% end %>
         </div>
-        <div class="mobile-footer-logo-let">My page</div>
+        <div class="mobile-footer-logo-let"><%= t('.zoomhouse') %></div>
       </div>
 
         <%# その他・設定ボタン %>
@@ -39,7 +39,7 @@
           <div class="footer-menu">
             <i class="fas fa-ellipsis-h fa-2x"></i>
           </div>
-          <div class="mobile-footer-logo-let">Menu</div>
+          <div class="mobile-footer-logo-let"><%= t('.menu') %></div>
         </div>
         <%# その他ボトムアップスライド %>
         <div class="other-bottomup other-bottomup-transition d-block d-md-none" id="close">
@@ -87,29 +87,27 @@
             <li class="list-group-item text-left under-line">
                <%= link_to zooms_path do %>           
                 <span class="icon">
-                  <i class="fas fa-tv fa-lg"></i>
+                  <i class="fas fa-broadcast-tower fa-lg"></i>
                 </span>
-                <span class="d-inline">ZoomHouse</span>
+                <span class="d-inline"><%= t('.zoomhouse') %></span>
               <% end %>
             </li>            
             <%# 言語切り替え %>
-            <% if current_user.university_id == 1 %>
-              <li class="list-group-item text-left under-line">
-                <% if session[:locale] == "ja" || session[:locale].blank? %>
-                  <%= link_to "/application/change_language/en" do %>
-                <i class="fas fa-language fa-lg"></i>
-                </span>
-                <span class="d-inline"><%= t('.lang') %></span>
-                  <% end %>
-                <% elsif session[:locale] == "en" %>
-                  <%= link_to "/application/change_language/ja" do %>
-                <i class="fas fa-language fa-lg"></i>
-                </span>
-                <span class="d-inline"><%= t('.lang') %></span>
-                  <% end %>
+            <li class="list-group-item text-left under-line">
+              <% if session[:locale] == "ja" || session[:locale].blank? %>
+                <%= link_to "/application/change_language/en" do %>
+              <i class="fas fa-language fa-lg"></i>
+              </span>
+              <span class="d-inline"><%= t('.lang') %></span>
+              <% end %>
+              <% elsif session[:locale] == "en" %>
+                <%= link_to "/application/change_language/ja" do %>
+              <i class="fas fa-language fa-lg"></i>
+              </span>
+              <span class="d-inline"><%= t('.lang') %></span>
                 <% end %>
-              </li>
-            <% end %>
+              <% end %>
+            </li>
             <%# お問い合わせ %>                                              
             <li class="list-group-item text-left under-line">
               <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
@@ -169,7 +167,7 @@
               <i class="fas fa-sign-in-alt fa-2x"></i>
             <% end %>
           </div>
-          <div class="mobile-footer-logo-let">Login</div>
+          <div class="mobile-footer-logo-let"><%= t('.log') %></div>
         </div>
 
         <div class="footer-contact col-6">
@@ -178,7 +176,7 @@
               <i class="fas fa-envelope fa-2x"></i>
             <% end %>
           </div>
-          <div class="mobile-footer-logo-let">Contact</div>
+          <div class="mobile-footer-logo-let"><%= t('.contact') %></div>
         </div>
 
       <% end %>

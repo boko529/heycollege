@@ -5,7 +5,7 @@ class UserZoomsController < ApplicationController
     zoom = Zoom.find(params[:id])
     if zoom.user == current_user
       flash[:danger] = "ホストはすでにzoomに参加しています"
-      ridirect_to zoom.join_url
+      redirect_to zoom.join_url
     else
       if current_user.belongs_zoom?(zoom)
         redirect_to zoom.join_url
