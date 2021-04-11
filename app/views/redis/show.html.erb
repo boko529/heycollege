@@ -1,5 +1,13 @@
 <%# 管理者用 %>
 <% provide(:title, 'ランキング更新') %> 
 <p>管理者用のページです.</p>
-<p>下の「ランキング更新」を押すと、ホームの講義、先生、ユーザー（月間）のランキングが更新されます.</p>
+<p>下の「ランキング更新」を押すと、ホームの講義、先生、ユーザーのランキングが更新されます.</p>
 <%= link_to "ランキング更新", {controller: 'redis', action: 'ranking_update'}, method: :patch, class: 'btn btn-primary' %>
+<p>一気に更新するなら↑</p>
+<p>ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</p>
+<p>分けて更新するなら↓</p>
+<p>更新する前にランキング(Redis)を一回リセットしてください。</p>
+<%= link_to "ランキングをリセット", {controller: 'redis', action: 'reset_ranking'}, method: :patch, class: 'btn btn-primary' %>
+<%= link_to "講義ランキング更新", {controller: 'redis', action: 'lecture_ranking_update'}, method: :patch, class: 'btn btn-primary' %>
+<%= link_to "先生ランキング更新", {controller: 'redis', action: 'teacher_ranking_update'}, method: :patch, class: 'btn btn-primary' %>
+<%= link_to "ユーザーランキング更新", {controller: 'redis', action: 'user_ranking_update'}, method: :patch, class: 'btn btn-primary' %>

@@ -15,6 +15,8 @@ en:
       return_to_class_list: "》Return to ClassList"
       lecture_creater: "Author"
       review-write: "Write a review"
+      delete-own-review: "Delete my review"
+      reallydelete: "Do you really want to delete this?"
     new:
       create-class: "Create a class"
       title: "New Class"

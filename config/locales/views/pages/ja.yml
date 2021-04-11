@@ -13,3 +13,6 @@ ja:
       confirmred: スパムメール
       didnot: 確認メールが届いていない方はこちら
       title: "メールを確認してください"
+    aboutus:
+      privacy: "プライバシーポリシー"
+      terms: "利用規約"

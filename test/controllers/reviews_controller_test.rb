@@ -19,15 +19,6 @@ class ReviewsControllerTest < ActionDispatch::IntegrationTest
     assert_template 'lectures/show'
   end
 
-  test "review create without content" do
-    login_as(@user, scope: :user)
-    assert_difference 'Review.count', 1 do
-      post lecture_reviews_path(@lecture), params: { review: { user_id: @user.id, lecture_id: @lecture.id, score: 2}}
-    end
-    follow_redirect!
-    assert_template 'lectures/show'
-  end
-
   test "review create in same lecture" do
     login_as(@user, scope: :user)
     assert_no_difference "Review.count" do

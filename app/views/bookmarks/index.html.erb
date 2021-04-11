@@ -11,7 +11,7 @@
     <% if @bookmarks.exists? %>
     <div class="tab-pane fade show active" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
       <ul class="rankings">
-        <% @bookmarks.each do |bookmark| %>
+        <% @bookmarks.includes(lecture: [:reviews, :teacher]).each do |bookmark| %>
 
             <%# ブックマーク一表示 %>
 
