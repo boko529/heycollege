@@ -9,6 +9,10 @@ class ReviewsController < ApplicationController
       @review = current_user.reviews.new(review_params)
       if @review.save
         flash[:success] = t('.post')
+        if @review.content.present? # レビューにコンテントがあるか(星だけじゃないかを評価)
+          @review.user.review_point # レビュー書き手にポイントを付与
+          @review.user.group_review_point # レビュー書き手が所属している団体にポイントを付与
+        end
         # 自分が作ったレビューをidで指定して表示
         redirect_to "/lectures/#{@lecture.id}/#review-#{@review.id}"
       else
@@ -25,6 +29,11 @@ class ReviewsController < ApplicationController
   def destroy
     @lecture = Lecture.find(params[:lecture_id])
     @review = Review.find(params[:id]).destroy
+    if @review.content.present? # レビューにコンテントがあるか(星だけじゃないかを確認)
+      @review.user.review_d_point # レビュー削除に伴うポイント消失
+      @review.user.group_review_d_point # レビュー削除に伴うポイント消失
+    end
+    @review.destroy
     flash[:success] = t('.delete-review')
     redirect_to lecture_path(@lecture)
   end
