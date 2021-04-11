@@ -1,7 +1,11 @@
   <div id="join_form" class="btn-join-leave">
   <% if current_user.belongs?(@group) %>
     <% if @relation.leave == false %>
-      <%= render 'unjoin' %>
+      <% if @relation.confirmation == false %>
+        <%= render 'waiting' %>
+      <% else %>
+        <%= render 'unjoin' %>
+      <% end %>
     <% else %>
       <%= render 'join' %>
     <% end %>

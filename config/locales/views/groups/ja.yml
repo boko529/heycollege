@@ -9,6 +9,8 @@ ja:
       join: "Joinリクエストを送る"
     unjoin:
       leave: "退会"
+    waiting:
+      waiting: "承認待ち"
     index:
       # group: "グループ"
       # makenew: "新しくグループを作る"
