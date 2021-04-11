@@ -31,6 +31,13 @@
           <%= f.datetime_field :end_time, :value => (Time.now+3600).strftime("%Y-%m-%dT%H:%M"), class: 'form-control' %>
         </div>
         <div>
+          <%= f.label :group_id %>
+          <br>
+          <span><small>団体としてのzoomを作成する場合は以下から選んでください。</small></span>
+          <br>
+          <%= f.collection_select(:group_id, @groups, :id, :name, {include_blank: '選択なし'}) %>
+        </div>
+        <div>
         <%= f.submit '作成する', class: "btn btn-primary"%>
         </div>
       </div>

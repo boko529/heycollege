@@ -1,6 +1,7 @@
 class ZoomsController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:create,:new,:destory] # indexはランディングページを兼ねている
   before_action :correct_user, only: [:edit,:destroy, :update]
+  before_action :set_group, only: [:new, :create, :edit, :update]
 
   def create
     # APIを用いてzoom作成
@@ -113,11 +114,14 @@ class ZoomsController < ApplicationController
 
   private
   def zoom_params
-    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time)
+    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time, :is_group, :group_id)
   end
 
   def correct_user
     @zoom = Zoom.find(params[:id])
     redirect_to zooms_path unless @zoom.user==current_user
+  end
+  def set_group
+    @groups = current_user.group
   end
 end
