@@ -56,10 +56,17 @@
       <%# 自分がレビューしたことあるかを確認 %>
       <div>
         <% if @lecture.review?(current_user) %>
-          <%# 自分が書いたレビューへのリンクを表示 %>
-          <div class="lecture-show-my-review">
-            <%= link_to t('.show-own-review'), "#review-#{@lecture.my_review(current_user).id}" %>
-          </div>
+          <% if @lecture.my_review(current_user).content.present? %>
+            <%# 自分が書いたレビューへのリンクを表示 %>
+            <div class="lecture-show-my-review">
+              <%= link_to t('.show-own-review'), "#review-#{@lecture.my_review(current_user).id}" %>
+            </div>
+          <% else %>
+            <%# 自分のレビューにコンテントがない場合、遷移先がないので削除リンクを提示 %>
+            <div class="lecture-show-my-review">
+              <%= link_to t('.delete-own-review'), lecture_review_path(@lecture, @lecture.my_review(current_user)), method: :delete, data: { confirm: t('.reallydelete')} %>
+            </div>
+          <% end %>
         <% else %>
           <%# レビュー投稿欄 %>
           <div class="card card-body">
