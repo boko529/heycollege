@@ -49,4 +49,20 @@ class User::PointTest < ActionDispatch::IntegrationTest
     assert_equal 10, @user.user_point.current_point
     assert_equal 10, @user.user_point.total_point
   end
+
+  test "get zoom_a point" do
+    assert_difference "UserPointHistory.count", 1 do
+      assert @user.zoom_a_point
+    end
+    assert_equal 30, @user.user_point.current_point
+    assert_equal 30, @user.user_point.total_point
+  end
+
+  test "get zoom_h point" do
+    assert_difference "UserPointHistory.count", 1 do
+      assert @user.zoom_h_point
+    end
+    assert_equal 30, @user.user_point.current_point
+    assert_equal 30, @user.user_point.total_point
+  end
 end
