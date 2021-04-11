@@ -121,6 +121,8 @@ class ZoomsController < ApplicationController
     @zoom = Zoom.find(params[:id])
     redirect_to zooms_path unless @zoom.user==current_user
   end
+
+  #ユーザーの所属している団体を先に設定
   def set_group
     @groups = current_user.group
   end
