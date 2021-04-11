@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_062725) do
+
+ActiveRecord::Schema.define(version: 2021_04_08_080643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -277,6 +278,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_062725) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.bigint "university_id", null: false
+    t.boolean "is_public", default: false
     t.index ["start_time"], name: "index_zooms_on_start_time"
     t.index ["university_id"], name: "index_zooms_on_university_id"
   end

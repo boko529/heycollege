@@ -41,10 +41,11 @@ en:
       review:
         content: content
       zoom:
-        title: トピック
-        join_url: 招待URL
-        start_time: 開始時刻
-        end_time: 終了時刻
+        title: Topic
+        join_url: Invitation URL
+        start_time: Start Time
+        end_time: End Time
+        is_public: Published to other universities
       lecture_info:
         faculty: "学域"
         department: "学類"
@@ -52,6 +53,7 @@ en:
         day_of_week: "曜日"
         semester: "期間"
         period: "コマ"
+
   enums:
     user:
       gender:
