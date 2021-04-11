@@ -7,9 +7,17 @@
     padding-top: 1rem;
     
   }
-  .btn-success{
+  .btn-success.pc_new_room {
     float: right;
     margin-bottom: 1rem;
+  }
+  // new room button for mobile 
+  .btn-success.mobile_new_room {
+    position: fixed;
+    left:32%;
+    right:32%;
+    z-index: 2000;
+    bottom: 4.5rem;
   }
   .zoom_room{
     clear: both;
