@@ -4,8 +4,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one: 
+  faculty: 1
+  department: 1
+  major: 1
+  day_of_week: 1
+  semester: 1
+  period: 1
+  state: 1
+  lecture_id: 1

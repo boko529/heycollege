@@ -5,5 +5,5 @@ class UserPointHistory < ApplicationRecord
   validates :user_point_id, presence: true
   validates :amount, presence: true
   validates :point_type, presence: true
-  enum point_type: { init: 0, helpfuled: 1, helpfuled_lecture: 2, helpfuled_teacher: 3 }, _prefix: :true
+  enum point_type: { init: 0, helpfuled: 1, helpfuled_lecture: 2, helpfuled_teacher: 3, review: 4, review_d: 5 }, _prefix: :true
 end

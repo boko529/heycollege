@@ -15,6 +15,8 @@ ja:
       return_to_class_list: "》クラス一覧へ戻る"
       lecture_creater: "作成者"
       review-write: "レビューを書く"
+      delete-own-review: "自分のレビューを削除"
+      reallydelete: "本当に削除しますか？"
     new:
       create-class: "クラス作成"
       title: "新規クラス作成"
