@@ -26,7 +26,10 @@
   <% end %>
   <div class="zoom-index">
     <%# <h2>ZoomHouse</h2> %>
-    <%= link_to "+ New room", new_zoom_path, class: "btn btn-success" %>
+    <div class="mobile_new_room_container">
+      <%= link_to "+ New room", new_zoom_path, class: "btn btn-success d-sm-none mobile_new_room" %>
+    </div>
+    <%= link_to "+ New room", new_zoom_path, class: "btn btn-success d-none d-sm-block pc_new_room" %>
     <% @zooms.each do |f| %>
       <% if (f.end_time - Time.now) >= 0 %>
       <div class="container p-0">

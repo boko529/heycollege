@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_014821) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.bigint "university_id", null: false
+    t.boolean "is_public", default: false
     t.integer "group_id", default: 0
     t.index ["start_time"], name: "index_zooms_on_start_time"
     t.index ["university_id"], name: "index_zooms_on_university_id"

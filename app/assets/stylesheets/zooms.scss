@@ -7,9 +7,17 @@
     padding-top: 1rem;
     
   }
-  .btn-success{
+  .btn-success.pc_new_room {
     float: right;
     margin-bottom: 1rem;
+  }
+  // new room button for mobile 
+  .btn-success.mobile_new_room {
+    position: fixed;
+    left:32%;
+    right:32%;
+    z-index: 2000;
+    bottom: 4.5rem;
   }
   .zoom_room{
     clear: both;
@@ -83,5 +91,20 @@
   }
   .create{
     margin: 0;
+  }
+  .form-select{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s
   }
 }
