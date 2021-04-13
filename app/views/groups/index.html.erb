@@ -1,10 +1,7 @@
 <% provide(:title, t('.grouplist')) %>
 <div class="groups-index">
-  <%# <h2 class="title"> %>
-    <%#= t('.group') %>
-  <%# </h2> %>
 
-<%# スライドショー %>
+<%# スライドなショー %>
   <% if @slides %>
     <div class="slide-container">
       <div class="slide_show">
@@ -24,11 +21,6 @@
   <% end %>
 
   <p><%= t('.notes') %></p>
-
-  <%# 新規グループ作成コメントアウト %>
-  <%# <p class="new btn btn-primary"> %>
-    <%#= link_to t('.makenew'), new_group_path %>
-  <%# </p> %>
   <ul class="groups">
     <% @groups.each do |group| %>
       <div class = "group">

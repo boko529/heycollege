@@ -5,7 +5,6 @@
 .zoom-index{
   h2{
     padding-top: 1rem;
-    
   }
   .btn-success.pc_new_room {
     float: right;
@@ -23,7 +22,7 @@
     clear: both;
     background-color: #fdfdfd;
     margin: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     width: 100%;
     min-height: 120px;
     text-align:left;
@@ -37,6 +36,7 @@
     .title{
       font-size: 0.9rem;
       width: 100%;
+      word-break: break-all;
     }
     .zoom_info{
       margin: 0;

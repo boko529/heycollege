@@ -134,37 +134,32 @@ ul.groups{
   div.group{
     background-color: #eeeeee;
     border-radius: 4px;
-    border-bottom: 1px solid gray;
-    padding: 1rem 0.4rem;
+    border: 0.0625rem solid rgb(200, 200, 200);
+    margin: 0.5rem 0;
+    padding: 0.5rem;
     .class-name{
       height: 100%;
       padding: 10px;
-      font-weight: bold;
       color: rgb(39, 33, 33);
-      margin-left: 5%;
-      margin-right: 5%;
       display: flex;
       justify-content: left;
       align-items: center;
-    }
-    a{
-      display: inline-block;
-      color: #333;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-    .group-profile-name{
-      margin-left: 10px;
-    }
-    .group-name{
-      display: block;
-      margin-bottom: 5px;
-    }
-    .group-profile{
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
+      a{
+        display: inline-block;
+        color: #333;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .group-profile-name{
+        margin-left: 10px;
+      }
+      .group-name{
+        display: block;
+        margin-bottom: 5px;
+      }
+      .group-profile{
+        word-break: break-all;
+      }
     }
   }
 }

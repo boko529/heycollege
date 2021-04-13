@@ -117,7 +117,7 @@ body {
 }
 .group-icon {
 border: 2px solid #fff7ec;
-border-radius: 20%;
+border-radius: 0.5rem;
 background-color: white;
 }
 
@@ -128,8 +128,8 @@ background-color: white;
 
 // fontawesomeを100×100にする
 .font-awesome-100{
-  width: 100px !important;
-  height: 100px;
+  width: 80px !important;
+  height: 80px;
 }
 
 // fontawesomeを80×80にする
