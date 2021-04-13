@@ -42,9 +42,17 @@
           <% end %>
           <span class="title col-12"><%= f.title %></span>
           <p class="zoom_info col-9">
-          <%= link_to user_path(f.user.id) do %>
-            <i class="fas fa-user-circle fa-lg"></i>&nbsp;<%= u_display_name(f.user) %>
+          <% if f.group_id == 0 %>
+            <%= link_to user_path(f.user.id) do %>
+              <i class="fas fa-user-circle fa-lg"></i>&nbsp;<%= u_display_name(f.user) %>
+            <% end %>
+          <% else %>
+            <%= render partial: "shared/group_image/display_icon20", locals: {group: Group.find(f.group_id)} %><%= link_to Group.find(f.group_id).name, group_path(f.group_id) %>
+            <%= link_to user_path(f.user.id) do %>
+              <i class="fas fa-user-circle fa-lg"></i>&nbsp;<%= u_display_name(f.user) %>
+            <% end %>
           <% end %>
+          </p>
 
           <!-- 参加人数 -->
           <span class="watcher">

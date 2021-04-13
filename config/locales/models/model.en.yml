@@ -46,6 +46,7 @@ en:
         start_time: Start Time
         end_time: End Time
         is_public: Published to other universities
+        group_id: Group Zoom
       lecture_info:
         faculty: "学域"
         department: "学類"
