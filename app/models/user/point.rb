@@ -2,8 +2,8 @@
 module User::Point
   extend ActiveSupport::Concern
 
-  # 個人 ０：初期、１：いいね、２：いいねのクラス、３：いいねの先生、４：レビュー作成
-  # 団体 ０：初期、１：いいね、２：いいねのクラス、３：いいねの先生、４：レビュー作成
+  # 個人 ０：初期、１：いいね、２：いいねのクラス、３：いいねの先生、４：レビュー作成, ５：レビュー削除、6:zoom参加者、7: zoomホスト
+  # 団体 ０：初期、１：いいね、２：いいねのクラス、３：いいねの先生、４：レビュー作成, ５：レビュー削除、6:zoom参加者、7: zoomホスト
 
   # ポイント獲得の処理
   def point_get(amount: , point_type:)
@@ -118,6 +118,36 @@ module User::Point
       amount = ( -10.0 / self.group.count).floor(1)
       self.group.each do |group|
         group.point_get(amount: amount, point_type: 5)
+      end
+    end
+  end
+
+  # zoomハウスに参加した際に参加者が獲得できるポイント
+  def zoom_a_point
+    self.point_get(amount: 20.0, point_type: 6)
+  end
+
+  # zoomハウスに参加者が来た時にホストが得られるポイント
+  def zoom_h_point
+    self.point_get(amount: 20.0, point_type: 7)
+  end
+
+  # zoomハウスに参加した際に参加者の所属団体が獲得できるポイント
+  def group_zoom_a_point
+    unless self.group.blank?
+      amount = ( 20.0 / self.group.count).floor(1)
+      self.group.each do |group|
+        group.point_get(amount: amount, point_type: 6)
+      end
+    end
+  end
+
+  # zoomハウスに参加者が来た時に所属団体が獲得できるポイント
+  def group_zoom_h_point
+    unless self.group.blank?
+      amount = ( 20.0 / self.group.count).floor(1)
+      self.group.each do |group|
+        group.point_get(amount: amount, point_type: 7)
       end
     end
   end

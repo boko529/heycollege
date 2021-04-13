@@ -75,4 +75,24 @@ class Group::PointTest < ActionDispatch::IntegrationTest
     assert_equal 10, @user.user_point.total_point
   end
 
+  test "get zoom_a point" do
+    # @user3つのグループに所属しているので3つ増える
+    assert_difference "GroupPointHistory.count", 3 do
+      assert @user.group_zoom_a_point
+    end
+    # 基本である100ポイント。3つのグループに所属しているので各々に33.3ポイント追加(元々は10ポイント)
+    assert_equal 16.6, @group.group_point.current_point
+    assert_equal 16.6, @group.group_point.total_point
+  end
+
+  test "get zoom_h point" do
+    # @user3つのグループに所属しているので3つ増える
+    assert_difference "GroupPointHistory.count", 3 do
+      assert @user.group_zoom_h_point
+    end
+    # 基本である100ポイント。3つのグループに所属しているので各々に33.3ポイント追加(元々は10ポイント)
+    assert_equal 16.6, @group.group_point.current_point
+    assert_equal 16.6, @group.group_point.total_point
+  end
+
 end
