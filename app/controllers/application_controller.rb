@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :set_search
-  before_action :store_location, unless: :devise_controller? # デバイス関係のコントローラー以外のときにセッションを取る
+  # before_action :store_location, unless: :devise_controller? # デバイス関係のコントローラー以外のときにセッションを取る
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
 
@@ -17,19 +17,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # ログインしないとほとんど見せないので不要になった
   # ログインページ,ハイボルテージ関係以外のときはページのバスをセッションに保存する
-  def store_location
-    if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms') && request.path != page_path('aboutus')
-      session[:previous_url] = request.fullpath 
-    end
-  end
+  # def store_location
+  #   if request.path !=  new_user_session_path && request.path != page_path('explain_confirmation') && request.path != page_path('privacypolicy') && request.path != page_path('terms') && request.path != page_path('aboutus')
+  #     session[:previous_url] = request.fullpath 
+  #   end
+  # end
   
+  # フレンドリーフォワーディングを削除した関係で全てzoom一覧に飛ぶ
   # セッションにページのパスが保存されている場合はそのページにリダイレクト
   def after_sign_in_path_for(resource)
     if !session[:previous_url].nil?
       session[:previous_url]
     else
-      user_path(resource)
+      # user_path(resource)
+      zooms_path
     end
   end
 
