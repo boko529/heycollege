@@ -68,7 +68,8 @@
           <% else %>
             <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
           <% end %>
-          <% if f.user == current_user %>
+          <% relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: f.group_id) %>
+          <% if f.user == current_user || relation.confirmation == true && relation.leave == false %>
             <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
             <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
           <% end %>

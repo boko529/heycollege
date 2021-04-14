@@ -119,7 +119,8 @@ class ZoomsController < ApplicationController
 
   def correct_user
     @zoom = Zoom.find(params[:id])
-    redirect_to zooms_path unless @zoom.user==current_user
+    relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @zoom.group_id)
+    redirect_to zooms_path unless @zoom.user==current_user || relation.confirmation == true && relation.leave == false
   end
 
   #ユーザーの所属している団体を先に設定
