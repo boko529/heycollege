@@ -42,7 +42,7 @@
           <% end %>
           <span class="title col-12"><%= f.title %></span>
           <p class="zoom_info col-9">
-          <% if f.group_id == 0 %>
+          <% if f.group_id == 0 || f.group_id.nil? %>
             <%= link_to user_path(f.user.id) do %>
               <i class="fas fa-user-circle fa-lg"></i>&nbsp;<%= u_display_name(f.user) %>
             <% end %>
@@ -68,9 +68,17 @@
           <% else %>
             <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
           <% end %>
-          <% if f.user == current_user %>
-            <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-            <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+          <% relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: f.group_id) %>
+          <% if relation %>
+            <% if relation.confirmation == true && relation.leave == false %>
+              <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+              <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+            <% end %>
+          <% else %>
+            <% if f.user == current_user %>
+              <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+              <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+            <% end %>
           <% end %>
           </div>
         </div>
