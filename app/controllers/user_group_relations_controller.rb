@@ -9,6 +9,7 @@ class UserGroupRelationsController < ApplicationController
     else
       current_user.join(group)
     end
+    group.create_notification_join_request!(current_user) # Joinリクエストが送信されたことを共同ホストに送信
     # flash[:success] = "#{current_user.name}さんは#{group.name}に参加しました!"
     flash[:success] = "Joinリクエストを送信しました！ホストからの承認をお待ち下さい。"
     redirect_to group

@@ -23,6 +23,9 @@
         <% when 'follow' then %>
           <%= t('.startfollow') %>
         <% end %>
+        <% when 'join_request' then %>
+          <%= link_to "#{Group.find_by(id: notification.group_id).name}にJoinリクエストを送信しました",  group_confirmation_path(notification.group_id), style: "font-weight: bold;" %>
+        <% end %>
     </strong>
     <span class="small text_muted text-right">
       <br><%= time_ago_in_words(notification.created_at).upcase %><%= t('.ago') %>
