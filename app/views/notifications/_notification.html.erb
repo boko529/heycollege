@@ -22,7 +22,6 @@
           <%= link_to t('.yourreview'), lecture_review_path(notification.review.lecture.id ,notification.review.id), style: "font-weight: bold;" %><%= t('.liked') %>
         <% when 'follow' then %>
           <%= t('.startfollow') %>
-        <% end %>
         <% when 'join_request' then %>
           <%= link_to "#{Group.find_by(id: notification.group_id).name}にJoinリクエストを送信しました",  group_confirmation_path(notification.group_id), style: "font-weight: bold;" %>
         <% end %>

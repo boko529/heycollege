@@ -19,13 +19,13 @@ class Group < ApplicationRecord
 
   def create_notification_join_request!(current_user)
     # hosts = UserGroupRelation.where(group_id: self.id, confirmation: true, admin: true, leave: false) # グループに所属しているユーザーから承認済みで退会していなくかつ、adminのユーザーを配列で取る
-    hosts = UserGroupRelation.where(["group_id = ? and confirmation = ? and admin = ? and leave = ?", self.id, true, true, false]) # グループに所属しているユーザーから承認済みで退会していなくかつ、adminのユーザーを配列で取る
-    hosts.each do |host|
-      temp = Notification.where(["visitor_id = ? and visited_id = ? and group_id = ? and action = ? ", current_user.id, host.id, self.id, 'join_request']) # すでに「送信されているか確認」
+    host_relations = UserGroupRelation.where(["group_id = ? and confirmation = ? and admin = ? and leave = ?", self.id, true, true, false]) # グループに所属しているユーザーから承認済みで退会していなくかつ、adminのユーザーを配列で取る
+    host_relations.each do |host_relation|
+      temp = Notification.where(["visitor_id = ? and visited_id = ? and group_id = ? and action = ? ", current_user.id, host_relation.user_id, self.id, 'join_request']) # すでに「送信されているか確認」
       if temp.blank?
         notification = current_user.active_notifications.new(
           group_id: self.id,
-          visited_id: host.id
+          visited_id: host_relation.user_id,
           action: 'join_request'
         )
         notification.save if notification.valid?
