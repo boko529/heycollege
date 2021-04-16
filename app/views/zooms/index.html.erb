@@ -26,6 +26,23 @@
   <% end %>
   <div class="zoom-index">
     <%# <h2>ZoomHouse</h2> %>
+    <div class = "zoom_description">
+      <h3>Zoomハウスとは</h3>
+        <p class = "zoom_des">zoomハウスとは、zoomの招待URLをこちらに投稿するだけで、HeyCollegeに登録しているユーザーと簡単にzoomを通して繋がることができる機能です！<a type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          ...(続きを読む)
+        </a>
+        </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <h5>具体的な使い方</h5>
+          <ol>
+            <li>サークルやクラブなどの学生団体の新歓</li>
+            <li>履修相談会</li>
+            <li>雑談</li>
+          </ol>
+        </div>
+      </div>
+    </div>
     <div class="mobile_new_room_container">
       <%= link_to "+ New room", new_zoom_path, class: "btn btn-success d-sm-none mobile_new_room" %>
     </div>

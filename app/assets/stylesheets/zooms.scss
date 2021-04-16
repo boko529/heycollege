@@ -81,6 +81,20 @@
   .disable{
     pointer-events: none
   }
+  .zoom_description{
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 5px, 8px;
+    color: #333333;
+    border:0.065rem solid rgb(200, 200, 200);
+    margin-bottom: 15px;
+  }
+  h3{
+    margin: 0;
+  }
+  p.zoom_des{
+    margin: 0;
+  }
 }
 .zoom-new, .zoom-edit{
   div{
