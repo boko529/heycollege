@@ -3,7 +3,7 @@
     <p><%= t('.chooseamember') %></p>
     <%= render 'shared/stats_user' %>
     <% @users.each do |user| %>
-    <% relation = UserGroupRelation.find_by(user_id: user.id, group_id: @group.id) %>
+      <% relation = UserGroupRelation.find_by(user_id: user.id, group_id: @group.id) %>
       <% if relation.confirmation == false && relation.leave == false %>
         <li class="list-group-item list-group-item-action member-list-box">
         <%= link_to user.name, {controller: 'groups', action: 'confirm', id: @group.id, user_id: user.id}, method: :patch %></li>

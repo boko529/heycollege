@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_062725) do
+ActiveRecord::Schema.define(version: 2021_04_16_034526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 2021_04_06_062725) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "review_id"
+    t.integer "group_id"
+    t.index ["group_id"], name: "index_notifications_on_group_id"
     t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
@@ -277,6 +279,8 @@ ActiveRecord::Schema.define(version: 2021_04_06_062725) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.bigint "university_id", null: false
+    t.boolean "is_public", default: false
+    t.integer "group_id", default: 0
     t.index ["start_time"], name: "index_zooms_on_start_time"
     t.index ["university_id"], name: "index_zooms_on_university_id"
   end

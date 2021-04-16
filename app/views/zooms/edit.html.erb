@@ -30,6 +30,19 @@
             <br>
             <%= f.datetime_field :end_time, class: 'form-control' %>
           </div>
+          <% if @groups.count > 0  %>
+            <div>
+              <%= f.label :group_id %>
+              <br>
+              <span><small>団体としてのzoomを作成する場合は以下から選んでください。</small></span>
+              <br>
+              <%= f.collection_select(:group_id, @groups, :id, :name, {include_blank: '選択なし'}, class: "form-select form-select-lg ")%>
+            </div>
+          <% end %>
+          <div>
+            <%= f.label :is_public %>
+            <%= f.check_box :is_public, class: 'edit-control' %>
+          </div>
           <div>
             <%= f.submit '更新する', class: "btn btn-primary"%>
           </div>

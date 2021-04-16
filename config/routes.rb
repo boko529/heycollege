@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   end
   get 'groups/:id/edit_admin', to: 'groups#edit_admin'
   patch 'groups/:id/update_admin', to: 'groups#update_admin'
-  get 'groups/:id/edit_confirmaiton', to: 'groups#edit_confirmation'
+  get 'groups/:id/edit_confirmaiton', to: 'groups#edit_confirmation', as: 'group_confirmation'
   patch 'groups/:id/confirm', to: 'groups#confirm'
   resources :users do
     member do

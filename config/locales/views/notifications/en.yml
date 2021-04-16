@@ -12,3 +12,5 @@ en:
       yourreview: "liked "
       ago: " ago"
       point: "+100"
+      ja_join_request: ""
+      en_join_request: "request to join to"

@@ -1,6 +1,7 @@
 class ZoomsController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:create,:new,:destory] # indexはランディングページを兼ねている
   before_action :correct_user, only: [:edit,:destroy, :update]
+  before_action :set_group, only: [:new, :edit, :update ]
 
   def create
     # APIを用いてzoom作成
@@ -52,7 +53,7 @@ class ZoomsController < ApplicationController
 
   def index
     if user_signed_in?
-      @zooms = Zoom.where(university_id: current_user.university_id).includes([:user]).order(:start_time) #自分の大学のzoom一覧を表示
+      @zooms = Zoom.where(university_id: current_user.university_id).or(Zoom.where(is_public: :true)).includes([:user]).order(:start_time) #自分の大学のzoomもしくはis_publicがtrueのzoomを一覧を表示
       @news = News.where(university_id: current_user.university_id)
       @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc)
     end
@@ -113,11 +114,23 @@ class ZoomsController < ApplicationController
 
   private
   def zoom_params
-    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time)
+    params.require(:zoom).permit(:join_url, :user_id, :title, :start_time, :end_time, :is_public, :group_id)
   end
 
   def correct_user
     @zoom = Zoom.find(params[:id])
-    redirect_to zooms_path unless @zoom.user==current_user
+    relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @zoom.group_id)
+    redirect_to zooms_path unless @zoom.user==current_user || relation.confirmation == true && relation.leave == false
+  end
+
+  #ユーザーの所属している団体を先に設定
+  def set_group
+    @groups = []
+    current_user.group.each do |group|
+      relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: group.id)
+      if relation.confirmation == true && relation.leave == false
+        @groups.push(group)
+      end
+    end
   end
 end
