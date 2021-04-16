@@ -23,7 +23,7 @@
         <% when 'follow' then %>
           <%= t('.startfollow') %>
         <% when 'join_request' then %>
-          <%= link_to "#{Group.find_by(id: notification.group_id).name}にJoinリクエストを送信しました",  group_confirmation_path(notification.group_id), style: "font-weight: bold;" %>
+          <%= link_to "#{t('.en_join_request')}#{Group.find_by(id: notification.group_id).name}#{t('.ja_join_request')}",  group_confirmation_path(notification.group_id), style: "font-weight: bold;" %>
         <% end %>
     </strong>
     <span class="small text_muted text-right">
