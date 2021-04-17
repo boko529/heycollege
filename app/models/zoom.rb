@@ -7,7 +7,8 @@ class Zoom < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   # ZOOM招待URLのバリデーション
   # VALID_JOINURL_REGEX = /\A^(http|https):\/\/*(us04web\.)?zoom\.us\/j\/(.*)?$\z/ix
-  VALID_JOINURL_REGEX = /\A^(http|https):\/\/*(us)?[0-9]?[0-9]?(web\.)?zoom\.us\/j\/(.*)?$\z/ix
+  # VALID_JOINURL_REGEX = /\A^(http|https):\/\/*(us)?[0-9]?[0-9]?(web\.)?zoom\.us\/j\/(.*)?$\z/ix
+  VALID_JOINURL_REGEX = /\A^(http|https):\/\/.*?zoom\.us\/j\/(.*)?$\z/ix
   validates :join_url, presence: true,format: { with: VALID_JOINURL_REGEX }
   validate :start_end_check
   validate :start_check
