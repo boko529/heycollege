@@ -59,6 +59,7 @@ en:
       twi_message: "ex)Hey_College_"
       insta_message: "ex)hey.college"
       zoom_message: "ex)https://us04web.zoom.us.."
+      change_email: "Please change to a college email (ex)~@apu.ac.jp"
     emailedit:
       changeedit: "Email edit"
       change_email: "change"

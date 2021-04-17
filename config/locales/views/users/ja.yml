@@ -59,6 +59,7 @@ ja:
       twi_message: "例)Hey_College_"
       insta_message: "例)hey.college"
       zoom_message: "例)https://us04web.zoom.us.."
+      change_email: "大学のメールアドレスに変更してください(例)~@apu.ac.jp"
     emailedit:
       changeedit: "メールアドレス変更"
       change_email: "変更する"
