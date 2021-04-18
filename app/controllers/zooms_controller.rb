@@ -1,7 +1,7 @@
 class ZoomsController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:create,:new,:destory] # indexはランディングページを兼ねている
   before_action :correct_user, only: [:edit,:destroy, :update]
-  before_action :set_group, only: [:new, :edit, :update ]
+  before_action :set_group, only: [:new, :edit, :update, :create ]
 
   def create
     # APIを用いてzoom作成

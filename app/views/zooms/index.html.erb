@@ -93,8 +93,8 @@
             <% end %>
           <% else %>
             <% if f.user == current_user %>
-              <%= link_to t('.edit'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-              <%= link_to t('.delete'), edit_zoom_path(f.id),class: "btn btn-success"%>
+              <%= link_to t('.delete'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+              <%= link_to t('.edit'), edit_zoom_path(f.id),class: "btn btn-success"%>
             <% end %>
           <% end %>
           </div>
