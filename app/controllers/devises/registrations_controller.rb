@@ -71,7 +71,7 @@ class Devises::RegistrationsController < Devise::RegistrationsController
     if email.include?("@apu.ac.jp")
       params[:user][:type] = "Apu::User"
       params[:user][:university_id] = 1
-    elsif email.include?("@edu.osakafu-u.ac.jp")
+    elsif email.include?("osakafu-u.ac.jp")
       params[:user][:type] = "Opu::User"
       params[:user][:university_id] = 2
     elsif email.include?("@special.signup") # 一般リリースよりも先に触ってもらうユーザー専用の隠しログインコマンド(団体の方々など)
