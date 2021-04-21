@@ -27,18 +27,18 @@
   <div class="zoom-index">
     <%# <h2>ZoomHouse</h2> %>
     <div class = "zoom_description">
-      <h3>Zoomハウスとは</h3>
-        <p class = "zoom_des">zoomハウスとは、zoomの招待URLをこちらに投稿するだけで、HeyCollegeに登録しているユーザーと簡単にzoomを通して繋がることができる機能です！<a type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          ...(続きを読む)
+      <h3><%= t('.about_zoom') %></h3>
+        <p class = "zoom_des"><%= t('.discription_zoom') %><a type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          <%= t('.see_continue') %>
         </a>
         </p>
       <div class="collapse" id="collapseExample">
         <div class="card card-body">
-          <h5>具体的な使い方</h5>
+          <h5><%= t('.how_to_use') %></h5>
           <ol>
-            <li>サークルやクラブなどの学生団体の新歓</li>
-            <li>履修相談会</li>
-            <li>雑談</li>
+            <li><%= t('.ex1') %></li>
+            <li><%= t('.ex2') %></li>
+            <li><%= t('.ex3') %></li>
           </ol>
         </div>
       </div>
@@ -88,13 +88,13 @@
           <% relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: f.group_id) %>
           <% if relation %>
             <% if relation.confirmation == true && relation.leave == false %>
-              <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-              <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+              <%= link_to t('.edit'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+              <%= link_to t('.delete'), edit_zoom_path(f.id),class: "btn btn-success"%>
             <% end %>
           <% else %>
             <% if f.user == current_user %>
-              <%= link_to "削除", zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-              <%= link_to "編集", edit_zoom_path(f.id),class: "btn btn-success"%>
+              <%= link_to t('.edit'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+              <%= link_to t('.delete'), edit_zoom_path(f.id),class: "btn btn-success"%>
             <% end %>
           <% end %>
           </div>
