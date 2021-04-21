@@ -10,7 +10,7 @@ class Zoom < ApplicationRecord
   VALID_JOINURL_REGEX = /\A^(http|https):\/\/*(us)?[0-9]?[0-9]?(web\.)?zoom\.us\/j\/(.*)?$\z/ix
   validates :join_url, presence: true,format: { with: VALID_JOINURL_REGEX }
   validate :start_end_check
-  validate :start_check
+  validate :start_check, on: :create
   validates :university_id, presence: true
   has_many :users, through: :user_zooms
   has_many :user_zooms
