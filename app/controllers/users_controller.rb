@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit,:update,:show,:following,:follower, :hide]
   before_action :user_is_not_deleted_show, only: [:show]
   before_action :user_is_not_deleted_follow, only: [:following, :follower]
-  before_action :check_university_show, only: [:show]
+  # before_action :check_university_show, only: [:show] # zoomハウスから他大学のユーザーに飛べるためコメントアウト
   before_action :check_university_follow, only: [:following, :follower]
 
   def show
@@ -102,13 +102,13 @@ class UsersController < ApplicationController
     end
   end
 
-  # 自分と同じ大学のshowページしか見れない
-  def check_university_show
-    @user = User.find(params[:id])
-    if current_user.university_id != @user.university_id
-      redirect_back(fallback_location: root_path)
-    end
-  end
+  # # 自分と同じ大学のshowページしか見れない
+  # def check_university_show
+  #   @user = User.find(params[:id])
+  #   if current_user.university_id != @user.university_id
+  #     redirect_back(fallback_location: root_path)
+  #   end
+  # end
 
   # 自分と同じ大学のshowページしか見れない
   def check_university_follow
