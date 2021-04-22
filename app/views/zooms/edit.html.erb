@@ -23,7 +23,15 @@
             <br>
             <span><small>現在時刻から数分後に設定すると良いです</small></span>
             <br>
-            <%= f.datetime_field :start_time, class: 'form-control' %>
+            <% if @zoom.start_time_changed? %> 
+              <%= f.datetime_field :start_time, class: 'form-control' %>
+            <% else %>
+              <% if @zoom.start_time.present? && @zoom.start_time < Time.now  %>
+                <%= f.datetime_field :start_time, class: 'form-control', disabled: true%>
+              <% else %>
+                <%= f.datetime_field :start_time, class: 'form-control' %>
+              <% end %>
+            <% end %>
           </div>
           <div>
             <%= f.label :end_time %>

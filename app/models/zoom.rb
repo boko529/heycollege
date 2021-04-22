@@ -11,7 +11,8 @@ class Zoom < ApplicationRecord
   VALID_JOINURL_REGEX = /\A^(http|https):\/\/.*?zoom\.us\/j\/(.*)?$\z/ix #APUのzoom対応（応急処置）
   validates :join_url, presence: true,format: { with: VALID_JOINURL_REGEX }
   validate :start_end_check
-  validate :start_check
+  validate :start_check, on: :create
+  validate :start_check_update, on: :update
   validates :university_id, presence: true
   has_many :users, through: :user_zooms
   has_many :user_zooms
@@ -21,7 +22,13 @@ class Zoom < ApplicationRecord
   end
 
   def start_check
-    errors.add(:start_time, "は現在の日時より遅い時間を選択してください") if self.start_time.present? && start_time < Time.now - 600
-    #zoom作成時の時刻に余裕を持たせる
+      errors.add(:start_time, "は現在の日時より遅い時間を選択してください") if self.start_time.present? && start_time < Time.now - 600
+      #zoom作成時の時刻に余裕を持たせる
+  end
+
+  def start_check_update
+    if self.start_time_changed? #開始時刻に変更があった場合にのみ開始時刻にバリデーションをつける
+      errors.add(:start_time, "は現在の日時より遅い時間を選択してください。") if self.start_time.present? && start_time < Time.now
+    end
   end
 end
