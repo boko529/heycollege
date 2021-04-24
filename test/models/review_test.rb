@@ -22,7 +22,7 @@ class ReviewTest < ActiveSupport::TestCase
   end
 
   test "content should not be too long" do
-    @review.content= "a" * 651
+    @review.content= "a" * 1001
     assert_not @review.valid?
   end
 
