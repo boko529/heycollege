@@ -161,7 +161,7 @@
     <% if current_user.university_id == @user.university_id %>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @reviews.count %>)</a>
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><%= t('.review') %> (<%= @user.reviews.count %>)</a>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
