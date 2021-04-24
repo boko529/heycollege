@@ -48,22 +48,22 @@
 
               <div class="field">
                 <%= f.label :twitter_name,t('.twi'), class:"title"  %><br>
-                <%= f.text_field :twitter_name, placeholder: t('.twi_message') %>
+                <%= f.text_field :twitter_name, placeholder: t('.twi_message'), class: 'form-control' %>
               </div>
 
               <div class="field">
                 <%= f.label :instagram_name,t('.insta'), class:"title"  %><br>
-                <%= f.text_field :instagram_name, placeholder: t('.insta_message') %>
+                <%= f.text_field :instagram_name, placeholder: t('.insta_message'), class: 'form-control' %>
               </div>
 
               <div class="field">
                 <%= f.label :zoom_url,t('.zoom'), class:"title"  %><br>
-                <%= f.text_field :zoom_url, placeholder: t('.zoom_message') %>
+                <%= f.text_field :zoom_url, placeholder: t('.zoom_message'), class: 'form-control' %>
               </div>
 
               <div class="field">
                 <%= f.label :message,t('.msg'), class:"title"  %><br>
-                <%= f.text_area :message, placeholder: t('.in100') %>
+                <%= f.text_area :message, placeholder: t('.in100'), size: "20x10", maxlength: "600", class: 'form-control' %>
               </div>
 
               <%= f.submit t('.change') %>
