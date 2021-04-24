@@ -2,17 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-// ブックマークのCSSはここ
-.news_by{
-  display: block;  
-  background-color: rgb(176, 238, 82);
-  width: 100%;
-  font-weight: bold;
-  padding-left: 10px;
-  border-radius: 5px;
-  color: black;
-}
-
 // スライドショーのscss
 // マージン消したから、その分スライドショーを中央に持ってくるためのブロック
 .slide-container {
