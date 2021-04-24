@@ -1,6 +1,13 @@
 // Place all the styles related to the helpfuls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.helpfuls_buttons {
+  margin-top: 1rem;
+}
 .helpful-color{
   color: rgb(245, 216, 51);
+}
+.helpful-size {
+  font-size: 1.4rem;
 }
