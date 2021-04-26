@@ -4,7 +4,7 @@ en:
       search_insidetext: "Look up by class or teacher name"
     sidebar:
       group: "Group"
-      ranking: "Ranking"
+      ranking: "Lecture Pages"
       create: "Add pages"
       book: "Bookmark"
       help: "Help"
@@ -17,7 +17,7 @@ en:
     footer:
       title_login: "My Page"
       group: Group
-      ranking: Ranking
+      ranking: Lecture Pages
       create: Make a new page
       book: Bookmark
       contact: "Contact us"
@@ -29,7 +29,7 @@ en:
       menu: Menu
       zoomhouse: ZoomHouse
     subsidebar:
-      rank: "Ranking"
+      rank: "Lecture Pages"
       # make: "Make a page"
       book: "Bookmark"
       contact: Contact us

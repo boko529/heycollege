@@ -3,8 +3,8 @@ ja:
     header:
       search_insidetext: "クラスまたは先生名で探す"
     sidebar:
-      group: "グループ"
-      ranking: "ランキング"
+      group: "学生団体"
+      ranking: "講義ページ"
       create: "ページを作る"
       book: "ブックマーク"
       help: "ヘルプ"
@@ -16,8 +16,8 @@ ja:
       zoomhouse: Zoomハウス
     footer:
       title_login: "マイページ"
-      group: グループ
-      ranking: ランキング
+      group: 学生団体
+      ranking: 講義ページ
       # create: ページ作成
       book: ブックマーク
       contact: お問い合わせ
@@ -30,11 +30,11 @@ ja:
       zoomhouse: Zoomハウス
       log: ログイン
     subsidebar:
-      rank: "ランキング"
+      rank: "講義ページ"
       # make: "ページを作る"
       book: "ブックマーク"
       contact: お問い合わせ
       log: ログイン
       zoomhouse: Zoomハウス
-      group: グループ
+      group: 学生団体
       
