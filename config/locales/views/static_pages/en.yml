@@ -7,7 +7,7 @@ en:
     user:
       place: "th"
     home:
-      class: "Class"
-      teacher: "Teacher"
-      user_point: "User"
+      class: "Class ranking"
+      teacher: "Teacher ranking"
+      user_point: "User ranking"
       notes: "Only the top 20 people are displayed in the user ranking."
