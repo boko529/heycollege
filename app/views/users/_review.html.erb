@@ -17,7 +17,7 @@
     <% end %>
    </p>
   <%# 役に立ったボタン %>
-  <div id="helpfuls_buttons_<%= review.id %>">
+  <div id="helpfuls_buttons_<%= review.id %>" class="helpfuls_buttons">
     <%= render partial: 'helpfuls/helpful', locals: { lecture: review.lecture, review: review } %>
   </div>
 </li>

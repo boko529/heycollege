@@ -53,9 +53,7 @@
     <%# レビュー表示 %>
     <div class="col-md-12 lecture-reviews">
       <% if @reviews.present? %>
-
         <p><%= t('.number-of-review') %> (<%= @teacher.review_comment_count %>)</p>
-
         <ol class="reviews">
           <% @reviews.each do |review| %>
             <%= render partial: "teachers/review", locals: {review: review} %>
