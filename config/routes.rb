@@ -53,6 +53,8 @@ Rails.application.routes.draw do
     
   # 言語切り替え用rooting
   get "/application/change_language/:language" => "application#change_language"
+  # 大学切り替えようrooting
+  get "/application/change_university/:university_id" => "application#change_university"
   patch "/users/:id/hide" => "users#hide", as: 'users_hide' # 退会用
   # redis, ランキング更新
   resource :redis, only: %i[show]
