@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
 
     # 大学を指定しているかの確認(指定していなかったら設定)
     def set_university_id
-      if session[:university_id] == 1 || session[:university_id] == 2 #大学が増えたらここも増やす
+      unless session[:university_id] == '1' || session[:university_id] == '2' #大学が増えたらここも増やす
         # 大学設定ページに移動(ハイボルテージで作成)
         render page_path('set_university') #redirect_toだと何故かうまくいかん(pageの表示だけだから説)
       end
