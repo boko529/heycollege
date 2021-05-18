@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # before_action :store_location, unless: :devise_controller? # デバイス関係のコントローラー以外のときにセッションを取る
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
-  before_action :set_university_id
+  before_action :set_university_id, except: [:change_language, :change_university] # これがないとセッションに保存するアクションさせてもらえないw
 
   def set_search
     # ログインしてる時に大学によってモデルを変える

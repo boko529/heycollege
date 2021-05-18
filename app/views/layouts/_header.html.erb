@@ -71,12 +71,12 @@
 
       <% unless user_signed_in? %>
         <%# 大学切り替え %>
-        <% if session[:university_id] == 1 %>
-          <%= link_to "/application/change_language/2" do %>
+        <% if session[:university_id] == "1" %>
+          <%= link_to "/application/change_university/2" do %>
             OPUへ
           <% end %>
-        <% elsif session[:university_id] == 2 %>
-          <%= link_to "/application/change_language/1" do %>
+        <% elsif session[:university_id] == "2" %>
+          <%= link_to "/application/change_university/1" do %>
             APUへ
           <% end %>
         <% end %>
@@ -91,6 +91,8 @@
             <%= link_to "/application/change_language/ja" do %>
               日本
             <% end %>
+          <% else %>
+            <p><%= session[:locale] %></p>
           <% end %>
         </div>
       <% end %>
