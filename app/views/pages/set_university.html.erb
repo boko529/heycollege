@@ -1,5 +1,8 @@
 <% provide(:title, '大学設定') %>
 <h1>大学設定画面</h1>
+<p>パラメーター：<%= params[:university_id] %></p>
+<p>セッション大学：<%= session[:university_id] %></p>
+<p>セッション言語：<%= session[:locale] %></p>
 
 <%# 言語切り替えボタン %>
 <div class="lang col-1 text-right">
