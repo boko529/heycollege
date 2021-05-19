@@ -54,7 +54,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:faculty,:grade,:gender, :agreement]) # agreementは利用規約とプラバシーポリシーへの同意
     end
@@ -71,6 +70,14 @@ class ApplicationController < ActionController::Base
       unless session[:university_id] == '1' || session[:university_id] == '2' #大学が増えたらここも増やす
         # 大学設定ページに移動(ハイボルテージで作成)
         render page_path('set_university') #redirect_toだと何故かうまくいかん(pageの表示だけだから説)
+      end
+    end
+
+    def d_university_id
+      if user_signed_in?
+        current_user.university_id
+      elsif session[:university_id]
+        session[:university_id].to_i # セッションがなかったらbeforeアクションで弾かれてるはず！！
       end
     end
 end
