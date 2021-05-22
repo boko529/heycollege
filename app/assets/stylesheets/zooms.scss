@@ -37,6 +37,7 @@
       font-size: 0.9rem;
       width: 100%;
       word-break: break-all;
+      font-weight: bold;
     }
     .zoom_info{
       margin: 0;
@@ -44,6 +45,8 @@
     }
     .watcher{
       float: right;
+      align-items: center;
+      display: flex;
     }
     .btn-primary{
       color: #fff;
