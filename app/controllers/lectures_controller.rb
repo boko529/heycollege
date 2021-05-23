@@ -35,7 +35,9 @@ class LecturesController < ApplicationController
     @reviews = Kaminari.paginate_array(reviews) # しばらくはページネーションなくて良さそう。ページネーションを追加する際はviewの自分のレビューへ飛ぶ際に場合分けで1ページ目のときはそのまま2ページ目以降は?page=params[:page]=2/~~みたいにする必要あり
     # 最新順で表示
     # @reviews = @lecture.reviews.order(created_at: :desc).page(params[:page]).per(7)
-    @review = current_user.reviews.new
+    if user_signed_in?
+      @review = current_user.reviews.new
+    end
     @teacher = @lecture.teacher
     #最も参考になったレビュー
     @helpful_review = @lecture.most_helpful_review
