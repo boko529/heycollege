@@ -111,15 +111,17 @@
         <div class="col-lg-4">
 
           <div class="member-list">
-            <%= render 'shared/stats_user' %>
-            <% @members.each do |user| %>
-              <li class="list-group-item list-group-item-action member-list-box">
-                <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user.becomes(User) %>
-              </li>
+            <% if user_signed_in? %>
+              <%= render 'shared/stats_user' %>
+              <% @members.each do |user| %>
+                <li class="list-group-item list-group-item-action member-list-box">
+                  <%= render partial: "shared/user_image/display_icon20", locals: {user: user} %><%= link_to u_display_name(user), user.becomes(User) %>
+                </li>
+              <% end %>
+              <div class="page-box">
+                <%= paginate @members, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
+              </div>
             <% end %>
-            <div class="page-box">
-              <%= paginate @members, param_name: "user_page", theme: 'twitter-bootstrap-4' %>
-            </div>
           </div>
 
         </div>
