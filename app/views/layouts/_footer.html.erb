@@ -58,7 +58,7 @@
             </li>
             <%# グループ %> 
             <li class="list-group-item text-left">
-              <%= link_to groups_path do %>            
+              <%= link_to groups_path do %>
                 <span class="icon">
                   <i class="fas fa-users fa-lg"></i>
                 </span>
@@ -67,7 +67,7 @@
             </li>
             <%# ランキング %>
             <li class="list-group-item text-left">
-              <%= link_to ranking_path do %>           
+              <%= link_to ranking_path do %>
                 <span class="icon">
                   <i class="fas fa-medal fa-lg"></i>
                 </span>
@@ -76,7 +76,7 @@
             </li>
             <%# ブックマーク %>
             <li class="list-group-item text-left">
-               <%= link_to bookmarks_path do %>           
+               <%= link_to bookmarks_path do %>
                 <span class="icon">
                   <i class="far fa-bookmark fa-lg"></i>
                 </span>
@@ -91,7 +91,7 @@
                 </span>
                 <span class="d-inline"><%= t('.zoomhouse') %></span>
               <% end %>
-            </li>            
+            </li>
             <%# 言語切り替え %>
             <li class="list-group-item text-left under-line">
               <% if session[:locale] == "ja" || session[:locale].blank? %>
@@ -108,7 +108,7 @@
                 <% end %>
               <% end %>
             </li>
-            <%# お問い合わせ %>                                              
+            <%# お問い合わせ %>
             <li class="list-group-item text-left under-line">
               <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
                 <span class="icon">

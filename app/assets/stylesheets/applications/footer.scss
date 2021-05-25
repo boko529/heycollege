@@ -41,9 +41,12 @@ footer {
       border-bottom: initial;
       padding: 0.4rem 1.25rem;
       color: #444;
-      .icon {
-        padding-right: 0.5rem;
-        padding-left: 0.1rem;
+      a {
+        color: #5a5252;
+          .icon {
+          padding-right: 0.5rem;
+          padding-left: 0.1rem;
+        }
       }
     }
     .under-line {

@@ -1,7 +1,7 @@
 .lecture_show{
   // ヘッダーから間隔
   top: 0.3rem;
-  margin: 1.5rem;
+  margin: 1rem;
   position: relative;
 
   a{
@@ -26,9 +26,6 @@
   // lecture and all reviews
   .lectureinfo-N-allreviews {
     border-radius: 4px;
-    .lecture-info {
-            margin-top: 20px;
-    }
     .lec-score-tea-class{
       display: inline-block;
     }

@@ -33,7 +33,7 @@
       </div>
       
       <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-      <div class="search col-1 offset-3 d-md-none d-block p-0">
+      <div class="search col-1 offset-4 d-md-none d-block p-0">
         <% if user_signed_in? %>
           <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
             <i class="fas fa-search fa-2x"></i>  
@@ -49,7 +49,7 @@
           <% end %>
         </div>
         <%# お知らせアイコン %>
-        <div class="bell col-1 offset-1 offset-sm-0 d-flex m-0 text-right">
+        <div class="bell col-1 offset-1 offset-sm-0 d-block m-0 text-right">
           <%= link_to notifications_path do %>
             <%= render 'layouts/circle' %>
           <% end %>

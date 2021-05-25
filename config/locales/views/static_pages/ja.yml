@@ -7,7 +7,7 @@ ja:
     user:
       place: "位"
     home:
-      class: "講義ランキング"
-      teacher: "先生ランキング"
-      user_point: "ユーザーランキング"
+      class: "講義"
+      teacher: "先生"
+      user_point: "ユーザー"
       notes: "※ユーザーランキングではカレッジポイントが高い上位20名を表示しております。"
