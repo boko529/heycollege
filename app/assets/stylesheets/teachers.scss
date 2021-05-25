@@ -43,6 +43,9 @@
         width: 45%;
         padding: 0px;
         float: left;
+        .teaching-classes{
+         margin-bottom: 0.5rem;
+        }
         h3{
           font-size: 28px;
           font-weight: normal;
@@ -78,7 +81,6 @@
         padding: 0px;
         margin-top: 10px;
         li{
-          padding: 30px;
           .timestamp{
             font-size: 10px;
           }
@@ -100,6 +102,7 @@
     .teacher-info{
         .teachers_class{
           width: 100%;
+          margin: 0.5rem 0 0.5rem 0;
         }
         .most_helpful_review{
           width: 100%;
