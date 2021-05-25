@@ -57,31 +57,46 @@
         <% end %>
       <%# ログインしてない時 %>
       <% else %>
-        <%# <li class="list-group-item"> %>
-      <!--
+         <li class="list-group-item d-flex text-center">
+          <%= link_to ranking_path do %>
+            <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline"><%= t('.ranking') %></span>
+          <% end %>
+        </li>
         <li class="list-group-item text-center">
           <%= link_to groups_path do %>
-            <i class="fas fa-medal fa-2x"></i><span class="d-none d-lg-inline"><%= t('.group') %></span>
+            <i class="fas fa-users fa-2x"></i><span class="d-none d-lg-inline"><%= t('.group') %></span>
           <% end %>
         </li>
-      -->
+
+        <%# 手動作成はいらないと思うのでコメントアウト %>
+        <%# <li class="list-group-item text-center"> %>
+          <%#= link_to new_lecture_path do %>
+            <%# <i class="far fa-plus-square fa-2x"></i> %>
+            <%# <span class="d-none d-lg-inline"> %>
+              <%#= t('.create') %>
+            <%# </span> %>
+          <%# end %>
+        <%# </li> %>
+
+        <%# ZoomHouse %>
         <li class="list-group-item text-center">
-          <%= link_to new_user_session_path do %>
-            <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline"><%= t('.sig&log') %></span>
+          <%= link_to zooms_path do %>           
+            <i class="fas fa-broadcast-tower fa-2x"></i>
+            <span class="d-none d-lg-inline"><%= t('.zoomhouse') %></span>
           <% end %>
-        </li>
-        <!--
-          <li class="list-group-item text-center">
-            <%= link_to root_path do %>
-              <i class="fas fa-question fa-2x"></i><span class="d-none d-lg-inline"><%= t('.help') %></span>
-            <% end %>
-          </li>
-        -->
+        </li>         
         <li class="list-group-item text-center">
           <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
             <i class="fas fa-envelope fa-2x"></i><span class="d-none d-lg-inline"><%= t('.contact') %></span>
           <% end %>
         </li>
+
+        <li class="list-group-item text-center">
+          <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline"><%= t('.sig&log') %></span>
+          <% end %>
+        </li>
+        
       <% end %>
     </ul>
   </nav>
