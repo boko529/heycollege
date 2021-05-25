@@ -23,9 +23,16 @@
       <div class="scores">
       <span id="star-teacher<%= @teacher.id %>"></span>
       <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span>
-        
     </div>
+
+<%
+=begin
+%>いらないと思うから今は消しとく
     <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+<%
+=end
+%>
+
 
     <%# 講義表示 %>
       <div class="col-md-8 teachers_class">
