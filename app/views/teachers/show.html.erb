@@ -23,37 +23,49 @@
       <div class="scores">
       <span id="star-teacher<%= @teacher.id %>"></span>
       <span class="score"><%= @teacher.average_score %></span><span class="review-count">(<%= @teacher.review_comment_count %>)</span>
-        
     </div>
-    <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
 
-    <%# 講義表示 %>
-      <div class="col-md-8 teachers_class">
-        <% if @teacher.lectures.any? %>
-          <%= t('.teaching-class') %> (<%= @teacher.lectures.count %>)
-          <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
-          <div class="list-group">
-            <% @lectures.each do |lecture| %>
-              <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
-            <% end %>
-            <%= paginate @lectures, window:2, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
-          </div>
-        <% end %>
+<%
+=begin
+%>いらないと思うから今は消しとく
+    <p><%= @teacher.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+<%
+=end
+%>
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <%# 最も参考になるレビュー %>
+        <div class="col-md-5 col-12 most_helpful_review">
+          <strong><p class="most_helpful"><%= t('.most-helpful-reviews') %></p></strong>
+          <% if @most_helpful_review %>
+            <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
+          <% else %>
+            <p><%= t('.null-review') %></p>
+          <% end %>
+        </div>
+
+        <%# 講義表示 %>
+        <div class="col-md-5 teachers_class">
+          <% if @teacher.lectures.any? %>
+            <strong><p class="teaching-classes"><%= t('.teaching-class') %> (<%= @teacher.lectures.count %>)</p></strong>
+            <%# 講義一覧をパーシャルで表示。5件を超えるとページで分けられる %>
+            <div class="list-group">
+              <% @lectures.each do |lecture| %>
+                <%= render partial: "teachers/lecture", locals: {lecture: lecture} %>
+              <% end %>
+              <%= paginate @lectures, window:2, param_name: 'lectures_page', theme: 'twitter-bootstrap-4' %>
+            </div>
+          <% end %>
+        </div>
+
       </div>
-      <%# 最も参考になるレビュー %>
-      <div class="most_helpful_review">
-        <strong><p class="most_helpful"><%= t('.most-helpful-reviews') %></p></strong>
-        <% if @most_helpful_review %>
-          <%= render partial: "teachers/review", locals: {review: @most_helpful_review} %>
-        <% else %>
-          <p><%= t('.null-review') %></p>
-        <% end %>
-      </div>
-  
+    </div>
+
     <%# レビュー表示 %>
-    <div class="col-md-12 lecture-reviews">
+    <div class="lecture-reviews">
       <% if @reviews.present? %>
-        <p><%= t('.number-of-review') %> (<%= @teacher.review_comment_count %>)</p>
+        <strong><p><%= t('.number-of-review') %> (<%= @teacher.review_comment_count %>)</p></strong>
         <ol class="reviews">
           <% @reviews.each do |review| %>
             <%= render partial: "teachers/review", locals: {review: review} %>
