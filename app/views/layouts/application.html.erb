@@ -12,7 +12,7 @@
       <%= render 'layouts/header'%>
     </header>
     <%# これはヘッダーのなかに入れると不具合が出る(positonが固定されている中に入れると不具合出る) %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && session[:university_id] %> <%# セッションないときは表示しない %>
       <%= render 'layouts/modal_search_form' %>
     <% end %>
 

@@ -75,6 +75,12 @@
             </div>
           <% end %>
         </div>
+      <% else %>
+        <div>
+          <%= link_to  new_user_session_path do %>
+            <div class="btn btn-success">ログインしてレビューを書く</div>
+          <% end %>
+        </div>
       <% end %>
 
       <%# いらないのでコメントアウト %>

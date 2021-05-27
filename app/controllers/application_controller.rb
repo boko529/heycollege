@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
         @q = Opu::Lecture.ransack(params[:q])
         @lectures = @q.result.page(params[:page])
       end
+    else
+      if session[:university_id] == "1"
+        @q = Apu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      elsif session[:university_id] == "2"
+        @q = Opu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      end
+
     end
   end
 
