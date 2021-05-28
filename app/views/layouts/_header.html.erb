@@ -11,6 +11,7 @@
       <div class="logo col-5 col-sm-3 mx-md-0 ml-sm-3">
         <%= link_to image_tag("HeyCollegelogo.png", alt: "ロゴ", width: "150px", id: 'logo'), root_path %>
       </div>
+
       <% if user_signed_in? %>
         <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
           <%# 検索バー %>
@@ -31,14 +32,12 @@
           <% end %>
         </div>
 
-        <% if user_signed_in? && session[:university_id] %> <%# セッションないときは表示しない %>
-          <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
-          <div class="search col-1 offset-4 d-md-none d-block p-0">
-            <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
-              <i class="fas fa-search fa-2x"></i>  
-            </div>
+        <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
+        <div class="search col-1 offset-4 d-md-none d-block p-0">
+          <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-search fa-2x"></i>  
           </div>
-        <% end %>
+        </div>
 
           <%# ユーザーアイコン %>
           <div class="user col-1 mx-2 d-none d-sm-block">
@@ -67,7 +66,7 @@
           </div>
 
       <% else %>
-        <% if user_signed_in? && session[:university_id] %> <%# セッションないときは表示しない %>
+        <% if session[:university_id] %> <%# セッションないときは表示しない %>
           <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
             <%# 検索バー %>
             <%= search_form_for @q, class: "form-inline", url: lectures_path do |f| %>
@@ -88,7 +87,7 @@
           </div>
         <% end %>
 
-        <% if user_signed_in? && session[:university_id] %> <%# セッションないときは表示しない %>
+        <% if session[:university_id] %> <%# セッションないときは表示しない %>
           <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
           <div class="search col-1 offset-4 d-md-none d-block p-0">
             <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
@@ -97,17 +96,13 @@
           </div>
         <% end %>
 
-        <%# 言語切り替えボタン %>
-        <div class="lang col-1 text-right d-none d-sm-block">
-          <% if session[:locale] == "ja" || session[:locale].blank? %>
-            <%= link_to "/application/change_language/en" do %>
-              EN
+        <%# gridレイアウトはまだ書いてない。 %>
+        <div class="links">
+          <div class="btn btn-success bottom-newgegi">
+            <%= link_to new_user_registration_path do %>
+              <i class="fas fa-arrow-circle-right"></i>新規登録はこちら
             <% end %>
-          <% elsif session[:locale] == "en" %>
-            <%= link_to "/application/change_language/ja" do %>
-              日本
-            <% end %>
-          <% end %>
+          </div>
         </div>
       <% end %>
     </div>
