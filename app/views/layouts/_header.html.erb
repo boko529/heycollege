@@ -66,6 +66,7 @@
           </div>
 
       <% else %>
+        <%# 新しいところ %>
         <% if session[:university_id] %> <%# セッションないときは表示しない %>
           <div class="search col-4 col-md-5 offset-md-1 offset-1 mx-auto d-none d-md-block">
             <%# 検索バー %>
@@ -100,7 +101,7 @@
         <div class="links">
           <div class="btn btn-success bottom-newgegi">
             <%= link_to new_user_registration_path do %>
-              <i class="fas fa-arrow-circle-right"></i>新規登録はこちら
+              <i class="fas fa-arrow-circle-right"></i>
             <% end %>
           </div>
         </div>
