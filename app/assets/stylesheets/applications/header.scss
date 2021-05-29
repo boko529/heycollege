@@ -40,4 +40,19 @@ header {
       color: black;
     }
   }
+  .sign-up {
+    a {
+      float: right;
+      background-color: #6fc33b;
+      display: inline-block;
+      border-radius: 5px;
+      p {
+        font-size: 10px;
+        padding: 5px;
+        margin: 0;
+        display: inline-block;
+        color: white;
+      }
+    }
+  }
 }
