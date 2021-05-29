@@ -1,11 +1,24 @@
 <% provide(:title, '大学設定') %>
-<h1>大学設定画面</h1>
 <%# 言語切り替えボタン %>
-<div class="lang col-1 text-right">
-    <%= link_to "/application/change_university/1" do %>
-      APU
-    <% end %>
-    <%= link_to "/application/change_university/2" do %>
-      OPU
-    <% end %>
+<div>
+  <div class="col-11 mx-auto select-university">
+    <div class="col-10 mx-auto btn-frame-login">
+      <div class="btn">
+        <%= link_to new_user_session_path, class: "initial-login" do %>
+          ログイン
+        <% end %>
+        </div>
+    </div>
+    <p>ログインしない方は大学を選択してください。</p>
+    <div class="btn btn-university">
+      <%= link_to "/application/change_university/1" do %>
+        立命館アジア太平洋大学
+      <% end %>
+    </div>
+    <div class="btn btn-university">
+      <%= link_to "/application/change_university/2" do %>
+        大阪府立大学
+      <% end %>
+    </div>
+  </div>
 </div>
