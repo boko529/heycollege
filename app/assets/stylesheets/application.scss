@@ -23,7 +23,7 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
 
 body {
-  background-color: #fff7ec !important;
+  background-color: #fafafa !important;
   font-size: 13px !important;
 }
  
@@ -109,6 +109,10 @@ body {
     position: relative;
     top: 48px;
   }
+}
+
+.main_content {
+  padding-top: 23px;
 }
 
 // ユーザーアイコンやグループアイコンを丸くするためのクラス(groupはユーザーと区別してまんまるじゃなくて少し丸みがある四角でも良いかも。)
