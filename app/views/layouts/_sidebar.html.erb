@@ -96,6 +96,21 @@
             <i class="fas fa-sign-in-alt fa-2x"></i><span class="d-none d-lg-inline"><%= t('.sig&log') %></span>
           <% end %>
         </li>
+
+        <%# 大学切り替え %>
+          <% if session[:university_id] == "2" %>
+            <li class="list-group-item text-left">
+              <%= link_to "/application/change_university/1" do %>
+                <i class="fas fa-exchange-alt fa-2x"></i><span class="d-none d-lg-inline"><%= 'APUへ' %></span>
+              <% end %>
+            </li>
+          <% elsif session[:university_id] == "1" %>
+            <li class="list-group-item text-left">
+              <%= link_to "/application/change_university/1" do %>
+                <i class="fas fa-exchange-alt fa-2x"></i><span class="d-none d-lg-inline"><%= "OPUへ" %></span>
+              <% end %>
+            </li>
+          <% end %>
         
       <% end %>
     </ul>
