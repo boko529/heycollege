@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # before_action :store_location, unless: :devise_controller? # デバイス関係のコントローラー以外のときにセッションを取る
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
+  before_action :set_university_id, except: [:change_language, :change_university], unless: :devise_controller? # これがないとセッションに保存するアクションさせてもらえないw
 
   def set_search
     # ログインしてる時に大学によってモデルを変える
@@ -14,6 +15,15 @@ class ApplicationController < ActionController::Base
         @q = Opu::Lecture.ransack(params[:q])
         @lectures = @q.result.page(params[:page])
       end
+    else
+      if session[:university_id] == "1"
+        @q = Apu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      elsif session[:university_id] == "2"
+        @q = Opu::Lecture.ransack(params[:q])
+        @lectures = @q.result.page(params[:page])
+      end
+
     end
   end
 
@@ -46,14 +56,39 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: "/")
   end
 
+  # 大学切り替え
+  def change_university
+    session[:university_id] = params[:university_id]
+    redirect_to "/"
+  end
+
   protected
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:faculty,:grade,:gender, :agreement]) # agreementは利用規約とプラバシーポリシーへの同意
     end
+
     # 言語切り替えようコード
     def set_locale
       if %w(ja en).include?(session[:locale])
         I18n.locale = session[:locale]
+      end
+    end
+
+    # 大学を指定しているかの確認(指定していなかったら設定)
+    def set_university_id
+      unless user_signed_in?
+        unless session[:university_id] == '1' || session[:university_id] == '2' #大学が増えたらここも増やす
+          # 大学設定ページに移動(ハイボルテージで作成)
+          render page_path('set_university') #redirect_toだと何故かうまくいかん(pageの表示だけだから説)
+        end
+      end
+    end
+
+    def d_university_id
+      if user_signed_in?
+        current_user.university_id
+      elsif session[:university_id]
+        session[:university_id].to_i # セッションがなかったらbeforeアクションで弾かれてるはず！！
       end
     end
 end

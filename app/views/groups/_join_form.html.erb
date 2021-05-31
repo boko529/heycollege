@@ -1,15 +1,17 @@
+<% if user_signed_in?%>
   <div id="join_form" class="btn-join-leave">
-  <% if current_user.belongs?(@group) %>
-    <% if @relation.leave == false %>
-      <% if @relation.confirmation == false %>
-        <%= render 'waiting' %>
+    <% if current_user.belongs?(@group) %>
+      <% if @relation.leave == false %>
+        <% if @relation.confirmation == false %>
+          <%= render 'waiting' %>
+        <% else %>
+          <%= render 'unjoin' %>
+        <% end %>
       <% else %>
-        <%= render 'unjoin' %>
+        <%= render 'join' %>
       <% end %>
     <% else %>
       <%= render 'join' %>
     <% end %>
-  <% else %>
-    <%= render 'join' %>
-  <% end %>
-  </div>
+    </div>
+<% end %>  

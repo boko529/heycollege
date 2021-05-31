@@ -31,11 +31,17 @@
 
 .news_by{
   display: block;  
-  background-color: #9ed57c;
+  background-color: white;
+  border: 1px solid #9ed57c;
   width: 100%;
   font-weight: bold;
   padding-left: 10px;
   border-radius: 5px;
   color: black;
   height: 3em;
+  p {
+    margin: 0;
+    height: 100%;
+    line-height: 37px;
+  }
 }

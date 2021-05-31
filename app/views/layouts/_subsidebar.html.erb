@@ -77,16 +77,34 @@
     <%# ログインしてない時 %>
     <% else %>
       <li class="list-group-item text-center text-lg-left">
-        <%= link_to new_user_session_path do %>
-          <i class="fas fa-sign-in-alt fa-2x"></i><span><%= t('.log') %></span>
+        <%= link_to ranking_path do %>
+          <i class="fas fa-medal fa-2x"></i><span><%= t('.rank') %></span>
         <% end %>
       </li>
-      
+      <li class="list-group-item text-center text-lg-left">
+        <%= link_to groups_path do %>
+          <i class="fas fa-users fa-2x"></i><span ><%= t('.group') %></span>
+        <% end %>
+      </li>
+
+      <%# ZoomHouse %>
+      <li class="list-group-item text-center text-lg-left">
+          <%= link_to zooms_path do %>           
+          <i class="fas fa-broadcast-tower fa-2x"></i><span><%= t('.zoomhouse') %></span>
+        <% end %>
+      </li>
+
       <li class="list-group-item text-center text-lg-left">
         <%= link_to "https://forms.gle/yoxHXthES44B4f6VA", target: :_blank, rel: "noopener noreferrer" do %>
           <i class="fas fa-envelope fa-2x"></i><span><%= t('.contact') %></span>
         <% end %>
       </li>
+      <li class="list-group-item text-center text-lg-left">
+        <%= link_to new_user_session_path do %>
+          <i class="fas fa-sign-in-alt fa-2x"></i><span><%= t('.log') %></span>
+        <% end %>
+      </li>
+      
     <% end %>
       <li class="blank">
       </li>

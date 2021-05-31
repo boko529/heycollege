@@ -1,0 +1,24 @@
+<% provide(:title, '大学設定') %>
+<%# 言語切り替えボタン %>
+<div>
+  <div class="col-11 mx-auto select-university">
+    <div class="col-10 mx-auto btn-frame-login">
+      <div class="btn">
+        <%= link_to new_user_session_path, class: "initial-login" do %>
+          ログイン
+        <% end %>
+        </div>
+    </div>
+    <p>大学を選択してください。</p>
+    <div class="btn btn-university">
+      <%= link_to "/application/change_university/1" do %>
+        APU
+      <% end %>
+    </div>
+    <div class="btn btn-university">
+      <%= link_to "/application/change_university/2" do %>
+        大阪府立大学
+      <% end %>
+    </div>
+  </div>
+</div>

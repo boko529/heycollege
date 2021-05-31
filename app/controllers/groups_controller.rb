@@ -1,29 +1,25 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
+  before_action :authenticate_user!, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmaiton, :confirm]
   before_action :admin_group, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
   before_action :barrier_confirm, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
-  before_action :check_university, only: [:show] # editなどはバリアユーザーがかかってるので問題ないでしょう
+  # before_action :check_university, only: [:show] # editなどはバリアユーザーがかかってるので問題ないでしょう
   before_action :barrier_leave, only: [:edit, :update, :edit_admin, :update_admin, :edit_confirmation, :confirm]
 
   def index
-    @groups = Group.where(university_id: current_user.university_id).includes(:group_point).order("group_points.current_point DESC")
+    if user_signed_in?
+      @groups = Group.where(university_id: current_user.university_id).includes(:group_point).order("group_points.current_point DESC")
+      @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc) # スライドショー
+    else
+      @groups = Group.where(university_id: session[:university_id]).includes(:group_point).order("group_points.current_point DESC")
+      @slides = SlideContent.where(university_id: session[:university_id]).order(updated_at: :desc) # スライドショー
+    end
     @groups = Kaminari.paginate_array(@groups).page(params[:group_page]).per(20)
-    @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc) # スライドショー
   end
 
   def show
     @group = Group.find(params[:id])
     @users = @group.users
-    @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
     @members = Array.new
-    @users.each do |user|
-      relation = UserGroupRelation.find_by(user_id: user.id, group_id: @group.id)
-      if relation.confirmation == true && relation.leave == false
-        @members.push(user)
-      end
-    end
-    # @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
-    @members = Kaminari.paginate_array(@members).page(params[:user_page]).per(10)
     if @group.twitter_name.present? && @group.instagram_name.present?
       @twitter = "https://twitter.com/"+@group.twitter_name
       @instagram = "https://instagram.com/"+@group.instagram_name
@@ -31,6 +27,17 @@ class GroupsController < ApplicationController
       @twitter = "https://twitter.com/"+@group.twitter_name
     elsif @group.instagram_name.present?
       @instagram = "https://instagram.com/"+@group.instagram_name
+    end
+    if user_signed_in?
+      @relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: @group.id)
+      @users.each do |user|
+        relation = UserGroupRelation.find_by(user_id: user.id, group_id: @group.id)
+        if relation.confirmation == true && relation.leave == false
+          @members.push(user)
+        end
+      end
+      # @users = Kaminari.paginate_array(@users).page(params[:user_page]).per(10)
+      @members = Kaminari.paginate_array(@members).page(params[:user_page]).per(10)
     end
   end
 
@@ -122,12 +129,12 @@ class GroupsController < ApplicationController
       end
     end
 
-    def check_university
-      @group = Group.find(params[:id])
-      if current_user.university_id != @group.university_id
-        redirect_back(fallback_location: root_path)
-      end
-    end
+    # def check_university
+    #   @group = Group.find(params[:id])
+    #   if current_user.university_id != @group.university_id
+    #     redirect_back(fallback_location: root_path)
+    #   end
+    # end
 
     def barrier_leave
       group = Group.find(params[:id])

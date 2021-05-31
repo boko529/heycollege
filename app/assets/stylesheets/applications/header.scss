@@ -2,9 +2,10 @@
 header {
   position: fixed;
   height: 48px;
-  background-color: rgb(239, 255, 234);
+  background-color: #ffffff;
   width: 100%;
   z-index: 1000; // modalより下になるようにした
+  border-bottom: 1px solid #dbdbdb;
   a {
     color: rgb(90, 82, 82);
 
@@ -14,6 +15,8 @@ header {
   }
   .header-container {
     height: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
     .row {
     display: flex;
     align-items: center;
@@ -23,6 +26,9 @@ header {
   .form-inline {
     justify-content: center;
     display: block;
+  }
+  .searchbar {
+    background-color: #EEEEEE;
   }
   input .btn {
     height: 40px;
@@ -38,6 +44,26 @@ header {
     white-space: nowrap;
     &:hover {
       color: black;
+    }
+  }
+  .sign-up {
+    height: 38px;
+    a {
+      width: 66px;
+      height: 100%;
+      float: right;
+      background-color: #28a745;
+      display: inline-block;
+      border-radius: 5px;
+      p {
+        font-size: 14px;
+        padding: 5px;
+        margin: 0;
+        display: inline-block;
+        color: white;
+        height: 100%;
+        line-height: 29px;
+      }
     }
   }
 }

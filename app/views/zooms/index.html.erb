@@ -1,4 +1,5 @@
-<% if user_signed_in? %>
+<%# ランディングページには行かせない %>
+<% if 1 == 1 %>
   <% provide(:title, 'ZoomHouse') %>
   <%# 運営からのメッセージがあったら表示する %>
   <% if @news.exists? %>
@@ -74,31 +75,38 @@
           </p>
 
           <!-- 参加人数 -->
-          <span class="watcher">
-          <i class="fas fa-user"></i> <%= f.count %>
-          </span>
+          <%#=<span class="watcher"> %>
+          <%# <i class="fas fa-user"></i> %><%#= f.count %>
+          <%#
+          </span> 
           <br>
+          %>
+
           <!-- 開催時刻 -->
           <%= f.start_time.strftime("%m/%d %H:%M") %> ~ <%= f.end_time.strftime("%m/%d %H:%M") %>
           </p>
+
           <div class="col-12 p-0">
-          <% if f.start_time > Time.now %>
-            <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-secondary disable", target: :_blank, rel: "noopener noreferrer"  %>
-          <% else %>
-            <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
-          <% end %>
-          <% relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: f.group_id) %>
-          <% if relation %>
-            <% if relation.confirmation == true && relation.leave == false %>
-              <%= link_to t('.edit'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-              <%= link_to t('.delete'), edit_zoom_path(f.id),class: "btn btn-success"%>
+            <% if f.start_time > Time.now %>
+              <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-secondary disable", target: :_blank, rel: "noopener noreferrer"  %>
+            <% else %>
+              <%= link_to "Enter", user_zooms_path(f.id), method: :post, class: "btn btn-primary", target: :_blank, rel: "noopener noreferrer"  %>
             <% end %>
-          <% else %>
-            <% if f.user == current_user %>
-              <%= link_to t('.delete'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
-              <%= link_to t('.edit'), edit_zoom_path(f.id),class: "btn btn-success"%>
+
+            <% if user_signed_in?%>
+              <% relation = UserGroupRelation.find_by(user_id: current_user.id, group_id: f.group_id) %>
+              <% if relation %>
+                <% if relation.confirmation == true && relation.leave == false %>
+                  <%= link_to t('.edit'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+                  <%= link_to t('.delete'), edit_zoom_path(f.id),class: "btn btn-success"%>
+                <% end %>
+              <% else %>
+                <% if f.user == current_user %>
+                  <%= link_to t('.delete'), zoom_path(f.id), method: :delete,class: "btn btn-danger"%>
+                  <%= link_to t('.edit'), edit_zoom_path(f.id),class: "btn btn-success"%>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
           </div>
         </div>
       </div>

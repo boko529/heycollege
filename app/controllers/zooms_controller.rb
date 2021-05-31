@@ -56,6 +56,10 @@ class ZoomsController < ApplicationController
       @zooms = Zoom.where(university_id: current_user.university_id).or(Zoom.where(is_public: :true)).includes([:user]).order(:start_time) #自分の大学のzoomもしくはis_publicがtrueのzoomを一覧を表示
       @news = News.where(university_id: current_user.university_id)
       @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc)
+    else
+      @zooms = Zoom.where(university_id: session[:university_id]).or(Zoom.where(is_public: :true)).includes([:user]).order(:start_time) #自分の大学のzoomもしくはis_publicがtrueのzoomを一覧を表示
+      @news = News.where(university_id: session[:university_id])
+      @slides = SlideContent.where(university_id: session[:university_id]).order(updated_at: :desc)
     end
   end
   

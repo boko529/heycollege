@@ -3,6 +3,7 @@ class RedisController < ApplicationController
   before_action :authenticate_user!
   before_action :if_not_admin
 
+  # redisの更新
   def show
   end
 

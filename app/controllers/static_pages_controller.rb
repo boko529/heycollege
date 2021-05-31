@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
       # end.reverse  ids.map{ |id| Article.find(id) }
       
       # redis用のコード
-      lectures = REDIS.zrevrangebyscore( "rank/lectures/#{current_user.university_id}", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
+      lectures = REDIS.zrevrangebyscore( "rank/lectures/#{d_university_id}", "+inf", "-inf" ).map{ |id| Lecture.find(id) }
       @lectures = Kaminari.paginate_array(lectures).page(params[:lectures_page]).per(20)
 
       #先生ランキング処理
@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
       # end.reverse
 
       # redis用のコード
-      teachers = REDIS.zrevrangebyscore( "rank/teachers/#{current_user.university_id}", "+inf", "-inf" ).map{ |id| Teacher.find(id) }
+      teachers = REDIS.zrevrangebyscore( "rank/teachers/#{d_university_id}", "+inf", "-inf" ).map{ |id| Teacher.find(id) }
       @teachers = Kaminari.paginate_array(teachers).page(params[:teachers_page]).per(20)
       
       #ユーザーランキング処理(管理者、退会者は除く,非承認者)
@@ -43,11 +43,11 @@ class StaticPagesController < ApplicationController
       # end.reverse
 
       # redis用のコード
-      users = REDIS.zrevrangebyscore( "rank/users/#{current_user.university_id}", "+inf", "-inf", limit: [0, 20] ).map{ |id| User.find(id) }
+      users = REDIS.zrevrangebyscore( "rank/users/#{d_university_id}", "+inf", "-inf", limit: [0, 20] ).map{ |id| User.find(id) }
       @users = Kaminari.paginate_array(users).page(params[:users_page]).per(20)
 
       #最新のニュースを表示
-      @news = News.where(university_id: current_user.university_id) if current_user
-      @slides = SlideContent.where(university_id: current_user.university.id).order(updated_at: :desc)
+      @news = News.where(university_id: d_university_id)
+      @slides = SlideContent.where(university_id: d_university_id).order(updated_at: :desc)
     end
 end
