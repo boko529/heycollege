@@ -86,23 +86,32 @@
               </div>
             <% end %>
           </div>
-        <% end %>
 
-        <% if session[:university_id] %> <%# セッションないときは表示しない %>
           <%# スマホ画面での検索ボタン(モーダルのスイッチ、出力側はポジション固定してるヘッダーの中に入れると不具合が出るのでapplication.html.erb) %>
           <div class="search col-1 offset-3 d-md-none d-block p-0">
             <div class="mobile-search" data-toggle="modal" data-target="#exampleModal">
               <i class="fas fa-search fa-2x"></i>  
             </div>
           </div>
+
+          <%# gridレイアウトはまだ書いてない。 %>
+          <div class="sign-up col-3">
+            <%= link_to new_user_registration_path do %>
+              <p>新規登録</p>
+            <% end %>
+          </div>
+
+        <% else %>
+          <%# セッションが存在しないとき %>
+
+          <%# gridレイアウトはまだ書いてない。 %>
+          <div class="sign-up col-3 offset-5">
+            <%= link_to new_user_registration_path do %>
+              <p>新規登録</p>
+            <% end %>
+          </div>
         <% end %>
 
-        <%# gridレイアウトはまだ書いてない。 %>
-        <div class="sign-up col-3">
-          <%= link_to new_user_registration_path do %>
-            <p>新規登録</p>
-          <% end %>
-        </div>
       <% end %>
     </div>
   </div>
