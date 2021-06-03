@@ -14,6 +14,7 @@ ja:
       signin: "ログイン"
       sig&log: "ログイン"
       zoomhouse: Zoomハウス
+      lang: Switch to English
     footer:
       title_login: "マイページ"
       group: 学生団体
@@ -37,4 +38,5 @@ ja:
       log: ログイン
       zoomhouse: Zoomハウス
       group: 学生団体
+      lang: Switch to English
       
