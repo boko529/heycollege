@@ -7,6 +7,9 @@ class Admin::UsersController < ApplicationController
 
   def admin_home
   end
+
+  def analytics
+  end
   
   private
   def if_not_admin

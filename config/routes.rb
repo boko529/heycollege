@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resource :groups, only: [:new, :create]
     resources :slide_contents, except: [:show]
     get 'home', to: 'users#admin_home', as:'home'
+    get 'analytics', to: 'users#analytics', as:'analytics'
   end
   root 'zooms#index'
   get 'ranking', to: 'static_pages#home', as:'ranking'
