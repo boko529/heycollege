@@ -14,6 +14,7 @@ en:
       signin: "Login"
       sig&log: "Login"
       zoomhouse: ZoomHouse
+      lang: 日本語に変更
     footer:
       title_login: "My Page"
       group: Group
@@ -36,3 +37,4 @@ en:
       log: Login
       zoomhouse: ZoomHouse
       group: Group
+      lang: 日本語に変更
