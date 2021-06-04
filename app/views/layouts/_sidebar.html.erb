@@ -98,19 +98,33 @@
         </li>
 
         <%# 大学切り替え %>
-          <% if session[:university_id] == "2" %>
-            <li class="list-group-item text-left">
-              <%= link_to "/application/change_university/1" do %>
-                <i class="fas fa-exchange-alt fa-2x"></i><span class="d-none d-lg-inline"><%= 'APUへ' %></span>
-              <% end %>
-            </li>
-          <% elsif session[:university_id] == "1" %>
-            <li class="list-group-item text-left">
-              <%= link_to "/application/change_university/2" do %>
-                <i class="fas fa-exchange-alt fa-2x"></i><span class="d-none d-lg-inline"><%= "OPUへ" %></span>
-              <% end %>
-            </li>
+        <% if session[:university_id] == "2" %>
+          <li class="list-group-item text-left">
+            <%= link_to "/application/change_university/1" do %>
+              <i class="fas fa-exchange-alt fa-2x"></i><span class="d-none d-lg-inline"><%= 'APUへ' %></span>
+            <% end %>
+          </li>
+        <% elsif session[:university_id] == "1" %>
+          <li class="list-group-item text-left">
+            <%= link_to "/application/change_university/2" do %>
+              <i class="fas fa-exchange-alt fa-2x"></i><span class="d-none d-lg-inline"><%= "OPUへ" %></span>
+            <% end %>
+          </li>
+        <% end %>
+
+        <li class="list-group-item text-left">
+          <% if session[:locale] == "ja" || session[:locale].blank? %>
+            <%= link_to "/application/change_language/en" do %>
+              <i class="fas fa-language fa-2x"></i>
+              <span class="d-none d-lg-inline"><%= t('.lang') %></span>
+            <% end %>
+          <% elsif session[:locale] == "en" %>
+            <%= link_to "/application/change_language/ja" do %>
+              <i class="fas fa-language fa-2x"></i>
+              <span class="d-none d-lg-inline"><%= t('.lang') %></span>
+            <% end %>
           <% end %>
+        </li>
         
       <% end %>
     </ul>
