@@ -9,6 +9,16 @@ class Admin::UsersController < ApplicationController
   end
 
   def analytics
+    @opu_users_count = Opu::User.count
+    @reviews_count = Review.count
+    @apu_users_count = Apu::User.count
+    @opu_new_user_counts = [1,2,3,4,5].map do |n|
+      Opu::User.where(created_at: n.day.ago.all_day).count
+    end
+
+    @apu_new_user_counts = [1,2,3,4,5].map do |n|
+      Apu::User.where(created_at: n.day.ago.all_day).count
+    end
   end
   
   private

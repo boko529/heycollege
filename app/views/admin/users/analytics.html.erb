@@ -3,25 +3,26 @@
 
 
 
-<p>ユーザー数： 100</p>
-<p>レビュー数： 200</p>
+<p>OPUユーザー数： <%= @opu_users_count %></p>
+<p>APUユーザー数： <%= @apu_users_count %></p>
+<p>全体レビュー数： <%= @reviews_count %></p>
 <div class="table-responsive">
   <table class="table">
     <thead>
       <tr>
-      <th scope="col">日程</th>
-      <th scope="col">新規ユーザー数</th>
-      <th scope="col">新規レビュー数</th>
+      <th scope="col">新規登録者数</th>
+      <th scope="col">APU</th>
+      <th scope="col">OPU</th>
       </tr>
     </thead>
     <tbody>
-      <%# @users.each do |user| %>
-        <%# if user.admin == false %>
-          <tr>
-            <td>3</td>
-            <td>5</td>
-            <td>6</td>
-          </tr>
+      <% [1,2,3,4,5].each do |n| %>
+        <tr>
+          <td><%= n %>日前</td>
+          <td><%= @apu_new_user_counts[n-1] %></td>
+          <td><%= @opu_new_user_counts[n-1] %></td>
+        </tr>
+      <% end %>
         <%# end %>
       <%# end %>
     </tbody>
