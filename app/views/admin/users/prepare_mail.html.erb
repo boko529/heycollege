@@ -1,0 +1,40 @@
+<% provide(:title, "Mail一括送信") %>
+<h1>mail一括送信</h1>
+<h3>一度送信した内容は取り消すことができません！間違えて送信しないように気をつけてください！</h3>
+<p>送信前に確認すること</p>
+<ol>
+  <li>タイトルを確認(app/mailersuser_mailer.rbのsend_mailアクションのsubjectの内容、<strong>確認メールのタイトルはAPUの本番メールのタイトルと異なるので要確認！)</strong></li>
+  <li>メール内容を確認(app/views/user_mailer/send_email.html.erbとapp/views/user_mailer/send_email.text.erbの<strong>両方を確認</strong>)</li>
+  <li>お試しのメール内容はtest_mail.text.erbやtest_mail.html.erbなのでことなる</li>
+  <li>実際に本番環境で試す前に開発環境で試す</li>
+</ol>
+
+<nav>
+    <%# mail送信先切り替えタブ %>
+    <div class="nav nav-tabs ranking-nav" id="nav-tab" role="tablist">
+      <a class="col-6 nav-item nav-link active" id="nav-lecture-ranking-tab" data-toggle="tab" href="#nav-lecture-ranking" role="tab" aria-controls="nav-lecture-ranking" aria-selected="true">お試し(まさきのメアド)</a>
+      <a class="col-6 nav-item nav-link" id="nav-teacher-lanking-tab" data-toggle="tab" href="#nav-teacher-lanking" role="tab" aria-controls="nav-teacher-lanking" aria-selected="false">立命館アジア太平洋大学</a>
+      <%# <a class="col-4 nav-item nav-link" id="nav-user-lanking-tab" data-toggle="tab" href="#nav-user-lanking" role="tab" aria-controls="nav-user-lanking" aria-selected="false">大阪府立大学</a> %>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <%# お試し送信 %>
+    <div class="tab-pane fade active show" id="nav-lecture-ranking" role="tabpanel" aria-labelledby="nav-lecture-ranking-tab">
+      <%= link_to admin_test_mail_path, data: { confirm: 'お試し送信を本当にしますか？' } do %>
+        お試し送信(まさきのメアド)
+      <% end %>
+    </div>
+    <%# 立命館アジア太平洋大学 %>
+    <div class="tab-pane fade" id="nav-teacher-lanking" role="tabpanel" aria-labelledby="nav-teacher-lanking-tab">
+      <%= link_to admin_apu_mail_path, data: { confirm: '立命館アジア太平洋大学のメアドの学生全員に送信されます。一度送信した内容は取り消すことができません。本当に送信しますか？' } do %>
+        立命館アジア太平洋大学の人全員に送信
+      <% end %>
+    </div>
+    <%# 大阪府立大学 %>
+    <%# <div class="tab-pane fade" id="nav-user-lanking" role="tabpanel" aria-labelledby="nav-user-lanking-tab"> %>
+      <%#= link_to admin_s_mail_path, data: { confirm: '大阪府立大学のメアドの学生全員に送信されます。一度送信した内容は取り消すことができません。本当に送信しますか？' } do %>
+        <%# 大阪府立大学の人全員に送信 %>
+      <%# end %>
+    <%# </div> %>
+  </div>
+

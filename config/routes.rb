@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     resources :slide_contents, except: [:show]
     get 'home', to: 'users#admin_home', as:'home'
     get 'analytics', to: 'users#analytics', as:'analytics'
+    get 'prepare_mail', to: 'users#prepare_mail', as:'prepare_mail'
+    # mail送信テスト
+    get 'apu_mail', to: 'users#apu_mail', as: 'apu_mail'
+    get 'test_mail', to: 'users#test_mail', as: 'test_mail'
   end
   root 'zooms#index'
   get 'ranking', to: 'static_pages#home', as:'ranking'

@@ -20,6 +20,30 @@ class Admin::UsersController < ApplicationController
       Apu::User.where(created_at: n.day.ago.all_day).count
     end
   end
+
+  # メール作成用
+  def prepare_mail
+  end
+
+  # apu全体に送信用
+  def apu_mail
+    @users = Apu::User.all
+    @users.each do |user|
+        UserMailer.send_mail(user).deliver_now
+        # format.json { render :show, status: :created, location: user }
+        # format.html { redirect_to root_path }
+    end
+    redirect_to root_path
+  end
+
+  # test送信(マサキのメアド用)
+  def test_mail
+    @user = User.first
+    UserMailer.test_mail(@user).deliver_now
+    # format.html { redirect_to root_path }
+    # format.json { render :show, status: :created, location: @user }
+    redirect_to root_path
+  end
   
   private
   def if_not_admin
