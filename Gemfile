@@ -48,7 +48,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'faker'
+  
   gem 'bullet' # n+1問題を検出
   gem 'derailed_benchmarks' # gemのメモリ使用量を確認
 end
@@ -79,3 +79,4 @@ gem 'redis-rails'
 # gem 'jwt' zoom APIを用いたzoom作成用のgem
 gem 'sitemap_generator' # サイトマップ作成用
 gem 'aws-sdk' #AWS接続用
+gem 'faker'
